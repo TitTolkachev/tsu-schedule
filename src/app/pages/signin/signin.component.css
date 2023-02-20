@@ -1,0 +1,29 @@
+.form {
+  background: #371B1B;
+  color: white;
+  border-radius: 60px;
+}
+
+h2 {
+  /*font-family: 'Zekton', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 60px;
+  text-align: center;*/
+  text-transform: uppercase;
+}
+
+/*p {
+    font-family: 'Jura', serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 26px;
+    line-height: 31px;
+}*/
+
+button {
+  background: white !important;
+  color: black !important;
+  border-radius: 16px !important;
+}
