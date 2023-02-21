@@ -7,12 +7,14 @@ import {FormsModule} from "@angular/forms";
 import { SigninComponent } from './pages/signin/signin.component';
 import {AppRoutingModule} from "./app-routing.module";
 import { TeachersPageComponent } from './pages/admin/teachers/teachers-page/teachers-page.component';
+import { AudiencesPageComponent } from './pages/admin/audiences/audiences-page/audiences-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TeachersPageComponent,
-    SigninComponent
+    SigninComponent,
+    AudiencesPageComponent
   ],
   imports: [
     BrowserModule,
