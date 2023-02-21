@@ -8,13 +8,15 @@ import { SigninComponent } from './pages/signin/signin.component';
 import {AppRoutingModule} from "./app-routing.module";
 import { TeachersPageComponent } from './pages/admin/teachers/teachers-page/teachers-page.component';
 import { AudiencesPageComponent } from './pages/admin/audiences/audiences-page/audiences-page.component';
+import { SubjectsPageComponent } from './pages/admin/subjects/subjects-page/subjects-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TeachersPageComponent,
     SigninComponent,
-    AudiencesPageComponent
+    AudiencesPageComponent,
+    SubjectsPageComponent
   ],
   imports: [
     BrowserModule,
