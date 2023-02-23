@@ -5,6 +5,7 @@ import {TeachersPageComponent} from "./pages/admin/teachers/teachers-page/teache
 import {AudiencesPageComponent} from "./pages/admin/audiences/audiences-page/audiences-page.component";
 import {SubjectsPageComponent} from "./pages/admin/subjects/subjects-page/subjects-page.component";
 import {GroupsPageComponent} from "./pages/admin/groups/groups-page/groups-page.component";
+import {EditPageComponent} from "./pages/moderator/edit-page/edit-page.component";
 
 const routes: Routes = [
   { path: '', component: SigninComponent },
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'admin/teachers', component: TeachersPageComponent },
   { path: 'admin/audiences', component: AudiencesPageComponent },
   { path: 'admin/subjects', component: SubjectsPageComponent },
-  { path: 'admin/groups', component: GroupsPageComponent }
+  { path: 'admin/groups', component: GroupsPageComponent },
+  { path: 'moderator/edit', component: EditPageComponent }
 ];
 
 @NgModule({

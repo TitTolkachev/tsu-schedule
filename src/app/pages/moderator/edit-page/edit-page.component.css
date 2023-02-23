@@ -1,0 +1,96 @@
+.form-label {
+  width: 135px;
+  margin: 0 20px 2px 10px;
+  padding: 0;
+  text-align: start;
+  /*Поменять шрифт на Zekton*/
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 34px;
+  color: #000000;
+}
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  width: 300px;
+}
+
+input {
+  padding: 5px 30px 5px 5px;
+  height: 28px;
+  width: inherit;
+  outline: none;
+  border: 2px solid #371B1B;
+  border-radius: 5px;
+
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+
+.expand-arrow {
+  margin: 0 0 0 270px;
+  padding: 2px 0 0 0;
+  position: absolute;
+  pointer-events: none;
+  transition: transform .5s ease;
+}
+
+.flip {
+  transform: rotate(1turn);
+}
+
+datalist {
+  position: absolute;
+  width: inherit;
+  background-color: white;
+  border: 1px solid #371B1B;
+  border-radius: 0 0 5px 5px;
+  border-top: none;
+  font-family: sans-serif;
+  padding: 5px 0 5px 0;
+  max-height: 10rem;
+  overflow-y: auto;
+  justify-items: center;
+}
+
+datalist::-webkit-scrollbar {
+  width: 12px; /* ширина scrollbar */
+}
+
+datalist::-webkit-scrollbar-track {
+  background: #e5e5e5; /* цвет дорожки */
+}
+
+datalist::-webkit-scrollbar-thumb {
+  background-color: rgba(55, 27, 27, 0.9); /* цвет плашки */
+  border-radius: 20px; /* закругления плашки */
+  border: 3px solid #e5e5e5; /* padding вокруг плашки */
+}
+
+option {
+  background-color: white;
+  padding: 3px 10px 3px 10px;
+  margin-bottom: 1px;
+  cursor: pointer;
+
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 20px;
+  text-align: start;
+  color: #000000;
+}
+
+option:hover, .active {
+  background-color: #eeeeee;
+}
