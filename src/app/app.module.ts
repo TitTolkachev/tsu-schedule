@@ -5,8 +5,8 @@ import { FormsModule} from "@angular/forms";
 
 import { AppRoutingModule} from "./app-routing.module";
 
-import { HeaderSigninComponent } from "./components/headers/header-signin/header-signin.component";
-import { HeaderCompilerPagesComponent } from './components/headers/header-compiler-pages/header-compiler-pages.component';
+import { HeaderSigninComponent } from "./components/header-signin/header-signin.component";
+import { HeaderCompilerPagesComponent } from './components/header-compiler-pages/header-compiler-pages/header-compiler-pages.component';
 
 import { SigninComponent } from './pages/signin/signin.component';
 import { TeachersPageComponent } from './pages/admin/teachers/teachers-page/teachers-page.component';
