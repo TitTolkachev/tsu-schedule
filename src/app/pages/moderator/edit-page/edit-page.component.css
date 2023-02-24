@@ -60,6 +60,7 @@ datalist {
   max-height: 10rem;
   overflow-y: auto;
   justify-items: center;
+  z-index: 1;
 }
 
 datalist::-webkit-scrollbar {

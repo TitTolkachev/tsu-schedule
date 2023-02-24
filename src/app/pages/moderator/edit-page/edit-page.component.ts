@@ -1,4 +1,5 @@
 import {AfterContentInit, Component} from '@angular/core';
+import {DropDownInput} from "./drop-down-input";
 
 @Component({
   selector: 'app-edit-page',
@@ -9,110 +10,24 @@ import {AfterContentInit, Component} from '@angular/core';
 export class EditPageComponent implements AfterContentInit {
 
   ngAfterContentInit() {
-    let input = document.getElementById('input')
-    let browsers = document.getElementById('browsers')
+    let input1 = document.getElementById('input1')
+    let datalist1 = document.getElementById('datalist1')
+    let arrow1 = document.getElementById('arrow1')
+    let ddi1 = new DropDownInput(input1, datalist1, arrow1)
 
-    if (input != null && browsers != null) {
-      input.onfocus = () => {
+    let input2 = document.getElementById('input2')
+    let datalist2 = document.getElementById('datalist2')
+    let arrow2 = document.getElementById('arrow2')
+    let ddi2 = new DropDownInput(input2, datalist2, arrow2)
 
-        document.getElementsByClassName('expand-arrow')[0].classList.add('flip');
+    let input3 = document.getElementById('input3')
+    let datalist3 = document.getElementById('datalist3')
+    let arrow3 = document.getElementById('arrow3')
+    let ddi3 = new DropDownInput(input3, datalist3, arrow3)
 
-        if (input != null && browsers != null) {
-          browsers.style.display = 'block'
-          input.style.borderRadius = "5px 5px 0 0"
-
-          // @ts-ignore
-          for (let option of browsers.options)
-            option.style.display = "block"
-        }
-      }
-      input.onblur = () => {
-        document.getElementsByClassName('expand-arrow')[0].classList.remove('flip');
-      }
-      // @ts-ignore
-      for (let option of browsers.options) {
-        option.onclick = function () {
-          if (input != null && browsers != null) {
-            // @ts-ignore
-            input.value = option.value
-            browsers.style.display = 'none'
-            input.style.borderRadius = "5px"
-          }
-        }
-      }
-
-      input.oninput = function () {
-        if (input != null && browsers != null) {
-          currentFocus = -1;
-          // @ts-ignore
-          let text = input.value.toUpperCase();
-          let counter = 0
-          // @ts-ignore
-          for (let option of browsers.options) {
-            if (option.value.toUpperCase().indexOf(text) > -1) {
-              option.style.display = "block"
-              counter++
-            } else {
-              option.style.display = "none"
-            }
-          }
-          if (counter == 0) {
-            browsers.style.display = 'none'
-            input.style.borderRadius = "5px"
-          } else {
-            browsers.style.display = 'block'
-            input.style.borderRadius = "5px 5px 0 0"
-          }
-        }
-      }
-      let currentFocus = -1;
-      input.onkeydown = function (e) {
-        if (e.keyCode == 40) {
-          currentFocus++
-          // @ts-ignore
-          addActive(browsers.options)
-        } else if (e.keyCode == 38) {
-          currentFocus--
-          // @ts-ignore
-          addActive(browsers.options)
-        } else if (e.keyCode == 13) {
-          e.preventDefault();
-          if (currentFocus > -1) {
-            /*and simulate a click on the "active" item:*/
-            // @ts-ignore
-            if (browsers.options) browsers.options[currentFocus].click()
-          }
-        }
-      }
-
-      // @ts-ignore
-      function addActive(x) {
-        if (!x) return false;
-        removeActive(x);
-        if (currentFocus >= x.length) currentFocus = 0
-        if (currentFocus < 0) currentFocus = (x.length - 1)
-        x[currentFocus].classList.add("active")
-      }
-
-      // @ts-ignore
-      function removeActive(x) {
-        for (let i = 0; i < x.length; i++) {
-          x[i].classList.remove("active")
-        }
-      }
-    }
-
-
-    // Закрытие при клике вне элемента
-    document.addEventListener('click', (e) => {
-      if (browsers != null && input != null) {
-        const withinBoundaries1 = e.composedPath().includes(browsers);
-        const withinBoundaries2 = e.composedPath().includes(input);
-        if (!withinBoundaries1 && !withinBoundaries2) {
-          browsers.style.display = 'none'
-          input.style.borderRadius = "5px"
-        }
-      }
-    })
+    let input4 = document.getElementById('input4')
+    let datalist4 = document.getElementById('datalist4')
+    let arrow4 = document.getElementById('arrow4')
+    let ddi4 = new DropDownInput(input4, datalist4, arrow4)
   }
 }
