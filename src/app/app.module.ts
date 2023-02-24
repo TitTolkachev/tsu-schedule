@@ -4,6 +4,9 @@ import { HttpClientModule} from "@angular/common/http";
 import { FormsModule} from "@angular/forms";
 
 import { AppRoutingModule} from "./app-routing.module";
+
+import { HeaderSigninComponent } from "./components/header-signin/header-signin.component";
+
 import { SigninComponent } from './pages/signin/signin.component';
 import { TeachersPageComponent } from './pages/admin/teachers/teachers-page/teachers-page.component';
 import { AudiencesPageComponent } from './pages/admin/audiences/audiences-page/audiences-page.component';
@@ -12,6 +15,7 @@ import { GroupsPageComponent } from './pages/admin/groups/groups-page/groups-pag
 
 import { AppComponent } from './app.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +23,9 @@ import { AppComponent } from './app.component';
     SigninComponent,
     AudiencesPageComponent,
     SubjectsPageComponent,
-    GroupsPageComponent
+    GroupsPageComponent,
+    HeaderSigninComponent,
+    HeaderCompilerPagesComponent
   ],
   imports: [
     BrowserModule,
