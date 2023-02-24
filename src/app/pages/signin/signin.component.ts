@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {HeaderSigninComponent} from "../../components/header-signin/header-signin.component";
+import {HeaderSigninComponent} from "../../components/headers/header-signin/header-signin.component";
 
 @Component({
   selector: 'app-signin',
