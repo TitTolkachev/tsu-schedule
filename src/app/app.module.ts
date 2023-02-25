@@ -6,11 +6,13 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import { SigninComponent } from './pages/signin/signin.component';
 import {AppRoutingModule} from "./app-routing.module";
+import { SignoutComponent } from './pages/signout/signout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SigninComponent
+    SigninComponent,
+    SignoutComponent
   ],
   imports: [
     BrowserModule,

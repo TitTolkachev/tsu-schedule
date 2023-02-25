@@ -2,7 +2,7 @@
   <div class="row justify-content-center align-content-center vh-100">
     <div class="col-xxl-6 col-xl-7 col-lg-8 col-md-10 form">
 
-      <form class="d-flex flex-column align-items-center m-5">
+      <div class="d-flex flex-column align-items-center m-5">
         <h2 class="">
           Авторизация
         </h2>
@@ -11,14 +11,40 @@
         </p>
         <div class="mb-3 w-100">
           <label for="exampleInputEmail1" class="form-label">Логин</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="login">
         </div>
         <div class="mb-3 w-100">
           <label for="exampleInputPassword1" class="form-label">Пароль</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
+          <input type="password" class="form-control" id="exampleInputPassword1" [(ngModel)]="password">
         </div>
-        <button type="submit" class="w-50 btn btn-primary align-self-center">Войти</button>
-      </form>
+        <div class="mb-3 w-100 text-center text-danger">
+          <p *ngIf="state === 'login_empty'">
+            Логин не должен быть пустой.
+          </p>
+          <p *ngIf="state === 'password_empty'">
+            Пароль не должен быть пустой.
+          </p>
+          <p *ngIf="state === 'connection_refused'">
+            Не удалось подключиться к серверу, повторите попытку позже.
+          </p>
+          <p *ngIf="state === 'internal_server_error'">
+            Возникла внутренняя ошибка на сервере, обратитесь к разработчикам.
+          </p>
+          <p *ngIf="state === 'bad_request'">
+            Серверу отправлены некорректные данные.
+          </p>
+          <p *ngIf="state === 'unknown_error'">
+            Произошла неизвестная ошибка, обратитесь к разработчикам.
+          </p>
+        </div>
+        <button
+          type="submit"
+          class="w-50 btn btn-primary align-self-center"
+          [attr.disabled]="state === 'loading' ? '' : null"
+          (click)="onSubmit()">
+          Войти
+        </button>
+      </div>
 
     </div>
   </div>
