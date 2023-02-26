@@ -10,6 +10,7 @@ import { TeachersPageComponent } from './pages/admin/teachers/teachers-page/teac
 import { AudiencesPageComponent } from './pages/admin/audiences/audiences-page/audiences-page.component';
 import { SubjectsPageComponent } from './pages/admin/subjects/subjects-page/subjects-page.component';
 import { GroupsPageComponent } from './pages/admin/groups/groups-page/groups-page.component';
+import { MainPageComponent } from './pages/admin/main/main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { GroupsPageComponent } from './pages/admin/groups/groups-page/groups-pag
     SigninComponent,
     AudiencesPageComponent,
     SubjectsPageComponent,
-    GroupsPageComponent
+    GroupsPageComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,46 @@
+.btn {
+  height: 150px;
+  width: 300px;
+
+  background: #371B1B;
+  border-radius: 15px;
+  border: none;
+
+  padding: 0;
+
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 35px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+
+  transition: 0.3s ease;
+
+  color: #FFFFFF;
+}
+.btn:active {
+  background: rgb(42, 21, 21);
+  color: #dcdcdc;
+}
+
+@media (max-width: 1200px) {
+    .container {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 300px)) !important;
+    }
+}
+
+.container {
+  display: grid;
+
+  margin: 150px auto 50px auto;
+  padding: 0;
+  grid-template-columns: repeat(3, minmax(200px, 300px));
+  grid-column-gap: 75px;
+  grid-row-gap: 100px;
+
+  justify-content: center;
+}
