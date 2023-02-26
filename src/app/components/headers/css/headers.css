@@ -1,6 +1,7 @@
 body, html {
   width: 100%;
   height: 100%;
+  display: inline;
 }
 
 .navbar-brand img {width: 70px}
@@ -27,3 +28,14 @@ body, html {
 }
 
 .navbar-brand img {width: 70px}
+
+.btn-toggle {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 20px !important;
+  font-family: 'Jura', sans-serif !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  color: black !important;
+}
