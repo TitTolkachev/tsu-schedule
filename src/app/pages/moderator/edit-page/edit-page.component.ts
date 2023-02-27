@@ -8,6 +8,7 @@ import {DropDownInput} from "./drop-down-input";
 })
 
 export class EditPageComponent implements AfterContentInit {
+  private hintTimer: number | undefined;
 
   ngAfterContentInit() {
     let input1 = document.getElementById('input1')
@@ -29,5 +30,30 @@ export class EditPageComponent implements AfterContentInit {
     let datalist4 = document.getElementById('datalist4')
     let arrow4 = document.getElementById('arrow4')
     let ddi4 = new DropDownInput(input4, datalist4, arrow4)
+  }
+
+  setDisplayBlock(id: string) {
+    let el = document.getElementById(id)
+    if (el != null) {
+      if (el.classList.contains('d-none'))
+        el.classList.remove('d-none')
+      if (this.hintTimer != undefined)
+        clearTimeout(this.hintTimer)
+      el.classList.add('fade-in-anim')
+      el.classList.add('d-block')
+    }
+  }
+
+  delayDisplayNone(id: string, delay: number) {
+    let el = document.getElementById(id)
+    if (el != null) {
+      if (el.classList.contains('fade-in-anim'))
+        el.classList.remove('fade-in-anim')
+      this.hintTimer = setTimeout((el: HTMLElement) => {
+        if (el.classList.contains('d-block'))
+          el.classList.remove('d-block')
+        el.classList.add('d-none')
+      }, delay, el)
+    }
   }
 }

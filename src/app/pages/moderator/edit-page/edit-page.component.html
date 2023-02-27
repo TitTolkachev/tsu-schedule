@@ -112,28 +112,85 @@
     </div>
   </div>
 
-
   <!-- Промежуточный блок -->
-  <div class="d-flex flex-wrap text-nowrap" id="intermediate-block">
-    <div class="d-flex flex-wrap">
-      <div class="col-sm-auto" id="item-helper-container">
-        <div id="item-helper-description">
+  <div class="d-flex text-nowrap" id="intermediate-block">
+
+    <!-- Блок для изменения пары -->
+    <div class="d-none flex-wrap" id="change-items-container">
+      <div class="d-flex mt-3 helper-container">
+        <div class="helper-description">
           Изменение данных
         </div>
+
+        <!-- Всплывающая подсказка -->
+        <div class="question-helper-container">
+          <img class="question-icon" id="change-question-icon" (mouseenter)="setDisplayBlock('change-tooltip')" (mouseleave)="delayDisplayNone('change-tooltip', 500)" src="/assets/question-icon.png" alt="help">
+          <span class="question-tooltip text-wrap d-none" id="change-tooltip">
+            <div>
+              &nbsp;&nbsp;В данном режиме вы можете изменить данные выделенной пары или группы из пар.
+            </div>
+            <div>
+              &nbsp;
+            </div>
+            <div>
+              &nbsp;&nbsp;Если вы хотите поменять время, то нажмите на “+” свободного окна.
+            </div>
+          </span>
+        </div>
       </div>
-      <div class="d-flex col-sm-auto" id="control-buttons-container">
-        <button class="btn" id="control-btn1">
+      <div class="d-flex control-buttons-container">
+        <button class="btn mt-3 control-button-apply" id="change-control-btn1">
           сохранить изменения
         </button>
-        <button class="btn control-button" id="control-btn2">
-          удалить
-        </button>
-        <button class="btn control-button" id="control-btn3">
-          отменить
-        </button>
+        <div class="d-flex mt-3">
+          <button class="btn control-button" id="change-control-btn2">
+            удалить
+          </button>
+          <button class="btn control-button" id="change-control-btn3">
+            отменить
+          </button>
+        </div>
       </div>
     </div>
-    <div class="" id="week-buttons-container">
+
+    <!-- Блок для добавления пары -->
+    <div class="d-flex flex-wrap" id="add-items-container">
+      <div class="d-flex mt-3 helper-container">
+        <div class="helper-description">
+          Добавление новой пары
+        </div>
+        <!-- Всплывающая подсказка -->
+        <div class="question-helper-container">
+          <img class="question-icon" id="add-question-icon" (mouseenter)="setDisplayBlock('add-tooltip')" (mouseleave)="delayDisplayNone('add-tooltip', 500)" src="/assets/question-icon.png" alt="help">
+          <span class="question-tooltip text-wrap d-none" id="add-tooltip">
+            <div>
+              &nbsp;&nbsp;В данном режиме вы можете добавить новую пару или группу пар.
+            </div>
+            <div>
+              &nbsp;
+            </div>
+            <div>
+              &nbsp;&nbsp;Если вы хотите поменять время, то нажмите на “+” свободного окна.
+            </div>
+          </span>
+        </div>
+      </div>
+      <div class="d-flex control-buttons-container">
+        <button class="btn mt-3 control-button-apply" id="add-control-btn1">
+          сохранить изменения
+        </button>
+        <div class="d-flex mt-3">
+          <button class="btn control-button" id="add-control-btn3">
+            отменить
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Этот пустой элемент нужен, чтобы week-buttons-container всегда улетал вправо -->
+    <div></div>
+
+    <div class="d-flex mt-3" id="week-buttons-container">
       <button class="btn week-button" id="previous-week-btn">
         предыдущая неделя
       </button>
