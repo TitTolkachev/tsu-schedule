@@ -95,3 +95,77 @@ option {
 option:hover, .active {
   background-color: #eeeeee;
 }
+
+
+/* Промежуточный блок */
+#intermediate-block {
+  align-content: center;
+  justify-content: space-between;
+}
+
+#item-helper-description {
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 47px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+
+#control-btn1 {
+  background: #A1CCCF;
+  border-radius: 10px;
+
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+
+  color: #000000;
+}
+
+.control-button {
+  width: 150px;
+
+  border: 3px solid #A1CCCF;
+  border-radius: 10px;
+
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  justify-content: center;
+
+  color: #000000;
+}
+
+.week-button {
+  width: 220px;
+  height: 52px;
+
+  background: #371B1B;
+  border-radius: 10px;
+
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+
+  color: #FFFFFF;
+}
+
