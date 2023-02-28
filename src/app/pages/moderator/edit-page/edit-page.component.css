@@ -1,9 +1,10 @@
+
 .form-label {
   width: 135px;
   margin: 0 20px 2px 10px;
   padding: 0;
   text-align: start;
-  /* Поменять шрифт на Zekton */
+  /* TODO(Поменять шрифт на Zekton) */
   font-family: 'Jura', sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -17,6 +18,11 @@ fieldset {
   margin: 0;
   width: 300px;
 }
+
+
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* Dropdown input */
 
 input {
   padding: 5px 30px 5px 5px;
@@ -95,6 +101,17 @@ option {
 option:hover, .active {
   background-color: #eeeeee;
 }
+
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* Адаптив для Dropdown input */
+
+/* TODO(Адаптив для Dropdown input) */
 
 
 /* ----------------------------------------------------------- */
@@ -199,6 +216,7 @@ option:hover, .active {
   margin-right: 10px;
 
   background: #A1CCCF;
+  border: 3px solid #A1CCCF;
   border-radius: 10px;
 
   font-family: 'Jura', sans-serif;
@@ -211,7 +229,19 @@ option:hover, .active {
   text-align: center;
   text-transform: uppercase;
 
+  transition: 0.3s ease;
+
   color: #000000;
+}
+
+.control-button-apply:hover {
+  background: #63a4a8;
+  border-color: #63a4a8;
+}
+
+.control-button-apply:active {
+  background: #42ccce;
+  border-color: #42ccce;
 }
 
 @media (max-width: 900px) {
@@ -240,7 +270,19 @@ option:hover, .active {
   text-transform: uppercase;
   justify-content: center;
 
+  transition: 0.3s ease;
+
   color: #000000;
+}
+
+.control-button:hover {
+  background: #63a4a8;
+  border-color: #63a4a8;
+}
+
+.control-button:active {
+  background: #42ccce;
+  border-color: #42ccce;
 }
 
 @media (max-width: 900px) {
@@ -267,3 +309,23 @@ option:hover, .active {
   color: #FFFFFF;
 }
 
+.week-button:hover {
+  background: #2d1616;
+  color: #FFFFFF;
+}
+
+.week-button:active {
+  background: #150a0a;
+  color: #FFFFFF;
+}
+
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* Адаптив промежуточного блока под маленькие экраны */
+
+/* TODO(Адаптив промежуточного блока под маленькие экраны) */
