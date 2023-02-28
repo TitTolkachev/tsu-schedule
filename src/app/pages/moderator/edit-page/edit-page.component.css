@@ -145,19 +145,19 @@ option:hover, .active {
 }
 
 .helper-container {
-  margin-right: 40px;
+  margin-right: 65px;
   padding: 0;
 }
 
 .helper-description {
-  height: 36px;
-  margin-right: 15px;
+  height: 47px;
+  margin-right: 20px;
   padding: 0;
 
   font-family: 'Jura', sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 26px;
+  font-size: 40px;
   line-height: 47px;
   display: flex;
   align-items: center;
@@ -166,7 +166,7 @@ option:hover, .active {
 }
 
 .question-icon {
-  height: 36px;
+  height: 47px;
 }
 
 .fade-in-anim {
@@ -221,9 +221,9 @@ option:hover, .active {
 }
 
 .control-button-apply {
-  height: 36px;
+  height: 47px;
   padding: 5px;
-  margin-right: 10px;
+  margin-right: 15px;
 
   background: #A1CCCF;
   border: 3px solid #A1CCCF;
@@ -232,8 +232,8 @@ option:hover, .active {
   font-family: 'Jura', sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 19px;
+  line-height: 22px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -261,10 +261,10 @@ option:hover, .active {
 }
 
 .control-button {
-  width: 120px;
-  height: 36px;
+  width: 155px;
+  height: 47px;
   padding: 5px;
-  margin-right: 10px;
+  margin-right: 15px;
 
   border: 3px solid #A1CCCF;
   border-radius: 10px;
@@ -272,8 +272,8 @@ option:hover, .active {
   font-family: 'Jura', sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 19px;
+  line-height: 22px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -302,8 +302,8 @@ option:hover, .active {
 }
 
 .week-button {
-  width: 175px;
-  height: 36px;
+  width: 215px;
+  height: 47px;
   padding: 0;
   margin-left: 20px;
 
@@ -312,8 +312,8 @@ option:hover, .active {
 
   font-family: 'Jura', sans-serif;
   font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 400;
+  font-size: 18px;
   line-height: 21px;
 
   color: #FFFFFF;
@@ -355,6 +355,7 @@ option:hover, .active {
     padding: 5px;
     margin-right: 10px;
     border-radius: 8px;
+    font-size: 14px;
   }
 
   .control-button {
@@ -363,6 +364,7 @@ option:hover, .active {
     padding: 5px;
     margin-right: 10px;
     border-radius: 8px;
+    font-size: 14px;
   }
 
   .week-button {
