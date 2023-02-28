@@ -54,7 +54,7 @@
   padding: 10px 28px 10px 25px;
 }
 
-#header-exit-btn {
+.header-exit-btn {
   font-family: 'ZektonRg', sans-serif;
   font-size: 30px;
   text-align: center;
