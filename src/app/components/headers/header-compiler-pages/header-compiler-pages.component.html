@@ -1,21 +1,15 @@
 <div class="header-container">
   <div class="div-header">
-    <nav class="navbar navbar-expand-md sticky-top">
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand-md sticky-top header-navbar">
+      <div class="container-fluid p-0">
         <a class="navbar-brand" routerLink="/moderator/edit">
           <img src="/assets/img/logo.png" alt="logo">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseNavbar"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapseNavbar">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link header-exit-btn" routerLink="">Выход</a>
-            </li>
-          </ul>
-        </div>
+        <ul class="navbar-nav ms-auto flex-row">
+          <li class="nav-item">
+            <a class="nav-link header-exit-btn" routerLink="">Выход</a>
+          </li>
+        </ul>
       </div>
     </nav>
   </div>
