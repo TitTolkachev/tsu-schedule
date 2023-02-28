@@ -30,6 +30,36 @@ export class EditPageComponent implements AfterContentInit {
     let datalist4 = document.getElementById('datalist4')
     let arrow4 = document.getElementById('arrow4')
     let ddi4 = new DropDownInput(input4, datalist4, arrow4)
+
+    let input5 = document.getElementById('input5')
+    let datalist5 = document.getElementById('datalist5')
+    let arrow5 = document.getElementById('arrow5')
+    let ddi5 = new DropDownInput(input5, datalist5, arrow5)
+
+    let input6 = document.getElementById('input6')
+    let datalist6 = document.getElementById('datalist6')
+    let arrow6 = document.getElementById('arrow6')
+    let ddi6 = new DropDownInput(input6, datalist6, arrow6)
+
+    let input7 = document.getElementById('input7')
+    let datalist7 = document.getElementById('datalist7')
+    let arrow7 = document.getElementById('arrow7')
+    let ddi7 = new DropDownInput(input7, datalist7, arrow7)
+
+    let input8 = document.getElementById('input8')
+    let datalist8 = document.getElementById('datalist8')
+    let arrow8 = document.getElementById('arrow8')
+    let ddi8 = new DropDownInput(input8, datalist8, arrow8)
+
+    let input9 = document.getElementById('input9')
+    let datalist9 = document.getElementById('datalist9')
+    let arrow9 = document.getElementById('arrow9')
+    let ddi9 = new DropDownInput(input9, datalist9, arrow9)
+
+    let input10 = document.getElementById('input10')
+    let datalist10 = document.getElementById('datalist10')
+    let arrow10 = document.getElementById('arrow10')
+    let ddi10 = new DropDownInput(input10, datalist10, arrow10)
   }
 
   setDisplayBlock(id: string) {
