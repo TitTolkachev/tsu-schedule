@@ -1,3 +1,13 @@
+.body-container {
+  width: 100vw;
+  padding: 0 83px 0 83px;
+}
+
+@media (max-height: 900px) {
+  .body-container {
+    padding: 0 40px 0 40px;
+  }
+}
 
 .form-label {
   width: 135px;
@@ -294,7 +304,7 @@ option:hover, .active {
 .week-button {
   width: 175px;
   height: 36px;
-  padding: 5px;
+  padding: 0;
   margin-left: 20px;
 
   background: #371B1B;
@@ -328,4 +338,39 @@ option:hover, .active {
 /* ----------------------------------------------------------- */
 /* Адаптив промежуточного блока под маленькие экраны */
 
-/* TODO(Адаптив промежуточного блока под маленькие экраны) */
+@media (max-height: 900px) {
+
+  .helper-description {
+    height: 32px;
+    margin-right: 10px;
+    font-size: 24px;
+  }
+
+  .question-icon {
+    height: 32px;
+  }
+
+  .control-button-apply {
+    height: 32px;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 8px;
+  }
+
+  .control-button {
+    width: 110px;
+    height: 32px;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 8px;
+  }
+
+  .week-button {
+    width: 175px;
+    height: 32px;
+    margin-left: 20px;
+    border-radius: 8px;
+
+    font-size: 14px;
+  }
+}
