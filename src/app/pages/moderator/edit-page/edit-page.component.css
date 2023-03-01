@@ -231,7 +231,7 @@ option:hover, .active {
 }
 
 .fade-in-anim {
-  animation: fadeInFromNone 0.5s ease-in-out !important;
+  animation: fadeInFromNone 0.3s ease-in-out !important;
   animation-fill-mode: forwards !important;
 }
 
@@ -246,7 +246,7 @@ option:hover, .active {
   position: absolute;
   margin: 10px -50px;
   z-index: 1000;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
 
   border-radius: 5px;
 
@@ -260,7 +260,7 @@ option:hover, .active {
 
   color: #000000;
 
-  animation: fadeOutFromBlock 0.5s ease-in-out;
+  animation: fadeOutFromBlock 0.3s ease-in-out;
 }
 
 @keyframes fadeInFromNone {
