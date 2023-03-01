@@ -76,7 +76,7 @@ input {
   transform: rotate(1turn);
 }
 
-datalist {
+.main-input-datalist {
   position: absolute;
   width: inherit;
   background-color: white;
@@ -91,15 +91,15 @@ datalist {
   z-index: 1;
 }
 
-datalist::-webkit-scrollbar {
+.main-input-datalist::-webkit-scrollbar {
   width: 12px; /* ширина scrollbar */
 }
 
-datalist::-webkit-scrollbar-track {
+.main-input-datalist::-webkit-scrollbar-track {
   background: #e5e5e5; /* цвет дорожки */
 }
 
-datalist::-webkit-scrollbar-thumb {
+.main-input-datalist::-webkit-scrollbar-thumb {
   background-color: rgba(55, 27, 27, 0.9); /* цвет плашки */
   border-radius: 20px; /* закругления плашки */
   border: 3px solid #e5e5e5; /* padding вокруг плашки */
