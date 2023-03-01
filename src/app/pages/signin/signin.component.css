@@ -75,6 +75,10 @@ button:active {
   background: rgba(255, 255, 255, 0.4);
 }
 
+button:disabled {
+  background: rgba(255, 255, 255, 0.4);
+}
+
 @media (max-height: 900px) {
 
   .form {
