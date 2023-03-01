@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
+import jwtDecode from "jwt-decode";
+import {Jwt} from "../../models/jwt";
 
 @Component({
   selector: 'app-signin',
@@ -30,8 +32,17 @@ export class SigninComponent {
     }
     this.authService.signIn(this.login, this.password)
       .subscribe({
-        next: () =>  {
-          this.router.navigateByUrl("/").then()
+        next: e => {
+          let role = jwtDecode<Jwt>(e.token).role
+          if (role == 'Admin') {
+            this.router.navigateByUrl("/admin/main").then()
+            return;
+          }
+          if (role == 'ScheduleWriter') {
+            this.router.navigateByUrl("/moderator/edit").then()
+            return;
+          }
+          this.state = 'forbidden'
         },
         error: err => {
           if (err.status === 0) {
