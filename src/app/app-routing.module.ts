@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {RoutingGuard} from "./routing-guard";
 import {SigninComponent} from "./pages/signin/signin.component";
+import {SignoutComponent} from "./pages/signout/signout.component";
 import {TeachersPageComponent} from "./pages/admin/teachers/teachers-page/teachers-page.component";
 import {AudiencesPageComponent} from "./pages/admin/audiences/audiences-page/audiences-page.component";
 import {SubjectsPageComponent} from "./pages/admin/subjects/subjects-page/subjects-page.component";
@@ -9,7 +11,8 @@ import {MainPageComponent} from "./pages/admin/main/main-page/main-page.componen
 
 const routes: Routes = [
   { path: '', component: SigninComponent },
-  { path: 'signin', component: SigninComponent },
+  { path: 'signin', component: SigninComponent, canActivate: [RoutingGuard] },
+  { path: 'signout', component: SignoutComponent, canActivate: [RoutingGuard] },
   { path: 'admin/teachers', component: TeachersPageComponent },
   { path: 'admin/audiences', component: AudiencesPageComponent },
   { path: 'admin/subjects', component: SubjectsPageComponent },
