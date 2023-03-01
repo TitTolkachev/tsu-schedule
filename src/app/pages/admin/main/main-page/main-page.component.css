@@ -1,0 +1,103 @@
+.btn {
+  height: 180px;
+  width: 380px;
+
+  background: #371B1B;
+  border-radius: 15px;
+  border: none;
+
+  padding: 0;
+
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 35px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+
+  transition: 0.3s ease;
+
+  color: #FFFFFF;
+}
+
+.btn:active {
+  background: rgb(42, 21, 21);
+  color: #dcdcdc;
+}
+
+.container {
+  max-width: 100%;
+  width: 100%;
+
+  display: grid;
+
+  margin: 150px auto 50px auto;
+  padding: 0;
+  grid-template-columns: repeat(3, auto);
+  grid-column-gap: 150px;
+  grid-row-gap: 200px;
+
+  justify-content: center;
+}
+
+@media (min-height: 900px) and (max-width: 1500px) {
+  .container {
+    grid-row-gap: 80px;
+    grid-column-gap: 80px;
+  }
+}
+
+@media (min-height: 900px) and (max-width: 1300px) {
+  .container {
+    grid-template-columns: repeat(auto-fill, 380px) !important;
+    margin: 80px auto 40px auto;
+  }
+}
+
+@media (max-height: 900px) {
+
+  .btn {
+    height: 150px;
+    width: 300px;
+
+    border-radius: 15px;
+
+    font-size: 28px;
+    line-height: 35px;
+  }
+
+  .container {
+    margin: 150px auto 50px auto;
+    padding: 0;
+    grid-template-columns: repeat(3, 300px);
+    grid-column-gap: 75px;
+    grid-row-gap: 100px;
+  }
+
+  @media (max-width: 1100px) {
+    .container {
+      grid-template-columns: repeat(3, 250px);
+      grid-row-gap: 60px;
+      grid-column-gap: 60px;
+    }
+    .btn {
+      height: 120px;
+      width: 250px;
+
+      border-radius: 13px;
+
+      font-size: 24px;
+      line-height: 30px;
+    }
+  }
+
+  @media (max-width: 870px) {
+    .container {
+      grid-template-columns: repeat(auto-fill, 250px) !important;
+      margin: 60px auto 40px auto;
+    }
+  }
+}

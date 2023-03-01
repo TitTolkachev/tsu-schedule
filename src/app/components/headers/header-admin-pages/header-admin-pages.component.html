@@ -1,0 +1,35 @@
+<div class="header-container">
+  <div class="div-header">
+    <nav class="navbar navbar-expand-md sticky-top header-navbar">
+      <div class="container-fluid p-0">
+        <a class="navbar-brand" routerLink="/admin/main">
+          <img src="/assets/img/logo.png" alt="logo">
+        </a>
+        <ul class="navbar-nav flex-row">
+          <li class="nav-item d-flex active">
+            <a class="nav-link" id="header-main-btn" routerLink="/admin/main">Главная</a>
+          </li>
+          <li class="nav-item d-flex dropdown">
+            <button class="btn-toggle dropdown-toggle" type="button" id="navbarDropdown" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+              Админ
+            </button>
+            <ul class="dropdown-menu" id="header-dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item header-dropdown-item" routerLink="/admin/users">Пользователи</a></li>
+              <li><a class="dropdown-item header-dropdown-item" routerLink="/admin/requests">Запросы</a></li>
+              <li><a class="dropdown-item header-dropdown-item" routerLink="/admin/teachers">Преподаватели</a></li>
+              <li><a class="dropdown-item header-dropdown-item" routerLink="/admin/subjects">Предметы</a></li>
+              <li><a class="dropdown-item header-dropdown-item" routerLink="/admin/audiences">Аудитории</a></li>
+              <li><a class="dropdown-item header-dropdown-item" routerLink="/admin/groups">Группы</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link header-exit-btn" routerLink="">Выход</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
