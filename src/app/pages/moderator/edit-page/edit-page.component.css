@@ -36,8 +36,7 @@
 .form-label {
   margin: 0 20px 0 0;
   text-align: start;
-  /* TODO(Поменять шрифт на Zekton) */
-  font-family: 'Jura', sans-serif;
+  font-family: 'ZektonRg', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 28px;
@@ -163,15 +162,15 @@ option:hover, .active {
   }
 
   .form-label-1 {
-    width: 130px;
+    width: 140px;
   }
 
   .form-label-2 {
-    width: 155px;
+    width: 170px;
   }
 
   .form-label-3 {
-    width: 110px;
+    width: 115px;
   }
 
   fieldset {
