@@ -1,15 +1,118 @@
 .form {
-  background: #371B1B;
   color: white;
+  background: #371B1B;
   border-radius: 60px;
+  max-width: 1150px;
+  padding: 80px 135px 115px 135px;
 }
 
-h2 {
+.form-title {
   text-transform: uppercase;
+  font-family: 'ZektonRg', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 60px;
+  text-align: center;
+  color: #FFFFFF;
+  margin-bottom: 30px;
+}
+
+.form-description {
+  margin-bottom: 70px;
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 31px;
+  color: #FFFFFF;
+}
+
+input {
+  border: none;
+  border-bottom: 5px solid #FFFFFF;
+  margin-bottom: 30px;
+  padding: 0 30px 10px 30px;
+  background: transparent;
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 38px;
+  color: rgba(255, 255, 255, 0.8);
+  outline: none;
+}
+
+::placeholder {
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 40px;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 button {
-  background: white !important;
-  color: black !important;
-  border-radius: 16px !important;
+  width: 460px;
+  height: 72px;
+  background: #FFFFFF;
+  border: none;
+  border-radius: 23px;
+
+  margin-top: 40px;
+
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 38px;
+  text-align: center;
+  color: #000000;
+  transition: 0.3s ease;
+}
+
+button:active {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+@media (max-height: 900px) {
+
+  .form {
+    border-radius: 50px;
+    max-width: 900px;
+    padding: 50px 100px 70px 100px;
+  }
+
+  .form-title {
+    font-size: 34px;
+    line-height: 40px;
+    margin-bottom: 20px;
+  }
+
+  .form-description {
+    margin-bottom: 40px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  input {
+    border-bottom: 3px solid #FFFFFF;
+    margin-bottom: 15px;
+    font-size: 24px;
+    line-height: 26px;
+  }
+
+  ::placeholder {
+    font-size: 24px;
+    line-height: 26px;
+  }
+
+  button {
+    width: 300px;
+    height: 50px;
+    border-radius: 15px;
+    margin-top: 40px;
+    font-size: 24px;
+    line-height: 30px;
+  }
 }

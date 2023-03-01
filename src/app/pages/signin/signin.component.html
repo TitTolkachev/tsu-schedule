@@ -1,21 +1,19 @@
 <div class="container-sm">
   <div class="row justify-content-center align-content-center vh-100">
-    <div class="col-xxl-6 col-xl-7 col-lg-8 col-md-10 form">
+    <div class="form">
 
-      <div class="d-flex flex-column align-items-center m-5">
-        <h2 class="">
+      <div class="d-flex flex-column align-items-center">
+        <div class="form-title">
           Авторизация
-        </h2>
-        <p class="mb-4 w-100">
-          Чтобы править расписание, необходимо быть зарегистрированным составителем
-        </p>
-        <div class="mb-3 w-100">
-          <label for="exampleInputEmail1" class="form-label">Логин</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="login">
         </div>
-        <div class="mb-3 w-100">
-          <label for="exampleInputPassword1" class="form-label">Пароль</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" [(ngModel)]="password">
+        <div class="w-100 form-description">
+          Чтобы править расписание, необходимо быть зарегистрированным составителем
+        </div>
+        <div class="w-100">
+          <input type="email" class="w-100" id="exampleInputEmail1" placeholder="Логин" aria-describedby="emailHelp" [(ngModel)]="login">
+        </div>
+        <div class="w-100">
+          <input type="password" class="w-100" placeholder="Пароль" id="exampleInputPassword1" [(ngModel)]="password">
         </div>
         <div class="mb-3 w-100 text-center text-danger">
           <p *ngIf="state === 'login_empty'">
@@ -39,7 +37,6 @@
         </div>
         <button
           type="submit"
-          class="w-50 btn btn-primary align-self-center"
           [attr.disabled]="state === 'loading' ? '' : null"
           (click)="onSubmit()">
           Войти
