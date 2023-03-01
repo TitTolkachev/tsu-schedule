@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'admin/audiences', component: AudiencesPageComponent },
   { path: 'admin/subjects', component: SubjectsPageComponent },
   { path: 'admin/groups', component: GroupsPageComponent },
-  { path: 'admin/main', component: MainPageComponent }
+  { path: 'admin/main', component: MainPageComponent },
   { path: 'admin/groups', component: GroupsPageComponent },
   { path: 'moderator/edit', component: EditPageComponent }
 ];
