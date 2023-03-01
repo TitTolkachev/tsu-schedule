@@ -11,20 +11,37 @@
   }
 }
 
+@media (max-width: 1000px) {
+  #top-inputs-block {
+    flex-direction: column !important;
+  }
+  .form-label {
+    width: 230px !important;
+  }
+  @media (max-height: 900px) {
+    .form-label {
+      width: 180px !important;
+    }
+  }
+}
+
 /* ----------------------------------------------------------- */
 /* ----------------------------------------------------------- */
 /* Dropdown input */
 
+.input-with-label {
+  margin-top: 20px;
+}
+
 .form-label {
-  margin: 0 20px 2px 0;
-  padding: 0;
+  margin: 0 20px 0 0;
   text-align: start;
   /* TODO(Поменять шрифт на Zekton) */
   font-family: 'Jura', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 28px;
-  line-height: 34px;
+  line-height: 28px;
   color: #000000;
 }
 
@@ -133,7 +150,38 @@ option:hover, .active {
 /* ----------------------------------------------------------- */
 /* Адаптив для Dropdown input */
 
-/* TODO(Адаптив для Dropdown input) */
+@media (max-height: 900px) {
+
+  .input-with-label {
+    margin-top: 12px;
+  }
+
+  .form-label {
+    margin: 0 10px 2px 0;
+    padding: 0;
+    font-size: 21px;
+  }
+
+  .form-label-1 {
+    width: 130px;
+  }
+
+  .form-label-2 {
+    width: 155px;
+  }
+
+  .form-label-3 {
+    width: 110px;
+  }
+
+  fieldset {
+    width: 280px;
+  }
+
+  .expand-arrow {
+    margin: 0 0 0 250px;
+  }
+}
 
 
 /* ----------------------------------------------------------- */
@@ -154,6 +202,7 @@ option:hover, .active {
 #intermediate-block {
   align-content: center;
   justify-content: space-between;
+  margin-top: 20px;
 }
 
 .helper-container {
@@ -352,6 +401,10 @@ option:hover, .active {
 /* Адаптив промежуточного блока под маленькие экраны */
 
 @media (max-height: 900px) {
+
+  #intermediate-block {
+    margin-top: 5px;
+  }
 
   .helper-description {
     height: 32px;
