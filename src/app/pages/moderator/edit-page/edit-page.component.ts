@@ -1,5 +1,6 @@
 import {AfterContentInit, Component} from '@angular/core';
 import {DropDownInput} from "./drop-down-input";
+import {GroupInput} from "./group-input";
 
 @Component({
   selector: 'app-edit-page',
@@ -31,10 +32,11 @@ export class EditPageComponent implements AfterContentInit {
     let arrow4 = document.getElementById('arrow4')
     let ddi4 = new DropDownInput(input4, datalist4, arrow4)
 
+    // Группа
     let input5 = document.getElementById('input5')
     let datalist5 = document.getElementById('datalist5')
     let arrow5 = document.getElementById('arrow5')
-    let ddi5 = new DropDownInput(input5, datalist5, arrow5)
+    let ddi5 = new GroupInput(input5, datalist5, arrow5)
 
     let input6 = document.getElementById('input6')
     let datalist6 = document.getElementById('datalist6')
