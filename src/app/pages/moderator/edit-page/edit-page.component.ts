@@ -53,15 +53,11 @@ export class EditPageComponent implements AfterContentInit {
     let arrow8 = document.getElementById('arrow8')
     let ddi8 = new DropDownInput(input8, datalist8, arrow8)
 
+    // Календарь
     let input9 = document.getElementById('input9')
-    let datalist9 = document.getElementById('datalist9')
-    let arrow9 = document.getElementById('arrow9')
-    let ddi9 = new DropDownInput(input9, datalist9, arrow9)
 
+    // Календарь
     let input10 = document.getElementById('input10')
-    let datalist10 = document.getElementById('datalist10')
-    let arrow10 = document.getElementById('arrow10')
-    let ddi10 = new DropDownInput(input10, datalist10, arrow10)
   }
 
   setDisplayBlock(id: string) {
