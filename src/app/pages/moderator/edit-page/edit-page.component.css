@@ -562,3 +562,52 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 14px;
   }
 }
+
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* Кнопка показать еще */
+
+#show-more-btn {
+  width: 320px;
+  height: 54px;
+
+  margin-bottom: 80px;
+  margin-top: 100px;
+
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+  justify-content: center;
+
+  background: #371B1B;
+  border-radius: 10px;
+}
+
+#show-more-btn:hover {
+  background: #2d1616;
+  color: #FFFFFF;
+}
+
+#show-more-btn:active {
+  background: #150a0a;
+  color: #FFFFFF;
+}
+
+@media (max-height: 900px) {
+  #show-more-btn {
+    width: 240px;
+    height: 40px;
+    margin-bottom: 50px;
+    margin-top: 30px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+}

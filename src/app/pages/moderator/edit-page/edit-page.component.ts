@@ -5,7 +5,7 @@ import {GroupInput} from "./group-input";
 @Component({
   selector: 'app-edit-page',
   templateUrl: './edit-page.component.html',
-  styleUrls: ['./edit-page.component.css']
+  styleUrls: ['./edit-page.component.css', '/css/schedule-week.css']
 })
 
 export class EditPageComponent implements AfterContentInit {
