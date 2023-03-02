@@ -15,9 +15,11 @@
   #top-inputs-block {
     flex-direction: column !important;
   }
+
   .form-label {
     width: 230px !important;
   }
+
   @media (max-height: 900px) {
     .form-label {
       width: 180px !important;
@@ -182,6 +184,104 @@ option:hover, .active {
   }
 }
 
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* Group Input */
+
+.group-input-datalist {
+  position: absolute;
+  width: 150px;
+  background: #FFFFFF;
+  box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.15), -7px -7px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+  padding: 5px 0 5px 0;
+  margin-top: 4px;
+  margin-left: 140px;
+  max-height: 17rem;
+  overflow-y: auto;
+  justify-items: center;
+  z-index: 1;
+}
+
+.group-input-datalist::-webkit-scrollbar {
+  width: 8px; /* ширина scrollbar */
+}
+
+.group-input-datalist::-webkit-scrollbar-track {
+  background: transparent; /* цвет дорожки */
+}
+
+.group-input-datalist::-webkit-scrollbar-thumb {
+  background-color: rgba(55, 27, 27, 0.9); /* цвет плашки */
+  border-radius: 20px; /* закругления плашки */
+  border: 2px solid white; /* padding вокруг плашки */
+}
+
+.group-option {
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+  background-color: white;
+  padding: 5px 10px 5px 20px;
+  margin-bottom: 1px;
+  cursor: pointer;
+  text-align: start;
+}
+
+.group-option:hover, .active {
+  background-color: #eeeeee;
+}
+
+.group-option::after {
+  content: url("/assets/img/group-not-ticked.png");
+  display: block;
+  margin-left: 95px;
+  margin-top: -23px;
+  position: absolute;
+}
+
+.selected-group-option::after {
+  content: url("/assets/img/group-ticked.png");
+  margin-left: 91px;
+  margin-top: -19px;
+}
+
+.group-input-rectangle {
+  width: 15px;
+}
+
+.group-input-tick {
+  width: 9px;
+}
+
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* Адаптив для Group Input */
+
+@media (max-height: 900px) {
+  .group-input-datalist {
+    margin-left: 120px;
+  }
+}
 
 /* ----------------------------------------------------------- */
 /* ----------------------------------------------------------- */

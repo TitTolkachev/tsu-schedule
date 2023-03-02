@@ -22,10 +22,6 @@ export class GroupInput {
             option.style.display = "block"
         }
       }
-      input.onblur = () => {
-        if (arrow != null)
-          arrow.classList.remove('flip');
-      }
       // @ts-ignore
       for (let option of datalist.options) {
         option.onclick = function () {
@@ -35,9 +31,11 @@ export class GroupInput {
             if (this.SelectedGroupsList.includes(option.value)) {
               // @ts-ignore
               this.SelectedGroupsList.splice(this.SelectedGroupsList.indexOf(option.value), 1)
+              option.classList.remove('selected-group-option')
             } else {
               // @ts-ignore
               this.SelectedGroupsList.push(option.value)
+              option.classList.add('selected-group-option')
             }
 
             // @ts-ignore
@@ -60,15 +58,15 @@ export class GroupInput {
       }
     }
 
-
     // Закрытие при клике вне элемента
     document.addEventListener('click', (e) => {
-      if (datalist != null && input != null) {
+      if (datalist != null && input != null && arrow != null) {
         const withinBoundaries1 = e.composedPath().includes(datalist);
         const withinBoundaries2 = e.composedPath().includes(input);
         if (!withinBoundaries1 && !withinBoundaries2) {
           datalist.style.display = 'none'
           input.style.borderRadius = "5px"
+          arrow.classList.remove('flip');
         }
       }
     })
