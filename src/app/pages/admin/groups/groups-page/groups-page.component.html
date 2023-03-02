@@ -1,9 +1,16 @@
 <app-header-admin-pages></app-header-admin-pages>
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addGroupModal">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addGroupModal" (click)="createClick()">
   Добавить новую группу
 </button>
+
+<app-group-element
+  *ngFor="let e of groups"
+  [group]="e"
+  (onEdit)="editClick($event)"
+  (onDelete)="deleteClick($event)"
+></app-group-element>
 
 <!-- Add Group Modal -->
 <div class="modal fade" id="addGroupModal" tabindex="-1" aria-labelledby="addGroupModalLabel" aria-hidden="true">
@@ -18,14 +25,17 @@
         <div class="row">
           <label for="groupNumberInput" class="col-sm-3 col-form-label">Номер</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control transparent-input" id="groupNumberInput">
+            <input type="text" class="form-control transparent-input" id="groupNumberInput" [(ngModel)]="modalGroup.number">
           </div>
         </div>
       </div>
 
       <div class="modal-footer">
         <!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-        <button type="button" class="btn btn-primary text-center">Добавить</button>
+        <button type="button" class="btn btn-primary text-center" (click)="submitModal()">
+          <span *ngIf="!modalEdit">Добавить</span>
+          <span *ngIf="modalEdit">Изменить</span>
+        </button>
       </div>
     </div>
   </div>

@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app-routing.module";
 import {HeaderSigninComponent} from "./components/headers/header-signin/header-signin.component";
 import {HeaderCompilerPagesComponent} from './components/headers/header-compiler-pages/header-compiler-pages.component';
@@ -14,6 +14,7 @@ import {GroupsPageComponent} from './pages/admin/groups/groups-page/groups-page.
 import {HeaderAdminPagesComponent} from './components/headers/header-admin-pages/header-admin-pages.component';
 import { MainPageComponent } from './pages/admin/main/main-page/main-page.component';
 import {AppComponent} from './app.component';
+import { GroupElementComponent } from './pages/admin/groups/group-element/group-element.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {AppComponent} from './app.component';
     GroupsPageComponent,
     HeaderSigninComponent,
     HeaderCompilerPagesComponent,
-    HeaderAdminPagesComponent
+    HeaderAdminPagesComponent,
+    GroupElementComponent
   ],
   imports: [
     BrowserModule,
