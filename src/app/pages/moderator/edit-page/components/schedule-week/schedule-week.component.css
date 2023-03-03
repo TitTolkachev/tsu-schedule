@@ -12,30 +12,76 @@
 
 @media (max-height: 900px) {
   .schedule-week-date {
-    margin-top: 25px;
+    margin-top: 30px;
     font-size: 24px;
     line-height: 28px;
   }
 }
 
-
-
 .schedule-week {
   display: grid;
   width: 100%;
   margin-top: 20px;
-  grid-template-columns: 100px repeat(6, 1fr) 55px;
+  grid-template-columns: auto repeat(6, 1fr) 45px;
 }
 
 @media (max-height: 900px) {
   .schedule-week {
     margin-top: 15px;
+    grid-template-columns: auto repeat(6, 1fr) 30px;
   }
+}
+
+.cell-time {
+  display: block;
+  padding: 10px 15px 0 0;
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 24px;
+  color: #000000;
+}
+
+.cell-time-end {
+  margin: 0 0 0 20px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
 }
 
 .cell-day-name, .cell-empty{
   border-bottom: 3px solid rgba(55, 27, 27, 0.2);
   border-right: 3px solid rgba(55, 27, 27, 0.2);
+}
+
+.cell-day-name {
+  display: flex;
+  place-content: space-between;
+  padding: 0 15px 10px 10px;
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 26px;
+  text-align: center;
+  color: #000000;
+}
+
+@media (max-height: 900px) {
+  .cell-time {
+    font-size: 20px;
+    line-height: 22px;
+  }
+  .cell-time-end {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .cell-day-name {
+    padding: 0 15px 10px 10px;
+    font-size: 20px;
+    line-height: 22px;
+  }
 }
 
 .bb-0 {
