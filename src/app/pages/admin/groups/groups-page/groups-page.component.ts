@@ -1,19 +1,14 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Group} from "../../../../models/group";
-import {GroupService} from "../../../../services/group.service";
 import {GroupMockService} from "../../../../services/mock/group-mock.service";
+import {DisplayErrorComponent} from "../../../../components/util/display-error";
 
 @Component({
   selector: 'app-groups-page',
   templateUrl: './groups-page.component.html',
   styleUrls: ['./groups-page.component.css', '../../css/admin-modal.css']
 })
-export class GroupsPageComponent {
-
-  /**
-   * Допустимые состояния:
-   */
-  state: any
+export class GroupsPageComponent extends DisplayErrorComponent {
 
   /**
    * Список групп с сервера.
@@ -21,56 +16,68 @@ export class GroupsPageComponent {
    */
   groups: Group[] | undefined
 
-  modalEdit: boolean = false
-  modalGroup: Group = Group.empty()
+  /**
+   * Объект для передачи данных в модальное окно
+   */
+  modal = new Modal()
 
   constructor(
     private groupService: GroupMockService
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.refresh()
   }
 
   refresh() {
-    this.groupService.fetchGroup().subscribe(groups => {
-      this.groups = groups
+    this.groupService.fetchGroup().subscribe({
+      next: groups => {
+        this.groups = groups
+      },
+      error: err => {
+        this.handleHttpError(err)
+      }
     })
   }
 
-  createClick() {
-    this.modalEdit = false
-    this.modalGroup = Group.empty()
+  requestCreateGroup() {
+    this.modal.edit = false
+    this.selectGroup(Group.empty())
   }
 
-  editClick(group: Group) {
-    this.modalEdit = true
-    this.modalGroup = group.clone()
+  requestEditGroup(group: Group) {
+    this.modal.edit = true
+    this.selectGroup(group)
   }
 
-  deleteClick(group: Group) {
-    this.groupService.deleteGroup(group.id).subscribe({
+  requestDeleteGroup(group: Group) {
+    this.selectGroup(group)
+  }
+
+  deleteGroup() {
+    this.groupService.deleteGroup(this.modal.selected!.id).subscribe({
       next: () => {
         this.refresh()
       },
-      error: () => {}
+      error: err => {
+        this.modal.error = this.httpErrorMessageOf(err)
+      }
     })
   }
 
-  submitModal() {
-    // TODO validation
-    let observable
-    if (this.modalEdit) {
-      observable = this.groupService.modifyGroup(this.modalGroup)
-    }
-    else {
-      observable = this.groupService.createGroup(this.modalGroup.number)
-    }
-    observable.subscribe({
-      next: () => {
-        this.refresh()
-      },
-      error: () => {}
-    })
+  onSubmitModal() {
+    this.refresh()
   }
+
+  private selectGroup(group: Group) {
+    this.modal.selected = group.clone()
+  }
+}
+
+class Modal {
+  edit: boolean = false
+  error: string | undefined
+  selected: Group | undefined
 }
