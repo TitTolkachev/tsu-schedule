@@ -15,6 +15,8 @@ import {HeaderAdminPagesComponent} from './components/headers/header-admin-pages
 import { MainPageComponent } from './pages/admin/main/main-page/main-page.component';
 import {AppComponent} from './app.component';
 import { EditPageComponent } from './pages/moderator/edit-page/edit-page.component';
+import { ScheduleWeekComponent } from './pages/moderator/edit-page/components/schedule-week/schedule-week.component';
+import { ScheduleCellDayComponent } from './pages/moderator/edit-page/components/schedule-cell-day/schedule-cell-day.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { EditPageComponent } from './pages/moderator/edit-page/edit-page.compone
     GroupsPageComponent,
     HeaderSigninComponent,
     HeaderCompilerPagesComponent,
-    HeaderAdminPagesComponent
+    HeaderAdminPagesComponent,
+    ScheduleWeekComponent,
+    ScheduleCellDayComponent
   ],
   imports: [
     BrowserModule,

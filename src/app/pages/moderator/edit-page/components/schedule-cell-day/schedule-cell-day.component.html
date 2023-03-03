@@ -1,0 +1,16 @@
+<div class="cell-day" [ngClass]="BorderBottom ? '' : 'bb-0'">
+  <ng-template [ngIf]="!IsCellEmpty" [ngIfElse]="emptyCell">
+    not empty
+  </ng-template>
+
+
+
+  <ng-template #emptyCell>
+    <div class="plus-btn btn">
+      <div class="plus-btn-text">
+        +
+      </div>
+    </div>
+  </ng-template>
+</div>
+

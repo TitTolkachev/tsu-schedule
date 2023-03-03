@@ -27,23 +27,15 @@
   grid-template-columns: 100px repeat(6, 1fr) 55px;
 }
 
-.schedule-week:nth-child(n+5){
-  border-top: 4px solid #63a4a8;
- }
-
 @media (max-height: 900px) {
   .schedule-week {
     margin-top: 15px;
   }
 }
 
-.cell-day, .cell-day-name, .cell-empty{
-  border-bottom: 2px solid red;
-  border-right: 2px solid red;
-}
-
-.cell-day {
-  min-height: 100px;
+.cell-day-name, .cell-empty{
+  border-bottom: 3px solid rgba(55, 27, 27, 0.2);
+  border-right: 3px solid rgba(55, 27, 27, 0.2);
 }
 
 .bb-0 {
@@ -53,4 +45,3 @@
 .br-0 {
   border-right: none;
 }
-
