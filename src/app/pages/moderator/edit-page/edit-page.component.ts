@@ -9,7 +9,9 @@ import {GroupInput} from "./group-input";
 })
 
 export class EditPageComponent implements AfterContentInit {
+
   private hintTimer: number | undefined;
+  Weeks = [1];
 
   ngAfterContentInit() {
     let input1 = document.getElementById('input1')
@@ -83,5 +85,9 @@ export class EditPageComponent implements AfterContentInit {
         el.classList.add('d-none')
       }, delay, el)
     }
+  }
+
+  addWeek(){
+    this.Weeks.push(1)
   }
 }

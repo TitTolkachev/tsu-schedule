@@ -17,6 +17,7 @@ import {AppComponent} from './app.component';
 import { EditPageComponent } from './pages/moderator/edit-page/edit-page.component';
 import { ScheduleWeekComponent } from './pages/moderator/edit-page/components/schedule-week/schedule-week.component';
 import { ScheduleCellDayComponent } from './pages/moderator/edit-page/components/schedule-cell-day/schedule-cell-day.component';
+import { SchedulePairComponent } from './pages/moderator/edit-page/components/schedule-pair/schedule-pair.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ScheduleCellDayComponent } from './pages/moderator/edit-page/components
     HeaderCompilerPagesComponent,
     HeaderAdminPagesComponent,
     ScheduleWeekComponent,
-    ScheduleCellDayComponent
+    ScheduleCellDayComponent,
+    SchedulePairComponent
   ],
   imports: [
     BrowserModule,

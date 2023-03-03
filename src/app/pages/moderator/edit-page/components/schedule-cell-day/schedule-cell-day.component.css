@@ -33,6 +33,10 @@
   font-size: 40px;
   color: #000000;
 
+  display: flex;
+  align-content: center;
+  justify-content: center;
+
   background: #fefefe;
   border: 1px solid #bdc3c7;
 
@@ -40,6 +44,8 @@
 }
 
 .plus-btn-text {
+  width: fit-content;
+  height: fit-content;
   transition: 0.7s ease;
 }
 
@@ -62,4 +68,27 @@
 
 .br-0 {
   border-right: none;
+}
+
+.expand-arrow-btn {
+  margin: 10px 0 0 0;
+
+  background: rgba(55, 27, 27, 0.4);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.expand-arrow {
+  padding-top: 2px;
+  transition: transform .3s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+.flip {
+  transform: rotate(0.5turn);
+}
+
+.pairs-space {
+  margin-top: 10px;
 }

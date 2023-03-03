@@ -1,8 +1,28 @@
 <div class="cell-day" [ngClass]="BorderBottom ? '' : 'bb-0'">
-  <ng-template [ngIf]="!IsCellEmpty" [ngIfElse]="emptyCell">
-    not empty
-  </ng-template>
+  <ng-template [ngIf]="Pairs.length>0" [ngIfElse]="emptyCell">
 
+    <app-schedule-pair [PairName]="Pairs[0].Name" [PairPlacement]="Pairs[0].Placement"
+                       [PairGroups]="Pairs[0].Groups"></app-schedule-pair>
+    <div *ngIf="Pairs.length>1">
+      <div class="expand-arrow-btn" (click)="expandArrow()">
+        <div class="expand-arrow" id="{{ExpandArrowId}}">
+          <span class="material-symbols-outlined">expand_more</span>
+        </div>
+      </div>
+
+      <div *ngIf="IsExpanded">
+        <div *ngFor="let p of Pairs.slice(1)">
+          <div class="pairs-space"></div>
+          <app-schedule-pair
+            [PairName]="p.Name"
+            [PairPlacement]="p.Placement"
+            [PairGroups]="p.Groups">
+          </app-schedule-pair>
+        </div>
+      </div>
+    </div>
+
+  </ng-template>
 
 
   <ng-template #emptyCell>

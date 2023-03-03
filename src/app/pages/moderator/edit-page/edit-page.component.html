@@ -375,11 +375,11 @@
   <!-- ---------------------------------------------------------------------- -->
   <!-- ---------------------------------------------------------------------- -->
 
-  <app-schedule-week></app-schedule-week>
+  <div *ngFor="let w of Weeks">
+    <app-schedule-week></app-schedule-week>
+  </div>
 
-  <app-schedule-week></app-schedule-week>
-
-  <button class="btn" id="show-more-btn">
+  <button class="btn" id="show-more-btn" (click)="addWeek()">
     Подгрузить еще одну неделю
   </button>
 </div>
