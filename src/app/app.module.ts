@@ -17,6 +17,8 @@ import {AppComponent} from './app.component';
 import {GroupElementComponent} from './pages/admin/groups/group-element/group-element.component';
 import {ConfirmationComponent} from './components/confirmation/confirmation.component';
 import {GroupModalComponent} from './pages/admin/groups/group-modal/group-modal.component';
+import {AudienceModalComponent} from './pages/admin/audiences/audience-modal/audience-modal.component';
+import {AudienceElementComponent} from './pages/admin/audiences/audience-element/audience-element.component';
 
 @NgModule({
   declarations: [
@@ -24,17 +26,18 @@ import {GroupModalComponent} from './pages/admin/groups/group-modal/group-modal.
     SigninComponent,
     SignoutComponent,
     TeachersPageComponent,
-    AudiencesPageComponent,
     SubjectsPageComponent,
-    GroupsPageComponent,
     MainPageComponent,
-    GroupsPageComponent,
     HeaderSigninComponent,
     HeaderCompilerPagesComponent,
     HeaderAdminPagesComponent,
-    GroupElementComponent,
     ConfirmationComponent,
-    GroupModalComponent
+    GroupsPageComponent,
+    GroupModalComponent,
+    GroupElementComponent,
+    AudiencesPageComponent,
+    AudienceModalComponent,
+    AudienceElementComponent
   ],
   imports: [
     BrowserModule,

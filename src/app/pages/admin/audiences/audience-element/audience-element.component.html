@@ -1,0 +1,11 @@
+<div *ngIf="audience">
+  <p>id: {{ audience.id }}, name: {{ audience.name }}, frame: {{ audience.frame }}, floor: {{ audience.floor }}, number: {{ audience.number }}</p>
+
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAudienceModal" (click)="editClick()">
+    Edit
+  </button>
+
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmationModal" (click)="deleteClick()">
+    Delete
+  </button>
+</div>
