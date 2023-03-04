@@ -8,6 +8,7 @@
 .form-title {
   padding-left: 28px;
   padding-top: 10px;
+  padding-right: 17px;
 
   font-family: 'ZektonRg', sans-serif;
   font-style: normal;
@@ -26,7 +27,7 @@ button {
   font-family: 'Jura', sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 15px;
   line-height: 38px;
   text-align: center;
   color: #000000;
@@ -78,8 +79,6 @@ button {
   display: flex;
   flex-wrap: wrap;
   margin-top: 50px;
-  margin-right: calc(var(--bs-gutter-x) * -.5);
-  margin-left: calc(var(--bs-gutter-x) * -.5);
 }
 
 .p-4 {
