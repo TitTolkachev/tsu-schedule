@@ -7,7 +7,7 @@ import {DisplayErrorComponent} from "../../../../components/util/display-error";
 @Component({
   selector: 'app-group-modal',
   templateUrl: './group-modal.component.html',
-  styleUrls: ['./group-modal.component.css']
+  styleUrls: ['./group-modal.component.css', '../../css/admin-modal.css']
 })
 export class GroupModalComponent extends DisplayErrorComponent {
 

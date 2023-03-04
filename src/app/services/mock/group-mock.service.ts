@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable, of} from "rxjs";
 import {Group} from "../../models/group";
 
@@ -23,7 +23,6 @@ export class GroupMockService {
   }
 
   modifyGroup(group: Group): Observable<any> {
-    console.log(group)
     let index = this.groups.findIndex(e => e.id == group.id)
     if (index > -1) {
       this.groups[index] = group
@@ -32,7 +31,6 @@ export class GroupMockService {
   }
 
   deleteGroup(id: string): Observable<any> {
-    console.log(id)
     let index = this.groups.findIndex(e => e.id == id)
     if (index > -1) {
       this.groups.splice(index, 1)

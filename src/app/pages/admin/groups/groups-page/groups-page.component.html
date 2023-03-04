@@ -38,5 +38,6 @@
 <!-- Модальное окно подтверждения удаления -->
 <app-confirmation
   (confirm)="deleteGroup()"
+  [message]="'Удалить группу номер ' + modal.selected.number + '?'"
   [error]="modal.error"
 ></app-confirmation>

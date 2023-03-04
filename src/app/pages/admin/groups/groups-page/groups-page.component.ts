@@ -57,7 +57,7 @@ export class GroupsPageComponent extends DisplayErrorComponent {
   }
 
   deleteGroup() {
-    this.groupService.deleteGroup(this.modal.selected!.id).subscribe({
+    this.groupService.deleteGroup(this.modal.selected.id).subscribe({
       next: () => {
         this.refresh()
       },
@@ -78,6 +78,6 @@ export class GroupsPageComponent extends DisplayErrorComponent {
 
 class Modal {
   edit: boolean = false
-  error: string | undefined
-  selected: Group | undefined
+  selected: Group = Group.empty()
+  error: string | null = null
 }

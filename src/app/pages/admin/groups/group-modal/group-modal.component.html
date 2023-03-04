@@ -22,7 +22,7 @@
 
       <div class="modal-footer">
         <!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-        <button type="button" class="btn btn-primary text-center" (click)="onSubmit()">
+        <button type="button" class="btn btn-primary text-center" data-bs-dismiss="modal" (click)="onSubmit()">
           <span *ngIf="!edit">Добавить</span>
           <span *ngIf="edit">Изменить</span>
         </button>

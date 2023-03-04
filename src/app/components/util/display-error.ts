@@ -1,11 +1,12 @@
 import {HttpErrorResponse} from "@angular/common/http";
 import {ErrorMessage} from "../../errors";
-import {Input} from "@angular/core";
+import {Directive, Input} from "@angular/core";
 
+@Directive()
 export abstract class DisplayErrorComponent {
 
   @Input()
-  error: string | undefined
+  error: string | null = null
 
   protected handleHttpError(err: HttpErrorResponse) {
     this.error = this.httpErrorMessageOf(err)
@@ -22,6 +23,6 @@ export abstract class DisplayErrorComponent {
   }
 
   hasError() {
-    return this.error != undefined
+    return this.error != null
   }
 }
