@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {Group} from "../../../../models/group";
-import {GroupMockService} from "../../../../services/mock/group-mock.service";
 import {DisplayErrorComponent} from "../../../../components/util/display-error";
 import {ErrorMessage} from "../../../../errors";
+import {IGroupService} from "../../../../services/i-group.service";
 
 @Component({
   selector: 'app-groups-page',
@@ -23,7 +23,7 @@ export class GroupsPageComponent extends DisplayErrorComponent {
   modal = new Modal()
 
   constructor(
-    private groupService: GroupMockService
+    private groupService: IGroupService
   ) {
     super();
   }
