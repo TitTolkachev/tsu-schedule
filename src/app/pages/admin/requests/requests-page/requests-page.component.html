@@ -1,1 +1,42 @@
 <app-header-admin-pages></app-header-admin-pages>
+
+<div class="container">
+<div class="row mb-2">
+  <div class="col-md-6">
+    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative form">
+      <div class="col p-4 d-flex flex-column position-static">
+        <div class="d-flex">
+          <div class="form-title">Запросы на регистрацию</div>
+          <button
+            class="ms-auto"
+            type="submit"
+            [attr.disabled]="state === 'loading' ? '' : null"
+            (click)="onSubmit()">
+            Принять все
+          </button>
+        </div>
+        <div class="requests mb-auto">Это более широкая карточка с вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="row g-0 rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative form">
+      <div class="col p-4 d-flex flex-column position-static">
+        <div class="d-flex">
+          <div class=" form-title">Запросы на изменение группы</div>
+          <button
+            class="ms-auto"
+            type="submit"
+            [attr.disabled]="state === 'loading' ? '' : null"
+            (click)="onSubmit()">
+            Принять все
+          </button>
+        </div>
+        <div class="mb-1 text-muted">11 Ноября</div>
+        <div class="requests mb-auto">Это более широкая карточка с вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
