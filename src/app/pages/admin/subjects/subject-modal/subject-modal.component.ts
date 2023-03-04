@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ErrorMessage} from "../../../../errors";
 import {Subject} from "../../../../models/subject";
 import {DisplayErrorComponent} from "../../../../components/util/display-error";
-import {SubjectMockService} from "../../../../services/mock/subject-mock.service";
+import {ISubjectService} from "../../../../services/i-subject.service";
 
 @Component({
   selector: 'app-subject-modal',
@@ -30,14 +30,14 @@ export class SubjectModalComponent extends DisplayErrorComponent {
   submit = new EventEmitter()
 
   constructor(
-    private subjectService: SubjectMockService
+    private subjectService: ISubjectService
   ) {
     super();
   }
 
   onSubmit() {
     if (this.name.length === 0) {
-      this.error = ErrorMessage.VALIDATION_AUDIENCE_NAME_EMPTY
+      this.error = ErrorMessage.VALIDATION_SUBJECT_NAME_EMPTY
       return;
     }
 

@@ -11,4 +11,8 @@ export enum ErrorMessage {
   VALIDATION_AUDIENCE_FRAME_EMPTY = "Корпус аудитории не может быть пустым.",
 
   VALIDATION_SUBJECT_NAME_EMPTY = "Название предмета не может быть пустым.",
+
+  VALIDATION_TEACHER_FIRST_NAME_EMPTY = "Имя преподавателя не может быть пустым.",
+  VALIDATION_TEACHER_LAST_NAME_EMPTY = "Фамилия преподавателя не может быть пустым.",
+  VALIDATION_TEACHER_PATRONYMIC_NAME_EMPTY = "Отчество преподавателя не может быть пустым.",
 }

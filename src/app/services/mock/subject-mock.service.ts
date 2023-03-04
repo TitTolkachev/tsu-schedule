@@ -1,19 +1,21 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from "rxjs";
 import {Subject} from "../../models/subject";
+import {ISubjectService} from "../i-subject.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class SubjectMockService {
+export class SubjectMockService implements ISubjectService {
 
   private subjects: Subject[] = [
     new Subject("0", "Математический анализ"),
     new Subject("1", "Алгебра"),
     new Subject("2", "Основы командной разработки")
   ]
+  private counter = 3
 
-  constructor() { }
+  constructor() {}
 
   fetchSubjects(): Observable<Subject[]> {
     return of(this.subjects)
@@ -23,7 +25,7 @@ export class SubjectMockService {
     name: string
   ): Observable<any> {
     this.subjects.push(new Subject(
-      this.subjects.length.toString(),
+      (this.counter++).toString(),
       name
     ))
     return of(null)

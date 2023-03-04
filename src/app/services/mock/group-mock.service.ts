@@ -12,13 +12,17 @@ export class GroupMockService {
     new Group("1", "972102"),
     new Group("2", "972103")
   ]
+  private counter = 3
 
   fetchGroups(): Observable<Group[]> {
     return of(this.groups)
   }
 
   createGroup(number: string): Observable<any> {
-    this.groups.push(new Group(this.groups.length.toString(), number))
+    this.groups.push(new Group(
+      (this.counter++).toString(),
+      number
+    ))
     return of(null)
   }
 

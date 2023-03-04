@@ -1,0 +1,45 @@
+<div class="modal fade" id="addTeacherModal" tabindex="-1" aria-labelledby="addTeacherModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="addTeacherModalLabel">Преподаватель</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+          <label for="surnameInput" class="col-sm-3 col-form-label">Фамилия</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control transparent-input" id="surnameInput" [(ngModel)]="lastName">
+          </div>
+        </div>
+        <div class="row">
+          <label for="nameInput" class="col-sm-3 col-form-label">Имя</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control transparent-input" id="nameInput" [(ngModel)]="firstName">
+          </div>
+        </div>
+        <div class="row">
+          <label for="fathersNameInput" class="col-sm-3 col-form-label">Отчество</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control transparent-input" id="fathersNameInput" [(ngModel)]="patronymicName">
+          </div>
+        </div>
+      </div>
+
+      <!-- TODO отображение ошибки -->
+      <div *ngIf="hasError()">
+        <p>{{ error }}</p>
+      </div>
+
+      <div class="modal-footer">
+        <!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+        <button type="button" class="btn btn-primary text-center" data-bs-dismiss="modal" (click)="onSubmit()">
+          <span *ngIf="!edit">Добавить</span>
+          <span *ngIf="edit">Изменить</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

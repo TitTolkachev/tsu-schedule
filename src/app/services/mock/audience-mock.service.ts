@@ -1,17 +1,19 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from "rxjs";
 import {Audience} from "../../models/audience";
+import {IAudienceService} from "../i-audience.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AudienceMockService {
+export class AudienceMockService implements IAudienceService {
 
   private audiences: Audience[] = [
     new Audience("0", "Математический анализ", "1", 1, "123"),
     new Audience("1", "Алгебра", "1", 1, "124"),
     new Audience("2", "Компьютерный класс", "1", 2, "231")
   ]
+  private counter = 3
 
   constructor() { }
 
@@ -26,7 +28,7 @@ export class AudienceMockService {
     number: number // TODO string?
   ): Observable<any> {
     this.audiences.push(new Audience(
-      this.audiences.length.toString(),
+      (this.counter++).toString(),
       name,
       frame.toString(),
       floor,

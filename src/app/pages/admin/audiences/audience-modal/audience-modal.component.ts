@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ErrorMessage} from "../../../../errors";
 import {DisplayErrorComponent} from "../../../../components/util/display-error";
 import {Audience} from "../../../../models/audience";
-import {AudienceMockService} from "../../../../services/mock/audience-mock.service";
+import {IAudienceService} from "../../../../services/i-audience.service";
 
 @Component({
   selector: 'app-audience-modal',
@@ -36,7 +36,7 @@ export class AudienceModalComponent extends DisplayErrorComponent {
   submit = new EventEmitter()
 
   constructor(
-    private audienceService: AudienceMockService
+    private audienceService: IAudienceService
   ) {
     super();
   }

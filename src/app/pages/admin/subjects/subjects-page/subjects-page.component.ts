@@ -1,14 +1,14 @@
 import {Component} from '@angular/core';
 import {DisplayErrorComponent} from "../../../../components/util/display-error";
 import {Subject} from "../../../../models/subject";
-import {SubjectMockService} from "../../../../services/mock/subject-mock.service";
+import {ISubjectService} from "../../../../services/i-subject.service";
 
 @Component({
   selector: 'app-subjects-page',
   templateUrl: './subjects-page.component.html',
   styleUrls: ['./subjects-page.component.css', '../../css/admin-modal.css']
 })
-export class SubjectsPageComponent  extends DisplayErrorComponent {
+export class SubjectsPageComponent extends DisplayErrorComponent {
 
   /**
    * Список предметов с сервера.
@@ -22,7 +22,7 @@ export class SubjectsPageComponent  extends DisplayErrorComponent {
   modal = new Modal()
 
   constructor(
-    private subjectService: SubjectMockService
+    private subjectService: ISubjectService
   ) {
     super();
   }
@@ -56,7 +56,7 @@ export class SubjectsPageComponent  extends DisplayErrorComponent {
     this.selectSubject(subject)
   }
 
-  deleteGroup() {
+  deleteSubject() {
     this.subjectService.deleteSubject(this.modal.selected.id).subscribe({
       next: () => {
         this.refresh()

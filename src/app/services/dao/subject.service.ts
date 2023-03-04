@@ -3,15 +3,16 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {SERVER_URL} from "../../constants";
 import {Subject} from "../../models/subject";
+import {ISubjectService} from "../i-subject.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class SubjectService {
+export class SubjectService implements ISubjectService {
 
   constructor(
     private httpClient: HttpClient
-  ) { }
+  ) {}
 
   fetchSubjects(): Observable<Subject[]> {
     return this.httpClient.get<Subject[]>(

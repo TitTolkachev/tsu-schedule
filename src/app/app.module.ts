@@ -1,4 +1,5 @@
 import {NgModule} from '@angular/core';
+import {environment} from './environment';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
@@ -21,6 +22,12 @@ import {AudienceModalComponent} from './pages/admin/audiences/audience-modal/aud
 import {AudienceElementComponent} from './pages/admin/audiences/audience-element/audience-element.component';
 import {SubjectModalComponent} from './pages/admin/subjects/subject-modal/subject-modal.component';
 import {SubjectElementComponent} from './pages/admin/subjects/subject-element/subject-element.component';
+import {IAudienceService} from './services/i-audience.service';
+import {ISubjectService} from "./services/i-subject.service";
+import {IGroupService} from "./services/i-group.service";
+import {ITeacherService} from "./services/i-teacher.service";
+import {TeacherModalComponent} from './pages/admin/teachers/teacher-modal/teacher-modal.component';
+import {TeacherElementComponent} from './pages/admin/teachers/teacher-element/teacher-element.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +48,9 @@ import {SubjectElementComponent} from './pages/admin/subjects/subject-element/su
     AudienceModalComponent,
     AudienceElementComponent,
     SubjectModalComponent,
-    SubjectElementComponent
+    SubjectElementComponent,
+    TeacherModalComponent,
+    TeacherElementComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +58,12 @@ import {SubjectElementComponent} from './pages/admin/subjects/subject-element/su
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    { provide: IGroupService, useClass: environment.groupService },
+    { provide: IAudienceService, useClass: environment.audienceService },
+    { provide: ISubjectService, useClass: environment.subjectService },
+    { provide: ITeacherService, useClass: environment.teacherService },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

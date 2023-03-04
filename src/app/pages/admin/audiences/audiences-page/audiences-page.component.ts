@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {DisplayErrorComponent} from "../../../../components/util/display-error";
 import {Audience} from "../../../../models/audience";
-import {AudienceMockService} from "../../../../services/mock/audience-mock.service";
+import {IAudienceService} from "../../../../services/i-audience.service";
 
 @Component({
   selector: 'app-audiences-page',
@@ -22,7 +22,7 @@ export class AudiencesPageComponent extends DisplayErrorComponent {
   modal = new Modal()
 
   constructor(
-    private audienceService: AudienceMockService
+    private audienceService: IAudienceService
   ) {
     super();
   }

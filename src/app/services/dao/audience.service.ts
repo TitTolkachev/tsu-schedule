@@ -3,11 +3,12 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {SERVER_URL} from "../../constants";
 import {Audience} from "../../models/audience";
+import {IAudienceService} from "../i-audience.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AudienceService {
+export class AudienceService implements IAudienceService {
 
   constructor(
     private httpClient: HttpClient
