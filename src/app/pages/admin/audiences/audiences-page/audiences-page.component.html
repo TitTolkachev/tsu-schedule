@@ -29,14 +29,15 @@
 
 <!-- Модальное окно добавления или редактирования аудитории -->
 <app-audience-modal
-  [edit]="modal.edit"
   [form]="modal.selected"
-  (submit)="onSubmitModal()"
+  [error]="modal.error"
+  (create)="createAudience($event)"
+  (modify)="modifyAudience($event)"
 ></app-audience-modal>
 
 <!-- Модальное окно подтверждения удаления -->
 <app-confirmation
-  (confirm)="deleteGroup()"
-  [message]="'Удалить аудиторию номер ' + modal.selected.number + '?'"
+  [message]="'Удалить аудиторию номер ' + modal.selected?.number + '?'"
   [error]="modal.error"
+  (confirm)="deleteGroup()"
 ></app-confirmation>

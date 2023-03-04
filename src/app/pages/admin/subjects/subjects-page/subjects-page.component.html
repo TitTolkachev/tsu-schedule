@@ -27,17 +27,18 @@
   </div>
 </div>
 
-<!-- Модальное окно добавления или редактирования аудитории -->
+<!-- Модальное окно добавления или редактирования предмета -->
 <app-subject-modal
-  [edit]="modal.edit"
   [form]="modal.selected"
-  (submit)="onSubmitModal()"
+  [error]="modal.error"
+  (create)="createSubject($event)"
+  (modify)="modifySubject($event)"
 ></app-subject-modal>
 
 <!-- Модальное окно подтверждения удаления -->
 <app-confirmation
-  (confirm)="deleteSubject()"
-  [message]="'Удалить предмет \'' + modal.selected.name + '\'?'"
+  [message]="'Удалить предмет \'' + modal.selected?.name + '\'?'"
   [error]="modal.error"
+  (confirm)="deleteSubject()"
 ></app-confirmation>
 

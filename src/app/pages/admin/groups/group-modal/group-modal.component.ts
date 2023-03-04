@@ -1,7 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Group} from "../../../../models/group";
-import {GroupMockService} from "../../../../services/mock/group-mock.service";
-import {ErrorMessage} from "../../../../errors";
 import {DisplayErrorComponent} from "../../../../components/util/display-error";
 
 @Component({
@@ -11,41 +9,43 @@ import {DisplayErrorComponent} from "../../../../components/util/display-error";
 })
 export class GroupModalComponent extends DisplayErrorComponent {
 
-  @Input()
-  form: Group = Group.empty()
+  private id: string | undefined
+
+  number: string = ""
 
   @Input()
-  edit: boolean = false
-
-  @Output()
-  submit = new EventEmitter()
-
-  constructor(
-    private groupService: GroupMockService
-  ) {
-    super();
-  }
-
-  onSubmit() {
-    if (this.form.number.length === 0) {
-      this.error = ErrorMessage.VALIDATION_GROUP_NUMBER_EMPTY
-      return;
-    }
-
-    let observable
-    if (this.edit) {
-      observable = this.groupService.modifyGroup(this.form)
+  set form(form: Group | null) {
+    if (form != null) {
+      this.id = form.id
+      this.number = form.number
     }
     else {
-      observable = this.groupService.createGroup(this.form.number)
+      this.id = undefined
+      this.number = ""
     }
-    observable.subscribe({
-      next: () => {
-        this.submit.emit()
-      },
-      error: err => {
-        this.handleHttpError(err)
-      }
-    })
+  }
+
+  get edit(): boolean {
+    return this.id != undefined
+  }
+
+  @Output()
+  create = new EventEmitter<{number: string}>()
+
+  @Output()
+  modify = new EventEmitter<{id: string, number: string}>()
+
+  onSubmit() {
+    if (this.id == undefined) {
+      this.create.emit({
+        number: this.number
+      })
+    }
+    else {
+      this.modify.emit({
+        id: this.id,
+        number: this.number
+      })
+    }
   }
 }

@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {DisplayErrorComponent} from "../../../../components/util/display-error";
 import {Subject} from "../../../../models/subject";
 import {ISubjectService} from "../../../../services/i-subject.service";
+import {ErrorMessage} from "../../../../errors";
 
 @Component({
   selector: 'app-subjects-page',
@@ -32,6 +33,8 @@ export class SubjectsPageComponent extends DisplayErrorComponent {
   }
 
   refresh() {
+    document.getElementById("confirmation-modal-btn-close")?.click()
+    document.getElementById("subject-modal-btn-close")?.click()
     this.subjectService.fetchSubjects().subscribe({
       next: subjects => {
         this.subjects = subjects
@@ -43,12 +46,10 @@ export class SubjectsPageComponent extends DisplayErrorComponent {
   }
 
   requestCreateSubject() {
-    this.modal.edit = false
-    this.selectSubject(Subject.empty())
+    this.selectSubject(null)
   }
 
   requestEditSubject(subject: Subject) {
-    this.modal.edit = true
     this.selectSubject(subject)
   }
 
@@ -56,8 +57,39 @@ export class SubjectsPageComponent extends DisplayErrorComponent {
     this.selectSubject(subject)
   }
 
+  createSubject(form: {name: string}) {
+    if (!this.validateSubject(form)) return
+
+    this.subjectService.createSubject(
+      form.name
+    ).subscribe({
+      next: () => {
+        this.refresh()
+      },
+      error: err => {
+        this.handleHttpError(err)
+      }
+    })
+  }
+
+  modifySubject(form: {id: string, name: string}) {
+    if (!this.validateSubject(form)) return
+
+    this.subjectService.modifySubject(new Subject(
+      form.id,
+      form.name
+    )).subscribe({
+      next: () => {
+        this.refresh()
+      },
+      error: err => {
+        this.handleHttpError(err)
+      }
+    })
+  }
+
   deleteSubject() {
-    this.subjectService.deleteSubject(this.modal.selected.id).subscribe({
+    this.subjectService.deleteSubject(this.modal.selected!.id).subscribe({
       next: () => {
         this.refresh()
       },
@@ -67,17 +99,21 @@ export class SubjectsPageComponent extends DisplayErrorComponent {
     })
   }
 
-  onSubmitModal() {
-    this.refresh()
+  private validateSubject(form: {name: string}): boolean {
+    if (form.name.length === 0) {
+      this.modal.error = ErrorMessage.VALIDATION_SUBJECT_NAME_EMPTY
+      return false
+    }
+    return true
   }
 
-  private selectSubject(subject: Subject) {
-    this.modal.selected = subject.clone()
+  private selectSubject(subject: Subject | null) {
+    this.modal.error = null
+    this.modal.selected = (subject == null) ? null : subject.clone()
   }
 }
 
 class Modal {
-  edit: boolean = false
-  selected: Subject = Subject.empty()
+  selected: Subject | null = null
   error: string | null = null
 }

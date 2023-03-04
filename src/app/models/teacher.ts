@@ -19,8 +19,4 @@ export class Teacher {
   clone(): Teacher {
     return new Teacher(this.id, this.firstName, this.lastName, this.patronymicName)
   }
-
-  static empty(): Teacher {
-    return new Teacher("", "", "", "")
-  }
 }

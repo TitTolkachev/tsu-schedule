@@ -3,14 +3,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title" id="addGroupModalLabel">Новая группа</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button id="group-modal-btn-close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <div class="modal-body">
         <div class="row">
           <label for="groupNumberInput" class="col-sm-3 col-form-label">Номер</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control transparent-input" id="groupNumberInput" [(ngModel)]="form.number">
+            <input type="text" class="form-control transparent-input" id="groupNumberInput" [(ngModel)]="number">
           </div>
         </div>
       </div>
@@ -22,7 +22,7 @@
 
       <div class="modal-footer">
         <!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-        <button type="button" class="btn btn-primary text-center" data-bs-dismiss="modal" (click)="onSubmit()">
+        <button type="button" class="btn btn-primary text-center" (click)="onSubmit()">
           <span *ngIf="!edit">Добавить</span>
           <span *ngIf="edit">Изменить</span>
         </button>

@@ -2,6 +2,10 @@
 <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
+      <div class="modal-header">
+        <button id="confirmation-modal-btn-close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
       <div>
         <p>{{ message }}</p>
       </div>
@@ -12,7 +16,7 @@
       </div>
 
       <button data-bs-dismiss="modal" (click)="cancel.emit($event)">Нет</button>
-      <button data-bs-dismiss="modal" (click)="confirm.emit($event)">Да</button>
+      <button (click)="confirm.emit($event)">Да</button>
     </div>
   </div>
 </div>

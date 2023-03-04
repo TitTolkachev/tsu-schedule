@@ -11,8 +11,4 @@ export class Subject {
   clone(): Subject {
     return new Subject(this.id, this.name)
   }
-
-  static empty(): Subject {
-    return new Subject("", "")
-  }
 }

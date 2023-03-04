@@ -29,15 +29,16 @@
 
 <!-- Модальное окно добавления или редактирования аудитории -->
 <app-teacher-modal
-  [edit]="modal.edit"
   [form]="modal.selected"
-  (submit)="onSubmitModal()"
+  [error]="modal.error"
+  (create)="createTeacher($event)"
+  (modify)="modifyTeacher($event)"
 ></app-teacher-modal>
 
 <!-- Модальное окно подтверждения удаления -->
 <app-confirmation
-  (confirm)="deleteTeacher()"
-  [message]="'Удалить учителя \'' + modal.selected.fullName + '\'?'"
+  [message]="'Удалить учителя \'' + modal.selected?.fullName + '\'?'"
   [error]="modal.error"
+  (confirm)="deleteTeacher()"
 ></app-confirmation>
 

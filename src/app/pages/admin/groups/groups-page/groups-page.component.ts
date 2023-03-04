@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Group} from "../../../../models/group";
 import {GroupMockService} from "../../../../services/mock/group-mock.service";
 import {DisplayErrorComponent} from "../../../../components/util/display-error";
+import {ErrorMessage} from "../../../../errors";
 
 @Component({
   selector: 'app-groups-page',
@@ -32,6 +33,8 @@ export class GroupsPageComponent extends DisplayErrorComponent {
   }
 
   refresh() {
+    document.getElementById("confirmation-modal-btn-close")?.click()
+    document.getElementById("group-modal-btn-close")?.click()
     this.groupService.fetchGroups().subscribe({
       next: groups => {
         this.groups = groups
@@ -43,12 +46,10 @@ export class GroupsPageComponent extends DisplayErrorComponent {
   }
 
   requestCreateGroup() {
-    this.modal.edit = false
-    this.selectGroup(Group.empty())
+    this.selectGroup(null)
   }
 
   requestEditGroup(group: Group) {
-    this.modal.edit = true
     this.selectGroup(group)
   }
 
@@ -56,8 +57,37 @@ export class GroupsPageComponent extends DisplayErrorComponent {
     this.selectGroup(group)
   }
 
+  createGroup(form: {number: string}) {
+    if (!this.validateGroup(form)) return
+
+    this.groupService.createGroup(form.number).subscribe({
+      next: () => {
+        this.refresh()
+      },
+      error: err => {
+        this.handleHttpError(err)
+      }
+    })
+  }
+
+  modifyGroup(form: {id: string, number: string}) {
+    if (!this.validateGroup(form)) return
+
+    this.groupService.modifyGroup(new Group(
+      form.id,
+      form.number
+    )).subscribe({
+      next: () => {
+        this.refresh()
+      },
+      error: err => {
+        this.handleHttpError(err)
+      }
+    })
+  }
+
   deleteGroup() {
-    this.groupService.deleteGroup(this.modal.selected.id).subscribe({
+    this.groupService.deleteGroup(this.modal.selected!.id).subscribe({
       next: () => {
         this.refresh()
       },
@@ -67,17 +97,21 @@ export class GroupsPageComponent extends DisplayErrorComponent {
     })
   }
 
-  onSubmitModal() {
-    this.refresh()
+  private validateGroup(form: {number: string}): boolean {
+    if (form.number.length === 0) {
+      this.modal.error = ErrorMessage.VALIDATION_GROUP_NUMBER_EMPTY
+      return false
+    }
+    return true
   }
 
-  private selectGroup(group: Group) {
-    this.modal.selected = group.clone()
+  private selectGroup(group: Group | null) {
+    this.modal.error = null
+    this.modal.selected = (group == null) ? null : group.clone()
   }
 }
 
 class Modal {
-  edit: boolean = false
-  selected: Group = Group.empty()
+  selected: Group | null = null
   error: string | null = null
 }

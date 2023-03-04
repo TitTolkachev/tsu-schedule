@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {DisplayErrorComponent} from "../../../../components/util/display-error";
 import {Audience} from "../../../../models/audience";
 import {IAudienceService} from "../../../../services/i-audience.service";
+import {ErrorMessage} from "../../../../errors";
 
 @Component({
   selector: 'app-audiences-page',
@@ -32,6 +33,8 @@ export class AudiencesPageComponent extends DisplayErrorComponent {
   }
 
   refresh() {
+    document.getElementById("confirmation-modal-btn-close")?.click()
+    document.getElementById("audience-modal-btn-close")?.click()
     this.audienceService.fetchAudiences().subscribe({
       next: audiences => {
         this.audiences = audiences
@@ -43,21 +46,56 @@ export class AudiencesPageComponent extends DisplayErrorComponent {
   }
 
   requestCreateAudiences() {
-    this.modal.edit = false
-    this.selectGroup(Audience.empty())
+    this.selectAudience(null)
   }
 
   requestEditAudiences(audience: Audience) {
-    this.modal.edit = true
-    this.selectGroup(audience)
+    this.selectAudience(audience)
   }
 
   requestDeleteAudiences(audience: Audience) {
-    this.selectGroup(audience)
+    this.selectAudience(audience)
+  }
+
+  createAudience(form: {name: string, frame: string, floor: string, number: string}) {
+    if (!this.validateAudience(form)) return
+
+    this.audienceService.createAudience(
+      +form.frame,
+      +form.floor,
+      form.name,
+      +form.number
+    ).subscribe({
+      next: () => {
+        this.refresh()
+      },
+      error: err => {
+        this.handleHttpError(err)
+      }
+    })
+  }
+
+  modifyAudience(form: {id: string, name: string, frame: string, floor: string, number: string}) {
+    if (!this.validateAudience(form)) return
+
+    this.audienceService.modifyAudience(new Audience(
+      form.id,
+      form.name,
+      form.frame,
+      +form.floor,
+      form.number
+    )).subscribe({
+      next: () => {
+        this.refresh()
+      },
+      error: err => {
+        this.handleHttpError(err)
+      }
+    })
   }
 
   deleteGroup() {
-    this.audienceService.deleteAudience(this.modal.selected.id).subscribe({
+    this.audienceService.deleteAudience(this.modal.selected!.id).subscribe({
       next: () => {
         this.refresh()
       },
@@ -67,17 +105,33 @@ export class AudiencesPageComponent extends DisplayErrorComponent {
     })
   }
 
-  onSubmitModal() {
-    this.refresh()
+  private validateAudience(form: {name: string, frame: string, floor: string, number: string}): boolean {
+    if (form.name.length === 0) {
+      this.modal.error = ErrorMessage.VALIDATION_AUDIENCE_NAME_EMPTY
+      return false
+    }
+    if (form.frame.length === 0) {
+      this.modal.error = ErrorMessage.VALIDATION_AUDIENCE_FRAME_EMPTY
+      return false
+    }
+    if (form.floor.length === 0) {
+      this.modal.error = ErrorMessage.VALIDATION_AUDIENCE_FLOOR_EMPTY
+      return false
+    }
+    if (form.number.length === 0) {
+      this.modal.error = ErrorMessage.VALIDATION_AUDIENCE_NUMBER_EMPTY
+      return false
+    }
+    return true
   }
 
-  private selectGroup(audience: Audience) {
-    this.modal.selected = audience.clone()
+  private selectAudience(audience: Audience | null) {
+    this.modal.error = null
+    this.modal.selected = (audience == null) ? null : audience.clone()
   }
 }
 
 class Modal {
-  edit: boolean = false
-  selected: Audience = Audience.empty()
+  selected: Audience | null = null
   error: string | null = null
 }

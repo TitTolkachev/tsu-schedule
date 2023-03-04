@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {DisplayErrorComponent} from "../../../../components/util/display-error";
 import {Teacher} from "../../../../models/teacher";
 import {ITeacherService} from "../../../../services/i-teacher.service";
+import {ErrorMessage} from "../../../../errors";
 
 @Component({
   selector: 'app-teachers-page',
@@ -32,6 +33,8 @@ export class TeachersPageComponent  extends DisplayErrorComponent {
   }
 
   refresh() {
+    document.getElementById("confirmation-modal-btn-close")?.click()
+    document.getElementById("teacher-modal-btn-close")?.click()
     this.teacherService.fetchTeachers().subscribe({
       next: teachers => {
         this.teachers = teachers
@@ -43,21 +46,55 @@ export class TeachersPageComponent  extends DisplayErrorComponent {
   }
 
   requestCreateTeacher() {
-    this.modal.edit = false
-    this.selectTeacher(Teacher.empty())
+    this.selectTeacher(null)
   }
 
   requestEditTeacher(teacher: Teacher) {
-    this.modal.edit = true
     this.selectTeacher(teacher)
   }
 
   requestDeleteTeacher(teacher: Teacher) {
+    this.modal.error = null
     this.selectTeacher(teacher)
   }
 
+  createTeacher(form: {firstName: string, lastName: string, patronymicName: string}) {
+    if (!this.validateTeacher(form)) return
+
+    this.teacherService.createTeacher(
+      form.firstName,
+      form.lastName,
+      form.patronymicName
+    ).subscribe({
+      next: () => {
+        this.refresh()
+      },
+      error: err => {
+        this.handleHttpError(err)
+      }
+    })
+  }
+
+  modifyTeacher(form: {id: string, firstName: string, lastName: string, patronymicName: string}) {
+    if (!this.validateTeacher(form)) return
+
+    this.teacherService.modifyTeacher(new Teacher(
+      form.id,
+      form.firstName,
+      form.lastName,
+      form.patronymicName
+    )).subscribe({
+      next: () => {
+        this.refresh()
+      },
+      error: err => {
+        this.handleHttpError(err)
+      }
+    })
+  }
+
   deleteTeacher() {
-    this.teacherService.deleteTeacher(this.modal.selected.id).subscribe({
+    this.teacherService.deleteTeacher(this.modal.selected!.id).subscribe({
       next: () => {
         this.refresh()
       },
@@ -67,17 +104,29 @@ export class TeachersPageComponent  extends DisplayErrorComponent {
     })
   }
 
-  onSubmitModal() {
-    this.refresh()
+  private validateTeacher(form: {firstName: string, lastName: string, patronymicName: string}): boolean {
+    if (form.firstName.length === 0) {
+      this.modal.error = ErrorMessage.VALIDATION_TEACHER_FIRST_NAME_EMPTY
+      return false
+    }
+    if (form.lastName.length === 0) {
+      this.modal.error = ErrorMessage.VALIDATION_TEACHER_LAST_NAME_EMPTY
+      return false
+    }
+    if (form.patronymicName.length === 0) {
+      this.modal.error = ErrorMessage.VALIDATION_TEACHER_PATRONYMIC_NAME_EMPTY
+      return false
+    }
+    return true
   }
 
-  private selectTeacher(teacher: Teacher) {
-    this.modal.selected = teacher.clone()
+  private selectTeacher(teacher: Teacher | null) {
+    this.modal.error = null
+    this.modal.selected = (teacher == null) ? null : teacher.clone()
   }
 }
 
 class Modal {
-  edit: boolean = false
-  selected: Teacher = Teacher.empty()
+  selected: Teacher | null = null
   error: string | null = null
 }

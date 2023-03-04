@@ -30,14 +30,15 @@
 
 <!-- Модальное окно добавления или редактирования группы -->
 <app-group-modal
-  [edit]="modal.edit"
   [form]="modal.selected"
-  (submit)="onSubmitModal()"
+  [error]="modal.error"
+  (create)="createGroup($event)"
+  (modify)="modifyGroup($event)"
 ></app-group-modal>
 
 <!-- Модальное окно подтверждения удаления -->
 <app-confirmation
-  (confirm)="deleteGroup()"
-  [message]="'Удалить группу номер ' + modal.selected.number + '?'"
+  [message]="'Удалить группу номер ' + modal.selected?.number + '?'"
   [error]="modal.error"
+  (confirm)="deleteGroup()"
 ></app-confirmation>

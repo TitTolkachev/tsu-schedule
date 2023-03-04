@@ -1,8 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ErrorMessage} from "../../../../errors";
 import {Subject} from "../../../../models/subject";
 import {DisplayErrorComponent} from "../../../../components/util/display-error";
-import {ISubjectService} from "../../../../services/i-subject.service";
 
 @Component({
   selector: 'app-subject-modal',
@@ -16,50 +14,38 @@ export class SubjectModalComponent extends DisplayErrorComponent {
   name: string = ""
 
   @Input()
-  set form(form: Subject | undefined) {
-    if (form != undefined) {
+  set form(form: Subject | null) {
+    if (form != null) {
       this.id = form.id
       this.name = form.name
     }
+    else {
+      this.id = undefined
+      this.name = ""
+    }
   }
 
-  @Input()
-  edit: boolean = false
+  get edit(): boolean {
+    return this.id != undefined
+  }
 
   @Output()
-  submit = new EventEmitter()
+  create = new EventEmitter<{name: string}>()
 
-  constructor(
-    private subjectService: ISubjectService
-  ) {
-    super();
-  }
+  @Output()
+  modify = new EventEmitter<{id: string, name: string}>()
 
   onSubmit() {
-    if (this.name.length === 0) {
-      this.error = ErrorMessage.VALIDATION_SUBJECT_NAME_EMPTY
-      return;
-    }
-
-    let observable
-    if (this.edit) {
-      observable = this.subjectService.modifySubject(new Subject(
-        this.id!,
-        this.name
-      ))
+    if (this.id == undefined) {
+      this.create.emit({
+        name: this.name
+      })
     }
     else {
-      observable = this.subjectService.createSubject(
-        this.name
-      )
+      this.modify.emit({
+        id: this.id,
+        name: this.name
+      })
     }
-    observable.subscribe({
-      next: () => {
-        this.submit.emit()
-      },
-      error: err => {
-        this.handleHttpError(err)
-      }
-    })
   }
 }

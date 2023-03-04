@@ -1,8 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ErrorMessage} from "../../../../errors";
 import {DisplayErrorComponent} from "../../../../components/util/display-error";
 import {Audience} from "../../../../models/audience";
-import {IAudienceService} from "../../../../services/i-audience.service";
 
 @Component({
   selector: 'app-audience-modal',
@@ -19,71 +17,50 @@ export class AudienceModalComponent extends DisplayErrorComponent {
   number: string = ""
 
   @Input()
-  set form(form: Audience | undefined) {
-    if (form != undefined) {
+  set form(form: Audience | null) {
+    if (form != null) {
       this.id = form.id
       this.name = form.name
       this.frame = form.frame
       this.floor = form.floor.toString()
       this.number = form.number
     }
+    else {
+      this.id = undefined
+      this.name = ""
+      this.frame = ""
+      this.floor = ""
+      this.number = ""
+    }
   }
 
-  @Input()
-  edit: boolean = false
+  @Output()
+  create = new EventEmitter<{name: string, frame: string, floor: string, number: string}>()
 
   @Output()
-  submit = new EventEmitter()
+  modify = new EventEmitter<{id: string, name: string, frame: string, floor: string, number: string}>()
 
-  constructor(
-    private audienceService: IAudienceService
-  ) {
-    super();
+  get edit(): boolean {
+    return this.id != undefined
   }
 
   onSubmit() {
-    if (this.name.length === 0) {
-      this.error = ErrorMessage.VALIDATION_AUDIENCE_NAME_EMPTY
-      return;
-    }
-    if (this.frame.length === 0) {
-      this.error = ErrorMessage.VALIDATION_AUDIENCE_FRAME_EMPTY
-      return;
-    }
-    if (this.floor.length === 0) {
-      this.error = ErrorMessage.VALIDATION_AUDIENCE_FLOOR_EMPTY
-      return;
-    }
-    if (this.number.length === 0) {
-      this.error = ErrorMessage.VALIDATION_AUDIENCE_NUMBER_EMPTY
-      return;
-    }
-
-    let observable
-    if (this.edit) {
-      observable = this.audienceService.modifyAudience(new Audience(
-        this.id!,
-        this.name,
-        this.frame,
-        +this.floor,
-        this.number
-      ))
+    if (this.id == undefined) {
+      this.create.emit({
+        name: this.name,
+        frame: this.frame,
+        floor: this.floor,
+        number: this.number
+      })
     }
     else {
-      observable = this.audienceService.createAudience(
-        +this.frame,
-        +this.floor,
-        this.name,
-        +this.number
-      )
+      this.modify.emit({
+        id: this.id,
+        name: this.name,
+        frame: this.frame,
+        floor: this.floor,
+        number: this.number
+      })
     }
-    observable.subscribe({
-      next: () => {
-        this.submit.emit()
-      },
-      error: err => {
-        this.handleHttpError(err)
-      }
-    })
   }
 }

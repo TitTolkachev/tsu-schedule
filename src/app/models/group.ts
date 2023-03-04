@@ -11,8 +11,4 @@ export class Group {
   clone(): Group {
     return new Group(this.id, this.number)
   }
-
-  static empty(): Group {
-    return new Group("", "")
-  }
 }

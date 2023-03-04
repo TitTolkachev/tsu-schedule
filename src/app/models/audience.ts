@@ -17,8 +17,4 @@ export class Audience {
   clone(): Audience {
     return new Audience(this.id, this.name, this.frame, this.floor, this.number)
   }
-
-  static empty(): Audience {
-    return new Audience("", "", "", 1, "")
-  }
 }

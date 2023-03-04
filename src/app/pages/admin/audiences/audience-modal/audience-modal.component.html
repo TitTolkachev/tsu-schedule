@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title" id="addAudienceModalLabel">Новая аудитория</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button id="audience-modal-btn-close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <div class="modal-body">
@@ -40,7 +40,7 @@
 
       <div class="modal-footer">
         <!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-        <button type="button" class="btn btn-primary text-center" data-bs-dismiss="modal" (click)="onSubmit()">
+        <button type="button" class="btn btn-primary text-center" (click)="onSubmit()">
           <span *ngIf="!edit">Добавить</span>
           <span *ngIf="edit">Изменить</span>
         </button>

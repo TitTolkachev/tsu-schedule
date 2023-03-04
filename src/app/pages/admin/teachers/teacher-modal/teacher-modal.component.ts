@@ -1,7 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ErrorMessage} from "../../../../errors";
 import {Teacher} from "../../../../models/teacher";
-import {ITeacherService} from "../../../../services/i-teacher.service";
 import {DisplayErrorComponent} from "../../../../components/util/display-error";
 
 @Component({
@@ -18,64 +16,46 @@ export class TeacherModalComponent extends DisplayErrorComponent {
   patronymicName: string = ""
 
   @Input()
-  set form(form: Teacher | undefined) {
-    if (form != undefined) {
+  set form(form: Teacher | null) {
+    if (form != null) {
       this.id = form.id
       this.firstName = form.firstName
       this.lastName = form.lastName
       this.patronymicName = form.patronymicName
     }
+    else {
+      this.id = undefined
+      this.firstName = ""
+      this.lastName = ""
+      this.patronymicName = ""
+    }
   }
 
-  @Input()
-  edit: boolean = false
+  get edit(): boolean {
+    return this.id != undefined
+  }
 
   @Output()
-  submit = new EventEmitter()
+  create = new EventEmitter<{firstName: string, lastName: string, patronymicName: string}>()
 
-  constructor(
-    private teacherService: ITeacherService
-  ) {
-    super();
-  }
+  @Output()
+  modify = new EventEmitter<{id: string, firstName: string, lastName: string, patronymicName: string}>()
 
   onSubmit() {
-    if (this.firstName.length === 0) {
-      this.error = ErrorMessage.VALIDATION_TEACHER_FIRST_NAME_EMPTY
-      return;
-    }
-    if (this.firstName.length === 0) {
-      this.error = ErrorMessage.VALIDATION_TEACHER_LAST_NAME_EMPTY
-      return;
-    }
-    if (this.firstName.length === 0) {
-      this.error = ErrorMessage.VALIDATION_TEACHER_PATRONYMIC_NAME_EMPTY
-      return;
-    }
-
-    let observable
-    if (this.edit) {
-      observable = this.teacherService.modifyTeacher(new Teacher(
-        this.id!,
-        this.firstName,
-        this.lastName,
-        this.patronymicName
-      ))
+    if (this.id == undefined) {
+      this.create.emit({
+        firstName: this.firstName,
+        lastName: this.lastName,
+        patronymicName: this.patronymicName
+      })
     }
     else {
-      observable = this.teacherService.createTeacher(
-        this.firstName,
-        this.lastName,
-        this.patronymicName
-      )
+      this.modify.emit({
+        id: this.id,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        patronymicName: this.patronymicName
+      })
     }
-    observable.subscribe({
-      next: () => {
-        this.submit.emit()
-      },
-      error: err => {
-        this.handleHttpError(err)
-      }
-    })
   }
 }
