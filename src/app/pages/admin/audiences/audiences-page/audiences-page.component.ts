@@ -64,7 +64,7 @@ export class AudiencesPageComponent extends DisplayErrorComponent {
       +form.frame,
       +form.floor,
       form.name,
-      +form.number
+      form.number
     ).subscribe({
       next: () => {
         this.refresh()
@@ -81,7 +81,7 @@ export class AudiencesPageComponent extends DisplayErrorComponent {
     this.audienceService.modifyAudience(new Audience(
       form.id,
       form.name,
-      form.frame,
+      +form.frame,
       +form.floor,
       form.number
     )).subscribe({
@@ -114,8 +114,16 @@ export class AudiencesPageComponent extends DisplayErrorComponent {
       this.modal.error = ErrorMessage.VALIDATION_AUDIENCE_FRAME_EMPTY
       return false
     }
+    if (!/^\d+$/g.test(form.frame)) {
+      this.modal.error = ErrorMessage.VALIDATION_AUDIENCE_FRAME_NOT_NUMBER
+      return false
+    }
     if (form.floor.length === 0) {
       this.modal.error = ErrorMessage.VALIDATION_AUDIENCE_FLOOR_EMPTY
+      return false
+    }
+    if (!/^\d+$/g.test(form.floor)) {
+      this.modal.error = ErrorMessage.VALIDATION_AUDIENCE_FLOOR_NOT_NUMBER
       return false
     }
     if (form.number.length === 0) {

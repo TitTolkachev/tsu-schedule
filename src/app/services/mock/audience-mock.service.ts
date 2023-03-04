@@ -9,9 +9,9 @@ import {IAudienceService} from "../i-audience.service";
 export class AudienceMockService implements IAudienceService {
 
   private audiences: Audience[] = [
-    new Audience("0", "Математический анализ", "1", 1, "123"),
-    new Audience("1", "Алгебра", "1", 1, "124"),
-    new Audience("2", "Компьютерный класс", "1", 2, "231")
+    new Audience("0", "Математический анализ", 1, 1, "123"),
+    new Audience("1", "Алгебра", 1, 1, "124"),
+    new Audience("2", "Компьютерный класс", 1, 2, "231")
   ]
   private counter = 3
 
@@ -22,17 +22,17 @@ export class AudienceMockService implements IAudienceService {
   }
 
   createAudience(
-    frame: number, // TODO string?
+    frame: number,
     floor: number,
     name: string,
-    number: number // TODO string?
+    number: string
   ): Observable<any> {
     this.audiences.push(new Audience(
       (this.counter++).toString(),
       name,
-      frame.toString(),
+      frame,
       floor,
-      number.toString()
+      number
     ))
     return of(null)
   }

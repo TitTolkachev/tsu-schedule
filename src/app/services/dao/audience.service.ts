@@ -21,10 +21,10 @@ export class AudienceService implements IAudienceService {
   }
 
   createAudience(
-    frame: number, // TODO string?
+    frame: number,
     floor: number,
     name: string,
-    number: number // TODO string?
+    number: string
   ): Observable<any> {
     return this.httpClient.post(
       `${SERVER_URL}/study-room`,

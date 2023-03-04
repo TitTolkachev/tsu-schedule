@@ -21,7 +21,7 @@ export class AudienceModalComponent extends DisplayErrorComponent {
     if (form != null) {
       this.id = form.id
       this.name = form.name
-      this.frame = form.frame
+      this.frame = form.frame.toString()
       this.floor = form.floor.toString()
       this.number = form.number
     }

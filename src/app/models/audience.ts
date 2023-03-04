@@ -2,11 +2,11 @@ export class Audience {
 
   id: string
   name: string
-  frame: string
+  frame: number
   floor: number
   number: string
 
-  constructor(id: string, name: string, frame: string, floor: number, number: string) {
+  constructor(id: string, name: string, frame: number, floor: number, number: string) {
     this.id = id;
     this.name = name;
     this.frame = frame;
