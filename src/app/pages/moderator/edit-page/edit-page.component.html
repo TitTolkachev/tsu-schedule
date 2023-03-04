@@ -376,8 +376,11 @@
   <!-- ---------------------------------------------------------------------- -->
 
   <div *ngFor="let w of Weeks">
-    <app-schedule-week></app-schedule-week>
+    <app-schedule-week [openModalPair]="openModalPair"></app-schedule-week>
   </div>
+
+  <app-schedule-pair-modal [initSetOpenModalPairFunction]="setOpenModalPair"></app-schedule-pair-modal>
+  <button class="d-none" data-bs-toggle="modal" data-bs-target="#pairModal" id="pairModalOpenBtn"></button>
 
   <button class="btn" id="show-more-btn" (click)="addWeek()">
     Подгрузить еще одну неделю

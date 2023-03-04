@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {Pair} from "../../models/Pair";
 
 @Component({
   selector: 'app-schedule-cell-day',
@@ -12,6 +13,9 @@ export class ScheduleCellDayComponent {
 
   @Input()
   Pairs: Array<Pair> = []
+
+  @Input()
+  openModalPair: Function | undefined
 
   IsExpanded = false
 
@@ -29,27 +33,4 @@ export class ScheduleCellDayComponent {
       }
     }
   }
-}
-
-export class Pair {
-  constructor(name: string, placement: string, groups: string, teacher?: string, date?: string, time?: string) {
-    this.Name = name
-    this.Placement = placement
-    this.Groups = groups
-    this.Teacher = teacher
-    this.Date = date
-    this.Time = time
-  }
-
-  Name = ''
-
-  Placement = ''
-
-  Groups = ''
-
-  Teacher: string | undefined = ''
-
-  Date: string | undefined = ''
-
-  Time: string | undefined = ''
 }

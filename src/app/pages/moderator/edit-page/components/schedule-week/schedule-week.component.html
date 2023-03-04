@@ -36,12 +36,12 @@
         10:20
       </div>
     </div>
-    <app-schedule-cell-day></app-schedule-cell-day>
-    <app-schedule-cell-day [Pairs]="Pairs.slice(4, 6)"></app-schedule-cell-day>
-    <app-schedule-cell-day></app-schedule-cell-day>
-    <app-schedule-cell-day></app-schedule-cell-day>
-    <app-schedule-cell-day></app-schedule-cell-day>
-    <app-schedule-cell-day></app-schedule-cell-day>
+    <app-schedule-cell-day [openModalPair]="openModalPair"></app-schedule-cell-day>
+    <app-schedule-cell-day [openModalPair]="openModalPair" [Pairs]="Pairs.slice(4, 6)"></app-schedule-cell-day>
+    <app-schedule-cell-day [openModalPair]="openModalPair"></app-schedule-cell-day>
+    <app-schedule-cell-day [openModalPair]="openModalPair"></app-schedule-cell-day>
+    <app-schedule-cell-day [openModalPair]="openModalPair"></app-schedule-cell-day>
+    <app-schedule-cell-day [openModalPair]="openModalPair"></app-schedule-cell-day>
     <div class="cell-empty br-0"></div>
 
     <div class="cell-time">
@@ -52,12 +52,12 @@
         10:20
       </div>
     </div>
-    <app-schedule-cell-day [Pairs]="Pairs.slice(2, 5)"></app-schedule-cell-day>
-    <app-schedule-cell-day></app-schedule-cell-day>
-    <app-schedule-cell-day></app-schedule-cell-day>
-    <app-schedule-cell-day [Pairs]="[Pairs[1]]"></app-schedule-cell-day>
-    <app-schedule-cell-day></app-schedule-cell-day>
-    <app-schedule-cell-day></app-schedule-cell-day>
+    <app-schedule-cell-day [openModalPair]="openModalPair" [Pairs]="Pairs.slice(2, 5)"></app-schedule-cell-day>
+    <app-schedule-cell-day [openModalPair]="openModalPair"></app-schedule-cell-day>
+    <app-schedule-cell-day [openModalPair]="openModalPair"></app-schedule-cell-day>
+    <app-schedule-cell-day [openModalPair]="openModalPair" [Pairs]="[Pairs[1]]"></app-schedule-cell-day>
+    <app-schedule-cell-day [openModalPair]="openModalPair"></app-schedule-cell-day>
+    <app-schedule-cell-day [openModalPair]="openModalPair"></app-schedule-cell-day>
     <div class="cell-empty br-0"></div>
 
     <div class="cell-time">
@@ -68,12 +68,12 @@
         10:20
       </div>
     </div>
-    <app-schedule-cell-day [BorderBottom]="false"></app-schedule-cell-day>
-    <app-schedule-cell-day [BorderBottom]="false"></app-schedule-cell-day>
-    <app-schedule-cell-day [BorderBottom]="false"></app-schedule-cell-day>
-    <app-schedule-cell-day [BorderBottom]="false"></app-schedule-cell-day>
-    <app-schedule-cell-day [BorderBottom]="false"></app-schedule-cell-day>
-    <app-schedule-cell-day [BorderBottom]="false" [Pairs]="[Pairs[0]]"></app-schedule-cell-day>
+    <app-schedule-cell-day [openModalPair]="openModalPair" [BorderBottom]="false"></app-schedule-cell-day>
+    <app-schedule-cell-day [openModalPair]="openModalPair" [BorderBottom]="false"></app-schedule-cell-day>
+    <app-schedule-cell-day [openModalPair]="openModalPair" [BorderBottom]="false"></app-schedule-cell-day>
+    <app-schedule-cell-day [openModalPair]="openModalPair" [BorderBottom]="false"></app-schedule-cell-day>
+    <app-schedule-cell-day [openModalPair]="openModalPair" [BorderBottom]="false"></app-schedule-cell-day>
+    <app-schedule-cell-day [openModalPair]="openModalPair" [BorderBottom]="false" [Pairs]="[Pairs[0]]"></app-schedule-cell-day>
     <div class="cell-empty bb-0 br-0"></div>
   </div>
 </div>

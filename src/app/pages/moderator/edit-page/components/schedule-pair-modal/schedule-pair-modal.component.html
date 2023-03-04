@@ -1,0 +1,35 @@
+<div class="modal fade" id="pairModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title" id="addAudienceModalLabel">{{Pair!.Name}}</div>
+          <div class="modal-subtitle">{{Pair!.Type}}</div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="modal-body-block-container">
+          <div class="modal-body-block-title">Группа</div>
+          <div class="modal-body-block-value">{{Pair!.Groups}}</div>
+        </div>
+        <div class="modal-body-block-container">
+          <div class="modal-body-block-title">Преподаватель</div>
+          <div class="modal-body-block-value">{{Pair!.Teacher}}</div>
+        </div>
+        <div class="modal-body-block-container">
+          <div class="modal-body-block-title">Аудитория</div>
+          <div class="modal-body-block-value">{{Pair!.Placement}}</div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <div class="footer-pair-time">{{Pair!.Time}}</div>
+        <button type="button" class="btn btn-primary text-center">Изменить</button>
+      </div>
+    </div>
+  </div>
+</div>

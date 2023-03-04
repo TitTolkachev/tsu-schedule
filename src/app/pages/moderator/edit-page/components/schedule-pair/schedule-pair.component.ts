@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {Pair} from "../../models/Pair";
 
 @Component({
   selector: 'app-schedule-pair',
@@ -8,11 +9,8 @@ import {Component, Input} from '@angular/core';
 export class SchedulePairComponent {
 
   @Input()
-  PairName = 'Математический анализ'
+  Pair: Pair | undefined
 
   @Input()
-  PairPlacement = 'Онлайн'
-
-  @Input()
-  PairGroups = '972101'
+  openModalPair: Function | undefined
 }

@@ -13,6 +13,13 @@ export class EditPageComponent implements AfterContentInit {
   private hintTimer: number | undefined;
   Weeks = [1];
 
+  openModalPair: Function | undefined
+
+  setOpenModalPair = function (openModalPair: Function | undefined){
+    // @ts-ignore
+    this.openModalPair = openModalPair
+  }.bind(this)
+
   ngAfterContentInit() {
     let input1 = document.getElementById('input1')
     let datalist1 = document.getElementById('datalist1')
