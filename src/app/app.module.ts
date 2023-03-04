@@ -19,6 +19,7 @@ import {RequestRegistrationComponent} from './components/request/request-registr
 
 
 import {AppComponent} from './app.component';
+import {RequestChangeGroupComponent} from './components/request/request-change-group/request-change-group.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {AppComponent} from './app.component';
     HeaderCompilerPagesComponent,
     HeaderAdminPagesComponent,
     RequestsPageComponent,
-    RequestRegistrationComponent
+    RequestRegistrationComponent,
+    RequestChangeGroupComponent
   ],
   imports: [
     BrowserModule,
