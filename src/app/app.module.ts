@@ -17,6 +17,7 @@ import {MainPageComponent} from './pages/admin/main/main-page/main-page.componen
 import {RequestsPageComponent} from './pages/admin/requests/requests-page/requests-page.component';
 
 import {AppComponent} from './app.component';
+import {RequestRegistrationComponent} from './components/request-registration/request-registration.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {AppComponent} from './app.component';
     HeaderSigninComponent,
     HeaderCompilerPagesComponent,
     HeaderAdminPagesComponent,
-    RequestsPageComponent
+    RequestsPageComponent,
+    RequestRegistrationComponent
   ],
   imports: [
     BrowserModule,

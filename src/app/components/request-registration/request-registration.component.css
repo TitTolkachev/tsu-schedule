@@ -1,0 +1,28 @@
+.requests {
+  padding: 50px 28px 50px 28px;
+}
+
+.info-person {
+  font-family: 'Jura', sans-serif;
+  font-weight: 200;
+  font-size: 14px;
+  text-align: left;
+}
+
+.name {
+  color: #FFFFFF;
+}
+
+.email {
+  color: rgba(255, 255, 255, 0.8);
+  padding-top: -10px;
+}
+
+.image img {
+  width: 24px;
+  height: 17px;
+}
+
+.confirm {
+  margin-right: 22px;
+}
