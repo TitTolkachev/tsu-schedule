@@ -5,7 +5,7 @@
     <div class="col-md-4">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative form">
         <div class="col p-4 d-flex flex-column position-static">
-          <div class="d-flex">
+          <div class="form-top d-flex">
             <div class="form-title">Запросы на регистрацию</div>
             <button
               class="ms-auto"
@@ -13,10 +13,12 @@
               Принять все
             </button>
           </div>
-          <app-request-registration></app-request-registration>
-          <app-request-registration></app-request-registration>
-          <app-request-registration></app-request-registration>
-          <app-request-registration></app-request-registration>
+          <div class="container-request">
+            <app-request-registration></app-request-registration>
+            <app-request-registration></app-request-registration>
+            <app-request-registration></app-request-registration>
+            <app-request-registration></app-request-registration>
+          </div>
         </div>
       </div>
     </div>
@@ -24,7 +26,7 @@
     <div class="col-md-4">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative form">
         <div class="col p-4 d-flex flex-column position-static">
-          <div class="d-flex">
+          <div class="form-top d-flex">
             <div class="form-title">Запросы на изменения группы</div>
             <button
               class="ms-auto"
