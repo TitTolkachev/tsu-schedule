@@ -1,0 +1,11 @@
+<div *ngIf="subject">
+  <p>id: {{ subject.id }}, name: {{ subject.name }}</p>
+
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSubjectModal" (click)="editClick()">
+    Edit
+  </button>
+
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmationModal" (click)="deleteClick()">
+    Delete
+  </button>
+</div>

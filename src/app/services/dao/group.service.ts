@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Group} from "../models/group";
+import {Group} from "../../models/group";
 import {Observable} from "rxjs";
-import {SERVER_URL, TOKEN_KEY} from "../constants";
+import {SERVER_URL} from "../../constants";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class GroupService {
     private httpClient: HttpClient
   ) { }
 
-  fetchGroup(): Observable<Group[]> {
+  fetchGroups(): Observable<Group[]> {
     return this.httpClient.get<Group[]>(
       `${SERVER_URL}/group`
     )

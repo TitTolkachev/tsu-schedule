@@ -9,4 +9,6 @@ export enum ErrorMessage {
   VALIDATION_AUDIENCE_NAME_EMPTY = "Название аудитории не может быть пустым.",
   VALIDATION_AUDIENCE_FLOOR_EMPTY = "Этаж аудитории не может быть пустым.",
   VALIDATION_AUDIENCE_FRAME_EMPTY = "Корпус аудитории не может быть пустым.",
+
+  VALIDATION_SUBJECT_NAME_EMPTY = "Название предмета не может быть пустым.",
 }

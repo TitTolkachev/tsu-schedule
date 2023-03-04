@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Group} from "../../../../models/group";
-import {GroupService} from "../../../../services/group.service";
 
 @Component({
   selector: 'app-group-element',

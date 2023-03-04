@@ -13,7 +13,7 @@ export class GroupMockService {
     new Group("2", "972103")
   ]
 
-  fetchGroup(): Observable<Group[]> {
+  fetchGroups(): Observable<Group[]> {
     return of(this.groups)
   }
 

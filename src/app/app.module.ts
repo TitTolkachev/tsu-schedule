@@ -19,6 +19,8 @@ import {ConfirmationComponent} from './components/confirmation/confirmation.comp
 import {GroupModalComponent} from './pages/admin/groups/group-modal/group-modal.component';
 import {AudienceModalComponent} from './pages/admin/audiences/audience-modal/audience-modal.component';
 import {AudienceElementComponent} from './pages/admin/audiences/audience-element/audience-element.component';
+import {SubjectModalComponent} from './pages/admin/subjects/subject-modal/subject-modal.component';
+import {SubjectElementComponent} from './pages/admin/subjects/subject-element/subject-element.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import {AudienceElementComponent} from './pages/admin/audiences/audience-element
     GroupElementComponent,
     AudiencesPageComponent,
     AudienceModalComponent,
-    AudienceElementComponent
+    AudienceElementComponent,
+    SubjectModalComponent,
+    SubjectElementComponent
   ],
   imports: [
     BrowserModule,

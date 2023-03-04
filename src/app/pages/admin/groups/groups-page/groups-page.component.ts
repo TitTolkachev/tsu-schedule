@@ -32,7 +32,7 @@ export class GroupsPageComponent extends DisplayErrorComponent {
   }
 
   refresh() {
-    this.groupService.fetchGroup().subscribe({
+    this.groupService.fetchGroups().subscribe({
       next: groups => {
         this.groups = groups
       },
