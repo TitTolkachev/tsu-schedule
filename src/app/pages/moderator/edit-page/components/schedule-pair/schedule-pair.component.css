@@ -1,0 +1,40 @@
+.pair {
+  width: 100%;
+  max-width: 100%;
+  word-wrap: anywhere;
+  padding: 8px 10px;
+  text-align: left;
+  background: rgba(55, 27, 27, 0.4);
+  border-radius: 10px;
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  color: #000000;
+}
+
+.active-pair {
+  background: #A1CCCF;
+}
+
+.pair-name {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.pair-placement, .pair-groups {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+}
+
+@media (max-height: 900px) {
+  .pair-name {
+    font-size: 16px;
+    line-height: 18px;
+  }
+
+  .pair-placement, .pair-groups {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
