@@ -16,6 +16,7 @@ import {HeaderAdminPagesComponent} from './components/headers/header-admin-pages
 import {MainPageComponent} from './pages/admin/main/main-page/main-page.component';
 import {RequestsPageComponent} from './pages/admin/requests/requests-page/requests-page.component';
 import {RequestComponent} from './components/request/request.component';
+import {SearchRequestPipe} from "./components/request/search-request/search-request.pipe";
 
 import {AppComponent} from './app.component';
 
@@ -34,7 +35,8 @@ import {AppComponent} from './app.component';
     HeaderCompilerPagesComponent,
     HeaderAdminPagesComponent,
     RequestsPageComponent,
-    RequestComponent
+    RequestComponent,
+    SearchRequestPipe
   ],
   imports: [
     BrowserModule,

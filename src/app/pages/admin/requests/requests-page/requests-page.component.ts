@@ -17,4 +17,8 @@ export class RequestsPageComponent {
     {name: "Аникушин Роман Евгеньевич", email: "romAN@gmail.com", oldGroup: 972101, newGroup: 972103},
     {name: "Блаблашкин Игорь Семенович", email: "nani@bla.com", oldGroup: 972002, newGroup: 972101}
   ]
+
+  searchRequestChangeGroup = ''
+  searchRequestRegistration = ''
+
 }

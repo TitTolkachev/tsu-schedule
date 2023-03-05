@@ -18,7 +18,7 @@
 }
 
 .form-top {
-  margin-bottom: 50px;
+  margin-bottom: 37px;
 }
 
 .row {
@@ -40,44 +40,7 @@ button {
   transition: 0.3s ease;
 }
 
-/*button:active {*/
-/*  background: rgba(255, 255, 255, 0.4);*/
-/*}*/
-
-/*button:disabled {*/
-/*  background: rgba(255, 255, 255, 0.4);*/
-/*}*/
-
-/*@media (max-height: 900px) {*/
-/*  .form {*/
-/*    border-radius: 10px;*/
-/*    max-width: 900px;*/
-/*    padding-bottom: 50px;*/
-/*  }*/
-
-/*  .form-title {*/
-/*    font-size: 34px;*/
-/*    line-height: 40px;*/
-/*    margin-bottom: 20px;*/
-/*  }*/
-
-/*  .form-description {*/
-/*    margin-bottom: 40px;*/
-/*    font-size: 20px;*/
-/*    line-height: 24px;*/
-/*  }*/
-
-/*  button {*/
-/*    width: 210.75px;*/
-/*    height: 84.5px;*/
-/*    font-size: 24px;*/
-/*    line-height: 30px;*/
-/*  }*/
-/*}*/
-
-
 .row {
-  --bs-gutter-x: 1.5rem;
   display: flex;
   flex-wrap: wrap;
   margin-top: 50px;
@@ -85,4 +48,8 @@ button {
 
 .p-4 {
   padding: 0 !important;
+}
+
+.search {
+  padding: 0 37px 27px 37px;
 }

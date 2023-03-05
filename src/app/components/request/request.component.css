@@ -23,6 +23,7 @@
   height: 16px;
 }
 
-.confirm {
-  margin-right: 22px;
+button {
+  border: none;
 }
+

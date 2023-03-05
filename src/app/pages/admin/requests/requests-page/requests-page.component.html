@@ -13,7 +13,12 @@
               Принять все
             </button>
           </div>
-          <div class="container-request" *ngFor="let e of requestsReqistration">
+
+          <div class="search input-group">
+            <input class="form-control" type="search" placeholder="Введите ФИО / email" [(ngModel)]="searchRequestRegistration">
+          </div>
+
+          <div class="container-request" *ngFor="let e of requestsReqistration | searchRequest: searchRequestRegistration">
             <app-requests [name]="e.name"
                          [email]="e.email"
                          [group]="e.group" >
@@ -35,7 +40,11 @@
             </button>
           </div>
 
-          <div class="requests" *ngFor="let e of requestsChangeGroup">
+          <div class="search input-group">
+            <input class="form-control" type="search" placeholder="Введите ФИО / email" [(ngModel)]="searchRequestChangeGroup">
+          </div>
+
+          <div class="requests" *ngFor="let e of requestsChangeGroup | searchRequest: searchRequestChangeGroup">
             <app-requests [name]="e.name"
                          [email]="e.email"
                          [oldGroup]="e.oldGroup"
