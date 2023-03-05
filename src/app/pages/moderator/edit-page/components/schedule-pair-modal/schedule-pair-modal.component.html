@@ -6,7 +6,7 @@
           <div class="modal-title" id="addAudienceModalLabel">{{Pair!.Name}}</div>
           <div class="modal-subtitle">{{Pair!.Type}}</div>
         </div>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal-btn"></button>
       </div>
 
       <div class="modal-body">
@@ -28,7 +28,7 @@
 
       <div class="modal-footer">
         <div class="footer-pair-time">{{Pair!.Time}}</div>
-        <button type="button" class="btn btn-primary text-center">Изменить</button>
+        <button type="button" class="btn btn-primary text-center" (click)="editPair!(Pair)">Изменить</button>
       </div>
     </div>
   </div>

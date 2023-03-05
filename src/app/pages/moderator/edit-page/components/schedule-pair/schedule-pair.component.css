@@ -11,6 +11,10 @@
   color: #000000;
 }
 
+.active-pair {
+  background: #A1CCCF;
+}
+
 .pair-name {
   font-weight: 600;
   font-size: 18px;

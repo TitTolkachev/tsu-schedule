@@ -70,6 +70,12 @@
   transform: rotate(1turn);
 }
 
+.active-plus-btn {
+  background: #A1CCCF;
+  transition: none;
+  pointer-events: none;
+}
+
 .bb-0 {
   border-bottom: none;
 }

@@ -14,6 +14,9 @@ export class SchedulePairModalComponent implements AfterContentInit {
   @Input()
   initSetOpenModalPairFunction: Function | undefined
 
+  @Input()
+  editPair: Function | undefined
+
   openModalPair = function (pair: Pair) {
     // @ts-ignore
     this.Pair = pair

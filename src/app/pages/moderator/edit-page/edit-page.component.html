@@ -198,56 +198,58 @@
     </div>
 
 
-    <div class="p-0">
-      <div class="d-flex flex-wrap input-with-label">
-        <label for="input8" class="form-label form-label-3">
-          Повторять
-        </label>
-        <fieldset>
+    <div class="p-0" [ngClass]="State == 0 ? 'invisible' : ''">
 
-          <div class="expand-arrow" id="arrow8">
-            <span class="material-symbols-outlined">expand_more</span>
-          </div>
-          <input autocomplete="off" role="combobox" list="" id="input8" name="datalist8"
-                 placeholder="Повторять каждые">
-          <datalist class="main-input-datalist" id="datalist8" role="listbox">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-          </datalist>
+        <div class="d-flex flex-wrap input-with-label">
+          <label for="input8" class="form-label form-label-3">
+            Повторять
+          </label>
+          <fieldset>
 
-        </fieldset>
-      </div>
+            <div class="expand-arrow" id="arrow8">
+              <span class="material-symbols-outlined">expand_more</span>
+            </div>
+            <input autocomplete="off" role="combobox" list="" id="input8" name="datalist8"
+                   placeholder="Повторять каждые">
+            <datalist class="main-input-datalist" id="datalist8" role="listbox">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+            </datalist>
 
-      <div class="d-flex flex-wrap input-with-label">
-        <label for="input9" class="form-label form-label-3">
-          Начало
-        </label>
-        <fieldset>
+          </fieldset>
+        </div>
 
-          <input type="date" id="input9" value="2023-03-02"
-                 max="2024-01-01" min="2023-03-02">
+        <div class="d-flex flex-wrap input-with-label">
+          <label for="input9" class="form-label form-label-3">
+            Начало
+          </label>
+          <fieldset>
 
-        </fieldset>
-      </div>
+            <input type="date" id="input9" value="2023-03-02"
+                   max="2024-01-01" min="2023-03-02">
 
-      <div class="d-flex flex-wrap input-with-label">
-        <label for="input10" class="form-label form-label-3">
-          Конец
-        </label>
-        <fieldset>
+          </fieldset>
+        </div>
 
-          <input type="date" id="input10" value="2023-03-02"
-                 max="2024-01-01" min="2023-03-02">
+        <div class="d-flex flex-wrap input-with-label">
+          <label for="input10" class="form-label form-label-3">
+            Конец
+          </label>
+          <fieldset>
 
-        </fieldset>
-      </div>
+            <input type="date" id="input10" value="2023-03-02"
+                   max="2024-01-01" min="2023-03-02">
+
+          </fieldset>
+        </div>
+
     </div>
   </div>
 
@@ -277,7 +279,7 @@
   <div class="d-flex text-nowrap" id="intermediate-block">
 
     <!-- Блок для изменения пары -->
-    <div class="d-none flex-wrap" id="change-items-container">
+    <div class="d-flex flex-wrap" id="change-items-container" [ngClass]="State != 2 ? 'd-none' : ''">
       <div class="d-flex mt-3 helper-container">
         <div class="helper-description">
           Изменение данных
@@ -308,7 +310,7 @@
           <button class="btn control-button" id="change-control-btn2">
             удалить
           </button>
-          <button class="btn control-button" id="change-control-btn3">
+          <button class="btn control-button" id="change-control-btn3" (click)="cancelOperations()">
             отменить
           </button>
         </div>
@@ -319,7 +321,7 @@
     <!-- ---------------------------------------------------------------------- -->
     <!-- ---------------------------------------------------------------------- -->
     <!-- Блок для добавления пары -->
-    <div class="d-flex flex-wrap" id="add-items-container">
+    <div class="d-flex flex-wrap" id="add-items-container" [ngClass]="State != 1 ? 'd-none' : ''">
       <div class="d-flex mt-3 helper-container">
         <div class="helper-description">
           Добавление новой пары
@@ -346,7 +348,7 @@
           сохранить изменения
         </button>
         <div class="d-flex mt-3">
-          <button class="btn control-button" id="add-control-btn3">
+          <button class="btn control-button" id="add-control-btn3" (click)="cancelOperations()">
             отменить
           </button>
         </div>
@@ -376,10 +378,10 @@
   <!-- ---------------------------------------------------------------------- -->
 
   <div *ngFor="let w of Weeks">
-    <app-schedule-week [openModalPair]="openModalPair"></app-schedule-week>
+    <app-schedule-week [Week]="w"></app-schedule-week>
   </div>
 
-  <app-schedule-pair-modal [initSetOpenModalPairFunction]="setOpenModalPair"></app-schedule-pair-modal>
+  <app-schedule-pair-modal [initSetOpenModalPairFunction]="setOpenModalPair" [editPair]="editPair"></app-schedule-pair-modal>
   <button class="d-none" data-bs-toggle="modal" data-bs-target="#pairModal" id="pairModalOpenBtn"></button>
 
   <button class="btn" id="show-more-btn" (click)="addWeek()">

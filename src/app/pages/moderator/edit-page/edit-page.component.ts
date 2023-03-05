@@ -1,6 +1,9 @@
 import {AfterContentInit, Component} from '@angular/core';
 import {DropDownInput} from "./drop-down-input";
 import {GroupInput} from "./group-input";
+import {State} from "./models/State";
+import {Pair} from "./models/Pair";
+import {Week} from "./models/Week";
 
 @Component({
   selector: 'app-edit-page',
@@ -11,7 +14,13 @@ import {GroupInput} from "./group-input";
 export class EditPageComponent implements AfterContentInit {
 
   private hintTimer: number | undefined;
-  Weeks = [1];
+
+  // Отображаемые недели
+  Weeks: Array<Week> | undefined
+
+  State = State.base
+
+  IsLoading = false
 
   openModalPair: Function | undefined
 
@@ -21,6 +30,10 @@ export class EditPageComponent implements AfterContentInit {
   }.bind(this)
 
   ngAfterContentInit() {
+
+    // TODO(Сделать загрузку недели, притом раньше, чем AfterContentInit)
+    this.loadWeek()
+
     let input1 = document.getElementById('input1')
     let datalist1 = document.getElementById('datalist1')
     let arrow1 = document.getElementById('arrow1')
@@ -95,6 +108,26 @@ export class EditPageComponent implements AfterContentInit {
   }
 
   addWeek(){
-    this.Weeks.push(1)
+    // TODO(Подгрузить еще неделю в массив просматриваемых недель)
+  }
+
+  addPair = function () {
+    // @ts-ignore
+    this.State = State.addPair
+  }.bind(this)
+
+  editPair = function (pair: Pair) {
+    // @ts-ignore
+    this.State = State.editPair
+    // @ts-ignore
+    let closeModalBtn = document.getElementById('close-modal-btn')?.click()
+  }.bind(this)
+
+  cancelOperations() {
+    this.State = State.base
+  }
+
+  loadWeek() {
+
   }
 }

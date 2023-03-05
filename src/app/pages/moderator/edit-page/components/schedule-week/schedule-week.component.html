@@ -1,79 +1,50 @@
 <div class="schedule-weeks-container">
-  <div class="schedule-week-date">6 февраля 2023 - 11 февраля 2023 • 24 неделя</div>
+  <div class="schedule-week-date">{{Week!.WeekDate}}</div>
   <div class="schedule-week">
+
     <div></div>
     <div class="cell-day-name">
       <div>ПН</div>
-      <div>30</div>
+      <div>{{Week!.WeekDays[0]}}</div>
     </div>
     <div class="cell-day-name">
       <div>ВТ</div>
-      <div>1</div>
+      <div>{{Week!.WeekDays[1]}}</div>
     </div>
     <div class="cell-day-name">
       <div>СР</div>
-      <div>2</div>
+      <div>{{Week!.WeekDays[2]}}</div>
     </div>
     <div class="cell-day-name">
       <div>ЧТ</div>
-      <div>3</div>
+      <div>{{Week!.WeekDays[3]}}</div>
     </div>
     <div class="cell-day-name">
       <div>ПТ</div>
-      <div>4</div>
+      <div>{{Week!.WeekDays[4]}}</div>
     </div>
     <div class="cell-day-name">
       <div>СБ</div>
-      <div>5</div>
+      <div>{{Week!.WeekDays[5]}}</div>
     </div>
     <div class="cell-empty br-0"></div>
 
-    <div class="cell-time">
-      <div class="cell-time-start">
-        8:45
-      </div>
-      <div class="cell-time-end">
-        10:20
-      </div>
-    </div>
-    <app-schedule-cell-day [openModalPair]="openModalPair"></app-schedule-cell-day>
-    <app-schedule-cell-day [openModalPair]="openModalPair" [Pairs]="Pairs.slice(4, 6)"></app-schedule-cell-day>
-    <app-schedule-cell-day [openModalPair]="openModalPair"></app-schedule-cell-day>
-    <app-schedule-cell-day [openModalPair]="openModalPair"></app-schedule-cell-day>
-    <app-schedule-cell-day [openModalPair]="openModalPair"></app-schedule-cell-day>
-    <app-schedule-cell-day [openModalPair]="openModalPair"></app-schedule-cell-day>
-    <div class="cell-empty br-0"></div>
+    <div *ngFor="let l of Week!.WeekTimeLines">
 
-    <div class="cell-time">
-      <div class="cell-time-start">
-        8:45
+      <div class="cell-time">
+        <div class="cell-time-start">
+          {{l.TimeStart}}
+        </div>
+        <div class="cell-time-end">
+          {{l.TimeEnd}}
+        </div>
       </div>
-      <div class="cell-time-end">
-        10:20
+      <div *ngFor="let c of l.Cells">
+        <app-schedule-cell-day></app-schedule-cell-day>
       </div>
-    </div>
-    <app-schedule-cell-day [openModalPair]="openModalPair" [Pairs]="Pairs.slice(2, 5)"></app-schedule-cell-day>
-    <app-schedule-cell-day [openModalPair]="openModalPair"></app-schedule-cell-day>
-    <app-schedule-cell-day [openModalPair]="openModalPair"></app-schedule-cell-day>
-    <app-schedule-cell-day [openModalPair]="openModalPair" [Pairs]="[Pairs[1]]"></app-schedule-cell-day>
-    <app-schedule-cell-day [openModalPair]="openModalPair"></app-schedule-cell-day>
-    <app-schedule-cell-day [openModalPair]="openModalPair"></app-schedule-cell-day>
-    <div class="cell-empty br-0"></div>
+      <div class="cell-empty br-0"></div>
 
-    <div class="cell-time">
-      <div class="cell-time-start">
-        8:45
-      </div>
-      <div class="cell-time-end">
-        10:20
-      </div>
     </div>
-    <app-schedule-cell-day [openModalPair]="openModalPair" [BorderBottom]="false"></app-schedule-cell-day>
-    <app-schedule-cell-day [openModalPair]="openModalPair" [BorderBottom]="false"></app-schedule-cell-day>
-    <app-schedule-cell-day [openModalPair]="openModalPair" [BorderBottom]="false"></app-schedule-cell-day>
-    <app-schedule-cell-day [openModalPair]="openModalPair" [BorderBottom]="false"></app-schedule-cell-day>
-    <app-schedule-cell-day [openModalPair]="openModalPair" [BorderBottom]="false"></app-schedule-cell-day>
-    <app-schedule-cell-day [openModalPair]="openModalPair" [BorderBottom]="false" [Pairs]="[Pairs[0]]"></app-schedule-cell-day>
-    <div class="cell-empty bb-0 br-0"></div>
+
   </div>
 </div>
