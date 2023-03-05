@@ -1,0 +1,50 @@
+<div class="modal fade" id="addAudienceModal" tabindex="-1" aria-labelledby="addAudienceModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="addAudienceModalLabel">Новая аудитория</h1>
+        <button id="audience-modal-btn-close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+          <label for="audienceTypeInput" class="col-sm-3 col-form-label">Название</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control transparent-input" id="audienceTypeInput" [(ngModel)]="name">
+          </div>
+        </div>
+        <div class="row">
+          <label for="buildingNumberInput" class="col-sm-3 col-form-label">Корпус</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control transparent-input" id="buildingNumberInput" [(ngModel)]="frame">
+          </div>
+        </div>
+        <div class="row">
+          <label for="floorInput" class="col-sm-3 col-form-label">Этаж</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control transparent-input" id="floorInput" [(ngModel)]="floor">
+          </div>
+        </div>
+        <div class="row">
+          <label for="audienceNumberInput" class="col-sm-3 col-form-label">Номер</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control transparent-input" id="audienceNumberInput" [(ngModel)]="number">
+          </div>
+        </div>
+      </div>
+
+      <!-- TODO отображение ошибки -->
+      <div *ngIf="hasError()">
+        <p>{{ error }}</p>
+      </div>
+
+      <div class="modal-footer">
+        <!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+        <button type="button" class="btn btn-primary text-center" (click)="onSubmit()">
+          <span *ngIf="!edit">Добавить</span>
+          <span *ngIf="edit">Изменить</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,44 +1,44 @@
 <app-header-admin-pages></app-header-admin-pages>
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTeacherModal">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTeacherModal" (click)="requestCreateTeacher()">
   Добавить нового преподавателя
 </button>
 
-<!-- Add Teacher Modal -->
-<div class="modal fade" id="addTeacherModal" tabindex="-1" aria-labelledby="addTeacherModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title" id="addTeacherModalLabel">Преподаватель</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+<!-- TODO сверстать контейнер для групп -->
+<div *ngIf="teachers">
+  <app-teacher-element
+    *ngFor="let e of teachers"
+    [teacher]="e"
+    (onEdit)="requestEditTeacher($event)"
+    (onDelete)="requestDeleteTeacher($event)"
+  ></app-teacher-element>
+</div>
 
-      <div class="modal-body">
-        <div class="row">
-          <label for="surnameInput" class="col-sm-3 col-form-label">Фамилия</label>
-          <div class="col-sm-8">
-            <input type="text" class="form-control transparent-input" id="surnameInput">
-          </div>
-        </div>
-        <div class="row">
-          <label for="nameInput" class="col-sm-3 col-form-label">Имя</label>
-          <div class="col-sm-8">
-            <input type="text" class="form-control transparent-input" id="nameInput">
-          </div>
-        </div>
-        <div class="row">
-          <label for="fathersNameInput" class="col-sm-3 col-form-label">Отчество</label>
-          <div class="col-sm-8">
-            <input type="text" class="form-control transparent-input" id="fathersNameInput">
-          </div>
-        </div>
-      </div>
+<!-- TODO сверстать заглушку, если список пустой -->
+<div *ngIf="!teachers">
+  <div *ngIf="!hasError()">
+    <p>Пусто</p>
+  </div>
 
-      <div class="modal-footer">
-        <!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-        <button type="button" class="btn btn-primary text-center">Добавить</button>
-      </div>
-    </div>
+  <!-- TODO отображение ошибки -->
+  <div *ngIf="hasError()">
+    <p>{{ error }}</p>
   </div>
 </div>
+
+<!-- Модальное окно добавления или редактирования аудитории -->
+<app-teacher-modal
+  [form]="modal.selected"
+  [error]="modal.error"
+  (create)="createTeacher($event)"
+  (modify)="modifyTeacher($event)"
+></app-teacher-modal>
+
+<!-- Модальное окно подтверждения удаления -->
+<app-confirmation
+  [message]="'Удалить учителя \'' + modal.selected?.fullName + '\'?'"
+  [error]="modal.error"
+  (confirm)="deleteTeacher()"
+></app-confirmation>
+

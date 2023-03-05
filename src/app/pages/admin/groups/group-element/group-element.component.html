@@ -1,0 +1,11 @@
+<div *ngIf="group">
+  <p>id: {{ group.id }}, number: {{ group.number }}</p>
+
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addGroupModal" (click)="editClick()">
+    Edit
+  </button>
+
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmationModal" (click)="deleteClick()">
+    Delete
+  </button>
+</div>

@@ -1,32 +1,44 @@
+<!-- Шапка -->
 <app-header-admin-pages></app-header-admin-pages>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addGroupModal">
+<!-- Кнопка добавления группы -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addGroupModal" (click)="requestCreateGroup()">
   Добавить новую группу
 </button>
 
-<!-- Add Group Modal -->
-<div class="modal fade" id="addGroupModal" tabindex="-1" aria-labelledby="addGroupModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title" id="addGroupModalLabel">Новая группа</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+<!-- TODO сверстать контейнер для групп -->
+<div *ngIf="groups">
+  <app-group-element
+    *ngFor="let e of groups"
+    [group]="e"
+    (onEdit)="requestEditGroup($event)"
+    (onDelete)="requestDeleteGroup($event)"
+  ></app-group-element>
+</div>
 
-      <div class="modal-body">
-        <div class="row">
-          <label for="groupNumberInput" class="col-sm-3 col-form-label">Номер</label>
-          <div class="col-sm-8">
-            <input type="text" class="form-control transparent-input" id="groupNumberInput">
-          </div>
-        </div>
-      </div>
+<!-- TODO сверстать заглушку, если список пустой -->
+<div *ngIf="!groups">
+  <div *ngIf="!hasError()">
+    <p>Пусто</p>
+  </div>
 
-      <div class="modal-footer">
-        <!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-        <button type="button" class="btn btn-primary text-center">Добавить</button>
-      </div>
-    </div>
+  <!-- TODO отображение ошибки -->
+  <div *ngIf="hasError()">
+    <p>{{ error }}</p>
   </div>
 </div>
+
+<!-- Модальное окно добавления или редактирования группы -->
+<app-group-modal
+  [form]="modal.selected"
+  [error]="modal.error"
+  (create)="createGroup($event)"
+  (modify)="modifyGroup($event)"
+></app-group-modal>
+
+<!-- Модальное окно подтверждения удаления -->
+<app-confirmation
+  [message]="'Удалить группу номер ' + modal.selected?.number + '?'"
+  [error]="modal.error"
+  (confirm)="deleteGroup()"
+></app-confirmation>
