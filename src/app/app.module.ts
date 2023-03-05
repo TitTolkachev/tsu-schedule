@@ -35,6 +35,7 @@ import {
   SearchAudienceNamePipe,
   SearchAudienceNumberPipe
 } from './pages/admin/audiences/search-audience/search-audience.pipe';
+import {SearchSubjectsPipe} from './pages/admin/subjects/search-subjects/search-subjects.pipe';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,9 @@ import {
     TeacherElementComponent,
     SearchAudienceNamePipe,
     SearchAudienceFramePipe,
-    SearchAudienceNumberPipe
+    SearchAudienceNumberPipe,
+    SearchSubjectsPipe,
+    SearchSubjectsPipe
   ],
   imports: [
     BrowserModule,
