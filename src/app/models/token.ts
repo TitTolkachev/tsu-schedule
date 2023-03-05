@@ -1,6 +1,6 @@
 export class Token {
 
-  token: string
+  readonly token: string
 
   constructor(token: string) {
     this.token = token;

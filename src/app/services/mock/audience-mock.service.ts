@@ -18,7 +18,7 @@ export class AudienceMockService implements IAudienceService {
   constructor() { }
 
   fetchAudiences(): Observable<Audience[]> {
-    return of(this.audiences)
+    return of(this.audiences.map(e => new Audience(e.id, e.name, e.frame, e.floor, e.number)))
   }
 
   createAudience(

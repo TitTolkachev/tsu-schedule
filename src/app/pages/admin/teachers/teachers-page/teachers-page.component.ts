@@ -122,7 +122,7 @@ export class TeachersPageComponent  extends DisplayErrorComponent {
 
   private selectTeacher(teacher: Teacher | null) {
     this.modal.error = null
-    this.modal.selected = (teacher == null) ? null : teacher.clone()
+    this.modal.selected = teacher
   }
 }
 

@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
-import {environment} from './environment';
+import {environment} from './environment.prod';
 import {BrowserModule} from '@angular/platform-browser';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app-routing.module";
 import {HeaderSigninComponent} from "./components/headers/header-signin/header-signin.component";
@@ -28,6 +28,7 @@ import {IGroupService} from "./services/i-group.service";
 import {ITeacherService} from "./services/i-teacher.service";
 import {TeacherModalComponent} from './pages/admin/teachers/teacher-modal/teacher-modal.component';
 import {TeacherElementComponent} from './pages/admin/teachers/teacher-element/teacher-element.component';
+import {TokenInterceptorService} from "./services/token-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -59,10 +60,11 @@ import {TeacherElementComponent} from './pages/admin/teachers/teacher-element/te
     AppRoutingModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
     { provide: IGroupService, useClass: environment.groupService },
     { provide: IAudienceService, useClass: environment.audienceService },
     { provide: ISubjectService, useClass: environment.subjectService },
-    { provide: ITeacherService, useClass: environment.teacherService },
+    { provide: ITeacherService, useClass: environment.teacherService }
   ],
   bootstrap: [AppComponent]
 })
