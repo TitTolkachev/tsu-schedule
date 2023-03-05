@@ -21,7 +21,7 @@ button {
   height: 80.27px;
   background: #FFFFFF;
   border-radius: 0!important;
-  border: medium #371B1B;
+  border: none;
 
   font-family: 'Jura', sans-serif;
   font-style: normal;
@@ -29,13 +29,10 @@ button {
   font-size: 15px;
   text-align: center;
   color: #000000;
+  transition: 0.3s ease;
 }
 
-button:active {
-  background: rgba(255, 255, 255, 0.4);
-}
-
-button:disabled {
+button:active, button:disabled, button:hover {
   background: rgba(255, 255, 255, 0.4);
 }
 
