@@ -11,8 +11,4 @@ export class Teacher {
     this.lastName = lastName;
     this.patronymicName = patronymicName;
   }
-
-  get fullName(): string {
-    return this.lastName + " " + this.firstName + " " + this.patronymicName
-  }
 }
