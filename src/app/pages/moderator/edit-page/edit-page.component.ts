@@ -120,7 +120,7 @@ export class EditPageComponent implements AfterContentInit {
     // @ts-ignore
     this.State = State.editPair
     // @ts-ignore
-    let closeModalBtn = document.getElementById('close-modal-btn')?.click()
+    document.getElementById('close-modal-btn')?.click()
   }.bind(this)
 
   cancelOperations() {
