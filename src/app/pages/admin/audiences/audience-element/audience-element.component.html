@@ -1,11 +1,15 @@
-<div *ngIf="audience">
-  <p>id: {{ audience.id }}, name: {{ audience.name }}, frame: {{ audience.frame }}, floor: {{ audience.floor }}, number: {{ audience.number }}</p>
+<div class="row row-cols-auto justify-content-between">
+  <div class="col" *ngIf="audience">
+    <p> {{ audience.number }} аудитория ({{ audience.frame }} корпус, {{audience.floor}} этаж) {{ audience.name }}</p>
+  </div>
+  <div class="col d-flex buttons">
+    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addAudienceModal" (click)="editClick()">
+      <img src="../../../../../assets/img/edit.svg" alt="edit">
+    </button>
 
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAudienceModal" (click)="editClick()">
-    Edit
-  </button>
-
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmationModal" (click)="deleteClick()">
-    Delete
-  </button>
+    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#confirmationModal" (click)="deleteClick()">
+      <img src="../../../../../assets/img/delete.svg" alt="delete">
+    </button>
+  </div>
 </div>
+
