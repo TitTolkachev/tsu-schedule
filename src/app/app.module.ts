@@ -15,11 +15,9 @@ import {GroupsPageComponent} from './pages/admin/groups/groups-page/groups-page.
 import {HeaderAdminPagesComponent} from './components/headers/header-admin-pages/header-admin-pages.component';
 import {MainPageComponent} from './pages/admin/main/main-page/main-page.component';
 import {RequestsPageComponent} from './pages/admin/requests/requests-page/requests-page.component';
-import {RequestRegistrationComponent} from './components/request/request-registration/request-registration.component';
-
+import {RequestComponent} from './components/request/request.component';
 
 import {AppComponent} from './app.component';
-import {RequestChangeGroupComponent} from './components/request/request-change-group/request-change-group.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +34,7 @@ import {RequestChangeGroupComponent} from './components/request/request-change-g
     HeaderCompilerPagesComponent,
     HeaderAdminPagesComponent,
     RequestsPageComponent,
-    RequestRegistrationComponent,
-    RequestChangeGroupComponent
+    RequestComponent
   ],
   imports: [
     BrowserModule,

@@ -13,11 +13,11 @@
               Принять все
             </button>
           </div>
-          <div class="container-request">
-            <app-request-registration></app-request-registration>
-            <app-request-registration></app-request-registration>
-            <app-request-registration></app-request-registration>
-            <app-request-registration></app-request-registration>
+          <div class="container-request" *ngFor="let e of requestsReqistration">
+            <app-requests [name]="e.name"
+                         [email]="e.email"
+                         [group]="e.group" >
+            </app-requests>
           </div>
         </div>
       </div>
@@ -35,11 +35,12 @@
             </button>
           </div>
 
-          <div class="container-request">
-            <app-request-change-group></app-request-change-group>
-            <app-request-change-group></app-request-change-group>
-            <app-request-change-group></app-request-change-group>
-
+          <div class="requests" *ngFor="let e of requestsChangeGroup">
+            <app-requests [name]="e.name"
+                         [email]="e.email"
+                         [oldGroup]="e.oldGroup"
+                         [newGroup]="e.newGroup" >
+            </app-requests>
           </div>
         </div>
       </div>

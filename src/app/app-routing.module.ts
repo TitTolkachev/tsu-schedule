@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'admin/subjects', component: SubjectsPageComponent },
   { path: 'admin/groups', component: GroupsPageComponent },
   { path: 'admin/main', component: MainPageComponent },
-  { path: 'admin/request', component: RequestsPageComponent }
+  { path: 'admin/requests', component: RequestsPageComponent }
 ];
 
 @NgModule({

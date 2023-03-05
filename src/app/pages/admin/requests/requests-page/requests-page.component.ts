@@ -1,30 +1,20 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-request-page',
+  selector: 'app-requests-page',
   templateUrl: './requests-page.component.html',
   styleUrls: ['./requests-page.component.css']
 })
 
-// class Person {
-//   name: string;
-//   email: string;
-//   oldGroup: number | undefined;
-//   newGroup: number | undefined;
-//
-//   constructor(name: string, email: string, oldGroup: number | undefined, newGroup: number | undefined) {
-//     this.name = name
-//     this.email = email
-//     this.oldGroup = oldGroup
-//     this.newGroup = newGroup
-//   }
-// }
-
 export class RequestsPageComponent {
-  // requestsForRegistration: Array<Person> = [new Person("Иноземцева Татьяна Андреевна", "inoza@gmail.com", undefined, undefined),
-  //   new Person("Артамонова Лидия Викторовна", "adasd@gmail.com", undefined, undefined),
-  //   new Person("Змеев Денис Олегович", "zmey@gmail.com", undefined, undefined),
-  //   new Person("Феофилов Алексей Дмитриевич", "fil-master@gmail.com", undefined, undefined)]
-  // requestsForChangeGroup: Array<Person> = [new Person("Феофилов Алексей Дмитриевич", "fil-master@gmail.com", 972102, 972101)]
+  requestsReqistration = [
+    {name: "Иноземцева Татьяна Андреевна", email: "sd@mail.com", group: undefined},
+    {name: "Даммер Диана Дамировна", email: "dam@gmail.com", group: undefined},
+    {name: "Феофилов Алексей Дмитриевич", email: "fil-master@vk.com", group: 972101},
+  ]
 
+  requestsChangeGroup = [
+    {name: "Аникушин Роман Евгеньевич", email: "romAN@gmail.com", oldGroup: 972101, newGroup: 972103},
+    {name: "Блаблашкин Игорь Семенович", email: "nani@bla.com", oldGroup: 972002, newGroup: 972101}
+  ]
 }

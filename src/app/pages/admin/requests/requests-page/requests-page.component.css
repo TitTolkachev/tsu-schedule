@@ -17,8 +17,11 @@
   color: #FFFFFF;
 }
 
-.container-request {
-  padding-top: 50px;
+.form-top {
+  margin-bottom: 50px;
+}
+
+.row {
   padding-bottom: 50px;
 }
 
