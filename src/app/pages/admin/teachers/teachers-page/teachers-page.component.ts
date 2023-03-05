@@ -22,6 +22,11 @@ export class TeachersPageComponent  extends DisplayErrorComponent {
    */
   modal = new Modal()
 
+  /**
+   * Объект для поиска списка
+   */
+  searchTeacherInput = ''
+
   constructor(
     private teacherService: ITeacherService
   ) {

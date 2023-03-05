@@ -1,18 +1,48 @@
 <app-header-admin-pages></app-header-admin-pages>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAudienceModal" (click)="requestCreateAudiences()">
-  Добавить новую аудиторию
-</button>
+<div class="container-sm min-vh-100">
+  <div class="row justify-content-center align-content-center">
+    <div class="col p-4 border overflow-hidden flex-md-row shadow-sm h-md-250 position-relative form">
 
-<!-- TODO сверстать контейнер для групп -->
-<div *ngIf="audiences">
-  <app-audience-element
-    *ngFor="let e of audiences"
-    [audience]="e"
-    (onEdit)="requestEditAudiences($event)"
-    (onDelete)="requestDeleteAudiences($event)"
-  ></app-audience-element>
+      <div class="flex-column">
+        <div class="d-flex">
+          <div class="col form-title">Аудитории</div>
+
+          <!-- Button trigger modal -->
+          <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addAudienceModal" (click)="requestCreateAudiences()">
+            Добавить новую аудиторию
+          </button>
+        </div>
+      </div>
+
+      <div class="d-flex searches">
+        <div class="input-group">
+          <input class="form-control" type="search" placeholder="номер" [(ngModel)]="searchAudienceNumberInput">
+        </div>
+
+        <div class="input-group">
+          <input class="form-control" type="search" placeholder="корпус" [(ngModel)]="searchAudienceFrameInput">
+        </div>
+
+        <div class="input-group">
+          <input class="form-control" type="search" placeholder="название" [(ngModel)]="searchAudienceNameInput">
+        </div>
+      </div>
+
+      <div *ngIf="audiences">
+        <app-audience-element
+          *ngFor="let e of audiences |
+            searchAudienceNumber: searchAudienceNumberInput |
+            searchAudienceFrame: searchAudienceFrameInput |
+            searchAudienceName: searchAudienceNameInput"
+          [audience]="e"
+          (onEdit)="requestEditAudiences($event)"
+          (onDelete)="requestDeleteAudiences($event)">
+        </app-audience-element>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 <!-- TODO сверстать заглушку, если список пустой -->

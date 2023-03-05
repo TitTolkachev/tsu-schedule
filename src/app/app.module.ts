@@ -29,6 +29,14 @@ import {ITeacherService} from "./services/i-teacher.service";
 import {TeacherModalComponent} from './pages/admin/teachers/teacher-modal/teacher-modal.component';
 import {TeacherElementComponent} from './pages/admin/teachers/teacher-element/teacher-element.component';
 import {TokenInterceptorService} from "./services/token-interceptor.service";
+import {
+  SearchAudienceFramePipe,
+  SearchAudienceNamePipe,
+  SearchAudienceNumberPipe
+} from './pages/admin/audiences/search-audience/search-audience.pipe';
+import {SearchSubjectsPipe} from './pages/admin/subjects/search-subjects/search-subjects.pipe';
+import {SearchGroupsPipe} from './pages/admin/groups/search-groups/search-groups.pipe';
+import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-teacher.pipe';
 
 @NgModule({
   declarations: [
@@ -51,7 +59,14 @@ import {TokenInterceptorService} from "./services/token-interceptor.service";
     SubjectModalComponent,
     SubjectElementComponent,
     TeacherModalComponent,
-    TeacherElementComponent
+    TeacherElementComponent,
+    SearchAudienceNamePipe,
+    SearchAudienceFramePipe,
+    SearchAudienceNumberPipe,
+    SearchSubjectsPipe,
+    SearchSubjectsPipe,
+    SearchGroupsPipe,
+    SearchTeacherPipe
   ],
   imports: [
     BrowserModule,

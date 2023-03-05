@@ -1,19 +1,37 @@
 <app-header-admin-pages></app-header-admin-pages>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSubjectModal" (click)="requestCreateSubject()">
-  Добавить новый предмет
-</button>
+<div class="container-sm min-vh-100">
+  <div class="row justify-content-center align-content-center">
+    <div class="col p-4 border overflow-hidden flex-md-row shadow-sm h-md-250 position-relative form">
 
-<!-- TODO сверстать контейнер для групп -->
-<div *ngIf="subjects">
-  <app-subject-element
-    *ngFor="let e of subjects"
-    [subject]="e"
-    (onEdit)="requestEditSubject($event)"
-    (onDelete)="requestDeleteSubject($event)"
-  ></app-subject-element>
+      <div class="flex-column">
+        <div class="d-flex ">
+          <div class="col form-title">Предметы</div>
+
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSubjectModal" (click)="requestCreateSubject()">
+            Добавить новый предмет
+          </button>
+        </div>
+      </div>
+
+      <div class="search input-group">
+        <input class="form-control" type="search" placeholder="название" [(ngModel)]="searchSubjectInput">
+      </div>
+
+      <div *ngIf="subjects">
+        <app-subject-element
+          *ngFor="let e of subjects | searchSubjects: searchSubjectInput"
+          [subject]="e"
+          (onEdit)="requestEditSubject($event)"
+          (onDelete)="requestDeleteSubject($event)"
+        ></app-subject-element>
+      </div>
+
+    </div>
+  </div>
 </div>
+
 
 <!-- TODO сверстать заглушку, если список пустой -->
 <div *ngIf="!subjects">

@@ -22,6 +22,11 @@ export class GroupsPageComponent extends DisplayErrorComponent {
    */
   modal = new Modal()
 
+  /**
+   * Объект для поиска по списку
+   */
+  searchGroupInput = ''
+
   constructor(
     private groupService: IGroupService
   ) {
