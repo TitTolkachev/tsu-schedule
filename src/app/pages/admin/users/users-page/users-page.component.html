@@ -43,15 +43,8 @@
 
 
 <!--      list people-->
-      <div class="people container">
-
-        <app-person-teacher></app-person-teacher>
-        <app-person-teacher></app-person-teacher>
-        <app-person-student></app-person-student>
-        <app-person-student></app-person-student>
-        <app-person-teacher></app-person-teacher>
-        <app-person-student></app-person-student>
-
+      <div class="people container" *ngFor="let e of data">
+        <app-person [role]="e.role" [name]="e.name" [email]="e.email" [group] = e.group></app-person>
       </div>
 
     </div>

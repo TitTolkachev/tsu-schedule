@@ -1,0 +1,22 @@
+<div class="row row-cols-auto justify-content-between">
+  <div class = "col info-person">
+    <div class="name">
+      {{ name }}
+    </div>
+
+    <div class="email">
+      {{ email }}
+    </div>
+
+    <div *ngIf="group != undefined" class="group">
+      гр. {{ group }}
+    </div>
+  </div>
+
+  <div class="col d-flex image">
+    <div>
+      <img *ngIf="role == 'teacher'" src="../../../../assets/img/teacher.svg" alt="teacher">
+      <img *ngIf="role == 'student'" src="../../../../assets/img/student.svg" alt="student">
+    </div>
+  </div>
+</div>

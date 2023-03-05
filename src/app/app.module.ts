@@ -15,10 +15,9 @@ import {GroupsPageComponent} from './pages/admin/groups/groups-page/groups-page.
 import {HeaderAdminPagesComponent} from './components/headers/header-admin-pages/header-admin-pages.component';
 import {MainPageComponent} from './pages/admin/main/main-page/main-page.component';
 import {UsersPageComponent} from './pages/admin/users/users-page/users-page.component';
+import {PersonComponent} from './components/people/person/person.component';
 
 import {AppComponent} from './app.component';
-import {PersonTeacherComponent} from './components/people/person-teacher/person-teacher.component';
-import {PersonStudentComponent} from './components/people/person-student/person-student.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +34,7 @@ import {PersonStudentComponent} from './components/people/person-student/person-
     HeaderCompilerPagesComponent,
     HeaderAdminPagesComponent,
     UsersPageComponent,
-    PersonTeacherComponent,
-    PersonStudentComponent
+    PersonComponent
   ],
   imports: [
     BrowserModule,
