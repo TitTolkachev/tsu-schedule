@@ -23,28 +23,14 @@
 
         <div class="col-md-5 mx-auto">
           <div class="input-group">
-            <input class="form-control" type="search" placeholder="ФИО" id="name-search-input">
+            <input class="form-control" type="search" placeholder="Введите ФИО / email / группу" [(ngModel)]="searchUserInput">
           </div>
         </div>
-
-        <div class="col-md-5 mx-auto">
-          <div class="input-group">
-            <input class="form-control" type="search" placeholder="email" id="email-search-input">
-          </div>
-        </div>
-
-        <div class="col-md-5 mx-auto">
-          <div class="input-group">
-            <input class="form-control" type="search" placeholder="group" id="group-search-input">
-          </div>
-        </div>
-
       </div>
 
 
-<!--      list people-->
-      <div class="people container" *ngFor="let e of data">
-        <app-person [role]="e.role" [name]="e.name" [email]="e.email" [group] = e.group></app-person>
+      <div class="people container" *ngFor="let e of data | searchUser: searchUserInput">
+        <app-person [role]="e.role" [name]="e.name" [email]="e.email" [group] = "e.group"></app-person>
       </div>
 
     </div>
