@@ -55,10 +55,13 @@ button {
   transition: 0.3s ease;
 }
 
+.container-sm {
+  margin-top: 50px;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 50px;
 }
 
 .p-4 {
@@ -68,4 +71,14 @@ button {
 .people {
   margin-top: 27px;
   margin-bottom: 50px;
+}
+
+.searches {
+  margin-left: 27px;
+  margin-right: 27px;
+}
+
+.input-group {
+  margin-top: 27px;
+  margin-right: 16px;
 }
