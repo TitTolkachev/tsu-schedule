@@ -1,19 +1,37 @@
 <app-header-admin-pages></app-header-admin-pages>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTeacherModal" (click)="requestCreateTeacher()">
-  Добавить нового преподавателя
-</button>
+<div class="container-sm min-vh-100">
+  <div class="row justify-content-center align-content-center">
+    <div class="col p-4 border overflow-hidden flex-md-row shadow-sm h-md-250 position-relative form">
 
-<!-- TODO сверстать контейнер для групп -->
-<div *ngIf="teachers">
-  <app-teacher-element
-    *ngFor="let e of teachers"
-    [teacher]="e"
-    (onEdit)="requestEditTeacher($event)"
-    (onDelete)="requestDeleteTeacher($event)"
-  ></app-teacher-element>
+      <div class="flex-column">
+        <div class="d-flex ">
+          <div class="col form-title">Преподаватели</div>
+
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTeacherModal" (click)="requestCreateTeacher()">
+            Добавить нового преподавателя
+          </button>
+        </div>
+      </div>
+
+      <div class="search input-group">
+        <input class="form-control" type="search" placeholder="фамилия / имя / отчество" [(ngModel)]="searchTeacherInput">
+      </div>
+
+      <div *ngIf="teachers">
+        <app-teacher-element
+          *ngFor="let e of teachers | searchTeacher: searchTeacherInput"
+          [teacher]="e"
+          (onEdit)="requestEditTeacher($event)"
+          (onDelete)="requestDeleteTeacher($event)"
+        ></app-teacher-element>
+      </div>
+
+  </div>
+  </div>
 </div>
+
 
 <!-- TODO сверстать заглушку, если список пустой -->
 <div *ngIf="!teachers">

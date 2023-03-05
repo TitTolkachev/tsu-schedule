@@ -37,6 +37,7 @@ import {
 } from './pages/admin/audiences/search-audience/search-audience.pipe';
 import {SearchSubjectsPipe} from './pages/admin/subjects/search-subjects/search-subjects.pipe';
 import {SearchGroupsPipe} from './pages/admin/groups/search-groups/search-groups.pipe';
+import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-teacher.pipe';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import {SearchGroupsPipe} from './pages/admin/groups/search-groups/search-groups
     SearchAudienceNumberPipe,
     SearchSubjectsPipe,
     SearchSubjectsPipe,
-    SearchGroupsPipe
+    SearchGroupsPipe,
+    SearchTeacherPipe
   ],
   imports: [
     BrowserModule,
