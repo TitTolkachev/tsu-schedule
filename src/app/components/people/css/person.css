@@ -1,0 +1,24 @@
+.info-person {
+  font-family: 'Jura', sans-serif;
+  font-weight: 200;
+  font-size: 14px;
+  text-align: left;
+}
+
+.name {
+  color: #FFFFFF;
+}
+
+.email, .group {
+  color: rgba(255, 255, 255, 0.8);
+  padding-top: -10px;
+}
+
+.image img {
+  width: 45.5px;
+  height: 41px;
+}
+
+.row {
+  padding: 0 27px 15px 37px;
+}

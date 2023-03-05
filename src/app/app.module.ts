@@ -17,6 +17,8 @@ import {MainPageComponent} from './pages/admin/main/main-page/main-page.componen
 import {UsersPageComponent} from './pages/admin/users/users-page/users-page.component';
 
 import {AppComponent} from './app.component';
+import {PersonTeacherComponent} from './components/people/person-teacher/person-teacher.component';
+import {PersonStudentComponent} from './components/people/person-student/person-student.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import {AppComponent} from './app.component';
     HeaderSigninComponent,
     HeaderCompilerPagesComponent,
     HeaderAdminPagesComponent,
-    UsersPageComponent
+    UsersPageComponent,
+    PersonTeacherComponent,
+    PersonStudentComponent
   ],
   imports: [
     BrowserModule,
