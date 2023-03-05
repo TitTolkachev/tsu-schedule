@@ -1,0 +1,22 @@
+.row {
+  padding: 0 147px 26px 147px;
+}
+
+img {
+  width: 23px;
+  height: 22px;
+}
+
+button {
+  border: none;
+  margin-top: -20px;
+}
+
+p {
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 24px;
+  text-align: left;
+  color: #ffffff;
+}

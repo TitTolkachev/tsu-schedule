@@ -1,11 +1,14 @@
-<div *ngIf="group">
-  <p>id: {{ group.id }}, number: {{ group.number }}</p>
+<div class="row row-cols-auto justify-content-between">
+  <div class="col-4" *ngIf="group">
+    <p> {{ group.number }}</p>
+  </div>
+  <div class="col d-flex buttons">
+    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addGroupModal" (click)="editClick()">
+      <img src="../../../../../assets/img/edit.svg" alt="edit">
+    </button>
 
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addGroupModal" (click)="editClick()">
-    Edit
-  </button>
-
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmationModal" (click)="deleteClick()">
-    Delete
-  </button>
+    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#confirmationModal" (click)="deleteClick()">
+      <img src="../../../../../assets/img/delete.svg" alt="delete">
+    </button>
+  </div>
 </div>

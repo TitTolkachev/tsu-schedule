@@ -22,6 +22,11 @@ export class SubjectsPageComponent extends DisplayErrorComponent {
    */
   modal = new Modal()
 
+  /**
+   * Объект для поиска по списку
+   */
+  searchSubjectInput = ''
+
   constructor(
     private subjectService: ISubjectService
   ) {

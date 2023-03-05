@@ -14,7 +14,9 @@ import {SubjectsPageComponent} from './pages/admin/subjects/subjects-page/subjec
 import {GroupsPageComponent} from './pages/admin/groups/groups-page/groups-page.component';
 import {HeaderAdminPagesComponent} from './components/headers/header-admin-pages/header-admin-pages.component';
 import {MainPageComponent} from './pages/admin/main/main-page/main-page.component';
+
 import {AppComponent} from './app.component';
+
 import {GroupElementComponent} from './pages/admin/groups/group-element/group-element.component';
 import {ConfirmationComponent} from './components/confirmation/confirmation.component';
 import {GroupModalComponent} from './pages/admin/groups/group-modal/group-modal.component';
@@ -28,6 +30,14 @@ import {IGroupService} from "./services/i-group.service";
 import {ITeacherService} from "./services/i-teacher.service";
 import {TeacherModalComponent} from './pages/admin/teachers/teacher-modal/teacher-modal.component';
 import {TeacherElementComponent} from './pages/admin/teachers/teacher-element/teacher-element.component';
+import {
+  SearchAudienceFramePipe,
+  SearchAudienceNamePipe,
+  SearchAudienceNumberPipe
+} from './pages/admin/audiences/search-audience/search-audience.pipe';
+import {SearchSubjectsPipe} from './pages/admin/subjects/search-subjects/search-subjects.pipe';
+import {SearchGroupsPipe} from './pages/admin/groups/search-groups/search-groups.pipe';
+import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-teacher.pipe';
 
 @NgModule({
   declarations: [
@@ -50,7 +60,14 @@ import {TeacherElementComponent} from './pages/admin/teachers/teacher-element/te
     SubjectModalComponent,
     SubjectElementComponent,
     TeacherModalComponent,
-    TeacherElementComponent
+    TeacherElementComponent,
+    SearchAudienceNamePipe,
+    SearchAudienceFramePipe,
+    SearchAudienceNumberPipe,
+    SearchSubjectsPipe,
+    SearchSubjectsPipe,
+    SearchGroupsPipe,
+    SearchTeacherPipe
   ],
   imports: [
     BrowserModule,

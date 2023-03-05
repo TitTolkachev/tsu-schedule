@@ -22,11 +22,19 @@ export class AudiencesPageComponent extends DisplayErrorComponent {
    */
   modal = new Modal()
 
+  /**
+   * Объекты для поиска по списку
+   */
+  searchAudienceNumberInput = ''
+  searchAudienceFrameInput = ''
+  searchAudienceNameInput = ''
+
   constructor(
     private audienceService: IAudienceService
   ) {
     super();
   }
+
 
   ngOnInit() {
     this.refresh()
