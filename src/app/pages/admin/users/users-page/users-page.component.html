@@ -5,7 +5,6 @@
   <div class="row justify-content-center align-content-center">
     <div class="col p-4 border overflow-hidden flex-md-row shadow-sm h-md-250 position-relative form">
 
-<!--      title with button-->
       <div class="d-flex flex-column">
         <div class="d-flex">
           <div class="col form-title">Пользователи</div>
@@ -18,16 +17,11 @@
       </div>
 
 
-<!--      search-->
-      <div class="searches row d-flex">
-
-        <div class="col-md-5 mx-auto">
-          <div class="input-group">
-            <input class="form-control" type="search" placeholder="Введите ФИО / email / группу" [(ngModel)]="searchUserInput">
-          </div>
+      <div class="search mx-auto">
+        <div class="input-group">
+          <input class="form-control" type="search" placeholder="Введите ФИО / email / группу" [(ngModel)]="searchUserInput">
         </div>
       </div>
-
 
       <div class="people container" *ngFor="let e of data | searchUser: searchUserInput">
         <app-person [role]="e.role" [name]="e.name" [email]="e.email" [group] = "e.group"></app-person>
