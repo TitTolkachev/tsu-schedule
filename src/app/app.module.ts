@@ -38,6 +38,7 @@ import {
 import {SearchSubjectsPipe} from './pages/admin/subjects/search-subjects/search-subjects.pipe';
 import {SearchGroupsPipe} from './pages/admin/groups/search-groups/search-groups.pipe';
 import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-teacher.pipe';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-te
     SearchSubjectsPipe,
     SearchSubjectsPipe,
     SearchGroupsPipe,
-    SearchTeacherPipe
+    SearchTeacherPipe,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
