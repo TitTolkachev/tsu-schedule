@@ -13,7 +13,7 @@ export class ScheduleCellDayComponent {
 
   IsExpanded = false
 
-  ExpandArrowId = Math.random().toString()
+  ExpandArrowId = Date.now().toString(36) + Math.random().toString(36).substring(2);
 
   expandArrow() {
     let arrow = document.getElementById(this.ExpandArrowId)
