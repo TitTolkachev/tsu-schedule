@@ -5,9 +5,9 @@ export class DaySchedule {
 
   date: string
   dayOfWeek: DayOfWeek
-  lessons: Lesson
+  lessons: Lesson[]
 
-  constructor(date: string, dayOfWeek: DayOfWeek, lessons: Lesson) {
+  constructor(date: string, dayOfWeek: DayOfWeek, lessons: Lesson[]) {
     this.date = date;
     this.dayOfWeek = dayOfWeek;
     this.lessons = lessons;
