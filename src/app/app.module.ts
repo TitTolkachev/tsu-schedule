@@ -6,20 +6,20 @@ import {FormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app-routing.module";
 import {HeaderSigninComponent} from "./components/headers/header-signin/header-signin.component";
 import {HeaderCompilerPagesComponent} from './components/headers/header-compiler-pages/header-compiler-pages.component';
-import { SignoutComponent } from './pages/signout/signout.component';
+import {SignoutComponent} from './pages/signout/signout.component';
 import {SigninComponent} from './pages/signin/signin.component';
 import {TeachersPageComponent} from './pages/admin/teachers/teachers-page/teachers-page.component';
 import {AudiencesPageComponent} from './pages/admin/audiences/audiences-page/audiences-page.component';
 import {SubjectsPageComponent} from './pages/admin/subjects/subjects-page/subjects-page.component';
 import {GroupsPageComponent} from './pages/admin/groups/groups-page/groups-page.component';
 import {HeaderAdminPagesComponent} from './components/headers/header-admin-pages/header-admin-pages.component';
-import { MainPageComponent } from './pages/admin/main/main-page/main-page.component';
+import {MainPageComponent} from './pages/admin/main/main-page/main-page.component';
 import {AppComponent} from './app.component';
-import { EditPageComponent } from './pages/moderator/edit-page/edit-page.component';
-import { ScheduleWeekComponent } from './pages/moderator/edit-page/components/schedule-week/schedule-week.component';
-import { ScheduleCellDayComponent } from './pages/moderator/edit-page/components/schedule-cell-day/schedule-cell-day.component';
-import { SchedulePairComponent } from './pages/moderator/edit-page/components/schedule-pair/schedule-pair.component';
-import { SchedulePairModalComponent } from './pages/moderator/edit-page/components/schedule-pair-modal/schedule-pair-modal.component';
+import {EditPageComponent} from './pages/moderator/edit-page/edit-page.component';
+import {ScheduleWeekComponent} from './pages/moderator/edit-page/components/schedule-week/schedule-week.component';
+import {ScheduleCellDayComponent} from './pages/moderator/edit-page/components/schedule-cell-day/schedule-cell-day.component';
+import {SchedulePairComponent} from './pages/moderator/edit-page/components/schedule-pair/schedule-pair.component';
+import {SchedulePairModalComponent} from './pages/moderator/edit-page/components/schedule-pair-modal/schedule-pair-modal.component';
 import {GroupElementComponent} from './pages/admin/groups/group-element/group-element.component';
 import {ConfirmationComponent} from './components/confirmation/confirmation.component';
 import {GroupModalComponent} from './pages/admin/groups/group-modal/group-modal.component';
@@ -41,6 +41,8 @@ import {
 import {SearchSubjectsPipe} from './pages/admin/subjects/search-subjects/search-subjects.pipe';
 import {SearchGroupsPipe} from './pages/admin/groups/search-groups/search-groups.pipe';
 import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-teacher.pipe';
+import {IScheduleService} from "./services/i-schedule.service";
+import {ILessonService} from "./services/i-lesson.service";
 
 @NgModule({
   declarations: [
@@ -89,6 +91,8 @@ import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-te
     { provide: IAudienceService, useClass: environment.audienceService },
     { provide: ISubjectService, useClass: environment.subjectService },
     { provide: ITeacherService, useClass: environment.teacherService },
+    { provide: IScheduleService, useClass: environment.scheduleService },
+    { provide: ILessonService, useClass: environment.lessonService }
   ],
   bootstrap: [AppComponent]
 })
