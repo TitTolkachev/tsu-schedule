@@ -381,7 +381,7 @@
     <app-schedule-week [Week]="w"></app-schedule-week>
   </div>
 
-  <app-schedule-pair-modal [initSetOpenModalPairFunction]="setOpenModalPair" [editPair]="editPair"></app-schedule-pair-modal>
+  <app-schedule-pair-modal [PageState]="State" [initSetOpenModalPairFunction]="setOpenModalPair" [editPair]="editPair"></app-schedule-pair-modal>
   <button class="d-none" data-bs-toggle="modal" data-bs-target="#pairModal" id="pairModalOpenBtn"></button>
 
   <button class="btn" id="show-more-btn" (click)="addWeek()">

@@ -4,6 +4,7 @@ import {GroupInput} from "./group-input";
 import {State} from "./models/State";
 import {Pair} from "./models/Pair";
 import {Week} from "./models/Week";
+import {Cell} from "./models/Cell";
 
 @Component({
   selector: 'app-edit-page',
@@ -24,9 +25,17 @@ export class EditPageComponent implements AfterContentInit {
 
   openModalPair: Function | undefined
 
-  setOpenModalPair = function (openModalPair: Function | undefined){
+  setOpenModalPair = function (openModalPair: Function | undefined) {
     // @ts-ignore
     this.openModalPair = openModalPair
+    // @ts-ignore
+    this.Weeks?.forEach((w: Week) => {
+      w.WeekTimeLines.forEach((l) => {
+        l.Cells.forEach((c) => {
+          c.openModalPair = openModalPair
+        })
+      })
+    })
   }.bind(this)
 
   ngAfterContentInit() {
@@ -107,27 +116,235 @@ export class EditPageComponent implements AfterContentInit {
     }
   }
 
-  addWeek(){
+  addWeek() {
     // TODO(Подгрузить еще неделю в массив просматриваемых недель)
   }
 
-  addPair = function () {
+  addPair = function (cell: Cell) {
     // @ts-ignore
     this.State = State.addPair
+    // @ts-ignore
+    this.Weeks?.forEach((w: Week) => {
+      w.WeekTimeLines.forEach((l) => {
+        l.Cells.forEach((c) => {
+          c.PageState = State.addPair
+          if (c == cell)
+            c.IsAdding = true
+        })
+      })
+    })
   }.bind(this)
 
   editPair = function (pair: Pair) {
     // @ts-ignore
-    this.State = State.editPair
-    // @ts-ignore
-    document.getElementById('close-modal-btn')?.click()
+    if (this.State == State.base) {
+      // @ts-ignore
+      this.State = State.editPair
+      // @ts-ignore
+      document.getElementById('close-modal-btn')?.click()
+      // @ts-ignore
+      this.Weeks?.forEach((w: Week) => {
+        w.WeekTimeLines.forEach((l) => {
+          l.Cells.forEach((c) => {
+            c.PageState = State.editPair
+          })
+        })
+      })
+    }
   }.bind(this)
 
   cancelOperations() {
     this.State = State.base
+    // @ts-ignore
+    this.Weeks?.forEach((w: Week) => {
+      w.WeekTimeLines.forEach((l) => {
+        l.Cells.forEach((c) => {
+          c.PageState = State.base
+          c.IsAdding = false
+        })
+      })
+    })
   }
 
   loadWeek() {
+    this.Weeks = [
+      {
+        WeekDate: '30 января 2023 - 4 февраля 2023 • 23 неделя',
+        WeekDays: [1, 2, 3, 4, 5, 6],
+        WeekTimeLines: [
+          {
+            Cells: [
+              {
+                BorderBottom: true,
 
+                Pairs: [],
+
+                PageState: this.State,
+
+                openModalPair: this.openModalPair,
+
+                addPair: this.addPair,
+
+                IsAdding: false
+              },
+              {
+                BorderBottom: true,
+
+                Pairs: [],
+
+                PageState: this.State,
+
+                openModalPair: this.openModalPair,
+
+                addPair: this.addPair,
+
+                IsAdding: false
+              },
+              {
+                BorderBottom: true,
+
+                Pairs: [
+                  new Pair('Матанализ', '228 аудитория', '972101, 972102', 'Лекция', 'Даммер Диана Дамировна', '', '8:45 - 10:20'),
+                  new Pair('МКН часть 3', '302 аудитория', '972101, 972102, 972103', 'Лекция', 'Даммер Диана Дамировна', '', '8:45 - 10:20')
+                ],
+
+                PageState: this.State,
+
+                openModalPair: this.openModalPair,
+
+                addPair: this.addPair,
+
+                IsAdding: false
+              },
+              {
+                BorderBottom: true,
+
+                Pairs: [],
+
+                PageState: this.State,
+
+                openModalPair: this.openModalPair,
+
+                addPair: this.addPair,
+
+                IsAdding: false
+              },
+              {
+                BorderBottom: true,
+
+                Pairs: [],
+
+                PageState: this.State,
+
+                openModalPair: this.openModalPair,
+
+                addPair: this.addPair,
+
+                IsAdding: false
+              },
+              {
+                BorderBottom: true,
+
+                Pairs: [],
+
+                PageState: this.State,
+
+                openModalPair: this.openModalPair,
+
+                addPair: this.addPair,
+
+                IsAdding: false
+              },
+            ],
+            TimeStart: '8:45',
+            TimeEnd: '10:20'
+          },
+          {
+            Cells: [
+              {
+                BorderBottom: true,
+
+                Pairs: [],
+
+                PageState: this.State,
+
+                openModalPair: this.openModalPair,
+
+                addPair: this.addPair,
+
+                IsAdding: false
+              },
+              {
+                BorderBottom: true,
+
+                Pairs: [],
+
+                PageState: this.State,
+
+                openModalPair: this.openModalPair,
+
+                addPair: this.addPair,
+
+                IsAdding: false
+              },
+              {
+                BorderBottom: true,
+
+                Pairs: [],
+
+                PageState: this.State,
+
+                openModalPair: this.openModalPair,
+
+                addPair: this.addPair,
+
+                IsAdding: false
+              },
+              {
+                BorderBottom: true,
+
+                Pairs: [],
+
+                PageState: this.State,
+
+                openModalPair: this.openModalPair,
+
+                addPair: this.addPair,
+
+                IsAdding: false
+              },
+              {
+                BorderBottom: true,
+
+                Pairs: [],
+
+                PageState: this.State,
+
+                openModalPair: this.openModalPair,
+
+                addPair: this.addPair,
+
+                IsAdding: false
+              },
+              {
+                BorderBottom: true,
+
+                Pairs: [],
+
+                PageState: this.State,
+
+                openModalPair: this.openModalPair,
+
+                addPair: this.addPair,
+
+                IsAdding: false
+              },
+            ],
+            TimeStart: '8:45',
+            TimeEnd: '10:20'
+          }
+        ]
+      }
+    ]
   }
 }

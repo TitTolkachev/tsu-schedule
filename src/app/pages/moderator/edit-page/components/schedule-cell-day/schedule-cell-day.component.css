@@ -5,13 +5,7 @@
   padding: 10px;
 
   height: 100%;
-  min-height: 60px;
-}
-
-@media (max-height: 900px) {
-  .cell-day {
-    min-height: 50px;
-  }
+  min-height: 85px;
 }
 
 /*----------------------------*/

@@ -29,7 +29,7 @@
     </div>
     <div class="cell-empty br-0"></div>
 
-    <div *ngFor="let l of Week!.WeekTimeLines">
+    <div style="display: contents" *ngFor="let l of Week!.WeekTimeLines">
 
       <div class="cell-time">
         <div class="cell-time-start">
@@ -40,7 +40,7 @@
         </div>
       </div>
       <div *ngFor="let c of l.Cells">
-        <app-schedule-cell-day></app-schedule-cell-day>
+        <app-schedule-cell-day [Cell]="c"></app-schedule-cell-day>
       </div>
       <div class="cell-empty br-0"></div>
 

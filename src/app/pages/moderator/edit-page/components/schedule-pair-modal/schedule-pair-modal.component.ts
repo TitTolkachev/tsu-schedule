@@ -12,6 +12,9 @@ export class SchedulePairModalComponent implements AfterContentInit {
   Pair: Pair | undefined = new Pair('', '', '', '', '', '', '')
 
   @Input()
+  PageState: number | undefined
+
+  @Input()
   initSetOpenModalPairFunction: Function | undefined
 
   @Input()

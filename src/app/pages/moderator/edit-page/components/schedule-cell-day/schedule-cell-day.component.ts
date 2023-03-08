@@ -9,7 +9,7 @@ import {Cell} from "../../models/Cell";
 export class ScheduleCellDayComponent {
 
   @Input()
-  Cell: Cell | undefined
+  Cell: Cell = new Cell()
 
   IsExpanded = false
 
@@ -30,7 +30,6 @@ export class ScheduleCellDayComponent {
 
   onPlusBtnClick() {
     if (this.Cell?.IsAdding == false && this.Cell.addPair) {
-      this.Cell.IsAdding = true
       this.Cell.addPair(this.Cell)
     }
   }
