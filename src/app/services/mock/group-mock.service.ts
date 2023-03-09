@@ -15,7 +15,7 @@ export class GroupMockService {
   private counter = 3
 
   fetchGroups(): Observable<Group[]> {
-    return of(this.groups)
+    return of(this.groups.map(e => new Group(e.id, e.number)))
   }
 
   createGroup(number: string): Observable<any> {

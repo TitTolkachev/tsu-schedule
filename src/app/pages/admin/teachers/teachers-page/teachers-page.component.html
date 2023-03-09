@@ -55,7 +55,7 @@
 
 <!-- Модальное окно подтверждения удаления -->
 <app-confirmation
-  [message]="'Удалить учителя \'' + modal.selected?.fullName + '\'?'"
+  [message]="'Удалить учителя \'' + modal.selected?.lastName + ' ' + modal.selected?.firstName + ' ' + modal.selected?.patronymicName + '\'?'"
   [error]="modal.error"
   (confirm)="deleteTeacher()"
 ></app-confirmation>
