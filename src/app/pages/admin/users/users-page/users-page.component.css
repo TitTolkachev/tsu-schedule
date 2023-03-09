@@ -1,8 +1,13 @@
+html, body {
+  overflow-x: hidden !important;
+}
+
 .form {
   color: white;
   background: #371B1B;
   border-radius: 15px;
   max-width: 900px;
+  max-height: 600px;
 }
 
 .form-title {
@@ -45,11 +50,6 @@ button {
   padding: 0 !important;
 }
 
-.people {
-  margin-top: 27px;
-  margin-bottom: 50px;
-}
-
 .search {
   padding: 0 37px 50px 37px;
 }
@@ -63,3 +63,9 @@ button {
   margin-right: 16px;
 }
 
+.anyClass {
+  margin-top: 27px;
+
+  height: 50%;
+  overflow-y: scroll;
+}

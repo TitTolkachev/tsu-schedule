@@ -1,7 +1,7 @@
 <app-header-admin-pages></app-header-admin-pages>
 
 
-<div class="container-sm min-vh-100">
+<div class="container-sm">
   <div class="row justify-content-center align-content-center">
     <div class="col p-4 border overflow-hidden flex-md-row shadow-sm h-md-250 position-relative form">
 
@@ -23,8 +23,15 @@
         </div>
       </div>
 
-      <div class="people container" *ngFor="let e of data | searchUser: searchUserInput">
-        <app-person [role]="e.role" [name]="e.name" [email]="e.email" [group] = "e.group"></app-person>
+      <div class="nav nav-pills nav-stacked anyClass">
+        <div class="container" *ngFor="let e of data | searchUser: searchUserInput">
+          <app-person
+            [role]="e.role"
+            [name]="e.name"
+            [email]="e.email"
+            [group] = "e.group"
+          ></app-person>
+        </div>
       </div>
 
     </div>
