@@ -18,12 +18,13 @@
             <input class="form-control" type="search" placeholder="Введите ФИО / email" [(ngModel)]="searchRequestRegistration">
           </div>
 
-          <div class="container-request" *ngFor="let e of requestsReqistration | searchRequest: searchRequestRegistration">
+          <div *ngFor="let e of requestsReqistration | searchRequest: searchRequestRegistration">
             <app-requests [name]="e.name"
-                         [email]="e.email"
-                         [group]="e.group" >
+                          [email]="e.email"
+                          [group]="e.group" >
             </app-requests>
           </div>
+
         </div>
       </div>
     </div>
@@ -44,11 +45,11 @@
             <input class="form-control" type="search" placeholder="Введите ФИО / email" [(ngModel)]="searchRequestChangeGroup">
           </div>
 
-          <div class="requests" *ngFor="let e of requestsChangeGroup | searchRequest: searchRequestChangeGroup">
+          <div *ngFor="let e of requestsChangeGroup | searchRequest: searchRequestChangeGroup">
             <app-requests [name]="e.name"
-                         [email]="e.email"
-                         [oldGroup]="e.oldGroup"
-                         [newGroup]="e.newGroup" >
+                          [email]="e.email"
+                          [oldGroup]="e.oldGroup"
+                          [newGroup]="e.newGroup" >
             </app-requests>
           </div>
         </div>
