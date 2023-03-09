@@ -3,7 +3,7 @@ import {Component, Input} from '@angular/core';
 @Component({
   selector: 'app-users-modal',
   templateUrl: './users-modal.component.html',
-  styleUrls: ['./users-modal.component.css', '../../css/admin-modal.css']
+  styleUrls: ['./users-modal.component.css']
 })
 export class UsersModalComponent {
   @Input()
@@ -19,6 +19,8 @@ export class UsersModalComponent {
 
   @Input()
   public group: number | undefined
+
+  public groups = ["972101", "972101", "972101", "972101", "972101", "972101", "972101", "972101" ]
 
   get edit(): boolean {
     return this.id != undefined
