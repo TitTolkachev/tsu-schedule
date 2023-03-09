@@ -1,8 +1,9 @@
-<div class="modal fade" id="addAudienceModal" tabindex="-1" aria-labelledby="addAudienceModalLabel" aria-hidden="true">
+<div class="modal fade" id="addAudienceModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title" id="addAudienceModalLabel">Новая аудитория</h1>
+        <h1 *ngIf="!edit" class="modal-title">Новая аудитория</h1>
+        <h1 *ngIf="edit" class="modal-title">Отредактировать аудиторию</h1>
         <button id="audience-modal-btn-close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 

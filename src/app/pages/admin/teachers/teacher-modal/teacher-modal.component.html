@@ -1,8 +1,9 @@
-<div class="modal fade" id="addTeacherModal" tabindex="-1" aria-labelledby="addTeacherModalLabel" aria-hidden="true">
+<div class="modal fade" id="addTeacherModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title" id="addTeacherModalLabel">Преподаватель</h1>
+        <h1 *ngIf="!edit" class="modal-title">Преподаватель</h1>
+        <h1 *ngIf="edit" class="modal-title">Отредактировать преподавателя</h1>
         <button id="teacher-modal-btn-close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 

@@ -1,9 +1,10 @@
 <!-- Add Subject Modal -->
-<div class="modal fade" id="addSubjectModal" tabindex="-1" aria-labelledby="addSubjectModalLabel" aria-hidden="true">
+<div class="modal fade" id="addSubjectModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title" id="addSubjectModalLabel">Новый предмет</h1>
+        <h1 *ngIf="!edit" class="modal-title">Новый предмет</h1>
+        <h1 *ngIf="edit" class="modal-title">Отредактировать предмет</h1>
         <button id="subject-modal-btn-close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 

@@ -43,6 +43,7 @@ import {SearchGroupsPipe} from './pages/admin/groups/search-groups/search-groups
 import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-teacher.pipe';
 import {IScheduleService} from "./services/i-schedule.service";
 import {ILessonService} from "./services/i-lesson.service";
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import {ILessonService} from "./services/i-lesson.service";
     ScheduleWeekComponent,
     ScheduleCellDayComponent,
     SchedulePairComponent,
-    SchedulePairModalComponent
+    SchedulePairModalComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
