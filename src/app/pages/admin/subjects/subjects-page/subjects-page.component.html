@@ -1,32 +1,62 @@
 <app-header-admin-pages></app-header-admin-pages>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSubjectModal">
-  Добавить новый предмет
-</button>
+<div class="container-sm min-vh-100">
+  <div class="row justify-content-center align-content-center">
+    <div class="col p-4 border overflow-hidden flex-md-row shadow-sm h-md-250 position-relative form">
 
-<!-- Add Subject Modal -->
-<div class="modal fade" id="addSubjectModal" tabindex="-1" aria-labelledby="addSubjectModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title" id="addSubjectModalLabel">Новый предмет</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+      <div class="flex-column">
+        <div class="d-flex ">
+          <div class="col form-title">Предметы</div>
 
-      <div class="modal-body">
-        <div class="row">
-          <label for="subjectNameInput" class="col-sm-3 col-form-label">Название</label>
-          <div class="col-sm-8">
-            <input type="text" class="form-control transparent-input" id="subjectNameInput">
-          </div>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSubjectModal" (click)="requestCreateSubject()">
+            Добавить новый предмет
+          </button>
         </div>
       </div>
 
-      <div class="modal-footer">
-        <!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-        <button type="button" class="btn btn-primary text-center">Добавить</button>
+      <div class="search input-group">
+        <input class="form-control" type="search" placeholder="название" [(ngModel)]="searchSubjectInput">
       </div>
+
+      <div *ngIf="subjects">
+        <app-subject-element
+          *ngFor="let e of subjects | searchSubjects: searchSubjectInput"
+          [subject]="e"
+          (onEdit)="requestEditSubject($event)"
+          (onDelete)="requestDeleteSubject($event)"
+        ></app-subject-element>
+      </div>
+
     </div>
   </div>
 </div>
+
+
+<!-- TODO сверстать заглушку, если список пустой -->
+<div *ngIf="!subjects">
+  <div *ngIf="!hasError()">
+    <p>Пусто</p>
+  </div>
+
+  <!-- TODO отображение ошибки -->
+  <div *ngIf="hasError()">
+    <p>{{ error }}</p>
+  </div>
+</div>
+
+<!-- Модальное окно добавления или редактирования предмета -->
+<app-subject-modal
+  [form]="modal.selected"
+  [error]="modal.error"
+  (create)="createSubject($event)"
+  (modify)="modifySubject($event)"
+></app-subject-modal>
+
+<!-- Модальное окно подтверждения удаления -->
+<app-confirmation
+  [message]="'Удалить предмет \'' + modal.selected?.name + '\'?'"
+  [error]="modal.error"
+  (confirm)="deleteSubject()"
+></app-confirmation>
+

@@ -3,7 +3,7 @@
   background: #371B1B;
   border-radius: 60px;
   max-width: 1150px;
-  padding: 80px 135px 115px 135px;
+  padding: 65px 135px 65px 135px;
 }
 
 .form-title {
@@ -19,7 +19,7 @@
 }
 
 .form-description {
-  margin-bottom: 70px;
+  margin-bottom: 50px;
   font-family: 'Jura', sans-serif;
   font-style: normal;
   font-weight: 300;
@@ -59,7 +59,7 @@ button {
   border: none;
   border-radius: 23px;
 
-  margin-top: 40px;
+  margin-top: 20px;
 
   font-family: 'Jura', sans-serif;
   font-style: normal;
@@ -120,3 +120,48 @@ button:disabled {
     line-height: 30px;
   }
 }
+
+@media (max-height: 600px) {
+
+  .form {
+    border-radius: 40px;
+    max-width: 700px;
+    padding: 20px 50px 10px 50px;
+  }
+
+  .form-title {
+    font-size: 24px;
+    line-height: 26px;
+    margin-bottom: 15px;
+  }
+
+  .form-description {
+    margin-bottom: 25px;
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  input {
+    padding: 0 20px 5px 20px;
+    border-bottom: 2px solid #FFFFFF;
+    margin-bottom: 10px;
+    font-size: 20px;
+    line-height: 22px;
+  }
+
+  ::placeholder {
+    font-size: 20px;
+    line-height: 22px;
+  }
+
+  button {
+    width: 280px;
+    height: 40px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    line-height: 22px;
+  }
+}
+
