@@ -12,3 +12,8 @@ export class Time {
     this.nano = nano;
   }
 }
+
+export function formatTime(time: Time): string {
+  // TODO сделать норм формат
+  return `${time.hour}:${time.minute}`
+}

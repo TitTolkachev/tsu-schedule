@@ -1,29 +1,38 @@
-import {AfterContentInit, Component} from '@angular/core';
+import {AfterContentInit, Component, OnInit} from '@angular/core';
 import {DropDownInput} from "./drop-down-input";
 import {GroupInput} from "./group-input";
 import {State} from "./models/State";
 import {Pair} from "./models/Pair";
 import {Week} from "./models/Week";
 import {Cell} from "./models/Cell";
+import {ILessonService} from "../../../services/i-lesson.service";
+import {DisplayErrorComponent} from "../../../components/util/display-error";
+import {EditPageService} from "../../../services/edit-page.service";
 
 @Component({
   selector: 'app-edit-page',
   templateUrl: './edit-page.component.html',
   styleUrls: ['./edit-page.component.css']
 })
-
-export class EditPageComponent implements AfterContentInit {
+export class EditPageComponent extends DisplayErrorComponent implements AfterContentInit, OnInit {
 
   private hintTimer: number | undefined;
 
   // Отображаемые недели
-  Weeks: Array<Week> | undefined
+  Weeks: Array<Week> = []
 
   State = State.base
 
   IsLoading = false
 
   openModalPair: Function | undefined
+
+  constructor(
+    private editPageService: EditPageService,
+    private lessonService: ILessonService
+  ) {
+    super()
+  }
 
   setOpenModalPair = function (openModalPair: Function | undefined) {
     // @ts-ignore
@@ -38,11 +47,25 @@ export class EditPageComponent implements AfterContentInit {
     })
   }.bind(this)
 
+  ngOnInit() {
+    this.editPageService.initAndLoadWeek(new Date(), {
+      cellConstructor: () => {
+        return {
+          BorderBottom: true,
+          Pairs: [],
+          PageState: this.State,
+          openModalPair: this.openModalPair,
+          addPair: this.addPair,
+          IsAdding: false
+        }
+      }
+    }).subscribe({
+      next: weeks => weeks.forEach(week => this.Weeks?.push(week)),
+      error: err => this.handleHttpError(err)
+    })
+  }
+
   ngAfterContentInit() {
-
-    // TODO(Сделать загрузку недели, притом раньше, чем AfterContentInit)
-    this.loadWeek()
-
     let input1 = document.getElementById('input1')
     let datalist1 = document.getElementById('datalist1')
     let arrow1 = document.getElementById('arrow1')
@@ -116,10 +139,6 @@ export class EditPageComponent implements AfterContentInit {
     }
   }
 
-  addWeek() {
-    // TODO(Подгрузить еще неделю в массив просматриваемых недель)
-  }
-
   addPair = function (cell: Cell) {
     // @ts-ignore
     this.State = State.addPair
@@ -166,185 +185,37 @@ export class EditPageComponent implements AfterContentInit {
     })
   }
 
-  loadWeek() {
-    this.Weeks = [
-      {
-        WeekDate: '30 января 2023 - 4 февраля 2023 • 23 неделя',
-        WeekDays: [1, 2, 3, 4, 5, 6],
-        WeekTimeLines: [
-          {
-            Cells: [
-              {
-                BorderBottom: true,
+  /**
+   * Добавить неделю снизу
+   */
+  addWeek() {
+    this.loadWeek(this.editPageService.getNextWeekToAdd())
+  }
 
-                Pairs: [],
+  /**
+   * Переключиться на следующую неделю
+   */
+  nextWeek() {
+    this.Weeks = []
+    this.loadWeek(this.editPageService.getAndSetNextWeek())
+  }
 
-                PageState: this.State,
+  /**
+   * Переключиться на предыдущую неделю
+   */
+  previousWeek() {
+    this.Weeks = []
+    this.loadWeek(this.editPageService.getAndSetPreviousWeek())
+  }
 
-                openModalPair: this.openModalPair,
-
-                addPair: this.addPair,
-
-                IsAdding: false
-              },
-              {
-                BorderBottom: true,
-
-                Pairs: [],
-
-                PageState: this.State,
-
-                openModalPair: this.openModalPair,
-
-                addPair: this.addPair,
-
-                IsAdding: false
-              },
-              {
-                BorderBottom: true,
-
-                Pairs: [
-                  new Pair('Матанализ', '228 аудитория', '972101, 972102', 'Лекция', 'Даммер Диана Дамировна', '', '8:45 - 10:20'),
-                  new Pair('МКН часть 3', '302 аудитория', '972101, 972102, 972103', 'Лекция', 'Даммер Диана Дамировна', '', '8:45 - 10:20')
-                ],
-
-                PageState: this.State,
-
-                openModalPair: this.openModalPair,
-
-                addPair: this.addPair,
-
-                IsAdding: false
-              },
-              {
-                BorderBottom: true,
-
-                Pairs: [],
-
-                PageState: this.State,
-
-                openModalPair: this.openModalPair,
-
-                addPair: this.addPair,
-
-                IsAdding: false
-              },
-              {
-                BorderBottom: true,
-
-                Pairs: [],
-
-                PageState: this.State,
-
-                openModalPair: this.openModalPair,
-
-                addPair: this.addPair,
-
-                IsAdding: false
-              },
-              {
-                BorderBottom: true,
-
-                Pairs: [],
-
-                PageState: this.State,
-
-                openModalPair: this.openModalPair,
-
-                addPair: this.addPair,
-
-                IsAdding: false
-              },
-            ],
-            TimeStart: '8:45',
-            TimeEnd: '10:20'
-          },
-          {
-            Cells: [
-              {
-                BorderBottom: true,
-
-                Pairs: [],
-
-                PageState: this.State,
-
-                openModalPair: this.openModalPair,
-
-                addPair: this.addPair,
-
-                IsAdding: false
-              },
-              {
-                BorderBottom: true,
-
-                Pairs: [],
-
-                PageState: this.State,
-
-                openModalPair: this.openModalPair,
-
-                addPair: this.addPair,
-
-                IsAdding: false
-              },
-              {
-                BorderBottom: true,
-
-                Pairs: [],
-
-                PageState: this.State,
-
-                openModalPair: this.openModalPair,
-
-                addPair: this.addPair,
-
-                IsAdding: false
-              },
-              {
-                BorderBottom: true,
-
-                Pairs: [],
-
-                PageState: this.State,
-
-                openModalPair: this.openModalPair,
-
-                addPair: this.addPair,
-
-                IsAdding: false
-              },
-              {
-                BorderBottom: true,
-
-                Pairs: [],
-
-                PageState: this.State,
-
-                openModalPair: this.openModalPair,
-
-                addPair: this.addPair,
-
-                IsAdding: false
-              },
-              {
-                BorderBottom: true,
-
-                Pairs: [],
-
-                PageState: this.State,
-
-                openModalPair: this.openModalPair,
-
-                addPair: this.addPair,
-
-                IsAdding: false
-              },
-            ],
-            TimeStart: '8:45',
-            TimeEnd: '10:20'
-          }
-        ]
-      }
-    ]
+  /**
+   * Загрузка недели
+   * @param weekDate день недели, которую нужно загрузить
+   */
+  private loadWeek(weekDate: Date) {
+    this.editPageService.loadWeek(weekDate).subscribe({
+      next: weeks => weeks.forEach(week => this.Weeks?.push(week)),
+      error: err => this.handleHttpError(err)
+    })
   }
 }
