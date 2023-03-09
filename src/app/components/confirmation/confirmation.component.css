@@ -3,7 +3,7 @@
   color: #ffff;
   border: 0;
   background: #371B1B;
-  border-radius: 15px 15px 0 15px;
+  border-radius: 15px 15px 0 0;
 }
 
 /* Modal Header */
@@ -87,7 +87,7 @@ button {
   color: #FFFFFF;
 }
 
-.btn-no {
+.btn-no{
   border-radius: 0 15px 0 0;
 }
 
