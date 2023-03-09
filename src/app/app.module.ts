@@ -19,6 +19,7 @@ import {UserElementComponent} from './pages/admin/users/user-element/user-elemen
 import {SearchUserPipe} from './pages/admin/users/search-user/search-user.pipe';
 
 import {AppComponent} from './app.component';
+import {UsersModalComponent} from './pages/admin/users/users-modal/users-modal.component';
 
 import {GroupElementComponent} from './pages/admin/groups/group-element/group-element.component';
 import {ConfirmationComponent} from './components/confirmation/confirmation.component';
@@ -58,6 +59,8 @@ import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-te
     HeaderAdminPagesComponent,
     UsersPageComponent,
     UserElementComponent,
+    SearchUserPipe,
+    UsersModalComponent,
     SearchUserPipe,
     HeaderAdminPagesComponent,
     ConfirmationComponent,

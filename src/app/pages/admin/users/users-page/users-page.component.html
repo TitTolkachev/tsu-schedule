@@ -9,8 +9,10 @@
         <div class="d-flex">
           <div class="col form-title">Пользователи</div>
           <button
-            class="ms-auto"
-            type="submit">
+            class="ms-auto btn"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#addUserModal">
             Добавить новый аккаунт
           </button>
         </div>
@@ -37,3 +39,12 @@
     </div>
   </div>
 </div>
+
+<!-- Модальное окно добавления или редактирования аудитории -->
+<app-users-modal
+></app-users-modal>
+
+<!-- Модальное окно подтверждения удаления -->
+<app-confirmation
+  [message]="'Удалить?'"
+></app-confirmation>

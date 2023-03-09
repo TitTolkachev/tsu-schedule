@@ -26,7 +26,8 @@ button {
   width: 210.75px;
   height: 80.27px;
   background: #FFFFFF;
-  border: medium #371B1B;
+  border-radius: 0!important;
+  border: none;
 
   font-family: 'Jura', sans-serif;
   font-style: normal;
@@ -35,6 +36,14 @@ button {
   text-align: center;
   color: #000000;
   transition: 0.3s ease;
+}
+
+button:active, button:disabled, button:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.container-sm {
+  margin-top: 50px;
 }
 
 .container-sm {

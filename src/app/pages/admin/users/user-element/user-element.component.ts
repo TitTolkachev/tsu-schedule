@@ -7,7 +7,7 @@ import {Component, Input} from '@angular/core';
 })
 export class UserElementComponent {
   @Input()
-  public role: string = ''
+  public role: string = ""
   @Input()
   public name: string = ""
 
