@@ -52,4 +52,21 @@ button {
 
 .search {
   padding: 0 37px 27px 37px;
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 41px;
+  display: flex;
+  text-align: center;
+}
+
+::placeholder {
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 41px;
+  display: flex;
+  text-align: center;
 }

@@ -7,6 +7,10 @@ import {Component} from '@angular/core';
 })
 
 export class RequestsPageComponent {
+  /**
+   * Список аудиторий с сервера.
+   * Если undefined, значит список ещё не загружен с сервера
+   */
   requestsReqistration = [
     {name: "Иноземцева Татьяна Андреевна", email: "sd@mail.com", group: undefined},
     {name: "Даммер Диана Дамировна", email: "dam@gmail.com", group: undefined},
@@ -18,6 +22,10 @@ export class RequestsPageComponent {
     {name: "Блаблашкин Игорь Семенович", email: "nani@bla.com", oldGroup: 972002, newGroup: 972101}
   ]
 
+
+  /**
+   * Объекты для поиска по списку
+   */
   searchRequestChangeGroup = ''
   searchRequestRegistration = ''
 
