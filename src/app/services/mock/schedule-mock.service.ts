@@ -239,7 +239,7 @@ export class ScheduleMockService implements IScheduleService {
     ]).pipe(delay(1000));
   }
 
-  fetchStaffSchedule(groupIds: string[], teacherId: string, audienceId: string, startDate: string, endDate: string): Observable<DaySchedule[]> {
+  fetchStaffSchedule(groupIds: string[], teacherId: string | null, audienceId: string | null, startDate: string, endDate: string): Observable<DaySchedule[]> {
     return of(this.days);
   }
 

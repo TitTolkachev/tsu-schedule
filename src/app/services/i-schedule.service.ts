@@ -25,8 +25,8 @@ export abstract class IScheduleService {
 
   abstract fetchStaffSchedule(
     groupIds: string[],
-    teacherId: string,
-    audienceId: string,
+    teacherId: string | null,
+    audienceId: string | null,
     startDate: string,
     endDate: string
   ): Observable<DaySchedule[]>

@@ -255,6 +255,9 @@ export class EditPageComponent extends DisplayErrorComponent implements AfterCon
     })
   }
 
+  /**
+   * Загружает данные для раскрывающихся списков
+   */
   private loadData(): Observable<any> {
     return combineLatest([
       this.subjectService.fetchSubjects()

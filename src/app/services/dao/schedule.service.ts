@@ -33,9 +33,17 @@ export class ScheduleService implements IScheduleService {
     )
   }
 
-  fetchStaffSchedule(groupIds: string[], teacherId: string, audienceId: string, startDate: string, endDate: string): Observable<DaySchedule[]> {
+  fetchStaffSchedule(groupIds: string[], teacherId: string | null, audienceId: string | null, startDate: string, endDate: string): Observable<DaySchedule[]> {
+    let queries = `startDate=${startDate}&endDate=${endDate}`
+    if (teacherId != null) {
+      queries = `${queries}&teacherId=${teacherId}`
+    }
+    if (audienceId != null) {
+      queries = `${queries}&studyRoomId=${audienceId}`
+    }
+    groupIds.forEach(id => queries = `${queries}&groupIds=${id}`)
     return this.httpClient.get<DaySchedule[]>(
-      `${SERVER_URL}/schedule/staff?teacherId=${teacherId}&studyRoomId=${audienceId}&startDate=${startDate}&endDate=${endDate}&groupIds=${groupIds.join(',')}`
+      `${SERVER_URL}/schedule/staff?${queries}`
     )
   }
 
