@@ -25,12 +25,12 @@
 
       <div class="nav nav-pills nav-stacked anyClass">
         <div class="container" *ngFor="let e of data | searchUser: searchUserInput">
-          <app-person
-            [role]="e.role"
-            [name]="e.name"
-            [email]="e.email"
+          <app-user-element
+            [role] = "e.role"
+            [name] = "e.name"
+            [email] = "e.email"
             [group] = "e.group"
-          ></app-person>
+          ></app-user-element>
         </div>
       </div>
 

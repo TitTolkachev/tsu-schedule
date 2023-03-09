@@ -1,11 +1,11 @@
 import {Component, Input} from '@angular/core';
 
 @Component({
-  selector: 'app-person',
-  templateUrl: './person.component.html',
-  styleUrls: ['./person.component.css']
+  selector: 'app-user-element',
+  templateUrl: './user-element.component.html',
+  styleUrls: ['./user-element.component.css']
 })
-export class PersonComponent {
+export class UserElementComponent {
   @Input()
   public role: string = ''
   @Input()

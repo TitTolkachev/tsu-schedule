@@ -14,11 +14,20 @@
   padding-top: -10px;
 }
 
-.image img {
-  width: 45.5px;
-  height: 41px;
+.role-image {
+  width: 23px;
+  height: 22px;
 }
 
 .row {
   padding: 0 27px 15px 37px;
+}
+
+.edit-image, .delete-image {
+  width: 23px;
+  height: 22px;
+}
+
+button {
+  border: none;
 }

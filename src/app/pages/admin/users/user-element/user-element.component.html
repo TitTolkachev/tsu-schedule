@@ -1,0 +1,39 @@
+<div class="row row-cols-auto justify-content-between">
+
+  <div class="col">
+    <div class="row align-items-center justify-content-start">
+      <div class="col-md-2">
+        <div>
+          <img class="role-image" *ngIf="role == 'teacher'" src="../../../../../assets/img/teacher.svg" alt="teacher">
+          <img class="role-image" *ngIf="role == 'student'" src="../../../../../assets/img/student.svg" alt="student">
+        </div>
+      </div>
+
+      <div class = "col-md info-person">
+        <div class="name">
+          {{ name }}
+        </div>
+
+        <div class="email">
+          {{ email }}
+        </div>
+
+        <div *ngIf="group != undefined" class="group">
+          гр. {{ group }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="d-flex buttons">
+      <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addAudienceModal">
+        <img class="edit-image" src="../../../../../assets/img/edit.svg" alt="edit">
+      </button>
+
+      <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#confirmationModal">
+        <img class="delete-image" src="../../../../../assets/img/delete.svg" alt="delete">
+      </button>
+    </div>
+  </div>
+</div>
