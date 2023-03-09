@@ -15,7 +15,7 @@ import {GroupsPageComponent} from './pages/admin/groups/groups-page/groups-page.
 import {HeaderAdminPagesComponent} from './components/headers/header-admin-pages/header-admin-pages.component';
 import {MainPageComponent} from './pages/admin/main/main-page/main-page.component';
 import {UsersPageComponent} from './pages/admin/users/users-page/users-page.component';
-import {PersonComponent} from './components/people/person/person.component';
+import {UserElementComponent} from './pages/admin/users/user-element/user-element.component';
 import {SearchUserPipe} from './pages/admin/users/search-user/search-user.pipe';
 
 import {AppComponent} from './app.component';
@@ -35,7 +35,7 @@ import {AppComponent} from './app.component';
     HeaderCompilerPagesComponent,
     HeaderAdminPagesComponent,
     UsersPageComponent,
-    PersonComponent,
+    UserElementComponent,
     SearchUserPipe
   ],
   imports: [
