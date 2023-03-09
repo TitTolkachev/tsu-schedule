@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {IScheduleService} from "../i-schedule.service";
-import {Observable, of} from "rxjs";
+import {delay, Observable, of} from "rxjs";
 import {DaySchedule} from "../../models/day-schedule";
 import {LessonTime} from "../../models/lesson-time";
 import {DayOfWeek} from "../../models/day-of-week";
@@ -145,7 +145,7 @@ export class ScheduleMockService implements IScheduleService {
         new Time(18, 25, 0, 0),
         new Time(20, 0, 0 ,0)
       ),
-    ]);
+    ]).pipe(delay(1000));
   }
 
   fetchSchedule(startDate: string, endDate: string): Observable<DaySchedule[]> {
@@ -236,7 +236,7 @@ export class ScheduleMockService implements IScheduleService {
           )
         ]
       )
-    ]);
+    ]).pipe(delay(1000));
   }
 
   fetchStaffSchedule(groupIds: string[], teacherId: string, audienceId: string, startDate: string, endDate: string): Observable<DaySchedule[]> {

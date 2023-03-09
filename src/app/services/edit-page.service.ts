@@ -9,7 +9,7 @@ import {LessonTime} from "../models/lesson-time";
 import ruLocale from "date-fns/locale/ru";
 import {WeekTimeLine} from "../pages/moderator/edit-page/models/WeekTimeLine";
 import {Cell} from "../pages/moderator/edit-page/models/Cell";
-import {map, Observable, switchMap, tap} from "rxjs";
+import {map, Observable} from "rxjs";
 import {IScheduleService} from "./i-schedule.service";
 
 @Injectable({
@@ -73,18 +73,13 @@ export class EditPageService {
    * @param options настройки
    */
   initAndLoadWeek(weekDate: Date, options: {
+    lessonTimes: LessonTime[]
     cellConstructor: () => Cell
   }): Observable<Week[]> {
-    this.lessonTimes = undefined
+    this.lessonTimes = options.lessonTimes
     this.currentWeek = weekDate
     this.cellConstructor = options.cellConstructor
-    return this.scheduleService.fetchLessonTimes()
-      .pipe(tap(lessonTimes => {
-        this.lessonTimes = lessonTimes
-      }))
-      .pipe(switchMap(() => {
-        return this.loadWeek(this.currentWeek)
-      }))
+    return this.loadWeek(this.currentWeek)
   }
 
   /**

@@ -8,6 +8,18 @@ import {Cell} from "./models/Cell";
 import {ILessonService} from "../../../services/i-lesson.service";
 import {DisplayErrorComponent} from "../../../components/util/display-error";
 import {EditPageService} from "../../../services/edit-page.service";
+import {ISubjectService} from "../../../services/i-subject.service";
+import {Subject} from "../../../models/subject";
+import {LessonType} from "../../../models/lesson-type";
+import {LessonTime} from "../../../models/lesson-time";
+import {Group} from "../../../models/group";
+import {Audience} from "../../../models/audience";
+import {Teacher} from "../../../models/teacher";
+import {combineLatest, mergeMap, Observable, tap} from "rxjs";
+import {IGroupService} from "../../../services/i-group.service";
+import {IAudienceService} from "../../../services/i-audience.service";
+import {ITeacherService} from "../../../services/i-teacher.service";
+import {IScheduleService} from "../../../services/i-schedule.service";
 
 @Component({
   selector: 'app-edit-page',
@@ -23,13 +35,26 @@ export class EditPageComponent extends DisplayErrorComponent implements AfterCon
 
   State = State.base
 
-  IsLoading = false
+  IsLoadingWeek = true
+  IsLoadingData = true
 
   openModalPair: Function | undefined
 
+  subjects: Subject[] | undefined
+  lessonTypes: LessonType[] | undefined
+  lessonTimes: LessonTime[] | undefined
+  groups: Group[] | undefined
+  audiences: Audience[] | undefined
+  teachers: Teacher[] | undefined
+
   constructor(
     private editPageService: EditPageService,
-    private lessonService: ILessonService
+    private lessonService: ILessonService,
+    private subjectService: ISubjectService,
+    private groupService: IGroupService,
+    private audienceService: IAudienceService,
+    private teacherService: ITeacherService,
+    private scheduleService: IScheduleService
   ) {
     super()
   }
@@ -48,19 +73,26 @@ export class EditPageComponent extends DisplayErrorComponent implements AfterCon
   }.bind(this)
 
   ngOnInit() {
-    this.editPageService.initAndLoadWeek(new Date(), {
-      cellConstructor: () => {
-        return {
-          BorderBottom: true,
-          Pairs: [],
-          PageState: this.State,
-          openModalPair: this.openModalPair,
-          addPair: this.addPair,
-          IsAdding: false
+    this.loadData().pipe(mergeMap(() => {
+      return this.editPageService.initAndLoadWeek(new Date(), {
+        lessonTimes: this.lessonTimes!,
+        cellConstructor: () => {
+          return {
+            BorderBottom: true,
+            Pairs: [],
+            PageState: this.State,
+            openModalPair: this.openModalPair,
+            addPair: this.addPair,
+            IsAdding: false
+          }
         }
-      }
-    }).subscribe({
-      next: weeks => weeks.forEach(week => this.Weeks?.push(week)),
+      })
+    })).subscribe({
+      next: weeks => {
+        weeks.forEach(week => this.Weeks?.push(week))
+        this.IsLoadingWeek = false
+        this.IsLoadingData = false
+      },
       error: err => this.handleHttpError(err)
     })
   }
@@ -213,9 +245,30 @@ export class EditPageComponent extends DisplayErrorComponent implements AfterCon
    * @param weekDate день недели, которую нужно загрузить
    */
   private loadWeek(weekDate: Date) {
+    this.IsLoadingWeek = true
     this.editPageService.loadWeek(weekDate).subscribe({
-      next: weeks => weeks.forEach(week => this.Weeks?.push(week)),
+      next: weeks => {
+        weeks.forEach(week => this.Weeks?.push(week))
+        this.IsLoadingWeek = false
+      },
       error: err => this.handleHttpError(err)
     })
+  }
+
+  private loadData(): Observable<any> {
+    return combineLatest([
+      this.subjectService.fetchSubjects()
+        .pipe(tap(e => this.subjects = e)),
+      this.lessonService.fetchLessonTypes()
+        .pipe(tap(e => this.lessonTypes = e)),
+      this.scheduleService.fetchLessonTimes()
+        .pipe(tap(e => this.lessonTimes = e)),
+      this.groupService.fetchGroups()
+        .pipe(tap(e => this.groups = e)),
+      this.audienceService.fetchAudiences()
+        .pipe(tap(e => this.audiences = e)),
+      this.teacherService.fetchTeachers()
+        .pipe(tap(e => this.teachers = e)),
+    ])
   }
 }
