@@ -3,6 +3,7 @@ import {AudienceService} from "./services/dao/audience.service";
 import {SubjectService} from "./services/dao/subject.service";
 import {TeacherService} from "./services/dao/teacher.service";
 import {UserService} from "./services/dao/user.service";
+import {RequestService} from "./services/dao/request.service";
 
 export const environment = {
   production: false,
@@ -10,5 +11,6 @@ export const environment = {
   audienceService: AudienceService,
   subjectService: SubjectService,
   teacherService: TeacherService,
-  userService: UserService
+  userService: UserService,
+  requestService: RequestService
 };

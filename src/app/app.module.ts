@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {environment} from './environment.prod';
+import {environment} from './environment';
 import {BrowserModule} from '@angular/platform-browser';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
@@ -47,6 +47,7 @@ import {SearchGroupsPipe} from './pages/admin/groups/search-groups/search-groups
 import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-teacher.pipe';
 import {RejectComponent} from './components/reject/reject.component';
 import {IUserService} from "./services/i-user.service";
+import {IRequestService} from "./services/i-request.service";
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import {IUserService} from "./services/i-user.service";
     { provide: IAudienceService, useClass: environment.audienceService },
     { provide: ISubjectService, useClass: environment.subjectService },
     { provide: ITeacherService, useClass: environment.teacherService },
-    { provide: IUserService, useClass: environment.userService }
+    { provide: IUserService, useClass: environment.userService },
+    { provide: IRequestService, useClass: environment.requestService }
   ],
   bootstrap: [AppComponent]
 })

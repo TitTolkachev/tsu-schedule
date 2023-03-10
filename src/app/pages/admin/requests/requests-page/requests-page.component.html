@@ -7,24 +7,25 @@
         <div class="col p-4 d-flex flex-column position-static">
           <div class="form-top d-flex">
             <div class="form-title">Запросы на регистрацию</div>
-            <button
+            <!-- TODO у бекенда нет метода "Принять всё". Я думаю кнопка лишняя -->
+            <!--<button
               class="ms-auto"
               type="submit">
               Принять все
-            </button>
+            </button>-->
           </div>
 
           <div class="search input-group">
             <input class="form-control" type="search" placeholder="Введите ФИО / email / группу" [(ngModel)]="searchRequestRegistration">
           </div>
 
-          <div *ngFor="let e of requestsReqistration | searchRequest: searchRequestRegistration">
-            <app-requests [name]="e.name"
-                          [email]="e.email"
-                          [group]="e.group" >
-            </app-requests>
+          <div *ngFor="let e of registrationRequests | searchRequest: searchRequestRegistration">
+            <app-requests
+              [request]="e"
+              (onAccept)="selectRequest($event)"
+              (onDecline)="selectRequest($event)"
+            ></app-requests>
           </div>
-
         </div>
       </div>
     </div>
@@ -34,23 +35,24 @@
         <div class="col p-4 d-flex flex-column position-static">
           <div class="form-top d-flex">
             <div class="form-title">Запросы на изменения группы</div>
-            <button
+            <!-- TODO у бекенда нет метода "Принять всё". Я думаю кнопка лишняя -->
+            <!--<button
               class="ms-auto"
               type="submit">
               Принять все
-            </button>
+            </button>-->
           </div>
 
           <div class="search input-group">
             <input class="form-control" type="search" placeholder="Введите ФИО / email / группу" [(ngModel)]="searchRequestChangeGroup">
           </div>
 
-          <div *ngFor="let e of requestsChangeGroup | searchRequest: searchRequestChangeGroup">
-            <app-requests [name]="e.name"
-                          [email]="e.email"
-                          [oldGroup]="e.oldGroup"
-                          [newGroup]="e.newGroup" >
-            </app-requests>
+          <div *ngFor="let e of groupRequests | searchRequest: searchRequestChangeGroup">
+            <app-requests
+              [request]="e"
+              (onAccept)="selectRequest($event)"
+              (onDecline)="selectRequest($event)"
+            ></app-requests>
           </div>
         </div>
       </div>
@@ -60,10 +62,14 @@
 
 <!-- Модальное окно подтверждения принятия запроса -->
 <app-confirmation
-  [message]="'Принять запрос от ' + '?'"
+  [message]="'Принять запрос?'"
+  [error]="modal.error"
+  (confirm)="resolveRequest(true)"
 ></app-confirmation>
 
 <!-- Модальное окно подтверждения удаления запроса -->
 <app-reject
-  [message]="'Отклонить запрос от ' + '?'"
+  [message]="'Отклонить запрос?'"
+  [error]="modal.error"
+  (confirm)="resolveRequest(false)"
 ></app-reject>
