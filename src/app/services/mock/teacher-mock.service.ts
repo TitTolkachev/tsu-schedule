@@ -18,7 +18,7 @@ export class TeacherMockService implements ITeacherService {
   constructor() {}
 
   fetchTeachers(): Observable<Teacher[]> {
-    return of(this.teachers)
+    return of(this.teachers.map(e => new Teacher(e.id, e.firstName, e.lastName, e.patronymicName)))
   }
 
   createTeacher(

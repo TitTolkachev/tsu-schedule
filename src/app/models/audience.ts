@@ -1,10 +1,10 @@
 export class Audience {
 
-  id: string
-  name: string
-  frame: number
-  floor: number
-  number: string
+  readonly id: string
+  readonly name: string
+  readonly frame: number
+  readonly floor: number
+  readonly number: string
 
   constructor(id: string, name: string, frame: number, floor: number, number: string) {
     this.id = id;
@@ -12,9 +12,5 @@ export class Audience {
     this.frame = frame;
     this.floor = floor;
     this.number = number;
-  }
-
-  clone(): Audience {
-    return new Audience(this.id, this.name, this.frame, this.floor, this.number)
   }
 }

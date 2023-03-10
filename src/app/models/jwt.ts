@@ -1,9 +1,9 @@
 export class Jwt {
 
-  sub: string
-  exp: number
-  iat: number
-  role: string
+  readonly sub: string
+  readonly exp: number
+  readonly iat: number
+  readonly role: string
 
   constructor(sub: string, exp: number, iat: number, role: string) {
     this.sub = sub;

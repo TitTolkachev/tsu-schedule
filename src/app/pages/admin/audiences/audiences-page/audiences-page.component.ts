@@ -143,7 +143,7 @@ export class AudiencesPageComponent extends DisplayErrorComponent {
 
   private selectAudience(audience: Audience | null) {
     this.modal.error = null
-    this.modal.selected = (audience == null) ? null : audience.clone()
+    this.modal.selected = audience
   }
 }
 

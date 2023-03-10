@@ -1,6 +1,6 @@
 <div class="row row-cols-auto justify-content-between">
   <div class="col-8" *ngIf="teacher">
-    <p> {{ teacher.fullName }}</p>
+    <p>{{ teacher.lastName }} {{ teacher.firstName }} {{ teacher.patronymicName }}</p>
   </div>
   <div class="col d-flex buttons">
     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addTeacherModal" (click)="editClick()">

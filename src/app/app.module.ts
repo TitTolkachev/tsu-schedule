@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
-import {environment} from './environment';
+import {environment} from './environment.prod';
 import {BrowserModule} from '@angular/platform-browser';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app-routing.module";
 import {HeaderSigninComponent} from "./components/headers/header-signin/header-signin.component";
@@ -17,10 +17,8 @@ import {MainPageComponent} from './pages/admin/main/main-page/main-page.componen
 import {UsersPageComponent} from './pages/admin/users/users-page/users-page.component';
 import {UserElementComponent} from './pages/admin/users/user-element/user-element.component';
 import {SearchUserPipe} from './pages/admin/users/search-user/search-user.pipe';
-
 import {AppComponent} from './app.component';
 import {UsersModalComponent} from './pages/admin/users/users-modal/users-modal.component';
-
 import {GroupElementComponent} from './pages/admin/groups/group-element/group-element.component';
 import {ConfirmationComponent} from './components/confirmation/confirmation.component';
 import {GroupModalComponent} from './pages/admin/groups/group-modal/group-modal.component';
@@ -34,6 +32,7 @@ import {IGroupService} from "./services/i-group.service";
 import {ITeacherService} from "./services/i-teacher.service";
 import {TeacherModalComponent} from './pages/admin/teachers/teacher-modal/teacher-modal.component';
 import {TeacherElementComponent} from './pages/admin/teachers/teacher-element/teacher-element.component';
+import {TokenInterceptorService} from "./services/token-interceptor.service";
 import {
   SearchAudienceFramePipe,
   SearchAudienceNamePipe,
@@ -89,10 +88,11 @@ import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-te
     AppRoutingModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
     { provide: IGroupService, useClass: environment.groupService },
     { provide: IAudienceService, useClass: environment.audienceService },
     { provide: ISubjectService, useClass: environment.subjectService },
-    { provide: ITeacherService, useClass: environment.teacherService },
+    { provide: ITeacherService, useClass: environment.teacherService }
   ],
   bootstrap: [AppComponent]
 })
