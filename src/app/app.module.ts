@@ -16,7 +16,7 @@ import {HeaderAdminPagesComponent} from './components/headers/header-admin-pages
 import {MainPageComponent} from './pages/admin/main/main-page/main-page.component';
 import {RequestsPageComponent} from './pages/admin/requests/requests-page/requests-page.component';
 import {RequestComponent} from './pages/admin/requests/request-element/request.component';
-import {SearchRequestPipe} from "./pages/admin/requests/request-element/search-request/search-request.pipe";
+import {SearchRequestPipe} from "./pages/admin/requests/search-request/search-request.pipe";
 
 import {AppComponent} from './app.component';
 import {GroupElementComponent} from './pages/admin/groups/group-element/group-element.component';
