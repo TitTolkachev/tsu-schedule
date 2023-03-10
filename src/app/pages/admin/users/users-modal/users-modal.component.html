@@ -21,25 +21,25 @@
         <div class="row">
           <label for="userLastNameInput" class="col-sm-3 col-form-label">Фамилия</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control transparent-input" id="userLastNameInput">
+            <input type="text" class="form-control transparent-input" id="userLastNameInput" [(ngModel)]="lastName">
           </div>
         </div>
 
         <div class="row">
           <label for="userFirstNameInput" class="col-sm-3 col-form-label">Имя</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control transparent-input" id="userFirstNameInput">
+            <input type="text" class="form-control transparent-input" id="userFirstNameInput" [(ngModel)]="firstName">
           </div>
         </div>
 
         <div class="row">
           <label for="userPatronymicInput" class="col-sm-3 col-form-label">Отчество</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control transparent-input" id="userPatronymicInput">
+            <input type="text" class="form-control transparent-input" id="userPatronymicInput" [(ngModel)]="patronymicName">
           </div>
         </div>
 
-        <div *ngIf="this.role == 'student'" class="row">
+        <div *ngIf="this.role == 'Student'" class="row">
           <label for="groupInput" class="col-sm-3 col-form-label">Группа</label>
           <div class="col-sm-8">
             <select class="form-select form-select-s groups-list" aria-label=".form-select-sm example" id="groupInput">
@@ -52,15 +52,15 @@
         <div class="row">
           <label for="emailInput" class="col-sm-3 col-form-label">E-mail</label>
           <div class="col-sm-8">
-            <input type="email" class="form-control transparent-input" id="emailInput">
+            <input type="email" class="form-control transparent-input" id="emailInput" [(ngModel)]="email">
           </div>
         </div>
 
         <div class="row">
           <label for="passwordInput" class="col-sm-3 col-form-label">Пароль</label>
           <div class="col-sm-8 d-flex">
-            <input type="password" class="form-control transparent-input" id="passwordInput">
-            <button class="btn btn-primary generate-pas" type="button">
+            <input type="password" class="form-control transparent-input" id="passwordInput" [(ngModel)]="password">
+            <button class="btn btn-primary generate-pas" type="button" (click)="generatePassword()">
               Сгенерировать
             </button>
           </div>
@@ -68,10 +68,11 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary text-center">
+        <button type="button" class="btn btn-primary text-center" (click)="onSubmit()">
           <span *ngIf="!edit">Добавить</span>
           <span *ngIf="edit">Изменить</span>
         </button>
       </div>
     </div>
+  </div>
 </div>

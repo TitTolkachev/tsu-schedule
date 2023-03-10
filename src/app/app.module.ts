@@ -41,6 +41,7 @@ import {
 import {SearchSubjectsPipe} from './pages/admin/subjects/search-subjects/search-subjects.pipe';
 import {SearchGroupsPipe} from './pages/admin/groups/search-groups/search-groups.pipe';
 import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-teacher.pipe';
+import {IUserService} from "./services/i-user.service";
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-te
     { provide: IGroupService, useClass: environment.groupService },
     { provide: IAudienceService, useClass: environment.audienceService },
     { provide: ISubjectService, useClass: environment.subjectService },
-    { provide: ITeacherService, useClass: environment.teacherService }
+    { provide: ITeacherService, useClass: environment.teacherService },
+    { provide: IUserService, useClass: environment.userService }
   ],
   bootstrap: [AppComponent]
 })

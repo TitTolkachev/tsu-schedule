@@ -1,4 +1,5 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Account} from "../../../../models/account";
 
 @Component({
   selector: 'app-user-element',
@@ -6,7 +7,7 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./user-element.component.css']
 })
 export class UserElementComponent {
-  @Input()
+  /*@Input()
   public role: string = ""
   @Input()
   public name: string = ""
@@ -15,5 +16,22 @@ export class UserElementComponent {
   public email: string = ""
 
   @Input()
-  public group: number | undefined
+  public group: number | undefined*/
+
+  @Input()
+  account: Account | undefined
+
+  @Output()
+  onEdit: EventEmitter<Account> = new EventEmitter<Account>()
+
+  @Output()
+  onDelete: EventEmitter<Account> = new EventEmitter<Account>()
+
+  editClick() {
+    this.onEdit.emit(this.account)
+  }
+
+  deleteClick() {
+    this.onDelete.emit(this.account)
+  }
 }
