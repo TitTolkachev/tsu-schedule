@@ -1,18 +1,18 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {GroupElementComponent} from './group-element.component';
+import {UsersModalComponent} from './users-modal.component';
 
-describe('GroupElementComponent', () => {
-  let component: GroupElementComponent;
-  let fixture: ComponentFixture<GroupElementComponent>;
+describe('UsersModalComponent', () => {
+  let component: UsersModalComponent;
+  let fixture: ComponentFixture<UsersModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GroupElementComponent ]
+      declarations: [ UsersModalComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(GroupElementComponent);
+    fixture = TestBed.createComponent(UsersModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
