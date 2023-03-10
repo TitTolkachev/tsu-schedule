@@ -8,6 +8,8 @@ import {AudiencesPageComponent} from "./pages/admin/audiences/audiences-page/aud
 import {SubjectsPageComponent} from "./pages/admin/subjects/subjects-page/subjects-page.component";
 import {GroupsPageComponent} from "./pages/admin/groups/groups-page/groups-page.component";
 import {MainPageComponent} from "./pages/admin/main/main-page/main-page.component";
+import {RequestsPageComponent} from './pages/admin/requests/requests-page/requests-page.component';
+
 import {UsersPageComponent} from './pages/admin/users/users-page/users-page.component';
 
 const routes: Routes = [
@@ -19,7 +21,8 @@ const routes: Routes = [
   { path: 'admin/subjects', component: SubjectsPageComponent },
   { path: 'admin/groups', component: GroupsPageComponent },
   { path: 'admin/main', component: MainPageComponent },
-  { path: 'admin/users', component: UsersPageComponent }
+  { path: 'admin/users', component: UsersPageComponent },
+  { path: 'admin/requests', component: RequestsPageComponent }
 ];
 
 @NgModule({

@@ -1,0 +1,72 @@
+.form {
+  color: white;
+  background: #371B1B;
+  border-radius: 15px;
+  max-width: 900px;
+}
+
+.form-title {
+  padding-left: 28px;
+  padding-top: 10px;
+  padding-right: 17px;
+
+  font-family: 'Jura', sans-serif;
+  font-weight: 400;
+  font-size: 25px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.form-top {
+  margin-bottom: 37px;
+}
+
+.row {
+  padding-bottom: 50px;
+}
+
+button {
+  width: 210.75px;
+  height: 80.27px;
+  background: #FFFFFF;
+  border: none;
+
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  text-align: center;
+  color: #000000;
+  transition: 0.3s ease;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.p-4 {
+  padding: 0 !important;
+}
+
+.search {
+  padding: 0 37px 27px 37px;
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 41px;
+  display: flex;
+  text-align: center;
+}
+
+::placeholder {
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 41px;
+  display: flex;
+  text-align: center;
+}

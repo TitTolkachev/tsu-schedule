@@ -14,6 +14,10 @@ import {SubjectsPageComponent} from './pages/admin/subjects/subjects-page/subjec
 import {GroupsPageComponent} from './pages/admin/groups/groups-page/groups-page.component';
 import {HeaderAdminPagesComponent} from './components/headers/header-admin-pages/header-admin-pages.component';
 import {MainPageComponent} from './pages/admin/main/main-page/main-page.component';
+import {RequestsPageComponent} from './pages/admin/requests/requests-page/requests-page.component';
+import {RequestComponent} from './pages/admin/requests/request-element/request.component';
+import {SearchRequestPipe} from "./pages/admin/requests/search-request/search-request.pipe";
+
 import {UsersPageComponent} from './pages/admin/users/users-page/users-page.component';
 import {UserElementComponent} from './pages/admin/users/user-element/user-element.component';
 import {SearchUserPipe} from './pages/admin/users/search-user/search-user.pipe';
@@ -41,6 +45,7 @@ import {
 import {SearchSubjectsPipe} from './pages/admin/subjects/search-subjects/search-subjects.pipe';
 import {SearchGroupsPipe} from './pages/admin/groups/search-groups/search-groups.pipe';
 import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-teacher.pipe';
+import {RejectComponent} from './components/reject/reject.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +65,6 @@ import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-te
     UserElementComponent,
     SearchUserPipe,
     UsersModalComponent,
-    SearchUserPipe,
     HeaderAdminPagesComponent,
     ConfirmationComponent,
     GroupsPageComponent,
@@ -79,7 +83,12 @@ import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-te
     SearchSubjectsPipe,
     SearchSubjectsPipe,
     SearchGroupsPipe,
-    SearchTeacherPipe
+    SearchTeacherPipe,
+    HeaderAdminPagesComponent,
+    RequestsPageComponent,
+    RequestComponent,
+    SearchRequestPipe,
+    RejectComponent
   ],
   imports: [
     BrowserModule,
