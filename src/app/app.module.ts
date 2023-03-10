@@ -45,6 +45,7 @@ import {
 import {SearchSubjectsPipe} from './pages/admin/subjects/search-subjects/search-subjects.pipe';
 import {SearchGroupsPipe} from './pages/admin/groups/search-groups/search-groups.pipe';
 import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-teacher.pipe';
+import {RejectComponent} from './components/reject/reject.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-te
     HeaderAdminPagesComponent,
     RequestsPageComponent,
     RequestComponent,
-    SearchRequestPipe
+    SearchRequestPipe,
+    RejectComponent
   ],
   imports: [
     BrowserModule,

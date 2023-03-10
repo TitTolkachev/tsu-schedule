@@ -60,10 +60,10 @@
 
 <!-- Модальное окно подтверждения принятия запроса -->
 <app-confirmation
-  [message]="'Принять ?'"
+  [message]="'Принять запрос от ' + '?'"
 ></app-confirmation>
 
 <!-- Модальное окно подтверждения удаления запроса -->
-<app-confirmation
-  [message]="'Отклонить?'"
-></app-confirmation>
+<app-reject
+  [message]="'Отклонить запрос от ' + '?'"
+></app-reject>
