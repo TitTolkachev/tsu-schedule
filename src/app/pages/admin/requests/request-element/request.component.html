@@ -1,0 +1,30 @@
+<div class="row row-cols-auto  justify-content-between">
+  <div class = "col info-person">
+    <div class="name">
+      {{ name }}
+    </div>
+
+    <div class="email">
+      {{ email }}
+    </div>
+
+    <div *ngIf="group != undefined" class="groups">
+      гр. {{ group }}
+    </div>
+
+    <div *ngIf="oldGroup != undefined && newGroup != undefined" class="groups">
+      гр. {{ oldGroup }} -> {{ newGroup }}
+    </div>
+  </div>
+
+  <div class="col d-flex">
+    <button class="btn" data-bs-toggle="modal" data-bs-target="#confirmationModal">
+      <img src="../../../../../assets/img/confirm.svg" alt="confirm">
+    </button>
+
+    <button class="btn" data-bs-toggle="modal" data-bs-target="#rejectModal">
+      <img src="../../../../../assets/img/reject.svg" alt="reject">
+    </button>
+  </div>
+</div>
+
