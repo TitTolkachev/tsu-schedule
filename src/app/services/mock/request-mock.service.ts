@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {IRequestService} from "../i-request.service";
 import {delay, Observable, of} from "rxjs";
-import {GroupRequest} from "../../models/group-request";
-import {RegistrationRequest} from "../../models/registration-request";
+import {cloneGroupRequest, GroupRequest} from "../../models/group-request";
+import {cloneRegistrationRequest, RegistrationRequest} from "../../models/registration-request";
 import {Group} from "../../models/group";
 
 @Injectable({
@@ -90,11 +90,13 @@ export class RequestMockService implements IRequestService {
   constructor() { }
 
   fetchGroupRequest(): Observable<GroupRequest[]> {
-    return of(this.groupRequests).pipe(delay(1000));
+    return of(this.groupRequests.map(e => cloneGroupRequest(e)))
+      .pipe(delay(1000));
   }
 
   fetchRegistrationRequest(): Observable<RegistrationRequest[]> {
-    return of(this.registrationRequests).pipe(delay(1000));
+    return of(this.registrationRequests.map(e => cloneRegistrationRequest(e)))
+      .pipe(delay(1000));
   }
 
   resolveGroupRequest(groupId: string, accept: boolean): Observable<void> {

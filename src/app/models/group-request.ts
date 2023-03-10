@@ -13,3 +13,12 @@ export class GroupRequest {
     this.group = group
   }
 }
+
+// TODO сделать полное копирование вглубину
+export function cloneGroupRequest(groupRequest: GroupRequest): GroupRequest {
+  return new GroupRequest(
+    groupRequest.id,
+    groupRequest.account,
+    groupRequest.group
+  )
+}

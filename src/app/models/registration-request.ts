@@ -10,3 +10,11 @@ export class RegistrationRequest {
     this.account = account;
   }
 }
+
+// TODO сделать полное копирование вглубину
+export function cloneRegistrationRequest(registrationRequest: RegistrationRequest): RegistrationRequest {
+  return new RegistrationRequest(
+    registrationRequest.id,
+    registrationRequest.account
+  )
+}
