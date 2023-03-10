@@ -46,6 +46,7 @@ import {SearchSubjectsPipe} from './pages/admin/subjects/search-subjects/search-
 import {SearchGroupsPipe} from './pages/admin/groups/search-groups/search-groups.pipe';
 import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-teacher.pipe';
 import {RejectComponent} from './components/reject/reject.component';
+import {IUserService} from "./services/i-user.service";
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import {RejectComponent} from './components/reject/reject.component';
     { provide: IGroupService, useClass: environment.groupService },
     { provide: IAudienceService, useClass: environment.audienceService },
     { provide: ISubjectService, useClass: environment.subjectService },
-    { provide: ITeacherService, useClass: environment.teacherService }
+    { provide: ITeacherService, useClass: environment.teacherService },
+    { provide: IUserService, useClass: environment.userService }
   ],
   bootstrap: [AppComponent]
 })
