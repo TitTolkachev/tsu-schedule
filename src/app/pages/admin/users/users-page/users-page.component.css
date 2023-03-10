@@ -1,0 +1,80 @@
+html, body {
+  overflow-x: hidden !important;
+}
+
+.form {
+  color: white;
+  background: #371B1B;
+  border-radius: 15px;
+  max-width: 900px;
+  max-height: 600px;
+}
+
+.form-title {
+  padding-left: 28px;
+  padding-top: 10px;
+  padding-right: 17px;
+
+  font-family: 'Jura', sans-serif;
+  font-weight: 400;
+  font-size: 25px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+button {
+  width: 210.75px;
+  height: 80.27px;
+  background: #FFFFFF;
+  border-radius: 0!important;
+  border: none;
+
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  text-align: center;
+  color: #000000;
+  transition: 0.3s ease;
+}
+
+button:active, button:disabled, button:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.container-sm {
+  margin-top: 50px;
+}
+
+.container-sm {
+  margin-top: 50px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.p-4 {
+  padding: 0 !important;
+}
+
+.search {
+  padding: 0 37px 50px 37px;
+}
+
+.custom-control-label {
+  padding-left: 15px;
+}
+
+.input-group {
+  margin-top: 27px;
+  margin-right: 16px;
+}
+
+.anyClass {
+  margin-top: 27px;
+
+  height: 50%;
+  overflow-y: scroll;
+}

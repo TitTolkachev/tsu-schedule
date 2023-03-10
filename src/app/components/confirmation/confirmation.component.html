@@ -1,4 +1,3 @@
-<!-- TODO сделать норм модальное окно -->
 <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
@@ -6,7 +5,7 @@
         <button id="confirmation-modal-btn-close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <div>
+      <div class="modal-body">
         <p>{{ message }}</p>
       </div>
 
@@ -15,8 +14,10 @@
         <p>{{ error }}</p>
       </div>
 
-      <button data-bs-dismiss="modal" (click)="cancel.emit($event)">Нет</button>
-      <button (click)="confirm.emit($event)">Да</button>
+      <div class="modal-footer row justify-content-between">
+        <button class="col-md-2 btn btn-primary btn-no" data-bs-dismiss="modal" (click)="cancel.emit($event)">Нет</button>
+        <button class="col-md-2 btn btn-primary btn-yes" (click)="confirm.emit($event)">Да</button>
+      </div>
     </div>
   </div>
 </div>

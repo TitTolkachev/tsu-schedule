@@ -18,7 +18,11 @@ import {RequestsPageComponent} from './pages/admin/requests/requests-page/reques
 import {RequestComponent} from './pages/admin/requests/request-element/request.component';
 import {SearchRequestPipe} from "./pages/admin/requests/search-request/search-request.pipe";
 
+import {UsersPageComponent} from './pages/admin/users/users-page/users-page.component';
+import {UserElementComponent} from './pages/admin/users/user-element/user-element.component';
+import {SearchUserPipe} from './pages/admin/users/search-user/search-user.pipe';
 import {AppComponent} from './app.component';
+import {UsersModalComponent} from './pages/admin/users/users-modal/users-modal.component';
 import {GroupElementComponent} from './pages/admin/groups/group-element/group-element.component';
 import {ConfirmationComponent} from './components/confirmation/confirmation.component';
 import {GroupModalComponent} from './pages/admin/groups/group-modal/group-modal.component';
@@ -48,10 +52,18 @@ import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-te
     SigninComponent,
     SignoutComponent,
     TeachersPageComponent,
+    AudiencesPageComponent,
     SubjectsPageComponent,
+    GroupsPageComponent,
     MainPageComponent,
+    GroupsPageComponent,
     HeaderSigninComponent,
     HeaderCompilerPagesComponent,
+    HeaderAdminPagesComponent,
+    UsersPageComponent,
+    UserElementComponent,
+    SearchUserPipe,
+    UsersModalComponent,
     HeaderAdminPagesComponent,
     ConfirmationComponent,
     GroupsPageComponent,

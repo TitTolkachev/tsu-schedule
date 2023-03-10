@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {RoutingGuard} from "./routing-guard";
-
 import {SigninComponent} from "./pages/signin/signin.component";
 import {SignoutComponent} from "./pages/signout/signout.component";
 import {TeachersPageComponent} from "./pages/admin/teachers/teachers-page/teachers-page.component";
@@ -11,6 +10,7 @@ import {GroupsPageComponent} from "./pages/admin/groups/groups-page/groups-page.
 import {MainPageComponent} from "./pages/admin/main/main-page/main-page.component";
 import {RequestsPageComponent} from './pages/admin/requests/requests-page/requests-page.component';
 
+import {UsersPageComponent} from './pages/admin/users/users-page/users-page.component';
 
 const routes: Routes = [
   { path: '', component: SigninComponent },
@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'admin/subjects', component: SubjectsPageComponent },
   { path: 'admin/groups', component: GroupsPageComponent },
   { path: 'admin/main', component: MainPageComponent },
+  { path: 'admin/users', component: UsersPageComponent },
   { path: 'admin/requests', component: RequestsPageComponent }
 ];
 

@@ -1,0 +1,50 @@
+<app-header-admin-pages></app-header-admin-pages>
+
+
+<div class="container-sm">
+  <div class="row justify-content-center align-content-center">
+    <div class="col p-4 border overflow-hidden flex-md-row shadow-sm h-md-250 position-relative form">
+
+      <div class="d-flex flex-column">
+        <div class="d-flex">
+          <div class="col form-title">Пользователи</div>
+          <button
+            class="ms-auto btn"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#addUserModal">
+            Добавить новый аккаунт
+          </button>
+        </div>
+      </div>
+
+
+      <div class="search mx-auto">
+        <div class="input-group">
+          <input class="form-control" type="search" placeholder="Введите ФИО / email / группу" [(ngModel)]="searchUserInput">
+        </div>
+      </div>
+
+      <div class="nav nav-pills nav-stacked anyClass">
+        <div class="container" *ngFor="let e of data | searchUser: searchUserInput">
+          <app-user-element
+            [role] = "e.role"
+            [name] = "e.name"
+            [email] = "e.email"
+            [group] = "e.group"
+          ></app-user-element>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Модальное окно добавления или редактирования аудитории -->
+<app-users-modal
+></app-users-modal>
+
+<!-- Модальное окно подтверждения удаления -->
+<app-confirmation
+  [message]="'Удалить?'"
+></app-confirmation>
