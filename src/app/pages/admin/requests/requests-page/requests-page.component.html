@@ -15,7 +15,7 @@
           </div>
 
           <div class="search input-group">
-            <input class="form-control" type="search" placeholder="Введите ФИО / email" [(ngModel)]="searchRequestRegistration">
+            <input class="form-control" type="search" placeholder="Введите ФИО / email / группу" [(ngModel)]="searchRequestRegistration">
           </div>
 
           <div *ngFor="let e of requestsReqistration | searchRequest: searchRequestRegistration">
@@ -42,7 +42,7 @@
           </div>
 
           <div class="search input-group">
-            <input class="form-control" type="search" placeholder="Введите ФИО / email" [(ngModel)]="searchRequestChangeGroup">
+            <input class="form-control" type="search" placeholder="Введите ФИО / email / группу" [(ngModel)]="searchRequestChangeGroup">
           </div>
 
           <div *ngFor="let e of requestsChangeGroup | searchRequest: searchRequestChangeGroup">
