@@ -11,9 +11,15 @@
         <div class="row">
           <label for="userTypeInput" class="col-sm-3 col-form-label">Роль</label>
           <div class="col-sm-8">
-            <select class="form-select form-select-s" aria-label=".form-select-sm example" id="userTypeInput">
-              <option value="student-role">СТУДЕНТ</option>
-              <option value="teacher-role">ПРЕПОДАВАТЕЛЬ</option>
+            <select
+              class="form-select form-select-s"
+              aria-label=".form-select-sm example"
+              id="userTypeInput"
+              #selected
+              (change)="onRoleChange(selected.value)"
+            >
+              <option value="Student">СТУДЕНТ</option>
+              <option value="Teacher">ПРЕПОДАВАТЕЛЬ</option>
             </select>
           </div>
         </div>
@@ -42,9 +48,29 @@
         <div *ngIf="this.role == 'Student'" class="row">
           <label for="groupInput" class="col-sm-3 col-form-label">Группа</label>
           <div class="col-sm-8">
-            <select class="form-select form-select-s groups-list" aria-label=".form-select-sm example" id="groupInput">
-              <option value="student-role">972101</option>
-              <option value="teacher-role">972102</option>
+            <select
+              class="form-select form-select-s groups-list"
+              aria-label=".form-select-sm example"
+              id="groupInput"
+              #selected
+              (change)="onGroupChange(selected.value)"
+            >
+              <option *ngFor="let e of groups" [value]="e.id">{{ e.number }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div *ngIf="this.role == 'Teacher'" class="row">
+          <label for="groupInput" class="col-sm-3 col-form-label">Преподаватель</label>
+          <div class="col-sm-8">
+            <select
+              class="form-select form-select-s groups-list"
+              aria-label=".form-select-sm example"
+              id="teacherInput"
+              #selected
+              (change)="onTeacherChange(selected.value)"
+            >
+              <option *ngFor="let e of teachers" [value]="e.id">{{ e.lastName }} {{ e.firstName }} {{ e.patronymicName }}</option>
             </select>
           </div>
         </div>

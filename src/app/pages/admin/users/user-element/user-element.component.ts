@@ -7,20 +7,15 @@ import {Account} from "../../../../models/account";
   styleUrls: ['./user-element.component.css']
 })
 export class UserElementComponent {
-  /*@Input()
-  public role: string = ""
-  @Input()
-  public name: string = ""
-
-  @Input()
-  public email: string = ""
-
-  @Input()
-  public group: number | undefined*/
 
   @Input()
   account: Account | undefined
 
+  /**
+   * @deprecated устарело по причине того,
+   * что бекенд не реализовал возможность редактировать аккаунт
+   * TODO возможно убрать
+   */
   @Output()
   onEdit: EventEmitter<Account> = new EventEmitter<Account>()
 

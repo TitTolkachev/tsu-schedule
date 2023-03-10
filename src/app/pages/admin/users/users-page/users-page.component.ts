@@ -5,6 +5,8 @@ import {IUserService} from "../../../../services/i-user.service";
 import {IGroupService} from "../../../../services/i-group.service";
 import {Account} from "../../../../models/account";
 import {Group} from "../../../../models/group";
+import {Teacher} from "../../../../models/teacher";
+import {ITeacherService} from "../../../../services/i-teacher.service";
 
 @Component({
   selector: 'app-users-page',
@@ -20,6 +22,18 @@ export class UsersPageComponent extends DisplayErrorComponent {
   accounts: Account[] | undefined
 
   /**
+   * Список групп с сервера.
+   * Если undefined, значит список ещё не загружен с сервера
+   */
+  groups: Group[] | undefined
+
+  /**
+   * Список преподавателей с сервера.
+   * Если undefined, значит список ещё не загружен с сервера
+   */
+  teachers: Teacher[] | undefined
+
+  /**
    * Объект для передачи данных в модальное окно
    */
   modal = new Modal()
@@ -31,7 +45,8 @@ export class UsersPageComponent extends DisplayErrorComponent {
 
   constructor(
     private userService: IUserService,
-    private groupService: IGroupService
+    private groupService: IGroupService,
+    private teacherService: ITeacherService
   ) {
     super();
   }
@@ -47,12 +62,25 @@ export class UsersPageComponent extends DisplayErrorComponent {
       next: accounts => this.accounts = accounts,
       error: err => this.handleHttpError(err)
     })
+    this.groupService.fetchGroups().subscribe({
+      next: groups => this.groups = groups,
+      error: err => this.handleHttpError(err)
+    })
+    this.teacherService.fetchTeachers().subscribe({
+      next: teachers => this.teachers = teachers,
+      error: err => this.handleHttpError(err)
+    })
   }
 
   requestCreateAccount() {
     this.selectAccount(null)
   }
 
+  /**
+   * @deprecated устарело по причине того,
+   * что бекенд не реализовал возможность редактировать аккаунт
+   * TODO возможно убрать
+   */
   requestEditAccount(account: Account) {
     this.selectAccount(account)
   }
@@ -67,7 +95,8 @@ export class UsersPageComponent extends DisplayErrorComponent {
     lastName: string,
     patronymicName: string,
     role: string,
-    group: Group | null,
+    groupId: string | null,
+    teacherId: string | null,
     email: string,
     password: string
   }) {
@@ -78,7 +107,8 @@ export class UsersPageComponent extends DisplayErrorComponent {
       lastName: form.lastName,
       patronymicName: form.patronymicName,
       role: form.role,
-      group: form.group,
+      groupId: form.groupId,
+      teacherId: form.teacherId,
       email: form.email,
       password: form.password
     }).subscribe({
@@ -87,13 +117,19 @@ export class UsersPageComponent extends DisplayErrorComponent {
     })
   }
 
+  /**
+   * @deprecated устарело по причине того,
+   * что бекенд не реализовал возможность редактировать аккаунт
+   * TODO возможно убрать
+   */
   modifyAccount(form: {
     id: string,
     firstName: string,
     lastName: string,
     patronymicName: string,
     role: string,
-    group: Group | null,
+    groupId: string | null,
+    teacherId: string | null,
     email: string,
     password: string
   }) {
@@ -104,7 +140,8 @@ export class UsersPageComponent extends DisplayErrorComponent {
       lastName: form.lastName,
       patronymicName: form.patronymicName,
       role: form.role,
-      group: form.group,
+      groupId: form.groupId,
+      teacherId: form.teacherId,
       email: form.email,
       password: form.password
     }).subscribe({

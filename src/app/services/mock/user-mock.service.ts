@@ -32,7 +32,8 @@ export class UserMockService implements IUserService {
     lastName: string,
     patronymicName: string,
     role: string,
-    group: Group | null,
+    groupId: string | null,
+    teacherId: string | null,
     email: string,
     password: string
   }): Observable<void> {
@@ -42,7 +43,7 @@ export class UserMockService implements IUserService {
       account.lastName,
       account.patronymicName,
       account.role,
-      account.group,
+      account.groupId ? new Group(account.groupId, "123") : null,
       null,
       account.email
     ))
@@ -54,7 +55,8 @@ export class UserMockService implements IUserService {
     lastName: string,
     patronymicName: string,
     role: string | null,
-    group: Group | null,
+    groupId: string | null,
+    teacherId: string | null,
     email: string | null,
     password: string | null
   }): Observable<void> {
@@ -66,7 +68,7 @@ export class UserMockService implements IUserService {
         account.lastName,
         account.patronymicName,
         account.role ? account.role : this.accounts[index]!.role,
-        account.group ? account.group : this.accounts[index]!.group,
+        account.groupId ? new Group(account.groupId, "123") : this.accounts[index]!.group,
         null,
         account.email ? account.email : this.accounts[index]!.email
       )
