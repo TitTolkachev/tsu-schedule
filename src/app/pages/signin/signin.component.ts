@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import jwtDecode from "jwt-decode";
@@ -49,12 +49,17 @@ export class SigninComponent {
             this.state = 'connection_refused'
             return
           }
-          if (err.error.status === 500) {
+          if (err.status === 500) {
             this.state = 'internal_server_error'
             return
           }
-          if (err.error.status === 400) {
-            this.state = 'bad_request'
+          if (err.status === 401) {
+            this.state = 'wrong_credentials'
+            return
+          }
+          if (err.status === 400) {
+            // TODO пусть бек сделает 401 на неверный формат почты
+            this.state = 'wrong_credentials'
             return
           }
           this.state = 'unknown_error'

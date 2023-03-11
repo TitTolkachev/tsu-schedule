@@ -9,7 +9,7 @@ import {ErrorMessage} from "../../../../errors";
   templateUrl: './teachers-page.component.html',
   styleUrls: ['./teachers-page.component.css', '../../css/admin-modal.css']
 })
-export class TeachersPageComponent  extends DisplayErrorComponent {
+export class TeachersPageComponent extends DisplayErrorComponent {
 
   /**
    * Список учителей с сервера.

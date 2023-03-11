@@ -1,4 +1,8 @@
 import {Component} from '@angular/core';
+import {DisplayErrorComponent} from "../../../../components/util/display-error";
+import {IRequestService} from "../../../../services/i-request.service";
+import {RegistrationRequest} from "../../../../models/registration-request";
+import {GroupRequest} from "../../../../models/group-request";
 
 @Component({
   selector: 'app-requests-page',
@@ -6,22 +10,24 @@ import {Component} from '@angular/core';
   styleUrls: ['./requests-page.component.css']
 })
 
-export class RequestsPageComponent {
+export class RequestsPageComponent  extends DisplayErrorComponent {
+
   /**
-   * Список аудиторий с сервера.
+   * Список запросов на регистрацию с сервера.
    * Если undefined, значит список ещё не загружен с сервера
    */
-  requestsReqistration = [
-    {name: "Иноземцева Татьяна Андреевна", email: "sd@mail.com", group: undefined},
-    {name: "Даммер Диана Дамировна", email: "dam@gmail.com", group: undefined},
-    {name: "Феофилов Алексей Дмитриевич", email: "fil-master@vk.com", group: 972101},
-  ]
+  registrationRequests: RegistrationRequest[] | undefined
 
-  requestsChangeGroup = [
-    {name: "Аникушин Роман Евгеньевич", email: "romAN@gmail.com", oldGroup: 972101, newGroup: 972103},
-    {name: "Блаблашкин Игорь Семенович", email: "nani@bla.com", oldGroup: 972002, newGroup: 972101}
-  ]
+  /**
+   * Список запросов на смену группы с сервера.
+   * Если undefined, значит список ещё не загружен с сервера
+   */
+  groupRequests: GroupRequest[] | undefined
 
+  /**
+   * Объект для передачи данных в модальное окно
+   */
+  modal = new Modal()
 
   /**
    * Объекты для поиска по списку
@@ -29,4 +35,54 @@ export class RequestsPageComponent {
   searchRequestChangeGroup = ''
   searchRequestRegistration = ''
 
+  constructor(
+    private requestService: IRequestService
+  ) {
+    super();
+  }
+
+  ngOnInit() {
+    this.refresh()
+  }
+
+  refresh() {
+    document.getElementById("confirmation-modal-btn-close")?.click()
+    document.getElementById("reject-modal-btn-close")?.click()
+    this.requestService.fetchRegistrationRequest().subscribe({
+      next: registrationRequests => this.registrationRequests = registrationRequests,
+      error: err => this.handleHttpError(err)
+    })
+    this.requestService.fetchGroupRequest().subscribe({
+      next: groupRequests => this.groupRequests = groupRequests,
+      error: err => this.handleHttpError(err)
+    })
+  }
+
+  resolveRequest(accept: boolean) {
+    if (this.modal.selected instanceof RegistrationRequest) {
+      this.requestService.resolveRegistrationRequest(this.modal.selected.id, accept).subscribe({
+        next: () => this.refresh(),
+        error: err => this.modal.error = this.httpErrorMessageOf(err)
+      })
+      return
+    }
+    if (this.modal.selected instanceof GroupRequest) {
+      this.requestService.resolveGroupRequest(this.modal.selected.id, accept).subscribe({
+        next: () => this.refresh(),
+        error: err => this.modal.error = this.httpErrorMessageOf(err)
+      })
+      return
+    }
+    throw Error("invalid selected request")
+  }
+
+  selectRequest(subject: RegistrationRequest | GroupRequest | null) {
+    this.modal.error = null
+    this.modal.selected = subject
+  }
+}
+
+class Modal {
+  selected: RegistrationRequest | GroupRequest | null = null
+  error: string | null = null
 }
