@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { GroupMockService } from './group-mock.service';
+import {GroupMockService} from './group-mock.service';
 
 describe('GroupMockService', () => {
   let service: GroupMockService;

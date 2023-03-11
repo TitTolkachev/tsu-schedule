@@ -18,7 +18,7 @@ export class SubjectMockService implements ISubjectService {
   constructor() {}
 
   fetchSubjects(): Observable<Subject[]> {
-    return of(this.subjects)
+    return of(this.subjects.map(e => new Subject(e.id, e.name)))
   }
 
   createSubject(

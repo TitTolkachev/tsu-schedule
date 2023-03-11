@@ -114,7 +114,7 @@ export class SubjectsPageComponent extends DisplayErrorComponent {
 
   private selectSubject(subject: Subject | null) {
     this.modal.error = null
-    this.modal.selected = (subject == null) ? null : subject.clone()
+    this.modal.selected = subject
   }
 }
 

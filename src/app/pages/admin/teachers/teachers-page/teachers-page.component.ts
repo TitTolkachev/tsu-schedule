@@ -9,7 +9,7 @@ import {ErrorMessage} from "../../../../errors";
   templateUrl: './teachers-page.component.html',
   styleUrls: ['./teachers-page.component.css', '../../css/admin-modal.css']
 })
-export class TeachersPageComponent  extends DisplayErrorComponent {
+export class TeachersPageComponent extends DisplayErrorComponent {
 
   /**
    * Список учителей с сервера.
@@ -127,7 +127,7 @@ export class TeachersPageComponent  extends DisplayErrorComponent {
 
   private selectTeacher(teacher: Teacher | null) {
     this.modal.error = null
-    this.modal.selected = (teacher == null) ? null : teacher.clone()
+    this.modal.selected = teacher
   }
 }
 

@@ -1,0 +1,39 @@
+<div class="row row-cols-auto justify-content-between">
+
+  <div class="col" *ngIf="account">
+    <div class="row align-items-center justify-content-start">
+      <div class="col-md-2">
+        <div>
+          <img class="role-image" *ngIf="account.role == 'Teacher'" src="../../../../../assets/img/teacher.svg" alt="teacher">
+          <img class="role-image" *ngIf="account.role == 'Student'" src="../../../../../assets/img/student.svg" alt="student">
+        </div>
+      </div>
+
+      <div class = "col-md info-person">
+        <div class="name">
+          {{ account.lastName }} {{ account.firstName }} {{ account.patronymicName }}
+        </div>
+
+        <div class="email">
+          {{ account.email }}
+        </div>
+
+        <div *ngIf="account.group != null" class="group">
+          гр. {{ account.group.number }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="d-flex buttons">
+      <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addUserModal" (click)="editClick()">
+        <img class="edit-image" src="../../../../../assets/img/edit.svg" alt="edit">
+      </button>
+
+      <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#confirmationModal" (click)="deleteClick()">
+        <img class="delete-image" src="../../../../../assets/img/delete.svg" alt="delete">
+      </button>
+    </div>
+  </div>
+</div>

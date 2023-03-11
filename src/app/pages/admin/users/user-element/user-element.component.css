@@ -1,0 +1,33 @@
+.info-person {
+  font-family: 'Jura', sans-serif;
+  font-weight: 200;
+  font-size: 14px;
+  text-align: left;
+}
+
+.name {
+  color: #FFFFFF;
+}
+
+.email, .group {
+  color: rgba(255, 255, 255, 0.8);
+  padding-top: -10px;
+}
+
+.role-image {
+  width: 23px;
+  height: 22px;
+}
+
+.row {
+  padding: 0 27px 15px 37px;
+}
+
+.edit-image, .delete-image {
+  width: 23px;
+  height: 22px;
+}
+
+button {
+  border: none;
+}

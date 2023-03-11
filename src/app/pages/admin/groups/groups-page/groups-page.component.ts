@@ -112,7 +112,7 @@ export class GroupsPageComponent extends DisplayErrorComponent {
 
   private selectGroup(group: Group | null) {
     this.modal.error = null
-    this.modal.selected = (group == null) ? null : group.clone()
+    this.modal.selected = group
   }
 }
 

@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {environment} from './environment';
 import {BrowserModule} from '@angular/platform-browser';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app-routing.module";
 import {HeaderSigninComponent} from "./components/headers/header-signin/header-signin.component";
@@ -14,7 +14,14 @@ import {SubjectsPageComponent} from './pages/admin/subjects/subjects-page/subjec
 import {GroupsPageComponent} from './pages/admin/groups/groups-page/groups-page.component';
 import {HeaderAdminPagesComponent} from './components/headers/header-admin-pages/header-admin-pages.component';
 import {MainPageComponent} from './pages/admin/main/main-page/main-page.component';
+import {RequestsPageComponent} from './pages/admin/requests/requests-page/requests-page.component';
+import {RequestComponent} from './pages/admin/requests/request-element/request.component';
+import {SearchRequestPipe} from "./pages/admin/requests/search-request/search-request.pipe";
+import {UsersPageComponent} from './pages/admin/users/users-page/users-page.component';
+import {UserElementComponent} from './pages/admin/users/user-element/user-element.component';
+import {SearchUserPipe} from './pages/admin/users/search-user/search-user.pipe';
 import {AppComponent} from './app.component';
+import {UsersModalComponent} from './pages/admin/users/users-modal/users-modal.component';
 import {EditPageComponent} from './pages/moderator/edit-page/edit-page.component';
 import {ScheduleWeekComponent} from './pages/moderator/edit-page/components/schedule-week/schedule-week.component';
 import {ScheduleCellDayComponent} from './pages/moderator/edit-page/components/schedule-cell-day/schedule-cell-day.component';
@@ -33,6 +40,7 @@ import {IGroupService} from "./services/i-group.service";
 import {ITeacherService} from "./services/i-teacher.service";
 import {TeacherModalComponent} from './pages/admin/teachers/teacher-modal/teacher-modal.component';
 import {TeacherElementComponent} from './pages/admin/teachers/teacher-element/teacher-element.component';
+import {TokenInterceptorService} from "./services/token-interceptor.service";
 import {
   SearchAudienceFramePipe,
   SearchAudienceNamePipe,
@@ -41,9 +49,12 @@ import {
 import {SearchSubjectsPipe} from './pages/admin/subjects/search-subjects/search-subjects.pipe';
 import {SearchGroupsPipe} from './pages/admin/groups/search-groups/search-groups.pipe';
 import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-teacher.pipe';
+import {RejectComponent} from './components/reject/reject.component';
+import {IUserService} from "./services/i-user.service";
+import {IRequestService} from "./services/i-request.service";
 import {IScheduleService} from "./services/i-schedule.service";
 import {ILessonService} from "./services/i-lesson.service";
-import { LoaderComponent } from './components/loader/loader.component';
+import {LoaderComponent} from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -51,12 +62,19 @@ import { LoaderComponent } from './components/loader/loader.component';
     SigninComponent,
     SignoutComponent,
     TeachersPageComponent,
+    AudiencesPageComponent,
     SubjectsPageComponent,
     GroupsPageComponent,
     EditPageComponent,
     MainPageComponent,
+    GroupsPageComponent,
     HeaderSigninComponent,
     HeaderCompilerPagesComponent,
+    HeaderAdminPagesComponent,
+    UsersPageComponent,
+    UserElementComponent,
+    SearchUserPipe,
+    UsersModalComponent,
     HeaderAdminPagesComponent,
     ConfirmationComponent,
     GroupsPageComponent,
@@ -76,6 +94,11 @@ import { LoaderComponent } from './components/loader/loader.component';
     SearchSubjectsPipe,
     SearchGroupsPipe,
     SearchTeacherPipe,
+    HeaderAdminPagesComponent,
+    RequestsPageComponent,
+    RequestComponent,
+    SearchRequestPipe,
+    RejectComponent,
     ScheduleWeekComponent,
     ScheduleCellDayComponent,
     SchedulePairComponent,
@@ -89,12 +112,15 @@ import { LoaderComponent } from './components/loader/loader.component';
     AppRoutingModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
     { provide: IGroupService, useClass: environment.groupService },
     { provide: IAudienceService, useClass: environment.audienceService },
     { provide: ISubjectService, useClass: environment.subjectService },
     { provide: ITeacherService, useClass: environment.teacherService },
     { provide: IScheduleService, useClass: environment.scheduleService },
-    { provide: ILessonService, useClass: environment.lessonService }
+    { provide: ILessonService, useClass: environment.lessonService },
+    { provide: IUserService, useClass: environment.userService },
+    { provide: IRequestService, useClass: environment.requestService }
   ],
   bootstrap: [AppComponent]
 })

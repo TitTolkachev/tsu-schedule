@@ -17,4 +17,8 @@ export enum ErrorMessage {
   VALIDATION_TEACHER_FIRST_NAME_EMPTY = "Имя преподавателя не может быть пустым.",
   VALIDATION_TEACHER_LAST_NAME_EMPTY = "Фамилия преподавателя не может быть пустым.",
   VALIDATION_TEACHER_PATRONYMIC_NAME_EMPTY = "Отчество преподавателя не может быть пустым.",
+
+  VALIDATION_USER_FIRST_NAME_EMPTY = "Имя пользователя не может быть пустым.",
+  VALIDATION_USER_LAST_NAME_EMPTY = "Фамилия пользователя не может быть пустым.",
+  VALIDATION_USER_PATRONYMIC_NAME_EMPTY = "Отчество пользователя не может быть пустым.",
 }

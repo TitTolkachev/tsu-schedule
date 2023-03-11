@@ -1,0 +1,75 @@
+<app-header-admin-pages></app-header-admin-pages>
+
+<div class="container">
+  <div class="row justify-content-around mb-2">
+    <div class="col-md-4">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative form">
+        <div class="col p-4 d-flex flex-column position-static">
+          <div class="form-top d-flex">
+            <div class="form-title">Запросы на регистрацию</div>
+            <!-- TODO у бекенда нет метода "Принять всё". Я думаю кнопка лишняя -->
+            <!--<button
+              class="ms-auto"
+              type="submit">
+              Принять все
+            </button>-->
+          </div>
+
+          <div class="search input-group">
+            <input class="form-control" type="search" placeholder="Введите ФИО / email / группу" [(ngModel)]="searchRequestRegistration">
+          </div>
+
+          <div *ngFor="let e of registrationRequests | searchRequest: searchRequestRegistration">
+            <app-requests
+              [request]="e"
+              (onAccept)="selectRequest($event)"
+              (onDecline)="selectRequest($event)"
+            ></app-requests>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative form">
+        <div class="col p-4 d-flex flex-column position-static">
+          <div class="form-top d-flex">
+            <div class="form-title">Запросы на изменения группы</div>
+            <!-- TODO у бекенда нет метода "Принять всё". Я думаю кнопка лишняя -->
+            <!--<button
+              class="ms-auto"
+              type="submit">
+              Принять все
+            </button>-->
+          </div>
+
+          <div class="search input-group">
+            <input class="form-control" type="search" placeholder="Введите ФИО / email / группу" [(ngModel)]="searchRequestChangeGroup">
+          </div>
+
+          <div *ngFor="let e of groupRequests | searchRequest: searchRequestChangeGroup">
+            <app-requests
+              [request]="e"
+              (onAccept)="selectRequest($event)"
+              (onDecline)="selectRequest($event)"
+            ></app-requests>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Модальное окно подтверждения принятия запроса -->
+<app-confirmation
+  [message]="'Принять запрос?'"
+  [error]="modal.error"
+  (confirm)="resolveRequest(true)"
+></app-confirmation>
+
+<!-- Модальное окно подтверждения удаления запроса -->
+<app-reject
+  [message]="'Отклонить запрос?'"
+  [error]="modal.error"
+  (confirm)="resolveRequest(false)"
+></app-reject>
