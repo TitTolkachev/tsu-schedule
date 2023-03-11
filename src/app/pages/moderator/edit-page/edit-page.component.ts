@@ -21,6 +21,7 @@ import {IAudienceService} from "../../../services/i-audience.service";
 import {ITeacherService} from "../../../services/i-teacher.service";
 import {IScheduleService} from "../../../services/i-schedule.service";
 import {SelectedInput} from "./selected-input";
+import {Event} from "@angular/router";
 
 @Component({
   selector: 'app-edit-page',
@@ -154,6 +155,28 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
 
     // Календарь
     let input10 = document.getElementById('input10')
+  }
+
+  onOptionClick(inputId: string, datalistId: string, ev: MouseEvent) {
+    let input = document.getElementById(inputId) as HTMLInputElement
+    let datalist = document.getElementById(datalistId)
+    let option = ev.target
+    if (input != null && datalist != null) {
+      // @ts-ignore
+      input.value = option.value
+      datalist.style.display = 'none'
+      input.style.borderRadius = "5px"
+    }
+    let event = new Event('change', {
+      bubbles: true,
+      cancelable: true,
+    });
+    input?.dispatchEvent(event);
+  }
+
+  buildLessonTime(t: LessonTime) {
+    return (t.startTime.hour < 10 ? '0' : '') + t.startTime.hour + ':' + (t.startTime.minute < 10 ? '0' : '') + t.startTime.minute
+      + '-' + (t.endTime.hour < 10 ? '0' : '')+ t.endTime.hour + ':' + (t.endTime.minute < 10 ? '0' : '') + t.endTime.minute
   }
 
   setDisplayBlock(id: string) {
