@@ -28,12 +28,68 @@ import {IScheduleService} from "../../../services/i-schedule.service";
 })
 export class EditPageComponent extends DisplayErrorComponent implements OnInit {
 
-  private hintTimer: number | undefined;
+  testPrint(x: any) {
+    console.log(x)
+  }
+
+  get SelectedSubject(): string | null {
+    let returnVal = null
+    let input = document.getElementById('input1') as HTMLInputElement
+    if (input != null) {
+      let inputValue = input.value.trim()
+      if (inputValue != '') {
+        this.subjects?.forEach((e) => {
+          if (e.name.trim().toUpperCase() == inputValue.toUpperCase())
+            returnVal = e.id
+        })
+      }
+    }
+    return returnVal
+  }
+
+  get SelectedPairType(): string | null {
+    let returnVal = null
+    let input = document.getElementById('input2') as HTMLInputElement
+    if (input != null) {
+      let inputValue = input.value.trim()
+      if (inputValue != '') {
+        this.lessonTypes?.forEach((e) => {
+          if (e.name.trim().toUpperCase() == inputValue.toUpperCase())
+            returnVal = e.id
+        })
+      }
+    }
+    return returnVal
+  }
+
+  get SelectedWeekDay(): string | null {
+    let returnVal = null
+    let input = document.getElementById('input3') as HTMLInputElement
+    if (input != null) {
+      let inputValue = input.value.trim()
+      if (inputValue != '') {
+        this.weekDays?.forEach((e) => {
+          if (e.name.trim().toUpperCase() == inputValue.toUpperCase())
+            returnVal = e.id
+        })
+      }
+    }
+    return returnVal
+  }
+
+  SelectedTime: number = -1
+  SelectedGroup: number = -1
+  SelectedAudience: number = -1
+  SelectedTeacher: number = -1
+  SelectedRepeat: number = -1
+  SelectedDateStart: number = -1
+  SelectedDateEnd: number = -1
 
   // Отображаемые недели
   Weeks: Array<Week> = []
 
   State = State.base
+  private hintTimer: number | undefined;
 
   IsLoadingWeek = true
   IsLoadingData = true
@@ -42,6 +98,13 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
 
   subjects: Subject[] | undefined
   lessonTypes: LessonType[] | undefined
+  weekDays = [
+    {id: 0, name: 'Понедельник'},
+    {id: 1, name: 'Вторник'},
+    {id: 2, name: 'Среда'},
+    {id: 3, name: 'Четверг'},
+    {id: 4, name: 'Пятница'},
+    {id: 5, name: 'Суббота'}]
   lessonTimes: LessonTime[] | undefined
   groups: Group[] | undefined
   audiences: Audience[] | undefined

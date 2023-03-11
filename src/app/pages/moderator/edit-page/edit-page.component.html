@@ -15,9 +15,7 @@
           <div class="expand-arrow" id="arrow1">
             <span class="material-symbols-outlined">expand_more</span>
           </div>
-          <input autocomplete="off" role="combobox" list="" id="input1" name="datalist1"
-                 placeholder="Название предмета">
-
+          <input autocomplete="off" role="combobox" list="" id="input1" name="datalist1" placeholder="Название предмета">
           <datalist class="main-input-datalist" id="datalist1" role="listbox">
             <option *ngFor="let s of subjects" value="{{s.name}}">{{s.name}}</option>
           </datalist>
@@ -34,8 +32,7 @@
           <div class="expand-arrow" id="arrow2">
             <span class="material-symbols-outlined">expand_more</span>
           </div>
-          <input autocomplete="off" role="combobox" list="" id="input2" name="datalist2"
-                 placeholder="Вид пары">
+          <input autocomplete="off" role="combobox" list="" id="input2" name="datalist2" placeholder="Вид пары">
           <datalist class="main-input-datalist" id="datalist2" role="listbox">
             <option *ngFor="let s of lessonTypes" value="{{s.name}}">{{s.name}}</option>
           </datalist>
@@ -52,15 +49,9 @@
           <div class="expand-arrow" id="arrow3">
             <span class="material-symbols-outlined">expand_more</span>
           </div>
-          <input autocomplete="off" role="combobox" list="" id="input3" name="datalist3"
-                 placeholder="День недели">
+          <input autocomplete="off" role="combobox" list="" id="input3" name="datalist3" placeholder="День недели">
           <datalist class="main-input-datalist" id="datalist3" role="listbox">
-            <option value="Понедельник">Понедельник</option>
-            <option value="Вторник">Вторник</option>
-            <option value="Среда">Среда</option>
-            <option value="Четверг">Четверг</option>
-            <option value="Пятница">Пятница</option>
-            <option value="Суббота">Суббота</option>
+            <option *ngFor="let s of weekDays" value="{{s.name}}">{{s.name}}</option>
           </datalist>
 
         </fieldset>
@@ -75,8 +66,7 @@
           <div class="expand-arrow" id="arrow4">
             <span class="material-symbols-outlined">expand_more</span>
           </div>
-          <input autocomplete="off" role="combobox" list="" id="input4" name="datalist4"
-                 placeholder="Время пары">
+          <input autocomplete="off" role="combobox" list="" id="input4" name="datalist4" placeholder="Время пары">
           <datalist class="main-input-datalist" id="datalist4" role="listbox">
             <option *ngFor="let s of lessonTimes"
                     value="{{s.startTime.hour}}:{{s.startTime.minute}}-{{s.endTime.hour}}:{{s.endTime.minute}}">
@@ -99,8 +89,7 @@
           <div class="expand-arrow" id="arrow5">
             <span class="material-symbols-outlined">expand_more</span>
           </div>
-          <input autocomplete="off" role="combobox" list="" id="input5" name="datalist5"
-                 placeholder="Номер группы" readonly="readonly">
+          <input autocomplete="off" role="combobox" list="" id="input5" name="datalist5" placeholder="Номер группы" readonly="readonly">
           <datalist class="group-input-datalist " id="datalist5" role="listbox">
             <option class="group-option" *ngFor="let s of groups" value="{{s.number}}">{{s.number}}</option>
           </datalist>
@@ -117,8 +106,7 @@
           <div class="expand-arrow" id="arrow6">
             <span class="material-symbols-outlined">expand_more</span>
           </div>
-          <input autocomplete="off" role="combobox" list="" id="input6" name="datalist6"
-                 placeholder="Номер аудитории">
+          <input autocomplete="off" role="combobox" list="" id="input6" name="datalist6" placeholder="Номер аудитории">
           <datalist class="main-input-datalist" id="datalist6" role="listbox">
             <option *ngFor="let s of audiences" value="{{s.name}}">{{s.name}}</option>
           </datalist>
@@ -135,8 +123,7 @@
           <div class="expand-arrow" id="arrow7">
             <span class="material-symbols-outlined">expand_more</span>
           </div>
-          <input autocomplete="off" role="combobox" list="" id="input7" name="datalist7"
-                 placeholder="ФИО преподавателя">
+          <input autocomplete="off" role="combobox" list="" id="input7" name="datalist7" placeholder="ФИО преподавателя">
           <datalist class="main-input-datalist" id="datalist7" role="listbox">
             <option *ngFor="let s of teachers" value="{{s.fullName}}">{{s.fullName}}</option>
           </datalist>
@@ -157,8 +144,7 @@
             <div class="expand-arrow" id="arrow8">
               <span class="material-symbols-outlined">expand_more</span>
             </div>
-            <input autocomplete="off" role="combobox" list="" id="input8" name="datalist8"
-                   placeholder="Повторять каждые">
+            <input autocomplete="off" role="combobox" list="" id="input8" name="datalist8" placeholder="Повторять каждые">
             <datalist class="main-input-datalist" id="datalist8" role="listbox">
               <option value="1">1</option>
               <option value="2">2</option>
