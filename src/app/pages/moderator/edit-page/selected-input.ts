@@ -107,7 +107,7 @@ export class SelectedInput {
       let inputValue = input.value.trim()
       if (inputValue != '') {
         this.EditPage?.teachers?.forEach((e) => {
-          if (e.fullName.trim().toUpperCase() == inputValue.toUpperCase())
+          if (`${e.lastName} ${e.firstName} ${e.patronymicName}`.trim().toUpperCase() == inputValue.toUpperCase())
             returnVal = e.id
         })
       }

@@ -150,7 +150,7 @@
             (change)="refresh()"
           >
           <datalist class="main-input-datalist" id="datalist7" role="listbox">
-            <option *ngFor="let s of teachers" value="{{s.fullName}}">{{s.fullName}}</option>
+            <option *ngFor="let s of teachers" value="{{s.lastName}} {{s.firstName}} {{s.patronymicName}}">{{s.lastName}} {{s.firstName}} {{s.patronymicName}}</option>
           </datalist>
 
         </fieldset>

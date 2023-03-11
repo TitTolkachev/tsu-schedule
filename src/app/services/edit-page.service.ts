@@ -167,7 +167,7 @@ export class EditPageService {
             `${lesson.studyRoom.number} ${lesson.studyRoom.name}`,
             lesson.groups.map(e => e.number).join(','),
             lesson.lessonType.name,
-            lesson.teacher.fullName,
+            `${lesson.teacher.lastName} ${lesson.teacher.firstName} ${lesson.teacher.patronymicName}`,
             day.date,
             `${formatTime(lesson.lessonTime.startTime)} - ${formatTime(lesson.lessonTime.endTime)}`
           ),
