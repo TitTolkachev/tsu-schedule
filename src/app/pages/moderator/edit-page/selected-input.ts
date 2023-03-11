@@ -60,8 +60,8 @@ export class SelectedInput {
       let inputValue = input.value.trim()
       if (inputValue != '') {
         this.EditPage?.lessonTimes?.forEach((e) => {
-          let timeStart = e.startTime.hour.toString() + ':' + e.startTime.minute.toString()
-          let timeEnd = '-' + e.endTime.hour.toString() + ':' + e.endTime.minute.toString()
+          let timeStart = e.startTime.hour.toString() + ':' + (e.startTime.minute < 10 ? '0' : '') + e.startTime.minute.toString()
+          let timeEnd = '-' + e.endTime.hour.toString() + ':' + (e.endTime.minute < 10 ? '0' : '') + e.endTime.minute.toString()
           if (inputValue.toUpperCase().includes(timeStart.toUpperCase()) && inputValue.toUpperCase().includes(timeEnd.toUpperCase()))
             returnVal = e.lessonNumber
         })
@@ -70,7 +70,7 @@ export class SelectedInput {
     return returnVal
   }
 
-  get SelectedGroups(): string[] | null {
+  get SelectedGroups(): string[] {
     let returnVal: string[] = []
     let input = document.getElementById('input5') as HTMLInputElement
     if (input != null) {

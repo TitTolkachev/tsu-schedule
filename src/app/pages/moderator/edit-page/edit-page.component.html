@@ -69,8 +69,8 @@
           <input autocomplete="off" role="combobox" list="" id="input4" name="datalist4" placeholder="Время пары">
           <datalist class="main-input-datalist" id="datalist4" role="listbox">
             <option *ngFor="let s of lessonTimes"
-                    value="{{s.startTime.hour}}:{{s.startTime.minute}}-{{s.endTime.hour}}:{{s.endTime.minute}}">
-              {{s.startTime.hour}}:{{s.startTime.minute}}-{{s.endTime.hour}}:{{s.endTime.minute}}
+                    value="{{s.startTime.hour}}:{{s.startTime.minute < 10 ? '0' : ''}}{{s.startTime.minute}}-{{s.endTime.hour}}:{{s.endTime.minute < 10 ? '0' : ''}}{{s.endTime.minute}}">
+              {{s.startTime.hour}}:{{s.startTime.minute < 10 ? '0' : ''}}{{s.startTime.minute}}-{{s.endTime.hour}}:{{s.endTime.minute < 10 ? '0' : ''}}{{s.endTime.minute}}
             </option>
           </datalist>
 

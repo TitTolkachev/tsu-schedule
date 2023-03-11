@@ -14,6 +14,5 @@ export class Time {
 }
 
 export function formatTime(time: Time): string {
-  // TODO сделать норм формат
-  return `${time.hour}:${time.minute}`
+  return `${time.hour}:${time.minute < 10 ? '0' : ''}${time.minute}`
 }

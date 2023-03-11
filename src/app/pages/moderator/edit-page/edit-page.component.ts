@@ -100,6 +100,7 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
           }
         })
         this.initInputs()
+        this.loadWeek(new Date())
         this.IsLoadingData = false
       },
       error: err => this.handleHttpError(err)
@@ -270,6 +271,16 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
    * @param weekDate день недели, которую нужно загрузить
    */
   private loadWeek(weekDate: Date) {
+    if (this.SelectedInputs.SelectedGroups.length == 0
+      && this.SelectedInputs.SelectedTeacher == null
+      && this.SelectedInputs.SelectedAudience == null) {
+      if (this.lessonTimes == undefined) {
+        throw Error("lesson times cannot be undefined")
+      }
+      this.Weeks.push(this.editPageService.buildWeek(this.lessonTimes, weekDate))
+      return
+    }
+
     this.IsLoadingWeek = true
     this.editPageService.loadWeek(
       weekDate,
@@ -278,7 +289,7 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
       this.SelectedInputs.SelectedAudience
     ).subscribe({
       next: weeks => {
-        weeks.forEach(week => this.Weeks?.push(week))
+        weeks.forEach(week => this.Weeks.push(week))
         this.IsLoadingWeek = false
       },
       error: err => this.handleHttpError(err)

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {addWeeks, endOfWeek, format, getWeek, parse, startOfWeek} from "date-fns";
+import {addDays, addWeeks, endOfWeek, format, getDate, getWeek, parse, startOfWeek} from "date-fns";
 import {DaySchedule} from "../models/day-schedule";
 import {Week} from "../pages/moderator/edit-page/models/Week";
 import {indexOf} from "../models/day-of-week";
@@ -97,7 +97,7 @@ export class EditPageService {
    */
   loadWeek(
     weekDate: Date,
-    groupsIds: string[] | null,
+    groupsIds: string[],
     teacherId: string | null,
     audienceId: string | null
   ): Observable<Week[]> {
@@ -112,7 +112,7 @@ export class EditPageService {
       'yyyy-MM-dd'
     )
 
-    return this.scheduleService.fetchStaffSchedule(groupsIds ? groupsIds : [], teacherId, audienceId, startDate, endDate)
+    return this.scheduleService.fetchStaffSchedule(groupsIds, teacherId, audienceId, startDate, endDate)
       .pipe(map(days => this.transformWeeks(days)))
   }
 
@@ -183,26 +183,31 @@ export class EditPageService {
    * @param weekDate любая дата в неделе
    * @private
    */
-  private buildWeek(times: LessonTime[], weekDate: Date): Week {
+  buildWeek(times: LessonTime[], weekDate: Date): Week {
     if (this.cellConstructor == undefined) {
       throw Error("cell constructor cannot be undefined")
     }
 
-    let startDate = format(
-      startOfWeek(weekDate, {weekStartsOn: 1}),
+    let startDate = startOfWeek(weekDate, {weekStartsOn: 1})
+    let endDate = addDays(endOfWeek(weekDate, {weekStartsOn: 1}), -1)
+
+    let startDateFormatted = format(
+      startDate,
       'd MMMM yyyy',
       {locale: ruLocale}
     )
-    let endDate = format(
-      endOfWeek(weekDate, {weekStartsOn: 1}),
+    let endDateFormatted = format(
+      endDate,
       'd MMMM yyyy',
       {locale: ruLocale}
     )
     let weekNumber = getWeek(weekDate)
 
     return {
-      WeekDate: `${startDate} - ${endDate} • ${weekNumber} неделя`,
-      WeekDays: [...Array(6).keys()],
+      WeekDate: `${startDateFormatted} - ${endDateFormatted} • ${weekNumber} неделя`,
+      WeekDays: Array.from({length: 6}, (_, i) => {
+        return getDate(addDays(startDate, i))
+      }),
       WeekTimeLines: times.map(time => {
         let line: WeekTimeLine = {
           TimeStart: formatTime(time.startTime),
