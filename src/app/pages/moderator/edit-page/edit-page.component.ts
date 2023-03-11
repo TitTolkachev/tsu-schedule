@@ -20,6 +20,7 @@ import {IGroupService} from "../../../services/i-group.service";
 import {IAudienceService} from "../../../services/i-audience.service";
 import {ITeacherService} from "../../../services/i-teacher.service";
 import {IScheduleService} from "../../../services/i-schedule.service";
+import {SelectedInput} from "./selected-input";
 
 @Component({
   selector: 'app-edit-page',
@@ -27,135 +28,6 @@ import {IScheduleService} from "../../../services/i-schedule.service";
   styleUrls: ['./edit-page.component.css']
 })
 export class EditPageComponent extends DisplayErrorComponent implements OnInit {
-
-  // TODO(Вынести в отдельный класс)
-  get SelectedSubject(): string | null {
-    let returnVal = null
-    let input = document.getElementById('input1') as HTMLInputElement
-    if (input != null) {
-      let inputValue = input.value.trim()
-      if (inputValue != '') {
-        this.subjects?.forEach((e) => {
-          if (e.name.trim().toUpperCase() == inputValue.toUpperCase())
-            returnVal = e.id
-        })
-      }
-    }
-    return returnVal
-  }
-
-  get SelectedPairType(): string | null {
-    let returnVal = null
-    let input = document.getElementById('input2') as HTMLInputElement
-    if (input != null) {
-      let inputValue = input.value.trim()
-      if (inputValue != '') {
-        this.lessonTypes?.forEach((e) => {
-          if (e.name.trim().toUpperCase() == inputValue.toUpperCase())
-            returnVal = e.id
-        })
-      }
-    }
-    return returnVal
-  }
-
-  get SelectedWeekDay(): string | null {
-    let returnVal = null
-    let input = document.getElementById('input3') as HTMLInputElement
-    if (input != null) {
-      let inputValue = input.value.trim()
-      if (inputValue != '') {
-        this.weekDays?.forEach((e) => {
-          if (e.name.trim().toUpperCase() == inputValue.toUpperCase())
-            returnVal = e.id
-        })
-      }
-    }
-    return returnVal
-  }
-
-  get SelectedTime(): string | null {
-    let returnVal = null
-    let input = document.getElementById('input4') as HTMLInputElement
-    if (input != null) {
-      let inputValue = input.value.trim()
-      if (inputValue != '') {
-        this.lessonTimes?.forEach((e) => {
-          let timeStart = e.startTime.hour.toString() + ':' + e.startTime.minute.toString()
-          let timeEnd = '-' + e.endTime.hour.toString() + ':' + e.endTime.minute.toString()
-          if (inputValue.toUpperCase().includes(timeStart.toUpperCase()) && inputValue.toUpperCase().includes(timeEnd.toUpperCase()))
-            returnVal = e.lessonNumber
-        })
-      }
-    }
-    return returnVal
-  }
-
-  get SelectedGroups(): string[] | null {
-    let returnVal: string[] = []
-    let input = document.getElementById('input5') as HTMLInputElement
-    if (input != null) {
-      let inputValue = input.value.trim()
-      if (inputValue != '') {
-        this.groups?.forEach((e) => {
-          if (inputValue.toUpperCase().includes(e.number.trim().toUpperCase()))
-            returnVal.push(e.id)
-        })
-      }
-    }
-    return returnVal
-  }
-
-  get SelectedAudience(): string | null {
-    let returnVal = null
-    let input = document.getElementById('input6') as HTMLInputElement
-    if (input != null) {
-      let inputValue = input.value.trim()
-      if (inputValue != '') {
-        this.audiences?.forEach((e) => {
-          if (e.name.trim().toUpperCase() == inputValue.toUpperCase())
-            returnVal = e.id
-        })
-      }
-    }
-    return returnVal
-  }
-
-  get SelectedTeacher(): string | null {
-    let returnVal = null
-    let input = document.getElementById('input7') as HTMLInputElement
-    if (input != null) {
-      let inputValue = input.value.trim()
-      if (inputValue != '') {
-        this.teachers?.forEach((e) => {
-          if (e.fullName.trim().toUpperCase() == inputValue.toUpperCase())
-            returnVal = e.id
-        })
-      }
-    }
-    return returnVal
-  }
-
-  get SelectedRepeat(): string | null {
-
-    let input = document.getElementById('input8') as HTMLInputElement
-
-    return input?.value
-  }
-
-  get SelectedDateStart(): string | null {
-
-    let input = document.getElementById('input9') as HTMLInputElement
-
-    return input?.value
-  }
-
-  get SelectedDateEnd(): string | null {
-
-    let input = document.getElementById('input10') as HTMLInputElement
-
-    return input?.value
-  }
 
   // Отображаемые недели
   Weeks: Array<Week> = []
@@ -181,6 +53,7 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
   groups: Group[] | undefined
   audiences: Audience[] | undefined
   teachers: Teacher[] | undefined
+  private SelectedInputs: SelectedInput | undefined;
 
   constructor(
     private editPageService: EditPageService,
@@ -208,6 +81,8 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
   }.bind(this)
 
   ngOnInit() {
+    this.SelectedInputs = new SelectedInput(this)
+
     this.loadData().pipe(mergeMap(() => {
       return this.editPageService.initAndLoadWeek(new Date(), {
         lessonTimes: this.lessonTimes!,
