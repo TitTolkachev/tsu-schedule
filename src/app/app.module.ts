@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {environment} from './environment';
+import {environment} from './environment.prod';
 import {BrowserModule} from '@angular/platform-browser';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
