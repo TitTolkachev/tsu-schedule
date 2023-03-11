@@ -44,6 +44,7 @@ import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-te
 import {IScheduleService} from "./services/i-schedule.service";
 import {ILessonService} from "./services/i-lesson.service";
 import { LoaderComponent } from './components/loader/loader.component';
+import { ScheduleConfirmComponent } from './pages/moderator/edit-page/components/schedule-confirm/schedule-confirm.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     ScheduleCellDayComponent,
     SchedulePairComponent,
     SchedulePairModalComponent,
-    LoaderComponent
+    LoaderComponent,
+    ScheduleConfirmComponent
   ],
   imports: [
     BrowserModule,
