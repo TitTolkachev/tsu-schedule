@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DropDownInput} from "./drop-down-input";
 import {GroupInput} from "./group-input";
 import {State} from "./models/State";
@@ -26,7 +26,7 @@ import {IScheduleService} from "../../../services/i-schedule.service";
   templateUrl: './edit-page.component.html',
   styleUrls: ['./edit-page.component.css']
 })
-export class EditPageComponent extends DisplayErrorComponent implements AfterContentInit, OnInit {
+export class EditPageComponent extends DisplayErrorComponent implements OnInit {
 
   private hintTimer: number | undefined;
 
@@ -92,52 +92,54 @@ export class EditPageComponent extends DisplayErrorComponent implements AfterCon
         weeks.forEach(week => this.Weeks?.push(week))
         this.IsLoadingWeek = false
         this.IsLoadingData = false
+
+        this.initInputs()
       },
       error: err => this.handleHttpError(err)
     })
   }
 
-  ngAfterContentInit() {
+  initInputs() {
     let input1 = document.getElementById('input1')
     let datalist1 = document.getElementById('datalist1')
     let arrow1 = document.getElementById('arrow1')
-    let ddi1 = new DropDownInput(input1, datalist1, arrow1)
+    new DropDownInput(input1, datalist1, arrow1)
 
     let input2 = document.getElementById('input2')
     let datalist2 = document.getElementById('datalist2')
     let arrow2 = document.getElementById('arrow2')
-    let ddi2 = new DropDownInput(input2, datalist2, arrow2)
+    new DropDownInput(input2, datalist2, arrow2)
 
     let input3 = document.getElementById('input3')
     let datalist3 = document.getElementById('datalist3')
     let arrow3 = document.getElementById('arrow3')
-    let ddi3 = new DropDownInput(input3, datalist3, arrow3)
+    new DropDownInput(input3, datalist3, arrow3)
 
     let input4 = document.getElementById('input4')
     let datalist4 = document.getElementById('datalist4')
     let arrow4 = document.getElementById('arrow4')
-    let ddi4 = new DropDownInput(input4, datalist4, arrow4)
+    new DropDownInput(input4, datalist4, arrow4)
 
     // Группа
     let input5 = document.getElementById('input5')
     let datalist5 = document.getElementById('datalist5')
     let arrow5 = document.getElementById('arrow5')
-    let ddi5 = new GroupInput(input5, datalist5, arrow5)
+    new GroupInput(input5, datalist5, arrow5)
 
     let input6 = document.getElementById('input6')
     let datalist6 = document.getElementById('datalist6')
     let arrow6 = document.getElementById('arrow6')
-    let ddi6 = new DropDownInput(input6, datalist6, arrow6)
+    new DropDownInput(input6, datalist6, arrow6)
 
     let input7 = document.getElementById('input7')
     let datalist7 = document.getElementById('datalist7')
     let arrow7 = document.getElementById('arrow7')
-    let ddi7 = new DropDownInput(input7, datalist7, arrow7)
+    new DropDownInput(input7, datalist7, arrow7)
 
     let input8 = document.getElementById('input8')
     let datalist8 = document.getElementById('datalist8')
     let arrow8 = document.getElementById('arrow8')
-    let ddi8 = new DropDownInput(input8, datalist8, arrow8)
+    new DropDownInput(input8, datalist8, arrow8)
 
     // Календарь
     let input9 = document.getElementById('input9')
@@ -198,6 +200,11 @@ export class EditPageComponent extends DisplayErrorComponent implements AfterCon
         w.WeekTimeLines.forEach((l) => {
           l.Cells.forEach((c) => {
             c.PageState = State.editPair
+            c.Pairs.forEach((p) => {
+              if (p == pair) {
+                p.IsActive = true
+              }
+            })
           })
         })
       })
@@ -212,6 +219,9 @@ export class EditPageComponent extends DisplayErrorComponent implements AfterCon
         l.Cells.forEach((c) => {
           c.PageState = State.base
           c.IsAdding = false
+          c.Pairs.forEach((p) => {
+            p.IsActive = false
+          })
         })
       })
     })

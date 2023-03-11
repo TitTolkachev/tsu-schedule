@@ -20,15 +20,7 @@
                  placeholder="Название предмета">
 
           <datalist class="main-input-datalist" id="datalist1" role="listbox">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
+            <option *ngFor="let s of subjects" value="{{s.name}}">{{s.name}}</option>
           </datalist>
 
         </fieldset>
@@ -46,15 +38,7 @@
           <input autocomplete="off" role="combobox" list="" id="input2" name="datalist2"
                  placeholder="Вид пары">
           <datalist class="main-input-datalist" id="datalist2" role="listbox">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
+            <option *ngFor="let s of lessonTypes" value="{{s.name}}">{{s.name}}</option>
           </datalist>
 
         </fieldset>
@@ -72,15 +56,12 @@
           <input autocomplete="off" role="combobox" list="" id="input3" name="datalist3"
                  placeholder="День недели">
           <datalist class="main-input-datalist" id="datalist3" role="listbox">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
+            <option value="Понедельник">Понедельник</option>
+            <option value="Вторник">Вторник</option>
+            <option value="Среда">Среда</option>
+            <option value="Четверг">Четверг</option>
+            <option value="Пятница">Пятница</option>
+            <option value="Суббота">Суббота</option>
           </datalist>
 
         </fieldset>
@@ -98,15 +79,10 @@
           <input autocomplete="off" role="combobox" list="" id="input4" name="datalist4"
                  placeholder="Время пары">
           <datalist class="main-input-datalist" id="datalist4" role="listbox">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
+            <option *ngFor="let s of lessonTimes"
+                    value="{{s.startTime.hour}}:{{s.startTime.minute}}-{{s.endTime.hour}}:{{s.endTime.minute}}">
+              {{s.startTime.hour}}:{{s.startTime.minute}}-{{s.endTime.hour}}:{{s.endTime.minute}}
+            </option>
           </datalist>
 
         </fieldset>
@@ -127,21 +103,7 @@
           <input autocomplete="off" role="combobox" list="" id="input5" name="datalist5"
                  placeholder="Номер группы" readonly="readonly">
           <datalist class="group-input-datalist " id="datalist5" role="listbox">
-            <option class="group-option" value="971801">971801</option>
-            <option class="group-option" value="971802">971802</option>
-            <option class="group-option" value="971803">971803</option>
-            <option class="group-option" value="971901">971901</option>
-            <option class="group-option" value="971902">971902</option>
-            <option class="group-option" value="971903">971903</option>
-            <option class="group-option" value="972001">972001</option>
-            <option class="group-option" value="972002">972002</option>
-            <option class="group-option" value="972003">972003</option>
-            <option class="group-option" value="972101">972101</option>
-            <option class="group-option" value="972102">972102</option>
-            <option class="group-option" value="972103">972103</option>
-            <option class="group-option" value="972201">972201</option>
-            <option class="group-option" value="972202">972202</option>
-            <option class="group-option" value="972203">972203</option>
+            <option class="group-option" *ngFor="let s of groups" value="{{s.number}}">{{s.number}}</option>
           </datalist>
 
         </fieldset>
@@ -159,15 +121,7 @@
           <input autocomplete="off" role="combobox" list="" id="input6" name="datalist6"
                  placeholder="Номер аудитории">
           <datalist class="main-input-datalist" id="datalist6" role="listbox">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
+            <option *ngFor="let s of audiences" value="{{s.name}}">{{s.name}}</option>
           </datalist>
 
         </fieldset>
@@ -185,15 +139,7 @@
           <input autocomplete="off" role="combobox" list="" id="input7" name="datalist7"
                  placeholder="ФИО преподавателя">
           <datalist class="main-input-datalist" id="datalist7" role="listbox">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
+            <option *ngFor="let s of teachers" value="{{s.fullName}}">{{s.fullName}}</option>
           </datalist>
 
         </fieldset>

@@ -11,19 +11,23 @@ export class DropDownInput {
         if (arrow != null)
           arrow.classList.add('flip');
 
-        if (input != null && datalist != null) {
-          datalist.style.display = 'block'
-          input.style.borderRadius = "5px 5px 0 0"
+        if (datalist != null && datalist.children.length > 0) {
 
-          // @ts-ignore
-          for (let option of datalist.options)
-            option.style.display = "block"
+          if (input != null) {
+            datalist.style.display = 'block'
+            input.style.borderRadius = "5px 5px 0 0"
+
+            // @ts-ignore
+            for (let option of datalist.options)
+              option.style.display = "block"
+          }
         }
       }
       input.onblur = () => {
         if (arrow != null)
           arrow.classList.remove('flip');
       }
+
       // @ts-ignore
       for (let option of datalist.options) {
         option.onclick = function () {
