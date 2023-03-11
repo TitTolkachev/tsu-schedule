@@ -38,7 +38,12 @@ export class LessonMockService implements ILessonService {
   }
 
   fetchLessonTypes(): Observable<LessonType[]> {
-    return of([]);
+    return of([
+      new LessonType("1", "Лекция"),
+      new LessonType("2", "Практика"),
+      new LessonType("3", "Семинар"),
+      new LessonType("4", "Экзамен")
+    ]);
   }
 
   modifyLesson(id: string, lessonCreateDto: LessonCreateDto): Observable<any> {

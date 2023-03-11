@@ -17,7 +17,7 @@ export abstract class DisplayErrorComponent {
       if (err.status === 0) {
         return ErrorMessage.CONNECTION_REFUSED
       }
-      if (err.error.status === 500) {
+      if (err.status === 500) {
         return ErrorMessage.INTERNAL_SERVER_ERROR
       }
       return ErrorMessage.UNKNOWN_ERROR
