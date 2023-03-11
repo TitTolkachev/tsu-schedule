@@ -28,10 +28,7 @@ import {IScheduleService} from "../../../services/i-schedule.service";
 })
 export class EditPageComponent extends DisplayErrorComponent implements OnInit {
 
-  testPrint(x: any) {
-    console.log(x)
-  }
-
+  // TODO(Вынести в отдельный класс)
   get SelectedSubject(): string | null {
     let returnVal = null
     let input = document.getElementById('input1') as HTMLInputElement
