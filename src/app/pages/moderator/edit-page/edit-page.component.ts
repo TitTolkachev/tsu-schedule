@@ -77,13 +77,88 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
     return returnVal
   }
 
-  SelectedTime: number = -1
-  SelectedGroup: number = -1
-  SelectedAudience: number = -1
-  SelectedTeacher: number = -1
-  SelectedRepeat: number = -1
-  SelectedDateStart: number = -1
-  SelectedDateEnd: number = -1
+  get SelectedTime(): string | null {
+    let returnVal = null
+    let input = document.getElementById('input4') as HTMLInputElement
+    if (input != null) {
+      let inputValue = input.value.trim()
+      if (inputValue != '') {
+        this.lessonTimes?.forEach((e) => {
+          let timeStart = e.startTime.hour.toString() + ':' + e.startTime.minute.toString()
+          let timeEnd = '-' + e.endTime.hour.toString() + ':' + e.endTime.minute.toString()
+          if (inputValue.toUpperCase().includes(timeStart.toUpperCase()) && inputValue.toUpperCase().includes(timeEnd.toUpperCase()))
+            returnVal = e.lessonNumber
+        })
+      }
+    }
+    return returnVal
+  }
+
+  get SelectedGroups(): string[] | null {
+    let returnVal: string[] = []
+    let input = document.getElementById('input5') as HTMLInputElement
+    if (input != null) {
+      let inputValue = input.value.trim()
+      if (inputValue != '') {
+        this.groups?.forEach((e) => {
+          if (inputValue.toUpperCase().includes(e.number.trim().toUpperCase()))
+            returnVal.push(e.id)
+        })
+      }
+    }
+    return returnVal
+  }
+
+  get SelectedAudience(): string | null {
+    let returnVal = null
+    let input = document.getElementById('input6') as HTMLInputElement
+    if (input != null) {
+      let inputValue = input.value.trim()
+      if (inputValue != '') {
+        this.audiences?.forEach((e) => {
+          if (e.name.trim().toUpperCase() == inputValue.toUpperCase())
+            returnVal = e.id
+        })
+      }
+    }
+    return returnVal
+  }
+
+  get SelectedTeacher(): string | null {
+    let returnVal = null
+    let input = document.getElementById('input7') as HTMLInputElement
+    if (input != null) {
+      let inputValue = input.value.trim()
+      if (inputValue != '') {
+        this.teachers?.forEach((e) => {
+          if (e.fullName.trim().toUpperCase() == inputValue.toUpperCase())
+            returnVal = e.id
+        })
+      }
+    }
+    return returnVal
+  }
+
+  get SelectedRepeat(): string | null {
+
+    let input = document.getElementById('input8') as HTMLInputElement
+
+    return input?.value
+  }
+
+  get SelectedDateStart(): string | null {
+
+    let input = document.getElementById('input9') as HTMLInputElement
+
+    return input?.value
+  }
+
+  get SelectedDateEnd(): string | null {
+
+    let input = document.getElementById('input10') as HTMLInputElement
+
+    return input?.value
+  }
 
   // Отображаемые недели
   Weeks: Array<Week> = []
