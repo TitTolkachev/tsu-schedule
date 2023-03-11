@@ -9,8 +9,8 @@ import {SubjectsPageComponent} from "./pages/admin/subjects/subjects-page/subjec
 import {GroupsPageComponent} from "./pages/admin/groups/groups-page/groups-page.component";
 import {MainPageComponent} from "./pages/admin/main/main-page/main-page.component";
 import {RequestsPageComponent} from './pages/admin/requests/requests-page/requests-page.component';
-
 import {UsersPageComponent} from './pages/admin/users/users-page/users-page.component';
+import {EditPageComponent} from "./pages/moderator/edit-page/edit-page.component";
 
 const routes: Routes = [
   { path: '', component: SigninComponent },
@@ -22,7 +22,8 @@ const routes: Routes = [
   { path: 'admin/groups', component: GroupsPageComponent },
   { path: 'admin/main', component: MainPageComponent },
   { path: 'admin/users', component: UsersPageComponent },
-  { path: 'admin/requests', component: RequestsPageComponent }
+  { path: 'admin/requests', component: RequestsPageComponent },
+  { path: 'moderator/edit', component: EditPageComponent }
 ];
 
 @NgModule({

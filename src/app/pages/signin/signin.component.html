@@ -1,3 +1,5 @@
+<!-- <app-loader [IsShown]="true"></app-loader> -->
+
 <app-header-signin class="position-absolute" style="width: 100vw"></app-header-signin>
 
 <div class="container-sm">
@@ -34,7 +36,7 @@
             Серверу отправлены некорректные данные.
           </p>
           <p *ngIf="state === 'wrong_credentials'">
-            Серверу отправлены некорректные данные.
+            Неверный логин или пароль.
           </p>
           <p *ngIf="state === 'forbidden'">
             Доступ ограничен.

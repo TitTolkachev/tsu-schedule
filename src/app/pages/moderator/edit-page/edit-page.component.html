@@ -1,0 +1,352 @@
+<app-loader [IsShown]="IsLoadingData || IsLoadingWeek"></app-loader>
+
+<app-headers></app-headers>
+
+<div class="container-fluid body-container text-center">
+
+  <div class="d-flex text-nowrap flex-nowrap m-0 justify-content-between" id="top-inputs-block">
+    <div class="p-0">
+      <div class="d-flex flex-wrap input-with-label">
+        <label for="input1" class="form-label form-label-1">
+          Название
+        </label>
+        <fieldset>
+
+          <div class="expand-arrow" id="arrow1">
+            <span class="material-symbols-outlined">expand_more</span>
+          </div>
+          <input autocomplete="off" role="combobox" list="" id="input1" name="datalist1" placeholder="Название предмета">
+          <datalist class="main-input-datalist" id="datalist1" role="listbox">
+            <option *ngFor="let s of subjects" value="{{s.name}}">{{s.name}}</option>
+          </datalist>
+
+        </fieldset>
+      </div>
+
+      <div class="d-flex flex-wrap input-with-label">
+        <label for="input2" class="form-label form-label-1">
+          Тип
+        </label>
+        <fieldset>
+
+          <div class="expand-arrow" id="arrow2">
+            <span class="material-symbols-outlined">expand_more</span>
+          </div>
+          <input autocomplete="off" role="combobox" list="" id="input2" name="datalist2" placeholder="Вид пары">
+          <datalist class="main-input-datalist" id="datalist2" role="listbox">
+            <option *ngFor="let s of lessonTypes" value="{{s.name}}">{{s.name}}</option>
+          </datalist>
+
+        </fieldset>
+      </div>
+
+      <div class="d-flex flex-wrap input-with-label">
+        <label for="input3" class="form-label form-label-1">
+          День недели
+        </label>
+        <fieldset>
+
+          <div class="expand-arrow" id="arrow3">
+            <span class="material-symbols-outlined">expand_more</span>
+          </div>
+          <input autocomplete="off" role="combobox" list="" id="input3" name="datalist3" placeholder="День недели">
+          <datalist class="main-input-datalist" id="datalist3" role="listbox">
+            <option *ngFor="let s of weekDays" value="{{s.name}}">{{s.name}}</option>
+          </datalist>
+
+        </fieldset>
+      </div>
+
+      <div class="d-flex flex-wrap input-with-label">
+        <label for="input4" class="form-label form-label-1">
+          Время
+        </label>
+        <fieldset>
+
+          <div class="expand-arrow" id="arrow4">
+            <span class="material-symbols-outlined">expand_more</span>
+          </div>
+          <input autocomplete="off" role="combobox" list="" id="input4" name="datalist4" placeholder="Время пары">
+          <datalist class="main-input-datalist" id="datalist4" role="listbox">
+            <option
+              (click)="onOptionClick('input4', 'datalist4', $event)"
+              *ngFor="let s of lessonTimes"
+              value="{{buildLessonTime(s)}}"
+            >
+              {{buildLessonTime(s)}}
+            </option>
+          </datalist>
+
+        </fieldset>
+      </div>
+    </div>
+
+
+    <div class="p-0">
+      <div class="d-flex flex-wrap input-with-label">
+        <label for="input5" class="form-label form-label-2">
+          Группа
+        </label>
+        <fieldset>
+
+          <div class="expand-arrow" id="arrow5">
+            <span class="material-symbols-outlined">expand_more</span>
+          </div>
+          <input
+            autocomplete="off"
+            role="combobox"
+            list=""
+            id="input5"
+            name="datalist5"
+            placeholder="Номер группы"
+            readonly="readonly"
+            (change)="refresh()"
+          >
+          <datalist class="group-input-datalist " id="datalist5" role="listbox">
+            <option class="group-option" *ngFor="let s of groups" value="{{s.number}}">{{s.number}}</option>
+          </datalist>
+
+        </fieldset>
+      </div>
+
+      <div class="d-flex flex-wrap input-with-label">
+        <label for="input6" class="form-label form-label-2">
+          Аудитория
+        </label>
+        <fieldset>
+
+          <div class="expand-arrow" id="arrow6">
+            <span class="material-symbols-outlined">expand_more</span>
+          </div>
+          <input
+            autocomplete="off"
+            role="combobox"
+            list=""
+            id="input6"
+            name="datalist6"
+            placeholder="Номер аудитории"
+            (change)="refresh()"
+          >
+          <datalist class="main-input-datalist" id="datalist6" role="listbox">
+            <option *ngFor="let s of audiences" value="{{s.number}} ({{s.name}})">{{s.number}} ({{s.name}})</option>
+          </datalist>
+
+        </fieldset>
+      </div>
+
+      <div class="d-flex flex-wrap input-with-label">
+        <label for="input7" class="form-label form-label-2">
+          Преподаватель
+        </label>
+        <fieldset>
+
+          <div class="expand-arrow" id="arrow7">
+            <span class="material-symbols-outlined">expand_more</span>
+          </div>
+          <input
+            autocomplete="off"
+            role="combobox"
+            list=""
+            id="input7"
+            name="datalist7"
+            placeholder="ФИО преподавателя"
+            (change)="refresh()"
+          >
+          <datalist class="main-input-datalist" id="datalist7" role="listbox">
+            <option *ngFor="let s of teachers" value="{{s.lastName}} {{s.firstName}} {{s.patronymicName}}">{{s.lastName}} {{s.firstName}} {{s.patronymicName}}</option>
+          </datalist>
+
+        </fieldset>
+      </div>
+    </div>
+
+
+    <div class="p-0" [ngClass]="State == 0 ? 'invisible' : ''">
+
+        <div class="d-flex flex-wrap input-with-label">
+          <label for="input8" class="form-label form-label-3">
+            Повторять
+          </label>
+          <fieldset>
+
+            <div class="expand-arrow" id="arrow8">
+              <span class="material-symbols-outlined">expand_more</span>
+            </div>
+            <input autocomplete="off" role="combobox" list="" id="input8" name="datalist8" placeholder="Повторять каждые">
+            <datalist class="main-input-datalist" id="datalist8" role="listbox">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+            </datalist>
+
+          </fieldset>
+        </div>
+
+        <div class="d-flex flex-wrap input-with-label">
+          <label for="input9" class="form-label form-label-3">
+            Начало
+          </label>
+          <fieldset>
+
+            <input type="date" id="input9" value="2023-03-02"
+                   max="2024-01-01" min="2023-03-02">
+
+          </fieldset>
+        </div>
+
+        <div class="d-flex flex-wrap input-with-label">
+          <label for="input10" class="form-label form-label-3">
+            Конец
+          </label>
+          <fieldset>
+
+            <input type="date" id="input10" value="2023-03-02"
+                   max="2024-01-01" min="2023-03-02">
+
+          </fieldset>
+        </div>
+
+    </div>
+  </div>
+
+
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- Промежуточный блок -->
+  <div class="d-flex text-nowrap" id="intermediate-block">
+
+    <!-- Блок для изменения пары -->
+    <div class="d-flex flex-wrap" id="change-items-container" [ngClass]="State != 2 ? 'd-none' : ''">
+      <div class="d-flex mt-3 helper-container">
+        <div class="helper-description">
+          Изменение данных
+        </div>
+
+        <!-- Всплывающая подсказка -->
+        <div class="question-helper-container">
+          <img class="question-icon" id="change-question-icon" (mouseenter)="setDisplayBlock('change-tooltip')"
+               (mouseleave)="delayDisplayNone('change-tooltip', 300)" src="/assets/question-icon.png" alt="help">
+          <span class="question-tooltip text-wrap d-none" id="change-tooltip">
+            <div>
+              &nbsp;&nbsp;В данном режиме вы можете изменить данные выделенной пары или группы из пар.
+            </div>
+            <div>
+              &nbsp;
+            </div>
+            <div>
+              &nbsp;&nbsp;Если вы хотите поменять время, то нажмите на “+” свободного окна.
+            </div>
+          </span>
+        </div>
+      </div>
+      <div class="d-flex control-buttons-container">
+        <button class="btn mt-3 control-button-apply" id="change-control-btn1">
+          сохранить изменения
+        </button>
+        <div class="d-flex mt-3">
+          <button class="btn control-button" id="change-control-btn2">
+            удалить
+          </button>
+          <button class="btn control-button" id="change-control-btn3" (click)="cancelOperations()">
+            отменить
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ---------------------------------------------------------------------- -->
+    <!-- ---------------------------------------------------------------------- -->
+    <!-- Блок для добавления пары -->
+    <div class="d-flex flex-wrap" id="add-items-container" [ngClass]="State != 1 ? 'd-none' : ''">
+      <div class="d-flex mt-3 helper-container">
+        <div class="helper-description">
+          Добавление новой пары
+        </div>
+        <!-- Всплывающая подсказка -->
+        <div class="question-helper-container">
+          <img class="question-icon" id="add-question-icon" (mouseenter)="setDisplayBlock('add-tooltip')"
+               (mouseleave)="delayDisplayNone('add-tooltip', 300)" src="/assets/question-icon.png" alt="help">
+          <span class="question-tooltip text-wrap d-none" id="add-tooltip">
+            <div>
+              &nbsp;&nbsp;В данном режиме вы можете добавить новую пару или группу пар.
+            </div>
+            <div>
+              &nbsp;
+            </div>
+            <div>
+              &nbsp;&nbsp;Если вы хотите поменять время, то нажмите на “+” свободного окна.
+            </div>
+          </span>
+        </div>
+      </div>
+      <div class="d-flex control-buttons-container">
+        <button class="btn mt-3 control-button-apply" id="add-control-btn1">
+          сохранить изменения
+        </button>
+        <div class="d-flex mt-3">
+          <button class="btn control-button" id="add-control-btn3" (click)="cancelOperations()">
+            отменить
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Этот пустой элемент нужен, чтобы week-buttons-container всегда улетал вправо -->
+    <div></div>
+
+    <div class="d-flex mt-3" id="week-buttons-container">
+      <button class="btn week-button" id="previous-week-btn" (click)="previousWeek()">
+        предыдущая неделя
+      </button>
+      <button class="btn week-button" id="next-week-btn" (click)="nextWeek()">
+        следующая неделя
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------- -->
+
+  <div *ngFor="let w of Weeks">
+    <app-schedule-week [Week]="w"></app-schedule-week>
+  </div>
+
+  <app-schedule-pair-modal [PageState]="State" [initSetOpenModalPairFunction]="setOpenModalPair" [editPair]="editPair"></app-schedule-pair-modal>
+  <button class="d-none" data-bs-toggle="modal" data-bs-target="#pairModal" id="pairModalOpenBtn"></button>
+
+  <button class="btn" id="show-more-btn" (click)="addWeek()">
+    Подгрузить еще одну неделю
+  </button>
+</div>

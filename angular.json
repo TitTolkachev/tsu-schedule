@@ -52,6 +52,20 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "development-with-mocks": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/app/environment.ts",
+                  "with": "src/app/environment.mock.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -64,6 +78,9 @@
             },
             "development": {
               "browserTarget": "tsu-scheduler:build:development"
+            },
+            "development-with-mocks": {
+              "browserTarget": "tsu-scheduler:build:development-with-mocks"
             }
           },
           "defaultConfiguration": "development"

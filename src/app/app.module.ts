@@ -17,12 +17,16 @@ import {MainPageComponent} from './pages/admin/main/main-page/main-page.componen
 import {RequestsPageComponent} from './pages/admin/requests/requests-page/requests-page.component';
 import {RequestComponent} from './pages/admin/requests/request-element/request.component';
 import {SearchRequestPipe} from "./pages/admin/requests/search-request/search-request.pipe";
-
 import {UsersPageComponent} from './pages/admin/users/users-page/users-page.component';
 import {UserElementComponent} from './pages/admin/users/user-element/user-element.component';
 import {SearchUserPipe} from './pages/admin/users/search-user/search-user.pipe';
 import {AppComponent} from './app.component';
 import {UsersModalComponent} from './pages/admin/users/users-modal/users-modal.component';
+import {EditPageComponent} from './pages/moderator/edit-page/edit-page.component';
+import {ScheduleWeekComponent} from './pages/moderator/edit-page/components/schedule-week/schedule-week.component';
+import {ScheduleCellDayComponent} from './pages/moderator/edit-page/components/schedule-cell-day/schedule-cell-day.component';
+import {SchedulePairComponent} from './pages/moderator/edit-page/components/schedule-pair/schedule-pair.component';
+import {SchedulePairModalComponent} from './pages/moderator/edit-page/components/schedule-pair-modal/schedule-pair-modal.component';
 import {GroupElementComponent} from './pages/admin/groups/group-element/group-element.component';
 import {ConfirmationComponent} from './components/confirmation/confirmation.component';
 import {GroupModalComponent} from './pages/admin/groups/group-modal/group-modal.component';
@@ -48,6 +52,9 @@ import {SearchTeacherPipe} from './pages/admin/teachers/search-teacher/search-te
 import {RejectComponent} from './components/reject/reject.component';
 import {IUserService} from "./services/i-user.service";
 import {IRequestService} from "./services/i-request.service";
+import {IScheduleService} from "./services/i-schedule.service";
+import {ILessonService} from "./services/i-lesson.service";
+import {LoaderComponent} from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +65,7 @@ import {IRequestService} from "./services/i-request.service";
     AudiencesPageComponent,
     SubjectsPageComponent,
     GroupsPageComponent,
+    EditPageComponent,
     MainPageComponent,
     GroupsPageComponent,
     HeaderSigninComponent,
@@ -90,7 +98,12 @@ import {IRequestService} from "./services/i-request.service";
     RequestsPageComponent,
     RequestComponent,
     SearchRequestPipe,
-    RejectComponent
+    RejectComponent,
+    ScheduleWeekComponent,
+    ScheduleCellDayComponent,
+    SchedulePairComponent,
+    SchedulePairModalComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -104,6 +117,8 @@ import {IRequestService} from "./services/i-request.service";
     { provide: IAudienceService, useClass: environment.audienceService },
     { provide: ISubjectService, useClass: environment.subjectService },
     { provide: ITeacherService, useClass: environment.teacherService },
+    { provide: IScheduleService, useClass: environment.scheduleService },
+    { provide: ILessonService, useClass: environment.lessonService },
     { provide: IUserService, useClass: environment.userService },
     { provide: IRequestService, useClass: environment.requestService }
   ],

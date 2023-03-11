@@ -1,0 +1,50 @@
+<div class="schedule-weeks-container">
+  <div class="schedule-week-date">{{Week!.WeekDate}}</div>
+  <div class="schedule-week">
+
+    <div></div>
+    <div class="cell-day-name">
+      <div>ПН</div>
+      <div>{{Week!.WeekDays[0]}}</div>
+    </div>
+    <div class="cell-day-name">
+      <div>ВТ</div>
+      <div>{{Week!.WeekDays[1]}}</div>
+    </div>
+    <div class="cell-day-name">
+      <div>СР</div>
+      <div>{{Week!.WeekDays[2]}}</div>
+    </div>
+    <div class="cell-day-name">
+      <div>ЧТ</div>
+      <div>{{Week!.WeekDays[3]}}</div>
+    </div>
+    <div class="cell-day-name">
+      <div>ПТ</div>
+      <div>{{Week!.WeekDays[4]}}</div>
+    </div>
+    <div class="cell-day-name">
+      <div>СБ</div>
+      <div>{{Week!.WeekDays[5]}}</div>
+    </div>
+    <div class="cell-empty br-0"></div>
+
+    <div style="display: contents" *ngFor="let l of Week!.WeekTimeLines">
+
+      <div class="cell-time">
+        <div class="cell-time-start">
+          {{l.TimeStart}}
+        </div>
+        <div class="cell-time-end">
+          {{l.TimeEnd}}
+        </div>
+      </div>
+      <div *ngFor="let c of l.Cells">
+        <app-schedule-cell-day [Cell]="c"></app-schedule-cell-day>
+      </div>
+      <div class="cell-empty br-0"></div>
+
+    </div>
+
+  </div>
+</div>

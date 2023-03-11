@@ -1,0 +1,613 @@
+.body-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 83px 0 83px;
+  margin: 0;
+}
+
+@media (max-height: 900px) {
+  .body-container {
+    padding: 0 40px 0 40px;
+  }
+}
+
+@media (max-width: 1000px) {
+  #top-inputs-block {
+    flex-direction: column !important;
+  }
+
+  .form-label {
+    width: 230px !important;
+  }
+
+  @media (max-height: 900px) {
+    .form-label {
+      width: 180px !important;
+    }
+  }
+}
+
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* Dropdown input */
+
+.input-with-label {
+  margin-top: 20px;
+}
+
+.form-label {
+  margin: 0 20px 0 0;
+  text-align: start;
+  font-family: 'ZektonRg', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 28px;
+  color: #000000;
+}
+
+.form-label-1 {
+  width: 184px;
+}
+
+.form-label-2 {
+  width: 224px;
+}
+
+.form-label-3 {
+  width: 154px;
+}
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  width: 300px;
+}
+
+input {
+  padding: 5px 30px 5px 5px;
+  height: 28px;
+  width: inherit;
+  outline: none;
+  border: 2px solid #371B1B;
+  border-radius: 5px;
+
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+
+.expand-arrow {
+  margin: 0 0 0 270px;
+  padding: 2px 0 0 0;
+  position: absolute;
+  pointer-events: none;
+  transition: transform .5s ease;
+}
+
+.flip {
+  transform: rotate(1turn);
+}
+
+.main-input-datalist {
+  position: absolute;
+  width: inherit;
+  background-color: white;
+  border: 1px solid #371B1B;
+  border-radius: 0 0 5px 5px;
+  border-top: none;
+  font-family: sans-serif;
+  padding: 5px 0 5px 0;
+  max-height: 10rem;
+  overflow-y: auto;
+  justify-items: center;
+  z-index: 1;
+}
+
+.main-input-datalist::-webkit-scrollbar {
+  width: 12px; /* ширина scrollbar */
+}
+
+.main-input-datalist::-webkit-scrollbar-track {
+  background: #e5e5e5; /* цвет дорожки */
+}
+
+.main-input-datalist::-webkit-scrollbar-thumb {
+  background-color: rgba(55, 27, 27, 0.9); /* цвет плашки */
+  border-radius: 20px; /* закругления плашки */
+  border: 3px solid #e5e5e5; /* padding вокруг плашки */
+}
+
+option {
+  background-color: white;
+  padding: 3px 10px 3px 10px;
+  margin-bottom: 1px;
+  cursor: pointer;
+
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 20px;
+  text-align: start;
+  color: #000000;
+}
+
+option:hover, .active {
+  background-color: #eeeeee;
+}
+
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* Адаптив для Dropdown input */
+
+@media (max-height: 900px) {
+
+  .input-with-label {
+    margin-top: 12px;
+  }
+
+  .form-label {
+    margin: 0 10px 2px 0;
+    padding: 0;
+    font-size: 21px;
+  }
+
+  .form-label-1 {
+    width: 140px;
+  }
+
+  .form-label-2 {
+    width: 170px;
+  }
+
+  .form-label-3 {
+    width: 115px;
+  }
+
+  fieldset {
+    width: 280px;
+  }
+
+  .expand-arrow {
+    margin: 0 0 0 250px;
+  }
+}
+
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* Group Input */
+
+.group-input-datalist {
+  position: absolute;
+  width: 150px;
+  background: #FFFFFF;
+  box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.15), -7px -7px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+  padding: 5px 0 5px 0;
+  margin-top: 4px;
+  margin-left: 140px;
+  max-height: 17rem;
+  overflow-y: auto;
+  justify-items: center;
+  z-index: 1;
+}
+
+.group-input-datalist::-webkit-scrollbar {
+  width: 8px; /* ширина scrollbar */
+}
+
+.group-input-datalist::-webkit-scrollbar-track {
+  background: transparent; /* цвет дорожки */
+}
+
+.group-input-datalist::-webkit-scrollbar-thumb {
+  background-color: rgba(55, 27, 27, 0.9); /* цвет плашки */
+  border-radius: 20px; /* закругления плашки */
+  border: 2px solid white; /* padding вокруг плашки */
+}
+
+.group-option {
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+  background-color: white;
+  padding: 5px 10px 5px 20px;
+  margin-bottom: 1px;
+  cursor: pointer;
+  text-align: start;
+}
+
+.group-option:hover, .active {
+  background-color: #eeeeee;
+}
+
+.group-option::after {
+  content: url("/assets/img/group-not-ticked.png");
+  display: block;
+  margin-left: 95px;
+  margin-top: -23px;
+  position: absolute;
+}
+
+.selected-group-option::after {
+  content: url("/assets/img/group-ticked.png");
+  margin-left: 91px;
+  margin-top: -19px;
+}
+
+.group-input-rectangle {
+  width: 15px;
+}
+
+.group-input-tick {
+  width: 9px;
+}
+
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* Адаптив для Group Input */
+
+@media (max-height: 900px) {
+  .group-input-datalist {
+    margin-left: 120px;
+  }
+}
+
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* Календарь для Input */
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  margin-left: 264px;
+  cursor: pointer;
+}
+
+@media (max-height: 900px) {
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    margin-left: 244px;
+  }
+}
+
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* Промежуточный блок */
+#intermediate-block {
+  align-content: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.helper-container {
+  margin-right: 65px;
+  padding: 0;
+}
+
+.helper-description {
+  height: 47px;
+  margin-right: 20px;
+  padding: 0;
+
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 47px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+
+.question-icon {
+  height: 47px;
+}
+
+.fade-in-anim {
+  animation: fadeInFromNone 0.3s ease-in-out !important;
+  animation-fill-mode: forwards !important;
+}
+
+.question-tooltip {
+  background: #B1D0D1;
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.15), -5px -5px 10px 3px rgba(0, 0, 0, 0.15);
+
+  opacity: 0;
+
+  padding: 20px;
+  max-width: 330px;
+  position: absolute;
+  margin: 10px -50px;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+
+  border-radius: 5px;
+
+  text-align: start;
+
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+
+  color: #000000;
+
+  animation: fadeOutFromBlock 0.3s ease-in-out;
+}
+
+@keyframes fadeInFromNone {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutFromBlock {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.control-button-apply {
+  height: 47px;
+  padding: 5px;
+  margin-right: 15px;
+
+  background: #A1CCCF;
+  border: 3px solid #A1CCCF;
+  border-radius: 10px;
+
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+
+  transition: 0.3s ease;
+
+  color: #000000;
+}
+
+.control-button-apply:hover {
+  background: #63a4a8;
+  border-color: #63a4a8;
+}
+
+.control-button-apply:active {
+  background: #42ccce;
+  border-color: #42ccce;
+}
+
+@media (max-width: 900px) {
+  .control-buttons-container {
+    flex-wrap: wrap;
+  }
+}
+
+.control-button {
+  width: 155px;
+  height: 47px;
+  padding: 5px;
+  margin-right: 15px;
+
+  border: 3px solid #A1CCCF;
+  border-radius: 10px;
+
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  justify-content: center;
+
+  transition: 0.3s ease;
+
+  color: #000000;
+}
+
+.control-button:hover {
+  background: #63a4a8;
+  border-color: #63a4a8;
+}
+
+.control-button:active {
+  background: #42ccce;
+  border-color: #42ccce;
+}
+
+@media (max-width: 900px) {
+  #week-buttons-container {
+    flex-wrap: wrap;
+  }
+}
+
+.week-button {
+  width: 215px;
+  height: 47px;
+  padding: 0;
+  margin-left: 20px;
+
+  background: #371B1B;
+  border-radius: 10px;
+
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+
+  color: #FFFFFF;
+}
+
+.week-button:hover {
+  background: #2d1616;
+  color: #FFFFFF;
+}
+
+.week-button:active {
+  background: #150a0a;
+  color: #FFFFFF;
+}
+
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* Адаптив промежуточного блока под маленькие экраны */
+
+@media (max-height: 900px) {
+
+  #intermediate-block {
+    margin-top: 5px;
+  }
+
+  .helper-description {
+    height: 32px;
+    margin-right: 10px;
+    font-size: 24px;
+  }
+
+  .question-icon {
+    height: 32px;
+  }
+
+  .control-button-apply {
+    height: 32px;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .control-button {
+    width: 110px;
+    height: 32px;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .week-button {
+    width: 175px;
+    height: 32px;
+    margin-left: 20px;
+    border-radius: 8px;
+
+    font-size: 14px;
+  }
+}
+
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* Кнопка показать еще */
+
+#show-more-btn {
+  width: 320px;
+  height: 54px;
+
+  margin-bottom: 80px;
+  margin-top: 100px;
+
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+  justify-content: center;
+
+  background: #371B1B;
+  border-radius: 10px;
+}
+
+#show-more-btn:hover {
+  background: #2d1616;
+  color: #FFFFFF;
+}
+
+#show-more-btn:active {
+  background: #150a0a;
+  color: #FFFFFF;
+}
+
+@media (max-height: 900px) {
+  #show-more-btn {
+    width: 240px;
+    height: 40px;
+    margin-bottom: 50px;
+    margin-top: 30px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+}

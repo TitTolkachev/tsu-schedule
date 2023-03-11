@@ -1,0 +1,33 @@
+<div class="cell-day" [ngClass]="Cell!.BorderBottom ? '' : 'bb-0'">
+  <ng-template [ngIf]="Cell!.Pairs.length>0" [ngIfElse]="emptyCell">
+
+    <app-schedule-pair [openModalPair]="Cell!.openModalPair" [Pair]="Cell!.Pairs[0]"></app-schedule-pair>
+    <div *ngIf="Cell!.Pairs.length>1">
+      <div class="expand-arrow-btn" (click)="expandArrow()">
+        <div class="expand-arrow" id="{{ExpandArrowId}}">
+          <span class="material-symbols-outlined">expand_more</span>
+        </div>
+      </div>
+
+      <div *ngIf="IsExpanded">
+        <div *ngFor="let p of Cell!.Pairs.slice(1)">
+          <div class="pairs-space"></div>
+          <app-schedule-pair [openModalPair]="Cell!.openModalPair" [Pair]="p"></app-schedule-pair>
+        </div>
+      </div>
+    </div>
+
+  </ng-template>
+
+
+  <ng-template #emptyCell>
+    <div class="plus-btn-container" [ngClass]="Cell!.PageState != 0 && !Cell!.IsAdding? 'd-none' : ''">
+      <div class="plus-btn btn" [ngClass]="Cell!.IsAdding? 'active-plus-btn' : ''" (click)="onPlusBtnClick()">
+        <div class="plus-btn-text" *ngIf="!Cell!.IsAdding">
+          +
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
