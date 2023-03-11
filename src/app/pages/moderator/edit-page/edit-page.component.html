@@ -1,4 +1,4 @@
-<!--<app-loader [IsShown]="IsLoadingData || IsLoadingWeek"></app-loader>-->
+<app-loader [IsShown]="IsLoadingData || IsLoadingWeek"></app-loader>
 
 <app-headers></app-headers>
 
@@ -89,7 +89,16 @@
           <div class="expand-arrow" id="arrow5">
             <span class="material-symbols-outlined">expand_more</span>
           </div>
-          <input autocomplete="off" role="combobox" list="" id="input5" name="datalist5" placeholder="Номер группы" readonly="readonly">
+          <input
+            autocomplete="off"
+            role="combobox"
+            list=""
+            id="input5"
+            name="datalist5"
+            placeholder="Номер группы"
+            readonly="readonly"
+            (change)="refresh()"
+          >
           <datalist class="group-input-datalist " id="datalist5" role="listbox">
             <option class="group-option" *ngFor="let s of groups" value="{{s.number}}">{{s.number}}</option>
           </datalist>
@@ -113,10 +122,10 @@
             id="input6"
             name="datalist6"
             placeholder="Номер аудитории"
-            (blur)="refresh()"
+            (change)="refresh()"
           >
           <datalist class="main-input-datalist" id="datalist6" role="listbox">
-            <option *ngFor="let s of audiences" value="{{s.name}}">{{s.name}}</option>
+            <option *ngFor="let s of audiences" value="{{s.number}} ({{s.name}})">{{s.number}} ({{s.name}})</option>
           </datalist>
 
         </fieldset>
@@ -138,7 +147,7 @@
             id="input7"
             name="datalist7"
             placeholder="ФИО преподавателя"
-            (blur)="refresh()"
+            (change)="refresh()"
           >
           <datalist class="main-input-datalist" id="datalist7" role="listbox">
             <option *ngFor="let s of teachers" value="{{s.fullName}}">{{s.fullName}}</option>

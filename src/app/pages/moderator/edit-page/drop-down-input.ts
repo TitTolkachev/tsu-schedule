@@ -37,6 +37,11 @@ export class DropDownInput {
             datalist.style.display = 'none'
             input.style.borderRadius = "5px"
           }
+          let event = new Event('change', {
+            bubbles: true,
+            cancelable: true,
+          });
+          input.dispatchEvent(event);
         }
       }
 

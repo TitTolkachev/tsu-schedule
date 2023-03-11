@@ -101,10 +101,6 @@ export class EditPageService {
     teacherId: string | null,
     audienceId: string | null
   ): Observable<Week[]> {
-    console.log(groupsIds)
-    console.log(teacherId)
-    console.log(audienceId)
-
     this.lastLoadedWeek = weekDate
 
     let startDate = format(

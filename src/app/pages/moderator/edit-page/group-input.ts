@@ -64,6 +64,13 @@ export class GroupInput {
         const withinBoundaries1 = e.composedPath().includes(datalist);
         const withinBoundaries2 = e.composedPath().includes(input);
         if (!withinBoundaries1 && !withinBoundaries2) {
+          if (arrow.classList.contains("flip")) {
+            let event = new Event('change', {
+              bubbles: true,
+              cancelable: true,
+            });
+            input.dispatchEvent(event);
+          }
           datalist.style.display = 'none'
           input.style.borderRadius = "5px"
           arrow.classList.remove('flip');
