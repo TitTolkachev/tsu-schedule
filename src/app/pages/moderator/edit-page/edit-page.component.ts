@@ -15,7 +15,7 @@ import {LessonTime} from "../../../models/lesson-time";
 import {Group} from "../../../models/group";
 import {Audience} from "../../../models/audience";
 import {Teacher} from "../../../models/teacher";
-import {combineLatest, mergeMap, Observable, tap} from "rxjs";
+import {combineLatest, Observable, tap} from "rxjs";
 import {IGroupService} from "../../../services/i-group.service";
 import {IAudienceService} from "../../../services/i-audience.service";
 import {ITeacherService} from "../../../services/i-teacher.service";
@@ -35,7 +35,7 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
   State = State.base
   private hintTimer: number | undefined;
 
-  IsLoadingWeek = true
+  IsLoadingWeek = false
   IsLoadingData = true
 
   openModalPair: Function | undefined
@@ -53,7 +53,9 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
   groups: Group[] | undefined
   audiences: Audience[] | undefined
   teachers: Teacher[] | undefined
-  private SelectedInputs: SelectedInput | undefined;
+
+  // Этот антипаттерн сделал ТИТ!
+  private SelectedInputs: SelectedInput = new SelectedInput(this)
 
   constructor(
     private editPageService: EditPageService,
@@ -81,29 +83,24 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
   }.bind(this)
 
   ngOnInit() {
-    this.SelectedInputs = new SelectedInput(this)
-
-    this.loadData().pipe(mergeMap(() => {
-      return this.editPageService.initAndLoadWeek(new Date(), {
-        lessonTimes: this.lessonTimes!,
-        cellConstructor: () => {
-          return {
-            BorderBottom: true,
-            Pairs: [],
-            PageState: this.State,
-            openModalPair: this.openModalPair,
-            addPair: this.addPair,
-            IsAdding: false
+    // Загрузка данных
+    this.loadData().subscribe({
+      next: () => {
+        this.editPageService.init(new Date(), {
+          lessonTimes: this.lessonTimes!,
+          cellConstructor: () => {
+            return {
+              BorderBottom: true,
+              Pairs: [],
+              PageState: this.State,
+              openModalPair: this.openModalPair,
+              addPair: this.addPair,
+              IsAdding: false
+            }
           }
-        }
-      })
-    })).subscribe({
-      next: weeks => {
-        weeks.forEach(week => this.Weeks?.push(week))
-        this.IsLoadingWeek = false
-        this.IsLoadingData = false
-
+        })
         this.initInputs()
+        this.IsLoadingData = false
       },
       error: err => this.handleHttpError(err)
     })
@@ -238,6 +235,14 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
   }
 
   /**
+   * Обновить расписание
+   */
+  refresh() {
+    this.Weeks = []
+    this.loadWeek(this.editPageService.currentWeek)
+  }
+
+  /**
    * Добавить неделю снизу
    */
   addWeek() {
@@ -266,7 +271,12 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
    */
   private loadWeek(weekDate: Date) {
     this.IsLoadingWeek = true
-    this.editPageService.loadWeek(weekDate).subscribe({
+    this.editPageService.loadWeek(
+      weekDate,
+      this.SelectedInputs.SelectedGroups,
+      this.SelectedInputs.SelectedTeacher,
+      this.SelectedInputs.SelectedAudience
+    ).subscribe({
       next: weeks => {
         weeks.forEach(week => this.Weeks?.push(week))
         this.IsLoadingWeek = false
@@ -293,5 +303,11 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
       this.teacherService.fetchTeachers()
         .pipe(tap(e => this.teachers = e)),
     ])
+  }
+
+  protected override handleHttpError(err: Error) {
+    this.IsLoadingData = false
+    this.IsLoadingWeek = false
+    super.handleHttpError(err)
   }
 }

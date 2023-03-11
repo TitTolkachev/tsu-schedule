@@ -8,18 +8,21 @@ export abstract class DisplayErrorComponent {
   @Input()
   error: string | null = null
 
-  protected handleHttpError(err: HttpErrorResponse) {
+  protected handleHttpError(err: Error) {
     this.error = this.httpErrorMessageOf(err)
   }
 
-  protected httpErrorMessageOf(err: HttpErrorResponse): string {
-    if (err.status === 0) {
-      return ErrorMessage.CONNECTION_REFUSED
+  protected httpErrorMessageOf(err: Error): string {
+    if (err instanceof HttpErrorResponse) {
+      if (err.status === 0) {
+        return ErrorMessage.CONNECTION_REFUSED
+      }
+      if (err.error.status === 500) {
+        return ErrorMessage.INTERNAL_SERVER_ERROR
+      }
+      return ErrorMessage.UNKNOWN_ERROR
     }
-    if (err.error.status === 500) {
-      return ErrorMessage.INTERNAL_SERVER_ERROR
-    }
-    return  ErrorMessage.UNKNOWN_ERROR
+    return err.message
   }
 
   hasError() {

@@ -1,4 +1,4 @@
-<app-loader [IsShown]="IsLoadingData || IsLoadingWeek"></app-loader>
+<!--<app-loader [IsShown]="IsLoadingData || IsLoadingWeek"></app-loader>-->
 
 <app-headers></app-headers>
 
@@ -106,7 +106,15 @@
           <div class="expand-arrow" id="arrow6">
             <span class="material-symbols-outlined">expand_more</span>
           </div>
-          <input autocomplete="off" role="combobox" list="" id="input6" name="datalist6" placeholder="Номер аудитории">
+          <input
+            autocomplete="off"
+            role="combobox"
+            list=""
+            id="input6"
+            name="datalist6"
+            placeholder="Номер аудитории"
+            (blur)="refresh()"
+          >
           <datalist class="main-input-datalist" id="datalist6" role="listbox">
             <option *ngFor="let s of audiences" value="{{s.name}}">{{s.name}}</option>
           </datalist>
@@ -123,7 +131,15 @@
           <div class="expand-arrow" id="arrow7">
             <span class="material-symbols-outlined">expand_more</span>
           </div>
-          <input autocomplete="off" role="combobox" list="" id="input7" name="datalist7" placeholder="ФИО преподавателя">
+          <input
+            autocomplete="off"
+            role="combobox"
+            list=""
+            id="input7"
+            name="datalist7"
+            placeholder="ФИО преподавателя"
+            (blur)="refresh()"
+          >
           <datalist class="main-input-datalist" id="datalist7" role="listbox">
             <option *ngFor="let s of teachers" value="{{s.fullName}}">{{s.fullName}}</option>
           </datalist>

@@ -26,7 +26,7 @@ export class EditPageService {
    * Дата текущей недели. Используется для вычисления
    * следующей и предыдущей недели.
    */
-  private currentWeek: Date = new Date()
+  private _currentWeek: Date = new Date()
 
   /**
    * Дата последней подгруженной недели. Используется для
@@ -44,6 +44,13 @@ export class EditPageService {
   ) { }
 
   /**
+   * Вернуть дату текущей выбранной недели
+   */
+  get currentWeek(): Date {
+    return this._currentWeek
+  }
+
+  /**
    * Возвращает следующую неделю на добавление
    */
   getNextWeekToAdd() {
@@ -57,14 +64,14 @@ export class EditPageService {
    * Возвращает и устанавливает следующую неделю
    */
   getAndSetNextWeek(): Date {
-    return this.currentWeek = addWeeks(this.currentWeek, 1)
+    return this._currentWeek = addWeeks(this._currentWeek, 1)
   }
 
   /**
    * Возвращает и устанавливает предыдущую неделю
    */
   getAndSetPreviousWeek(): Date {
-    return this.currentWeek = addWeeks(this.currentWeek, -1)
+    return this._currentWeek = addWeeks(this._currentWeek, -1)
   }
 
   /**
@@ -72,21 +79,32 @@ export class EditPageService {
    * @param weekDate день, относящийся к неделе, которую надо загрузить
    * @param options настройки
    */
-  initAndLoadWeek(weekDate: Date, options: {
+  init(weekDate: Date, options: {
     lessonTimes: LessonTime[]
     cellConstructor: () => Cell
-  }): Observable<Week[]> {
+  }) {
     this.lessonTimes = options.lessonTimes
-    this.currentWeek = weekDate
+    this._currentWeek = weekDate
     this.cellConstructor = options.cellConstructor
-    return this.loadWeek(this.currentWeek)
   }
 
   /**
-   * Метод загрузки недели
+   * Метод загрузки расписания на неделю
    * @param weekDate день, относящийся к неделе, которую надо загрузить
+   * @param groupsIds ID's групп, для которых надо найти раписание
+   * @param teacherId ID преподавателя, для которого надо найти раписание
+   * @param audienceId ID's аудитории, для которой надо найти раписание
    */
-  loadWeek(weekDate: Date): Observable<Week[]> {
+  loadWeek(
+    weekDate: Date,
+    groupsIds: string[] | null,
+    teacherId: string | null,
+    audienceId: string | null
+  ): Observable<Week[]> {
+    console.log(groupsIds)
+    console.log(teacherId)
+    console.log(audienceId)
+
     this.lastLoadedWeek = weekDate
 
     let startDate = format(
@@ -98,7 +116,7 @@ export class EditPageService {
       'yyyy-MM-dd'
     )
 
-    return this.scheduleService.fetchSchedule(startDate, endDate)
+    return this.scheduleService.fetchStaffSchedule(groupsIds ? groupsIds : [], teacherId, audienceId, startDate, endDate)
       .pipe(map(days => this.transformWeeks(days)))
   }
 
