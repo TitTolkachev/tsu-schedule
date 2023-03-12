@@ -57,6 +57,12 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
   groups: Group[] | undefined
   audiences: Audience[] | undefined
   teachers: Teacher[] | undefined
+  repeats = [
+    {id: 1, name: 'Повторять каждую неделю'},
+    {id: 2, name: 'Повторять каждую 2 неделю'},
+    {id: 3, name: 'Повторять каждую 3 неделю'},
+    {id: 4, name: 'Повторять каждую 4 неделю'}
+  ]
 
   SelectedPair: Pair | undefined
   SelectedInputs: SelectedInput = new SelectedInput(this)

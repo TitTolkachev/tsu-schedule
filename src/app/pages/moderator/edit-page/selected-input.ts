@@ -116,11 +116,20 @@ export class SelectedInput {
     return returnVal
   }
 
-  get SelectedRepeat(): string | null {
+  get SelectedRepeat(): number | null {
 
+    let returnVal = null
     let input = document.getElementById('input8') as HTMLInputElement
-
-    return input?.value
+    if (input != null) {
+      let inputValue = input.value.trim()
+      if (inputValue != '') {
+        this.EditPage?.repeats?.forEach((e) => {
+          if (`${e.name}`.trim().toUpperCase() == inputValue.toUpperCase())
+            returnVal = e.id
+        })
+      }
+    }
+    return returnVal
   }
 
   get SelectedDateStart(): string | null {
