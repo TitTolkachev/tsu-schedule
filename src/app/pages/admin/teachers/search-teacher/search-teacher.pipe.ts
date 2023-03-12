@@ -4,18 +4,14 @@ import {Pipe, PipeTransform} from '@angular/core';
   name: 'searchTeacher'
 })
 export class SearchTeacherPipe implements PipeTransform {
-  transform(elements: any[], value: any) {
-    if (!elements) {
-      return [];
-    }
-    if (!value) {
-      return elements;
-    }
+  transform(value: any, args?: any): any {
+    if (!value) return null;
+    if (!args) return value;
 
-    value = value.toLocaleLowerCase()
+    args = args.toLowerCase();
 
-    return elements.filter(element => {
-      return element.fullName.toLocaleLowerCase().includes(value)
+    return value.filter( (item: any) => {
+      return JSON.stringify(item).toLowerCase().includes(args);
     })
   }
 }

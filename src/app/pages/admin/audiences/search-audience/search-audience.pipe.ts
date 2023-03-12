@@ -5,18 +5,14 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 export class SearchAudienceNamePipe implements PipeTransform {
 
-  transform(elements: any[], value: any) {
-    if (!elements) {
-      return [];
-    }
-    if (!value) {
-      return elements;
-    }
+  transform(value: any, args?: any): any {
+    if (!value) return null;
+    if (!args) return value;
 
-    value = value.toLocaleLowerCase()
+    args = args.toLowerCase();
 
-    return elements.filter(element => {
-      return element.name.toLocaleLowerCase().includes(value)
+    return value.filter( (item: any) => {
+      return JSON.stringify(item.name).toLowerCase().includes(args);
     })
   }
 
@@ -26,19 +22,15 @@ export class SearchAudienceNamePipe implements PipeTransform {
   name: 'searchAudienceFrame'
 })
 export class SearchAudienceFramePipe implements PipeTransform {
-  transform(elements: any[], value: any) {
-    if (!elements) {
-      return [];
-    }
 
-    if (!value) {
-      return elements;
-    }
+  transform(value: any, args?: any): any {
+    if (!value) return null;
+    if (!args) return value;
 
-    value = value.toLocaleLowerCase()
+    args = args.toLowerCase();
 
-    return elements.filter(element => {
-      return element.frame.toString().toLocaleLowerCase().includes(value)
+    return value.filter( (item: any) => {
+      return JSON.stringify(item.buildingNumber.toString()).toLowerCase().includes(args);
     })
   }
 
@@ -48,18 +40,14 @@ export class SearchAudienceFramePipe implements PipeTransform {
   name: 'searchAudienceNumber'
 })
 export class SearchAudienceNumberPipe implements PipeTransform {
-  transform(elements: any[], value: any) {
-    if (!elements) {
-      return [];
-    }
-    if (!value) {
-      return elements;
-    }
+  transform(value: any, args?: any): any {
+    if (!value) return null;
+    if (!args) return value;
 
-    value = value.toLocaleLowerCase()
+    args = args.toLowerCase();
 
-    return elements.filter(element => {
-      return element.number.toLocaleLowerCase().includes(value)
+    return value.filter( (item: any) => {
+      return JSON.stringify(item.number).toLowerCase().includes(args);
     })
   }
 

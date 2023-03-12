@@ -42,7 +42,7 @@ export class AudienceService implements IAudienceService {
       `${SERVER_URL}/study-room`,
       {
         id: audience.id,
-        buildingNumber: audience.frame,
+        buildingNumber: audience.buildingNumber,
         floor: audience.floor,
         name: audience.name,
         number: audience.number
