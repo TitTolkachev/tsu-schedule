@@ -20,7 +20,7 @@ export class AudienceModalComponent extends DisplayErrorComponent {
   set form(form: Audience | null) {
     if (form != null) {
       this.id = form.id
-      this.name = form.name
+      this.name = form.name ? form.name : ""
       this.frame = form.buildingNumber.toString()
       this.floor = form.floor.toString()
       this.number = form.number

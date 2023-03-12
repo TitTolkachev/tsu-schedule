@@ -125,7 +125,7 @@ export class EditPageService {
 
     days.forEach(day => {
       let date = parse(day.date, 'yyyy-MM-dd', new Date())
-      let weekNumber = getWeek(date)
+      let weekNumber = getWeek(date, {weekStartsOn: 1})
 
       if (map.has(weekNumber)) {
         map.get(weekNumber)?.push(day)
@@ -165,7 +165,7 @@ export class EditPageService {
           new Pair(
             lesson.id,
             lesson.subject.name,
-            `${lesson.studyRoom.number} ${lesson.studyRoom.name}`,
+            `${lesson.studyRoom.number} ${lesson.studyRoom.name ? lesson.studyRoom.name : ""}`,
             lesson.groups.map(e => e.number).join(','),
             lesson.lessonType.name,
             `${lesson.teacher.lastName} ${lesson.teacher.firstName} ${lesson.teacher.patronymicName}`,
@@ -202,7 +202,7 @@ export class EditPageService {
       'd MMMM yyyy',
       {locale: ruLocale}
     )
-    let weekNumber = getWeek(weekDate)
+    let weekNumber = getWeek(weekDate, {weekStartsOn: 1})
 
     return {
       WeekDate: `${startDateFormatted} - ${endDateFormatted} • ${weekNumber} неделя`,

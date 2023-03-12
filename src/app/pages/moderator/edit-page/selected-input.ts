@@ -93,7 +93,7 @@ export class SelectedInput {
       let inputValue = input.value.trim()
       if (inputValue != '') {
         this.EditPage?.audiences?.forEach((e) => {
-          if (`${e.number} (${e.name})`.trim().toUpperCase() == inputValue.toUpperCase())
+          if (`${e.number} ${e.name}`.trim().toUpperCase() == inputValue.toUpperCase())
             returnVal = e.id
         })
       }
