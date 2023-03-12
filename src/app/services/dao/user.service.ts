@@ -50,7 +50,13 @@ export class UserService implements IUserService {
 
   deleteAccount(accountId: string): Observable<void> {
     return this.httpClient.delete<void>(
-      `${SERVER_URL}/profile`
+      `${SERVER_URL}/profile`,
+      {
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: `"${accountId}"`
+      }
     )
   }
 }
