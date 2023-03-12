@@ -59,21 +59,22 @@ export class RequestsPageComponent  extends DisplayErrorComponent {
   }
 
   resolveRequest(accept: boolean) {
-    if (this.modal.selected instanceof RegistrationRequest) {
+    if (this.modal.selected == null) {
+      throw Error("invalid selected request")
+    }
+    if ('group' in this.modal.selected) {
+      this.requestService.resolveGroupRequest(this.modal.selected.id, accept).subscribe({
+        next: () => this.refresh(),
+        error: err => this.modal.error = this.httpErrorMessageOf(err)
+      })
+    }
+    else {
       this.requestService.resolveRegistrationRequest(this.modal.selected.id, accept).subscribe({
         next: () => this.refresh(),
         error: err => this.modal.error = this.httpErrorMessageOf(err)
       })
       return
     }
-    if (this.modal.selected instanceof GroupRequest) {
-      this.requestService.resolveGroupRequest(this.modal.selected.id, accept).subscribe({
-        next: () => this.refresh(),
-        error: err => this.modal.error = this.httpErrorMessageOf(err)
-      })
-      return
-    }
-    throw Error("invalid selected request")
   }
 
   selectRequest(subject: RegistrationRequest | GroupRequest | null) {
