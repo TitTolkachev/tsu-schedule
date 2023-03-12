@@ -1,0 +1,216 @@
+/*--------------*/
+/* Modal Header */
+
+.modal-header {
+  padding: 33px 0 0 0;
+  justify-content: center;
+  border: none;
+}
+
+.modal-header > .btn-close {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 33px 33px 0 0;
+  border-radius: 100%;
+  --bs-btn-close-hover-opacity: 1;
+  --bs-btn-close-opacity: 0.8;
+  --bs-btn-close-focus-shadow: none;
+  background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke-width='1' fill='white'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center/2em auto no-repeat;
+}
+
+.modal-header > .btn-close:active {
+  --bs-btn-close-focus-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.07);
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+.modal-title {
+  padding: 0 100px;
+  margin: auto;
+
+  font-family: 'Zekton', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 60px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.modal-subtitle {
+  padding: 20px 100px 0 100px;
+  margin: auto;
+
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 41px;
+  align-items: center;
+  text-align: center;
+}
+
+
+/*--------------*/
+/* Modal Content */
+
+.modal-content {
+  background: #735F5F;
+  border-radius: 25px;
+
+  text-wrap: normal;
+  word-wrap: break-word;
+
+  margin: 0;
+  border: 0;
+  color: #fff;
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+}
+
+.modal-body-block-container {
+  width: 100%;
+  justify-content: start;
+  padding: 20px 100px;
+}
+
+.modal-body-block-title {
+  display: flex;
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 41px;
+  align-items: center;
+  text-align: left;
+}
+
+.modal-body-block-value {
+  display: flex;
+  padding: 5px 30px;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 41px;
+  align-items: center;
+  text-align: left;
+}
+
+/*--------------*/
+/* Modal Footer */
+
+.modal-footer {
+  border: none;
+  border-radius: 0 0 25px 25px;
+  padding: 15px;
+  margin: 44px 0 0 0;
+  background: #FFFFFF;
+  font-family: 'Zekton', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 45px;
+  line-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #735F5F;
+}
+
+.footer-pair-time {
+  font-family: 'Zekton', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 42px;
+  color: #735F5F;
+}
+
+.modal-footer > .btn-primary {
+  position: absolute;
+  right: 0;
+
+  box-sizing: border-box;
+  width: 212px;
+  height: 80px;
+
+  background: transparent;
+
+  font-family: 'Zekton', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 42px;
+  align-items: center;
+  text-align: right;
+  color: #735F5F;
+
+  border: none;
+  border-radius: 25px 0 25px 0;
+
+  padding: 0;
+  margin: 0;
+}
+
+.modal-footer > .btn-primary:hover {
+  background: #d0d0d0;
+}
+
+.modal-footer > .btn-primary:active {
+  background: #9f9f9f;
+}
+
+@media (max-height: 900px) {
+
+  .modal-header {
+    padding: 33px 0 0 0;
+  }
+
+  .modal-header > .btn-close {
+    width: 32px;
+    height: 32px;
+    margin: 33px 33px 0 0;
+  }
+
+  .modal-title {
+    font-size: 40px;
+    line-height: 45px;
+  }
+
+  .modal-subtitle {
+    font-size: 30px;
+    line-height: 35px;
+  }
+
+  .modal-body-block-container {
+    padding: 10px 100px;
+  }
+
+  .modal-body-block-title {
+    font-size: 25px;
+    line-height: 30px;
+  }
+
+  .modal-body-block-value {
+    padding: 5px 50px;
+    font-size: 25px;
+    line-height: 30px;
+  }
+
+  .modal-footer {
+    padding: 15px;
+    margin: 20px 0 0 0;
+    font-size: 45px;
+    line-height: 54px;
+  }
+
+  .footer-pair-time {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .modal-footer > .btn-primary {
+    width: 170px;
+    height: 70px;
+    font-size: 28px;
+    line-height: 32px;
+  }
+}

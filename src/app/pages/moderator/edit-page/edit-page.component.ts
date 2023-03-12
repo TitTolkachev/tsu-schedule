@@ -22,6 +22,7 @@ import {ITeacherService} from "../../../services/i-teacher.service";
 import {IScheduleService} from "../../../services/i-schedule.service";
 import {SelectedInput} from "./selected-input";
 import {Event} from "@angular/router";
+import {ConfirmMode} from "./models/ConfirmMode";
 
 @Component({
   selector: 'app-edit-page',
@@ -33,6 +34,7 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
   // Отображаемые недели
   Weeks: Array<Week> = []
 
+  ConfirmMode = ConfirmMode.none
   State = State.base
   private hintTimer: number | undefined;
 
@@ -55,7 +57,7 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
   audiences: Audience[] | undefined
   teachers: Teacher[] | undefined
 
-  // Этот антипаттерн сделал ТИТ!
+  SelectedPair: Pair | undefined
   private SelectedInputs: SelectedInput = new SelectedInput(this)
 
   constructor(
@@ -82,6 +84,7 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
       })
     })
   }.bind(this)
+
 
   ngOnInit() {
     // Загрузка данных
@@ -176,7 +179,7 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
 
   buildLessonTime(t: LessonTime) {
     return (t.startTime.hour < 10 ? '0' : '') + t.startTime.hour + ':' + (t.startTime.minute < 10 ? '0' : '') + t.startTime.minute
-      + '-' + (t.endTime.hour < 10 ? '0' : '')+ t.endTime.hour + ':' + (t.endTime.minute < 10 ? '0' : '') + t.endTime.minute
+      + '-' + (t.endTime.hour < 10 ? '0' : '') + t.endTime.hour + ':' + (t.endTime.minute < 10 ? '0' : '') + t.endTime.minute
   }
 
   setDisplayBlock(id: string) {
@@ -239,11 +242,87 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
           })
         })
       })
+
+      // @ts-ignore
+      this.SelectedPair = pair
     }
   }.bind(this)
 
+  /**
+   * Изменить все пары в группе
+   */
+  applyChangesForAllPairsInGroup = function () {
+    // this.SelectedPair - изменяемая пара
+
+    // @ts-ignore
+    this.cancelOperations()
+  }.bind(this)
+
+  /**
+   * Изменить только выбранную пару
+   */
+  applyChangesForSelectedPair = function () {
+    // this.SelectedPair - изменяемая пара
+
+    // @ts-ignore
+    this.cancelOperations()
+  }.bind(this)
+
+  /**
+   * Удалить все пары в группе
+   */
+  deleteAllPairsInGroup = function () {
+    // this.SelectedPair - изменяемая пара
+
+    // @ts-ignore
+    this.cancelOperations()
+  }.bind(this)
+
+  /**
+   * Удалить только выбранную пару
+   */
+  deleteSelectedPairFromGroup = function () {
+    // this.SelectedPair - изменяемая пара
+
+    // @ts-ignore
+    this.cancelOperations()
+  }.bind(this)
+
+  ConfirmFunctions: Function[] = [this.applyChangesForAllPairsInGroup,
+    this.applyChangesForSelectedPair,
+    this.deleteAllPairsInGroup,
+    this.deleteSelectedPairFromGroup];
+
+  /**
+   * Нажатие на кнопку сохранить изменения
+   */
+  onApplyChangesClick() {
+    // Если в режиме добавления пары
+    if (this.State == State.addPair) {
+
+    }
+    // Если в режиме редактирования пары
+    if (this.State == State.editPair) {
+      this.ConfirmMode = ConfirmMode.change
+      document.getElementById('confirmModalOpenBtn')?.click()
+    }
+  }
+
+  /**
+   * Нажатие на кнопку удалить в режиме редактирования пары
+   */
+  onDeleteClick() {
+    this.ConfirmMode = ConfirmMode.delete
+    document.getElementById('confirmModalOpenBtn')?.click()
+  }
+
+  /**
+   * Сброс состояния
+   */
   cancelOperations() {
     this.State = State.base
+    this.SelectedPair = undefined
+    this.ConfirmMode = ConfirmMode.none
     // @ts-ignore
     this.Weeks?.forEach((w: Week) => {
       w.WeekTimeLines.forEach((l) => {
