@@ -1,6 +1,6 @@
 <div class="row row-cols-auto justify-content-between">
   <div class="col-8" *ngIf="audience">
-    <p> {{ audience.number }} аудитория ({{ audience.frame }} корпус, {{audience.floor}} этаж) {{ audience.name }}</p>
+    <p> {{ audience.number }} аудитория ({{ audience.buildingNumber }} корпус, {{audience.floor}} этаж) {{ audience.name }}</p>
   </div>
   <div class="col d-flex buttons">
     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addAudienceModal" (click)="editClick()">
