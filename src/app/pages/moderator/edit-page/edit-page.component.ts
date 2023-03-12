@@ -389,11 +389,11 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
         // @ts-ignore
         input8.value = pair.Repeat ? this.repeats[pair.Repeat - 1]?.name : ''
       }
-      if (input9) {
-        input9.valueAsDate = <Date | null>pair.GroupDateStart
+      if (input9 && pair.GroupDateStart) {
+        input9.value = format(pair.GroupDateStart, 'yyyy-MM-dd')
       }
-      if (input10) {
-        input10.valueAsDate = <Date | null>pair.GroupDateEnd
+      if (input10 && pair.GroupDateEnd) {
+        input10.value = format(pair.GroupDateEnd, 'yyyy-MM-dd')
       }
     }
   }.bind(this)
