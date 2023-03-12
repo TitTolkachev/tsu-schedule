@@ -55,6 +55,7 @@ import {IRequestService} from "./services/i-request.service";
 import {IScheduleService} from "./services/i-schedule.service";
 import {ILessonService} from "./services/i-lesson.service";
 import {LoaderComponent} from './components/loader/loader.component';
+import {MainComponent} from './pages/main/main.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import {LoaderComponent} from './components/loader/loader.component';
     ScheduleCellDayComponent,
     SchedulePairComponent,
     SchedulePairModalComponent,
-    LoaderComponent
+    LoaderComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

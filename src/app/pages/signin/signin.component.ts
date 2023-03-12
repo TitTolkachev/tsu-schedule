@@ -35,10 +35,12 @@ export class SigninComponent {
         next: e => {
           let role = jwtDecode<Jwt>(e.token).role
           if (role == 'Admin') {
+            this.authService.saveToken(e.token)
             this.router.navigateByUrl("/admin/main").then()
             return;
           }
           if (role == 'ScheduleWriter') {
+            this.authService.saveToken(e.token)
             this.router.navigateByUrl("/moderator/edit").then()
             return;
           }

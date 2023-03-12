@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable, of, tap} from "rxjs";
+import {Observable, of} from "rxjs";
 import {Token} from "../models/token";
 import {SERVER_URL, TOKEN_KEY} from "../constants";
+import {Jwt} from "../models/jwt";
+import jwtDecode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,7 @@ export class AuthService {
         email: email,
         password: password
       }
-    ).pipe(tap(e => localStorage.setItem(TOKEN_KEY, e.token)))
+    )
   }
 
   signOut(): Observable<void> {
@@ -39,5 +41,14 @@ export class AuthService {
 
   isLogged(): boolean {
     return localStorage.getItem(TOKEN_KEY) != null
+  }
+
+  saveToken(token: string) {
+    localStorage.setItem(TOKEN_KEY, token)
+  }
+
+  get accessToken(): Jwt | null {
+    let token = localStorage.getItem(TOKEN_KEY)
+    return token ? jwtDecode(token) : null
   }
 }
