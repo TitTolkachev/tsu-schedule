@@ -1,5 +1,3 @@
-import {tr} from "date-fns/locale";
-
 export class DropDownInput {
   constructor(input: HTMLElement | null, datalist: HTMLElement | null, arrow: HTMLElement | null, setIsEmpty?: Function) {
     this.init(input, datalist, arrow, setIsEmpty)
@@ -41,11 +39,6 @@ export class DropDownInput {
             datalist.style.display = 'none'
             input.style.borderRadius = "5px"
           }
-          let event = new Event('change', {
-            bubbles: true,
-            cancelable: true,
-          });
-          input.dispatchEvent(event);
         }
       }
 
