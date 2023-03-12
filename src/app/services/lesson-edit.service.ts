@@ -26,7 +26,6 @@ export class LessonEditService {
       subjectId: inputs.SelectedSubject!,
       startDate: inputs.SelectedDateStart!,
       endDate: inputs.SelectedDateEnd!,
-      dayOfWeek: inputs.SelectedWeekDay!,
       lessonNumber: inputs.SelectedTime!,
       frequency: 1 // TODO Тит доделай
     })
@@ -40,7 +39,26 @@ export class LessonEditService {
       throw Error("All field must be filled") // TODO норм вывод ошибки в модальное окно
     }
 
-    return this.lessonService.modifyLesson(pair.Id, {
+    return this.lessonService.modifyLessonInGroup(pair.Id, {
+      groupsIds: inputs.SelectedGroups,
+      studyRoomId: inputs.SelectedAudience!,
+      lessonTypeId: inputs.SelectedPairType!,
+      teacherId: inputs.SelectedTeacher!,
+      subjectId: inputs.SelectedSubject!,
+      date: inputs.SelectedDateStart!,
+      lessonNumber: inputs.SelectedTime!
+    })
+  }
+
+  modifyGroupPair(pair: Pair | undefined | null, inputs: SelectedInput): Observable<void> {
+    if (pair == undefined) {
+      throw Error("Lesson isn't selected")
+    }
+    if (!inputs.isValidSelected()) {
+      throw Error("All field must be filled") // TODO норм вывод ошибки в модальное окно
+    }
+
+    return this.lessonService.modifyLessonGroup(pair.Id, {
       groupsIds: inputs.SelectedGroups,
       studyRoomId: inputs.SelectedAudience!,
       lessonTypeId: inputs.SelectedPairType!,
@@ -48,14 +66,9 @@ export class LessonEditService {
       subjectId: inputs.SelectedSubject!,
       startDate: inputs.SelectedDateStart!,
       endDate: inputs.SelectedDateEnd!,
-      dayOfWeek: inputs.SelectedWeekDay!,
       lessonNumber: inputs.SelectedTime!,
       frequency: 1 // TODO Тит доделай
     })
-  }
-
-  modifyGroupPair(pair: Pair | undefined | null, inputs: SelectedInput): Observable<void> {
-    throw Error("Not implemented")
   }
 
   deletePair(pair: Pair | undefined | null): Observable<void> {
@@ -63,10 +76,14 @@ export class LessonEditService {
       throw Error("Lesson isn't selected")
     }
 
-    return this.lessonService.deleteLesson(pair.Id)
+    return this.lessonService.deleteLessonInGroup(pair.Id)
   }
 
   deleteGroupPair(pair: Pair | undefined | null): Observable<void> {
-    throw Error("Not implemented")
+    if (pair == null) {
+      throw Error("Lesson isn't selected")
+    }
+
+    return this.lessonService.deleteLessonGroup(pair.Id)
   }
 }
