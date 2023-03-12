@@ -107,7 +107,6 @@ input.transparent-input:focus, .groups-list {
   caret-color: #FFFFFF;
   background-color: rgba(236, 236, 236, 0.01) !important;
   color: #ffffff !important;
-  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.07);
 }
 
 

@@ -1,8 +1,8 @@
 <div class="row row-cols-auto justify-content-between">
 
   <div class="col" *ngIf="account">
-    <div class="row align-items-center justify-content-start">
-      <div class="col-md-1">
+    <div class="d-flex">
+      <div>
         <div>
           <img class="role-image" *ngIf="account.role == 'Teacher'" src="../../../../../assets/img/teacher.svg" alt="teacher">
           <img class="role-image" *ngIf="account.role == 'Student'" src="../../../../../assets/img/student.svg" alt="student">
@@ -11,7 +11,7 @@
         </div>
       </div>
 
-      <div class = "col-md info-person">
+      <div class = "info-person">
         <div class="name">
           {{ account.lastName }} {{ account.firstName }} {{ account.patronymicName != null ? account.patronymicName : ""}}
         </div>
