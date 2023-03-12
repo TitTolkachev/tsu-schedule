@@ -93,6 +93,11 @@
         </div>
       </div>
 
+      <!-- TODO отображение ошибки -->
+      <div *ngIf="hasError()">
+        <p>{{ error }}</p>
+      </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-primary text-center" (click)="onSubmit()">
           <span *ngIf="!edit">Добавить</span>

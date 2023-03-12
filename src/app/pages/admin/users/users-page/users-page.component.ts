@@ -197,6 +197,10 @@ export class UsersPageComponent extends DisplayErrorComponent {
       this.modal.error = ErrorMessage.VALIDATION_USER_EMAIL_MAX
       return false
     }
+    if (!form.email.match(RegExp("((^[a-zA-Z][\\w.-]*[a-zA-Z0-9])|([^\"*$]))@[a-z-Z0-9][\\w.-]*[a-zA-Z0-9]\\.[a-zA-Z][a-zA-Z.]*[a-zA-Z]$"))) {
+      this.modal.error = ErrorMessage.VALIDATION_USER_EMAIL_FORMAT
+      return false
+    }
     if (form.password.length === 0) {
       this.modal.error = ErrorMessage.VALIDATION_USER_PASSWORD_EMPTY
       return false
@@ -209,7 +213,7 @@ export class UsersPageComponent extends DisplayErrorComponent {
       this.modal.error = ErrorMessage.VALIDATION_USER_PASSWORD_MAX
       return false
     }
-    if (form.password.match(RegExp("^(?=.*\\d)(?=.*[a-zA-Z]).*"))) {
+    if (!form.password.match(RegExp("^(?=.*\\d)(?=.*[a-zA-Z]).*"))) {
       this.modal.error = ErrorMessage.VALIDATION_USER_PASSWORD_FORMAT
       return false
     }
