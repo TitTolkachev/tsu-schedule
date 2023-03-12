@@ -19,7 +19,8 @@
           </div>
           <input autocomplete="off" role="combobox" list="" id="input1" name="datalist1" placeholder="Название предмета">
           <datalist class="main-input-datalist" id="datalist1" role="listbox">
-            <option *ngFor="let s of subjects" value="{{s.name}}">{{s.name}}</option>
+            <option *ngFor="let s of subjects" value="{{s.name}}"
+            (click)="onOptionClick('input1', 'datalist1', $event)">{{s.name}}</option>
           </datalist>
 
         </fieldset>
@@ -36,7 +37,8 @@
           </div>
           <input autocomplete="off" role="combobox" list="" id="input2" name="datalist2" placeholder="Вид пары">
           <datalist class="main-input-datalist" id="datalist2" role="listbox">
-            <option *ngFor="let s of lessonTypes" value="{{s.name}}">{{s.name}}</option>
+            <option *ngFor="let s of lessonTypes" value="{{s.name}}"
+                    (click)="onOptionClick('input2', 'datalist2', $event)">{{s.name}}</option>
           </datalist>
 
         </fieldset>
@@ -53,7 +55,8 @@
           </div>
           <input autocomplete="off" role="combobox" list="" id="input3" name="datalist3" placeholder="День недели">
           <datalist class="main-input-datalist" id="datalist3" role="listbox">
-            <option *ngFor="let s of weekDays" value="{{s.name}}">{{s.name}}</option>
+            <option *ngFor="let s of weekDays" value="{{s.name}}"
+                    (click)="onOptionClick('input3', 'datalist3', $event)">{{s.name}}</option>
           </datalist>
 
         </fieldset>
@@ -193,7 +196,8 @@
             </div>
             <input autocomplete="off" role="combobox" list="" id="input8" name="datalist8" placeholder="Повторять каждые">
             <datalist class="main-input-datalist" id="datalist8" role="listbox">
-              <option *ngFor="let s of repeats" value="{{s.name}}">{{s.name}}</option>
+              <option *ngFor="let s of repeats" value="{{s.name}}"
+                      (click)="onOptionClick('input8', 'datalist8', $event)">{{s.name}}</option>
             </datalist>
 
           </fieldset>

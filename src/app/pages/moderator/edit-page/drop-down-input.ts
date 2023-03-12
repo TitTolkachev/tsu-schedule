@@ -28,20 +28,6 @@ export class DropDownInput {
           arrow.classList.remove('flip');
       }
 
-      // @ts-ignore
-      for (let option of datalist.options) {
-        option.onclick = function () {
-          if (input != null && datalist != null) {
-            // @ts-ignore
-            input.value = option.value
-            if (setIsEmpty != null)
-              setIsEmpty(true)
-            datalist.style.display = 'none'
-            input.style.borderRadius = "5px"
-          }
-        }
-      }
-
       input.oninput = function () {
         if (input != null && datalist != null) {
           currentFocus = -1;
