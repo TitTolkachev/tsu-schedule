@@ -4,7 +4,6 @@ import {HttpClient} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {Account} from "../../models/account";
 import {SERVER_URL} from "../../constants";
-import {Group} from "../../models/group";
 
 @Injectable({
   providedIn: 'root'
@@ -21,17 +20,35 @@ export class UserService implements IUserService {
     )
   }
 
-  // TODO
-  createAccount(account: { firstName: string; lastName: string; patronymicName: string; role: string; group: Group | null; email: string; password: string }): Observable<void> {
+  // TODO Not implemented
+  createAccount(account: {
+    firstName: string,
+    lastName: string,
+    patronymicName: string,
+    role: string,
+    groupId: string | null,
+    teacherId: string | null,
+    email: string,
+    password: string
+  }): Observable<void> {
     return throwError(() => Error("Not implemented"));
   }
 
-  // TODO
-  modifyAccount(id: string, account: { firstName: string; lastName: string; patronymicName: string; role: string | null; group: Group | null; email: string | null; password: string | null }): Observable<void> {
+  // TODO Not implemented
+  modifyAccount(id: string, account: {
+    firstName: string,
+    lastName: string,
+    patronymicName: string,
+    role: string,
+    groupId: string | null,
+    teacherId: string | null,
+    email: string,
+    password: string
+  }): Observable<void> {
     return throwError(() => Error("Not implemented"));
   }
 
-  // TODO
+  // TODO Not implemented
   deleteAccount(accountId: string): Observable<void> {
     return throwError(() => Error("Not implemented"));
   }

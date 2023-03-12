@@ -1,23 +1,42 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {DisplayErrorComponent} from "../../../../components/util/display-error";
 import {ErrorMessage} from "../../../../errors";
 import {IUserService} from "../../../../services/i-user.service";
 import {IGroupService} from "../../../../services/i-group.service";
 import {Account} from "../../../../models/account";
 import {Group} from "../../../../models/group";
+import {Teacher} from "../../../../models/teacher";
+import {ITeacherService} from "../../../../services/i-teacher.service";
+import {UsersModalComponent} from "../users-modal/users-modal.component";
 
 @Component({
   selector: 'app-users-page',
   templateUrl: './users-page.component.html',
-  styleUrls: ['./users-page.component.css']
+  styleUrls: ['./users-page.component.css'],
 })
 export class UsersPageComponent extends DisplayErrorComponent {
+
+  // Костыль, но переделывать нет времени
+  @ViewChild(UsersModalComponent)
+  usersModalComponent: UsersModalComponent | undefined
 
   /**
    * Список аккаунтов с сервера.
    * Если undefined, значит список ещё не загружен с сервера
    */
   accounts: Account[] | undefined
+
+  /**
+   * Список групп с сервера.
+   * Если undefined, значит список ещё не загружен с сервера
+   */
+  groups: Group[] | undefined
+
+  /**
+   * Список преподавателей с сервера.
+   * Если undefined, значит список ещё не загружен с сервера
+   */
+  teachers: Teacher[] | undefined
 
   /**
    * Объект для передачи данных в модальное окно
@@ -31,7 +50,8 @@ export class UsersPageComponent extends DisplayErrorComponent {
 
   constructor(
     private userService: IUserService,
-    private groupService: IGroupService
+    private groupService: IGroupService,
+    private teacherService: ITeacherService
   ) {
     super();
   }
@@ -47,12 +67,25 @@ export class UsersPageComponent extends DisplayErrorComponent {
       next: accounts => this.accounts = accounts,
       error: err => this.handleHttpError(err)
     })
+    this.groupService.fetchGroups().subscribe({
+      next: groups => this.groups = groups,
+      error: err => this.handleHttpError(err)
+    })
+    this.teacherService.fetchTeachers().subscribe({
+      next: teachers => this.teachers = teachers,
+      error: err => this.handleHttpError(err)
+    })
   }
 
   requestCreateAccount() {
     this.selectAccount(null)
   }
 
+  /**
+   * @deprecated устарело по причине того,
+   * что бекенд не реализовал возможность редактировать аккаунт
+   * TODO возможно убрать
+   */
   requestEditAccount(account: Account) {
     this.selectAccount(account)
   }
@@ -67,7 +100,8 @@ export class UsersPageComponent extends DisplayErrorComponent {
     lastName: string,
     patronymicName: string,
     role: string,
-    group: Group | null,
+    groupId: string | null,
+    teacherId: string | null,
     email: string,
     password: string
   }) {
@@ -78,7 +112,8 @@ export class UsersPageComponent extends DisplayErrorComponent {
       lastName: form.lastName,
       patronymicName: form.patronymicName,
       role: form.role,
-      group: form.group,
+      groupId: form.groupId,
+      teacherId: form.teacherId,
       email: form.email,
       password: form.password
     }).subscribe({
@@ -87,13 +122,19 @@ export class UsersPageComponent extends DisplayErrorComponent {
     })
   }
 
+  /**
+   * @deprecated устарело по причине того,
+   * что бекенд не реализовал возможность редактировать аккаунт
+   * TODO возможно убрать
+   */
   modifyAccount(form: {
     id: string,
     firstName: string,
     lastName: string,
     patronymicName: string,
     role: string,
-    group: Group | null,
+    groupId: string | null,
+    teacherId: string | null,
     email: string,
     password: string
   }) {
@@ -104,7 +145,8 @@ export class UsersPageComponent extends DisplayErrorComponent {
       lastName: form.lastName,
       patronymicName: form.patronymicName,
       role: form.role,
-      group: form.group,
+      groupId: form.groupId,
+      teacherId: form.teacherId,
       email: form.email,
       password: form.password
     }).subscribe({
@@ -120,7 +162,13 @@ export class UsersPageComponent extends DisplayErrorComponent {
     })
   }
 
-  private validateAccount(form: {firstName: string, lastName: string, patronymicName: string}): boolean {
+  private validateAccount(form: {
+    firstName: string,
+    lastName: string,
+    patronymicName: string,
+    email: string,
+    password: string
+  }): boolean {
     if (form.firstName.length === 0) {
       this.modal.error = ErrorMessage.VALIDATION_USER_FIRST_NAME_EMPTY
       return false
@@ -133,10 +181,47 @@ export class UsersPageComponent extends DisplayErrorComponent {
       this.modal.error = ErrorMessage.VALIDATION_USER_PATRONYMIC_NAME_EMPTY
       return false
     }
+    if (form.email.length === 0) {
+      this.modal.error = ErrorMessage.VALIDATION_USER_PATRONYMIC_NAME_EMPTY
+      return false
+    }
+    if (form.email.length === 0) {
+      this.modal.error = ErrorMessage.VALIDATION_USER_PATRONYMIC_NAME_EMPTY
+      return false
+    }
+    if (form.email.length === 0) {
+      this.modal.error = ErrorMessage.VALIDATION_USER_EMAIL_EMPTY
+      return false
+    }
+    if (form.email.length > 255) {
+      this.modal.error = ErrorMessage.VALIDATION_USER_EMAIL_MAX
+      return false
+    }
+    if (!form.email.match(RegExp("((^[a-zA-Z][\\w.-]*[a-zA-Z0-9])|([^\"*$]))@[a-z-Z0-9][\\w.-]*[a-zA-Z0-9]\\.[a-zA-Z][a-zA-Z.]*[a-zA-Z]$"))) {
+      this.modal.error = ErrorMessage.VALIDATION_USER_EMAIL_FORMAT
+      return false
+    }
+    if (form.password.length === 0) {
+      this.modal.error = ErrorMessage.VALIDATION_USER_PASSWORD_EMPTY
+      return false
+    }
+    if (form.password.length < 6) {
+      this.modal.error = ErrorMessage.VALIDATION_USER_PASSWORD_MIN
+      return false
+    }
+    if (form.password.length > 64) {
+      this.modal.error = ErrorMessage.VALIDATION_USER_PASSWORD_MAX
+      return false
+    }
+    if (!form.password.match(RegExp("^(?=.*\\d)(?=.*[a-zA-Z]).*"))) {
+      this.modal.error = ErrorMessage.VALIDATION_USER_PASSWORD_FORMAT
+      return false
+    }
     return true
   }
 
   private selectAccount(account: Account | null) {
+    this.usersModalComponent!.clear()
     this.modal.error = null
     this.modal.selected = account
   }

@@ -43,6 +43,8 @@
 <!-- Модальное окно добавления или редактирования аудитории -->
 <app-users-modal
   [form]="modal.selected"
+  [groups]="groups"
+  [teachers]="teachers"
   [error]="modal.error"
   (create)="createAccount($event)"
   (modify)="modifyAccount($event)"

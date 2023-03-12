@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {DisplayErrorComponent} from "../../../../components/util/display-error";
 import {Account} from "../../../../models/account";
 import {Group} from "../../../../models/group";
+import {Teacher} from "../../../../models/teacher";
 
 @Component({
   selector: 'app-users-modal',
@@ -16,9 +17,16 @@ export class UsersModalComponent extends DisplayErrorComponent {
   lastName: string = ""
   patronymicName: string = ""
   role: string = ""
-  group: Group | null = null
+  groupId: string | null = null
+  teacherId: string | null = null
   email: string = ""
   password: string = ""
+
+  @Input()
+  groups: Group[] | undefined
+
+  @Input()
+  teachers: Teacher[] | undefined
 
   @Input()
   set form(form: Account | null) {
@@ -28,18 +36,13 @@ export class UsersModalComponent extends DisplayErrorComponent {
       this.lastName = form.lastName
       this.patronymicName = form.patronymicName
       this.role = form.role
-      this.group = form.group
+      this.groupId = form.group ? form.group.number : null
+      this.teacherId = form.teacherId
       this.email = form.email
+      this.password = ""
     } else {
-      this.id = undefined
-      this.firstName = ""
-      this.lastName = ""
-      this.patronymicName = ""
-      this.role = "Student"
-      this.group = null
-      this.email = ""
+      this.clear()
     }
-    this.password = ""
   }
 
   get edit(): boolean {
@@ -52,7 +55,8 @@ export class UsersModalComponent extends DisplayErrorComponent {
     lastName: string,
     patronymicName: string,
     role: string,
-    group: Group | null,
+    groupId: string | null,
+    teacherId: string | null,
     email: string,
     password: string
   }>()
@@ -64,10 +68,23 @@ export class UsersModalComponent extends DisplayErrorComponent {
     lastName: string,
     patronymicName: string,
     role: string,
-    group: Group | null,
+    groupId: string | null,
+    teacherId: string | null,
     email: string,
     password: string
   }>()
+
+  clear() {
+    this.id = undefined
+    this.firstName = ""
+    this.lastName = ""
+    this.patronymicName = ""
+    this.role = "Student"
+    this.groupId = null
+    this.teacherId = null
+    this.email = ""
+    this.password = ""
+  }
 
   onSubmit() {
     if (this.id == undefined) {
@@ -76,7 +93,8 @@ export class UsersModalComponent extends DisplayErrorComponent {
         lastName: this.lastName,
         patronymicName: this.patronymicName,
         role: this.role,
-        group: this.group,
+        groupId: this.groupId,
+        teacherId: this.teacherId,
         email: this.email,
         password: this.password
       })
@@ -87,36 +105,27 @@ export class UsersModalComponent extends DisplayErrorComponent {
         lastName: this.lastName,
         patronymicName: this.patronymicName,
         role: this.role,
-        group: this.group,
+        groupId: this.groupId,
+        teacherId: this.teacherId,
         email: this.email,
         password: this.password
       })
     }
   }
 
+  onRoleChange(role: string) {
+    this.role = role
+  }
+
+  onGroupChange(groupId: string) {
+    this.groupId = groupId
+  }
+
+  onTeacherChange(teacherId: string) {
+    this.teacherId = teacherId
+  }
+
   generatePassword() {
     this.password = (Math.random() + 1).toString(36).substring(6);
   }
 }
-
-/*{
-  @Input()
-  public id: string | undefined
-
-  @Input()
-  public role: string = "student"
-  @Input()
-  public name: string = ""
-
-  @Input()
-  public email: string = ""
-
-  @Input()
-  public group: number | undefined
-
-  public groups = ["972101", "972101", "972101", "972101", "972101", "972101", "972101", "972101" ]
-
-  get edit(): boolean {
-    return this.id != undefined
-  }
-}*/
