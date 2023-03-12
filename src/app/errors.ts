@@ -21,4 +21,10 @@ export enum ErrorMessage {
   VALIDATION_USER_FIRST_NAME_EMPTY = "Имя пользователя не может быть пустым.",
   VALIDATION_USER_LAST_NAME_EMPTY = "Фамилия пользователя не может быть пустым.",
   VALIDATION_USER_PATRONYMIC_NAME_EMPTY = "Отчество пользователя не может быть пустым.",
+  VALIDATION_USER_EMAIL_EMPTY = "Почта пользователя не может быть пустым.",
+  VALIDATION_USER_EMAIL_MAX = "Почта пользователя должна быть максимум 255 символов.",
+  VALIDATION_USER_PASSWORD_EMPTY = "Пароль пользователя не может быть пустым.",
+  VALIDATION_USER_PASSWORD_MIN = "Пароль пользователя должен быть минимум 6 символов.",
+  VALIDATION_USER_PASSWORD_MAX = "Пароль пользователя должен быть максимум 64 символа.",
+  VALIDATION_USER_PASSWORD_FORMAT = "Пароль пользователя содержит недопустимые символы.",
 }

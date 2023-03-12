@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {DisplayErrorComponent} from "../../../../components/util/display-error";
 import {ErrorMessage} from "../../../../errors";
 import {IUserService} from "../../../../services/i-user.service";
@@ -7,13 +7,18 @@ import {Account} from "../../../../models/account";
 import {Group} from "../../../../models/group";
 import {Teacher} from "../../../../models/teacher";
 import {ITeacherService} from "../../../../services/i-teacher.service";
+import {UsersModalComponent} from "../users-modal/users-modal.component";
 
 @Component({
   selector: 'app-users-page',
   templateUrl: './users-page.component.html',
-  styleUrls: ['./users-page.component.css']
+  styleUrls: ['./users-page.component.css'],
 })
 export class UsersPageComponent extends DisplayErrorComponent {
+
+  // Костыль, но переделывать нет времени
+  @ViewChild(UsersModalComponent)
+  usersModalComponent: UsersModalComponent | undefined
 
   /**
    * Список аккаунтов с сервера.
@@ -157,7 +162,13 @@ export class UsersPageComponent extends DisplayErrorComponent {
     })
   }
 
-  private validateAccount(form: {firstName: string, lastName: string, patronymicName: string}): boolean {
+  private validateAccount(form: {
+    firstName: string,
+    lastName: string,
+    patronymicName: string,
+    email: string,
+    password: string
+  }): boolean {
     if (form.firstName.length === 0) {
       this.modal.error = ErrorMessage.VALIDATION_USER_FIRST_NAME_EMPTY
       return false
@@ -170,10 +181,43 @@ export class UsersPageComponent extends DisplayErrorComponent {
       this.modal.error = ErrorMessage.VALIDATION_USER_PATRONYMIC_NAME_EMPTY
       return false
     }
+    if (form.email.length === 0) {
+      this.modal.error = ErrorMessage.VALIDATION_USER_PATRONYMIC_NAME_EMPTY
+      return false
+    }
+    if (form.email.length === 0) {
+      this.modal.error = ErrorMessage.VALIDATION_USER_PATRONYMIC_NAME_EMPTY
+      return false
+    }
+    if (form.email.length === 0) {
+      this.modal.error = ErrorMessage.VALIDATION_USER_EMAIL_EMPTY
+      return false
+    }
+    if (form.email.length > 255) {
+      this.modal.error = ErrorMessage.VALIDATION_USER_EMAIL_MAX
+      return false
+    }
+    if (form.password.length === 0) {
+      this.modal.error = ErrorMessage.VALIDATION_USER_PASSWORD_EMPTY
+      return false
+    }
+    if (form.password.length < 6) {
+      this.modal.error = ErrorMessage.VALIDATION_USER_PASSWORD_MIN
+      return false
+    }
+    if (form.password.length > 64) {
+      this.modal.error = ErrorMessage.VALIDATION_USER_PASSWORD_MAX
+      return false
+    }
+    if (form.password.match(RegExp("^(?=.*\\d)(?=.*[a-zA-Z]).*"))) {
+      this.modal.error = ErrorMessage.VALIDATION_USER_PASSWORD_FORMAT
+      return false
+    }
     return true
   }
 
   private selectAccount(account: Account | null) {
+    this.usersModalComponent!.clear()
     this.modal.error = null
     this.modal.selected = account
   }

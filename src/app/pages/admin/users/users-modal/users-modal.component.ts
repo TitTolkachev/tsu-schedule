@@ -39,17 +39,10 @@ export class UsersModalComponent extends DisplayErrorComponent {
       this.groupId = form.group ? form.group.number : null
       this.teacherId = form.teacherId
       this.email = form.email
+      this.password = ""
     } else {
-      this.id = undefined
-      this.firstName = ""
-      this.lastName = ""
-      this.patronymicName = ""
-      this.role = "Student"
-      this.groupId = null
-      this.teacherId = null
-      this.email = ""
+      this.clear()
     }
-    this.password = ""
   }
 
   get edit(): boolean {
@@ -80,6 +73,18 @@ export class UsersModalComponent extends DisplayErrorComponent {
     email: string,
     password: string
   }>()
+
+  clear() {
+    this.id = undefined
+    this.firstName = ""
+    this.lastName = ""
+    this.patronymicName = ""
+    this.role = "Student"
+    this.groupId = null
+    this.teacherId = null
+    this.email = ""
+    this.password = ""
+  }
 
   onSubmit() {
     if (this.id == undefined) {
