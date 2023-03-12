@@ -1,28 +1,19 @@
-<div class="modal fade" id="conModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="errorModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
-      <button type="button" class="d-none btn-close" data-bs-dismiss="modal" aria-label="Close"
-              id="close-confirm-modal-btn"></button>
 
-      <!--<div class="modal-body">
-
-        <div *ngIf="ConfirmMode == 1" class="modal-body-text">
-          Вы хотите изменить эту и все последующие пары или только выбранную?
+      <div class="modal-body">
+        <div *ngIf="error" class="modal-body-text">
+          {{ error }}
         </div>
-        <div *ngIf="ConfirmMode == 2" class="modal-body-text">
-          Вы хотите удалить эту и все последующие пары или только выбранную?
-        </div>
-
       </div>
 
-      <div *ngIf="ConfirmMode == 1" class="my-modal-footer">
-        <div class="btn apply-for-one-btn left-btn" (click)="onChangeOneClick()">Только выбранное</div>
-        <div class="btn apply-for-all-btn right-btn" (click)="onChangeAllClick()">Все будущие</div>
+      <div class="my-modal-footer">
+        <!-- Костыль, который мне посоветовал ТИТ -->
+        <div class="btn apply-for-all-btn right-btn" data-bs-dismiss="modal">Окей</div>
       </div>
-      <div *ngIf="ConfirmMode == 2" class="my-modal-footer">
-        <div class="btn apply-for-one-btn left-btn" (click)="onDeleteOneClick()">Только выбранное</div>
-        <div class="btn apply-for-all-btn right-btn" (click)="onDeleteAllClick()">Все будущие</div>
-      </div>-->
+
     </div>
   </div>
 </div>
+<button id="openErrorModal" data-bs-toggle="modal" data-bs-target="#errorModal" class="d-none"></button>

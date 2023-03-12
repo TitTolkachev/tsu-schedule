@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {DropDownInput} from "./drop-down-input";
 import {GroupInput} from "./group-input";
 import {State} from "./models/State";
@@ -25,6 +25,7 @@ import {Event} from "@angular/router";
 import {ConfirmMode} from "./models/ConfirmMode";
 import {LessonEditService} from "../../../services/lesson-edit.service";
 import {format} from "date-fns";
+import {ScheduleErrorComponent} from "./components/schedule-error/schedule-error.component";
 
 @Component({
   selector: 'app-edit-page',
@@ -32,6 +33,9 @@ import {format} from "date-fns";
   styleUrls: ['./edit-page.component.css']
 })
 export class EditPageComponent extends DisplayErrorComponent implements OnInit {
+
+  @ViewChild(ScheduleErrorComponent)
+  scheduleErrorComponent: ScheduleErrorComponent | undefined
 
   // Отображаемые недели
   Weeks: Array<Week> = []
@@ -463,7 +467,7 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
     // Обновить экран, если действие с парой прошло успешно
     next: () => this.refresh(),
     // Отобразить ошибку в модальном окне, если действие с парой прошло с ошибкой
-    error: (err: Error) => this.handleHttpError(err) // TODO вынести в модальное окно
+    error: (err: Error) => this.handleModalError(err)
   }
 
   /**
@@ -550,9 +554,17 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
     ])
   }
 
+  private handleModalError(err: Error) {
+    if (this.scheduleErrorComponent != undefined) {
+      this.scheduleErrorComponent.error = this.httpErrorMessageOf(err)
+    }
+    document.getElementById("openErrorModal")?.click()
+  }
+
   protected override handleHttpError(err: Error) {
     this.IsLoadingData = false
     this.IsLoadingWeek = false
-    super.handleHttpError(err)
+    // TODO возможно не лучший вариант показывать ошибку загрузки списков или распиания в модальном окне
+    this.handleModalError(err)
   }
 }
