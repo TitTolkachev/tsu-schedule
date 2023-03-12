@@ -3,9 +3,9 @@ import {Lesson} from "./lesson";
 
 export class DaySchedule {
 
-  date: string
-  dayOfWeek: DayOfWeek
-  lessons: Lesson[]
+  readonly date: string
+  readonly dayOfWeek: DayOfWeek
+  readonly lessons: Lesson[]
 
   constructor(date: string, dayOfWeek: DayOfWeek, lessons: Lesson[]) {
     this.date = date;

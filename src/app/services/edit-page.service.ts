@@ -217,12 +217,8 @@ export class EditPageService {
             let cell = this.cellConstructor!()
 
             cell.DayOfWeek = i
-            // TODO(передать время пары в ячейку)
-            // @ts-ignore
-            cell.CellTime = i
-            // TODO(передать дату пары в ячейку)
-            // @ts-ignore
-            cell.CellDate = i
+            cell.CellTime = time
+            cell.CellDate = addDays(startDate, i)
 
             return cell
           })
