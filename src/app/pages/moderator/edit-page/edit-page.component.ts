@@ -348,10 +348,10 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
       }
       if (input3) {
         // @ts-ignore
-        input3.value = pair.DayOfWeek ? <string>this.weekDays[pair.DayOfWeek]?.name : ''
+        input3.value = pair.DayOfWeek != null ? this.weekDays[pair.DayOfWeek]?.name : ''
       }
       if (input4) {
-        input4.value = pair.Time ? pair.Time : ''
+        input4.value = pair.Time ? pair.Time.replace(/ /g, '') : ''
       }
       if (input5) {
         input5.value = pair.Groups ? pair.Groups : ''
@@ -364,13 +364,13 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
       }
       if (input8) {
         // @ts-ignore
-        input8.value = pair.Repeat ? this.repeats[pair.Repeat - 1].name : ''
+        input8.value = pair.Repeat ? this.repeats[pair.Repeat - 1]?.name : ''
       }
       if (input9) {
-        input9.value = pair.GroupDateStart ? format(pair.GroupDateStart, 'yyyy-MM-dd') : ''
+        input9.value = pair.GroupDateStart && !isNaN(Date.parse(pair.GroupDateStart.toString())) ? format(pair.GroupDateStart, 'yyyy-MM-dd') : ''
       }
       if (input10) {
-        input10.value = pair.GroupDateEnd ? format(pair.GroupDateEnd, 'yyyy-MM-dd') : ''
+        input10.value = pair.GroupDateEnd && !isNaN(Date.parse(pair.GroupDateEnd.toString())) ? format(pair.GroupDateEnd, 'yyyy-MM-dd') : ''
       }
     }
   }.bind(this)
