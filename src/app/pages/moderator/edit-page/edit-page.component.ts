@@ -489,12 +489,15 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
     error: (err: Error) => this.handleModalError(err)
   }
 
+  onChange() {
+    if(this.State != 2)
+      this.refresh()
+  }
+
   /**
    * Обновить расписание
    */
   refresh() {
-    if(this.State == 2)
-      return
     this.cancelOperations()
     this.Weeks = []
     this.loadWeek(this.editPageService.currentWeek)
