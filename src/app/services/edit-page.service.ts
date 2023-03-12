@@ -162,6 +162,11 @@ export class EditPageService {
         let line = week.WeekTimeLines[lesson.lessonTime.lessonNumber - 1]
         let cell = line.Cells[dayOfWeek]
 
+        // Защита от людей, которые любят учиться в воскресение
+        if (cell == undefined) {
+          return
+        }
+
         cell.Pairs.push(
           new Pair(
             lesson.id,

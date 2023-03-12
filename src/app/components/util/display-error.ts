@@ -22,6 +22,7 @@ export abstract class DisplayErrorComponent {
       }
       return ErrorMessage.UNKNOWN_ERROR
     }
+    console.log(err)
     return err.message
   }
 

@@ -27,7 +27,7 @@ export class LessonEditService {
       startDate: inputs.SelectedDateStart!,
       endDate: inputs.SelectedDateEnd!,
       lessonNumber: inputs.SelectedTime!,
-      frequency: 1 // TODO Тит доделай
+      frequency: inputs.SelectedRepeat!
     })
   }
 
@@ -67,7 +67,7 @@ export class LessonEditService {
       startDate: inputs.SelectedDateStart!,
       endDate: inputs.SelectedDateEnd!,
       lessonNumber: inputs.SelectedTime!,
-      frequency: 1 // TODO Тит доделай
+      frequency: inputs.SelectedRepeat!
     })
   }
 

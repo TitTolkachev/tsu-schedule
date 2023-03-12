@@ -30,7 +30,7 @@ export class LessonService implements ILessonService {
     return this.httpClient.post<void>(
       `${SERVER_URL}/schedule/lesson`,
       {
-        groupsIds: lessonCreateDto.groupsIds,
+        groupIds: lessonCreateDto.groupsIds,
         studyRoomId: lessonCreateDto.studyRoomId,
         lessonTypeId: lessonCreateDto.lessonTypeId,
         teacherId: lessonCreateDto.teacherId,
@@ -77,7 +77,7 @@ export class LessonService implements ILessonService {
       `${SERVER_URL}/schedule/lesson`,
       {
         id: lessonId,
-        groupsIds: lessonEditDto.groupsIds,
+        groupIds: lessonEditDto.groupsIds,
         studyRoomId: lessonEditDto.studyRoomId,
         lessonTypeId: lessonEditDto.lessonTypeId,
         teacherId: lessonEditDto.teacherId,
@@ -106,7 +106,7 @@ export class LessonService implements ILessonService {
       `${SERVER_URL}/schedule/lesson/lesson-group`,
       {
         id: lessonId,
-        groupsIds: lessonEditDto.groupsIds,
+        groupIds: lessonEditDto.groupsIds,
         studyRoomId: lessonEditDto.studyRoomId,
         lessonTypeId: lessonEditDto.lessonTypeId,
         teacherId: lessonEditDto.teacherId,

@@ -24,7 +24,6 @@ import {SelectedInput} from "./selected-input";
 import {Event} from "@angular/router";
 import {ConfirmMode} from "./models/ConfirmMode";
 import {LessonEditService} from "../../../services/lesson-edit.service";
-import {format} from "date-fns";
 import {ScheduleErrorComponent} from "./components/schedule-error/schedule-error.component";
 
 @Component({
@@ -389,10 +388,10 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
         input8.value = pair.Repeat ? this.repeats[pair.Repeat - 1]?.name : ''
       }
       if (input9) {
-        input9.value = pair.GroupDateStart && !isNaN(Date.parse(pair.GroupDateStart.toString())) ? format(pair.GroupDateStart, 'yyyy-MM-dd') : ''
+        input9.valueAsDate = <Date | null>pair.GroupDateStart
       }
       if (input10) {
-        input10.value = pair.GroupDateEnd && !isNaN(Date.parse(pair.GroupDateEnd.toString())) ? format(pair.GroupDateEnd, 'yyyy-MM-dd') : ''
+        input10.valueAsDate = <Date | null>pair.GroupDateEnd
       }
     }
   }.bind(this)
