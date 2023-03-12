@@ -23,6 +23,7 @@ import {IScheduleService} from "../../../services/i-schedule.service";
 import {SelectedInput} from "./selected-input";
 import {Event} from "@angular/router";
 import {ConfirmMode} from "./models/ConfirmMode";
+import {LessonEditService} from "../../../services/lesson-edit.service";
 
 @Component({
   selector: 'app-edit-page',
@@ -62,6 +63,7 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
 
   constructor(
     private editPageService: EditPageService,
+    private lessonEditService: LessonEditService,
     private lessonService: ILessonService,
     private subjectService: ISubjectService,
     private groupService: IGroupService,
@@ -252,85 +254,33 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
    * Изменить все пары в группе
    */
   applyChangesForAllPairsInGroup = function () {
-    // this.SelectedPair - изменяемая пара
-
     // @ts-ignore
-    this.cancelOperations()
+    this.lessonEditService.modifyGroupPair(this.SelectedPair, this.SelectedInputs).subscribe(this.observerPair)
   }.bind(this)
 
   /**
    * Изменить только выбранную пару
    */
-  applyChangesForSelectedPair() {
-    if (this.SelectedPair == null) {
-      throw Error("Lesson isn't selected")
-    }
-    if (!this.SelectedInputs.isValidSelected()) {
-      throw Error("All field must be filled") // TODO норм вывод ошибки в модальное окно
-    }
-
-    this.lessonService.modifyLesson(this.SelectedPair.Id, {
-      groupsIds: this.SelectedInputs.SelectedGroups,
-      studyRoomId: this.SelectedInputs.SelectedAudience!,
-      lessonTypeId: this.SelectedInputs.SelectedPairType!,
-      teacherId: this.SelectedInputs.SelectedTeacher!,
-      subjectId: this.SelectedInputs.SelectedSubject!,
-      startDate: this.SelectedInputs.SelectedDateStart!,
-      endDate: this.SelectedInputs.SelectedDateEnd!,
-      dayOfWeek: this.SelectedInputs.SelectedWeekDay!,
-      lessonNumber: this.SelectedInputs.SelectedTime!,
-      frequency: 1 // TODO Тит доделай
-    }).subscribe({
-      next: () => this.refresh(),
-      error: err => this.handleHttpError(err) // TODO норм вывод ошибки в модальное окно
-    })
-  }
+  applyChangesForSelectedPair = function () {
+    // @ts-ignore
+    this.lessonEditService.modifyPair(this.SelectedPair, this.SelectedInputs).subscribe(this.observerPair)
+  }.bind(this)
 
   /**
    * Удалить все пары в группе
    */
-  deleteAllPairsInGroup() {
-    if (this.SelectedPair == null) {
-      throw Error("Lesson isn't selected")
-    }
-
-    this.lessonService.deleteLesson(this.SelectedPair.Id).subscribe({
-      next: () => this.refresh(),
-      error: err => this.handleHttpError(err) // TODO норм вывод ошибки в модальное окно
-    })
-  }
+  deleteAllPairsInGroup = function () {
+    // @ts-ignore
+    this.lessonEditService.deleteGroupPair(this.SelectedPair).subscribe(this.observerPair)
+  }.bind(this)
 
   /**
    * Удалить только выбранную пару
    */
   deleteSelectedPairFromGroup = function () {
-    // this.SelectedPair - изменяемая пара
-
     // @ts-ignore
-    this.cancelOperations()
+    this.lessonEditService.deletePair(this.SelectedPair).subscribe(this.observerPair)
   }.bind(this)
-
-  createPair() {
-    if (!this.SelectedInputs.isValidSelected()) {
-      throw Error("All field must be filled") // TODO норм вывод ошибки в модальное окно
-    }
-
-    this.lessonService.createLesson({
-      groupsIds: this.SelectedInputs.SelectedGroups,
-      studyRoomId: this.SelectedInputs.SelectedAudience!,
-      lessonTypeId: this.SelectedInputs.SelectedPairType!,
-      teacherId: this.SelectedInputs.SelectedTeacher!,
-      subjectId: this.SelectedInputs.SelectedSubject!,
-      startDate: this.SelectedInputs.SelectedDateStart!,
-      endDate: this.SelectedInputs.SelectedDateEnd!,
-      dayOfWeek: this.SelectedInputs.SelectedWeekDay!,
-      lessonNumber: this.SelectedInputs.SelectedTime!,
-      frequency: 1 // TODO Тит доделай
-    }).subscribe({
-      next: () => this.refresh(),
-      error: err => this.handleHttpError(err) // TODO норм вывод ошибки в модальное окно
-    })
-  }
 
   ConfirmFunctions: Function[] = [this.applyChangesForAllPairsInGroup,
     this.applyChangesForSelectedPair,
@@ -343,7 +293,7 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
   onApplyChangesClick() {
     // Если в режиме добавления пары
     if (this.State == State.addPair) {
-      this.createPair()
+      this.lessonEditService.createPair(this.SelectedInputs).subscribe(this.observerPair)
       return
     }
     // Если в режиме редактирования пары
@@ -381,6 +331,14 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
         })
       })
     })
+  }
+
+  // Наблюдатель для действий с парами
+  private observerPair = {
+    // Обновить экран, если действие с парой прошло успешно
+    next: () => this.refresh(),
+    // Отобразить ошибку в модальном окне, если действие с парой прошло с ошибкой
+    error: (err: Error) => this.handleHttpError(err) // TODO вынести в модальное окно
   }
 
   /**
