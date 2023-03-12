@@ -1,5 +1,6 @@
 import {EditPageComponent} from "./edit-page.component";
 import {DayOfWeek, DayOfWeeks} from "../../../models/day-of-week";
+import {format} from "date-fns";
 
 export class SelectedInput {
 
@@ -135,15 +136,15 @@ export class SelectedInput {
   get SelectedDateStart(): string | null {
 
     let input = document.getElementById('input9') as HTMLInputElement
-
-    return input?.value
+    let d = input?.valueAsDate
+    return d && !isNaN(Date.parse(d.toString()))? format(d, 'yyyy-MM-dd') : null
   }
 
   get SelectedDateEnd(): string | null {
 
     let input = document.getElementById('input10') as HTMLInputElement
-
-    return input?.value
+    let d = input?.valueAsDate
+    return d && !isNaN(Date.parse(d.toString())) ? format(d, 'yyyy-MM-dd') : null
   }
 
   isValidSelected(): boolean {

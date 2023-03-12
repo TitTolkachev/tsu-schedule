@@ -294,8 +294,17 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
         })
       })
     })
+    let input1 = document.getElementById('input1') as HTMLInputElement
+    let input2 = document.getElementById('input2') as HTMLInputElement
     let input3 = document.getElementById('input3') as HTMLInputElement
     let input4 = document.getElementById('input4') as HTMLInputElement
+    let input8 = document.getElementById('input8') as HTMLInputElement
+    let input9 = document.getElementById('input9') as HTMLInputElement
+    let input10 = document.getElementById('input10') as HTMLInputElement
+    if (input1)
+      input1.value = ''
+    if (input2)
+      input2.value = ''
     if (input3) {
       // @ts-ignore
       input3.value = <string>this.weekDays[cell.DayOfWeek]?.name
@@ -303,6 +312,15 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
     if (input4) {
       // @ts-ignore
       input4.value = this.buildLessonTime(cell.CellTime)
+    }
+    if (input8) { // @ts-ignore
+      input8.value = this.repeats[0].name
+    }
+    if (input9) { // @ts-ignore
+      input9.valueAsDate = new Date()
+    }
+    if (input10) { // @ts-ignore
+      input10.valueAsDate = new Date()
     }
 
   }.bind(this)
