@@ -1,6 +1,5 @@
 import {Observable} from "rxjs";
 import {Account} from "../models/account";
-import {Group} from "../models/group";
 
 export abstract class IUserService {
 
@@ -11,17 +10,24 @@ export abstract class IUserService {
     lastName: string,
     patronymicName: string,
     role: string,
-    group: Group | null,
+    groupId: string | null,
+    teacherId: string | null,
     email: string,
     password: string
   }): Observable<void>
 
+  /**
+   * @deprecated устарело по причине того,
+   * что бекенд не реализовал возможность редактировать аккаунт
+   * TODO возможно убрать
+   */
   abstract modifyAccount(id: string, account: {
     firstName: string,
     lastName: string,
     patronymicName: string,
     role: string | null,
-    group: Group | null,
+    groupId: string | null,
+    teacherId: string | null,
     email: string | null,
     password: string | null
   }): Observable<void>
