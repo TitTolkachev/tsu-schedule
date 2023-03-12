@@ -1,4 +1,5 @@
 import {EditPageComponent} from "./edit-page.component";
+import {DayOfWeek, DayOfWeeks} from "../../../models/day-of-week";
 
 export class SelectedInput {
 
@@ -38,7 +39,7 @@ export class SelectedInput {
     return returnVal
   }
 
-  get SelectedWeekDay(): string | null {
+  get SelectedWeekDay(): DayOfWeek | null {
     let returnVal = null
     let input = document.getElementById('input3') as HTMLInputElement
     if (input != null) {
@@ -46,14 +47,14 @@ export class SelectedInput {
       if (inputValue != '') {
         this.EditPage?.weekDays?.forEach((e) => {
           if (e.name.trim().toUpperCase() == inputValue.toUpperCase())
-            returnVal = e.id
+            returnVal = DayOfWeeks.values[e.id]
         })
       }
     }
     return returnVal
   }
 
-  get SelectedTime(): string | null {
+  get SelectedTime(): number | null {
     let returnVal = null
     let input = document.getElementById('input4') as HTMLInputElement
     if (input != null) {
@@ -134,5 +135,18 @@ export class SelectedInput {
     let input = document.getElementById('input10') as HTMLInputElement
 
     return input?.value
+  }
+
+  isValidSelected(): boolean {
+    return this.SelectedGroups.length > 0 &&
+      this.SelectedAudience != null &&
+      this.SelectedPairType != null &&
+      this.SelectedTeacher != null &&
+      this.SelectedSubject != null &&
+      this.SelectedDateStart != null &&
+      this.SelectedDateEnd != null &&
+      this.SelectedWeekDay != null &&
+      this.SelectedTime != null &&
+      this.SelectedRepeat != null
   }
 }

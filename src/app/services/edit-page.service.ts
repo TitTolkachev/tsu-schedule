@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {addDays, addWeeks, endOfWeek, format, getDate, getWeek, parse, startOfWeek} from "date-fns";
 import {DaySchedule} from "../models/day-schedule";
 import {Week} from "../pages/moderator/edit-page/models/Week";
-import {indexOf} from "../models/day-of-week";
 import {Pair} from "../pages/moderator/edit-page/models/Pair";
 import {formatTime} from "../models/time";
 import {LessonTime} from "../models/lesson-time";
@@ -11,6 +10,7 @@ import {WeekTimeLine} from "../pages/moderator/edit-page/models/WeekTimeLine";
 import {Cell} from "../pages/moderator/edit-page/models/Cell";
 import {map, Observable} from "rxjs";
 import {IScheduleService} from "./i-schedule.service";
+import {DayOfWeeks} from "../models/day-of-week";
 
 @Injectable({
   providedIn: 'root'
@@ -159,7 +159,7 @@ export class EditPageService {
     days.forEach(day => {
       day.lessons.forEach(lesson => {
         let line = week.WeekTimeLines[lesson.lessonTime.lessonNumber - 1]
-        let cell = line.Cells[indexOf(day.dayOfWeek)]
+        let cell = line.Cells[DayOfWeeks.indexOf(day.dayOfWeek)]
 
         cell.Pairs.push(
           new Pair(

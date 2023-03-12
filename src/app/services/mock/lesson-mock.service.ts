@@ -17,12 +17,15 @@ export class LessonMockService implements ILessonService {
 
   constructor() { }
 
-  createLesson(lessonCreateDto: LessonCreateDto): Observable<any> {
-    return of({});
+  createLesson(lessonCreateDto: LessonCreateDto): Observable<void> {
+    console.log(`CREATE LESSON`)
+    console.log(lessonCreateDto)
+    return of(undefined);
   }
 
-  deleteLesson(id: string): Observable<any> {
-    return of({});
+  deleteLesson(id: string): Observable<void> {
+    console.log(`DELETE LESSON WITH ID ${id}`)
+    return of(undefined);
   }
 
   fetchLesson(id: string): Observable<Lesson> {
@@ -46,11 +49,15 @@ export class LessonMockService implements ILessonService {
     ]);
   }
 
-  modifyLesson(id: string, lessonCreateDto: LessonCreateDto): Observable<any> {
-    return of({});
+  modifyLesson(id: string, lessonCreateDto: LessonCreateDto): Observable<void> {
+    console.log(`MODIFY LESSON WITH ID ${id}`)
+    console.log(lessonCreateDto)
+    return of(undefined);
   }
 
-  modifyLessonGroup(id: string, lessonCreateDto: LessonCreateDto): Observable<any> {
-    return of({});
+  modifyLessonGroup(id: string, lessonCreateDto: LessonCreateDto): Observable<void> {
+    console.log(`MODIFY LESSON GROUP WITH ID ${id}`)
+    console.log(lessonCreateDto)
+    return of(undefined);
   }
 }

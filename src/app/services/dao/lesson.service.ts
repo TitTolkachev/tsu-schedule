@@ -16,8 +16,8 @@ export class LessonService implements ILessonService {
     private httpClient: HttpClient
   ) { }
 
-  createLesson(lessonCreateDto: LessonCreateDto): Observable<any> {
-    return this.httpClient.post(
+  createLesson(lessonCreateDto: LessonCreateDto): Observable<void> {
+    return this.httpClient.post<void>(
       `${SERVER_URL}/schedule/lesson`,
       {
         groupsIds: lessonCreateDto.groupsIds,
@@ -34,8 +34,8 @@ export class LessonService implements ILessonService {
     )
   }
 
-  deleteLesson(id: string): Observable<any> {
-    return this.httpClient.delete(
+  deleteLesson(id: string): Observable<void> {
+    return this.httpClient.delete<void>(
       `${SERVER_URL}/schedule/lesson/${id}`
     )
   }
@@ -52,8 +52,8 @@ export class LessonService implements ILessonService {
     )
   }
 
-  modifyLesson(id: string, lessonCreateDto: LessonCreateDto): Observable<any> {
-    return this.httpClient.put(
+  modifyLesson(id: string, lessonCreateDto: LessonCreateDto): Observable<void> {
+    return this.httpClient.put<void>(
       `${SERVER_URL}/schedule/lesson`,
       {
         id: id,
@@ -71,8 +71,8 @@ export class LessonService implements ILessonService {
     )
   }
 
-  modifyLessonGroup(id: string, lessonCreateDto: LessonCreateDto): Observable<any> {
-    return this.httpClient.put(
+  modifyLessonGroup(id: string, lessonCreateDto: LessonCreateDto): Observable<void> {
+    return this.httpClient.put<void>(
       `${SERVER_URL}/schedule/lesson-group`,
       {
         id: id,

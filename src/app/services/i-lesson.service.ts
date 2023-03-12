@@ -7,11 +7,11 @@ export abstract class ILessonService {
 
   abstract createLesson(
     lessonCreateDto: LessonCreateDto
-  ): Observable<any>
+  ): Observable<void>
 
   abstract deleteLesson(
     id: string
-  ): Observable<any>
+  ): Observable<void>
 
   abstract fetchLesson(
     id: string
@@ -22,11 +22,11 @@ export abstract class ILessonService {
   abstract modifyLesson(
     id: string,
     lessonCreateDto: LessonCreateDto
-  ): Observable<any>
+  ): Observable<void>
 
   abstract modifyLessonGroup(
     id: string,
     lessonCreateDto: LessonCreateDto
-  ): Observable<any>
+  ): Observable<void>
 
 }

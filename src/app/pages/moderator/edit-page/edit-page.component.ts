@@ -288,6 +288,28 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
     this.cancelOperations()
   }.bind(this)
 
+  createPair() {
+    if (!this.SelectedInputs.isValidSelected()) {
+      throw Error("All field must be filled") // TODO норм вывод ошибки в модальное окно
+    }
+
+    this.lessonService.createLesson({
+      groupsIds: this.SelectedInputs.SelectedGroups,
+      studyRoomId: this.SelectedInputs.SelectedAudience!,
+      lessonTypeId: this.SelectedInputs.SelectedPairType!,
+      teacherId: this.SelectedInputs.SelectedTeacher!,
+      subjectId: this.SelectedInputs.SelectedSubject!,
+      startDate: this.SelectedInputs.SelectedDateStart!,
+      endDate: this.SelectedInputs.SelectedDateEnd!,
+      dayOfWeek: this.SelectedInputs.SelectedWeekDay!,
+      lessonNumber: this.SelectedInputs.SelectedTime!,
+      frequency: 1 // TODO Тит доделай
+    }).subscribe({
+      next: () => this.refresh(),
+      error: err => this.handleHttpError(err) // TODO норм вывод ошибки в модальное окно
+    })
+  }
+
   ConfirmFunctions: Function[] = [this.applyChangesForAllPairsInGroup,
     this.applyChangesForSelectedPair,
     this.deleteAllPairsInGroup,
@@ -299,12 +321,14 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
   onApplyChangesClick() {
     // Если в режиме добавления пары
     if (this.State == State.addPair) {
-
+      this.createPair()
+      return
     }
     // Если в режиме редактирования пары
     if (this.State == State.editPair) {
       this.ConfirmMode = ConfirmMode.change
       document.getElementById('confirmModalOpenBtn')?.click()
+      return
     }
   }
 
@@ -341,6 +365,7 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
    * Обновить расписание
    */
   refresh() {
+    this.cancelOperations()
     this.Weeks = []
     this.loadWeek(this.editPageService.currentWeek)
   }
