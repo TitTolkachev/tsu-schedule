@@ -493,6 +493,8 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
    * Обновить расписание
    */
   refresh() {
+    if(this.State == 2)
+      return
     this.cancelOperations()
     this.Weeks = []
     this.loadWeek(this.editPageService.currentWeek)
