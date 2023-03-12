@@ -25,6 +25,7 @@ import {Event} from "@angular/router";
 import {ConfirmMode} from "./models/ConfirmMode";
 import {LessonEditService} from "../../../services/lesson-edit.service";
 import {ScheduleErrorComponent} from "./components/schedule-error/schedule-error.component";
+import {format} from "date-fns";
 
 @Component({
   selector: 'app-edit-page',
@@ -319,11 +320,11 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
     if (input8) { // @ts-ignore
       input8.value = this.repeats[0].name
     }
-    if (input9) { // @ts-ignore
-      input9.valueAsDate = new Date()
+    if (input9 && cell.CellDate) {
+      input9.value = format(cell.CellDate, 'yyyy-MM-dd')
     }
-    if (input10) { // @ts-ignore
-      input10.valueAsDate = new Date()
+    if (input10 && cell.CellDate) {
+      input10.value = format(cell.CellDate, 'yyyy-MM-dd')
     }
 
   }.bind(this)
