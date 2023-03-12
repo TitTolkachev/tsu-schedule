@@ -108,7 +108,10 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
               ShowPluses: this.ShowPluses,
               openModalPair: this.openModalPair,
               addPair: this.addPair,
-              IsAdding: false
+              IsAdding: false,
+              DayOfWeek: undefined,
+              CellDate: undefined,
+              CellTime: undefined
             }
           }
         })
@@ -121,28 +124,25 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
   }
 
   IsGroupSelected = false
-  setIsGroupSelected = function (v: boolean)
-  {
+  setIsGroupSelected = function (v: boolean) {
     // @ts-ignore
     this.IsGroupSelected = v
   }.bind(this)
   IsAudienceSelected = false
-  setIsAudienceSelected = function (v: boolean)
-  {
+  setIsAudienceSelected = function (v: boolean) {
     // @ts-ignore
     this.IsAudienceSelected = v
   }.bind(this)
   IsTeacherSelected = false
-  setIsTeacherSelected = function (v: boolean)
-  {
+  setIsTeacherSelected = function (v: boolean) {
     // @ts-ignore
     this.IsTeacherSelected = v
   }.bind(this)
 
 
   /**
-  * Заполнены ли нужные поля, что показывать плюсики
-  */
+   * Заполнены ли нужные поля, что показывать плюсики
+   */
   get ShowPluses(): boolean {
     return this.IsGroupSelected && this.IsAudienceSelected && this.IsTeacherSelected
   }
@@ -294,6 +294,17 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
         })
       })
     })
+    let input3 = document.getElementById('input3') as HTMLInputElement
+    let input4 = document.getElementById('input4') as HTMLInputElement
+    if (input3) {
+      // @ts-ignore
+      input3.value = <string>this.weekDays[cell.DayOfWeek]?.name
+    }
+    if (input4) {
+      // @ts-ignore
+      input4.value = this.buildLessonTime(cell.CellTime)
+    }
+
   }.bind(this)
 
   editPair = function (pair: Pair) {

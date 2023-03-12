@@ -1,4 +1,5 @@
 import {Pair} from "./Pair";
+import {LessonTime} from "../../../../models/lesson-time";
 
 export class Cell {
 
@@ -16,4 +17,12 @@ export class Cell {
 
   IsAdding: boolean | undefined
 
+  /**
+   * От 0 до 5
+   */
+  DayOfWeek: number | undefined;
+
+  CellTime: LessonTime | undefined;
+
+  CellDate: Date | undefined
 }

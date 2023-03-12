@@ -213,8 +213,18 @@ export class EditPageService {
         let line: WeekTimeLine = {
           TimeStart: formatTime(time.startTime),
           TimeEnd: formatTime(time.endTime),
-          Cells: Array.from({length: 6}, () => {
-            return this.cellConstructor!()
+          Cells: Array.from({length: 6}, (_, i) => {
+            let cell = this.cellConstructor!()
+
+            cell.DayOfWeek = i
+            // TODO(передать время пары в ячейку)
+            // @ts-ignore
+            cell.CellTime = i
+            // TODO(передать дату пары в ячейку)
+            // @ts-ignore
+            cell.CellDate = i
+
+            return cell
           })
         }
         return line
