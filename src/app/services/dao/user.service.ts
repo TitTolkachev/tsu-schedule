@@ -48,8 +48,9 @@ export class UserService implements IUserService {
     return throwError(() => Error("Not implemented"));
   }
 
-  // TODO Not implemented
   deleteAccount(accountId: string): Observable<void> {
-    return throwError(() => Error("Not implemented"));
+    return this.httpClient.delete<void>(
+      `${SERVER_URL}/profile`
+    )
   }
 }
