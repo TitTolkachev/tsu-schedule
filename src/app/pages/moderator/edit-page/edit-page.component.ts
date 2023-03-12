@@ -25,6 +25,7 @@ import {Event} from "@angular/router";
 import {ConfirmMode} from "./models/ConfirmMode";
 import {LessonEditService} from "../../../services/lesson-edit.service";
 import {ScheduleErrorComponent} from "./components/schedule-error/schedule-error.component";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-edit-page',
@@ -576,6 +577,15 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
       this.scheduleErrorComponent.error = this.httpErrorMessageOf(err)
     }
     document.getElementById("openErrorModal")?.click()
+  }
+
+  protected override httpErrorMessageOf(err: Error): string {
+    if (err instanceof HttpErrorResponse) {
+      if (err.status === 400 || err.status === 404) {
+        return err.error.message
+      }
+    }
+    return super.httpErrorMessageOf(err)
   }
 
   protected override handleHttpError(err: Error) {
