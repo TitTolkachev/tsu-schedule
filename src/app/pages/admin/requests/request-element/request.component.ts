@@ -38,8 +38,10 @@ export class RequestComponent {
     if (!this.request) {
       return undefined
     }
+
     let acc = this.request.account
-    return `${acc.lastName} ${acc.firstName} ${acc.patronymicName}`
+
+    return `${acc.lastName} ${acc.firstName} ${acc.patronymicName} `
   }
 
   acceptClick() {

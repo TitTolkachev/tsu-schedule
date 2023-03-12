@@ -11,7 +11,7 @@
 
       <div class = "col-md info-person">
         <div class="name">
-          {{ account.lastName }} {{ account.firstName }} {{ account.patronymicName }}
+          {{ account.lastName }} {{ account.firstName }} {{ account.patronymicName != null ? account.patronymicName : ""}}
         </div>
 
         <div class="email">
