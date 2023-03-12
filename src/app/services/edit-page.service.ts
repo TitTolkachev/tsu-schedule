@@ -163,6 +163,7 @@ export class EditPageService {
 
         cell.Pairs.push(
           new Pair(
+            lesson.id,
             lesson.subject.name,
             `${lesson.studyRoom.number} ${lesson.studyRoom.name}`,
             lesson.groups.map(e => e.number).join(','),

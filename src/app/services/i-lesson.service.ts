@@ -10,22 +10,22 @@ export abstract class ILessonService {
   ): Observable<void>
 
   abstract deleteLesson(
-    id: string
+    lessonId: string
   ): Observable<void>
 
   abstract fetchLesson(
-    id: string
+    lessonId: string
   ): Observable<Lesson>
 
   abstract fetchLessonTypes(): Observable<LessonType[]>
 
   abstract modifyLesson(
-    id: string,
+    lessonId: string,
     lessonCreateDto: LessonCreateDto
   ): Observable<void>
 
   abstract modifyLessonGroup(
-    id: string,
+    lessonGroupId: string,
     lessonCreateDto: LessonCreateDto
   ): Observable<void>
 

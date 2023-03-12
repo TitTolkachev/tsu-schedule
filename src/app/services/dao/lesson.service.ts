@@ -34,15 +34,15 @@ export class LessonService implements ILessonService {
     )
   }
 
-  deleteLesson(id: string): Observable<void> {
+  deleteLesson(lessonId: string): Observable<void> {
     return this.httpClient.delete<void>(
-      `${SERVER_URL}/schedule/lesson/${id}`
+      `${SERVER_URL}/schedule/lesson/${lessonId}`
     )
   }
 
-  fetchLesson(id: string): Observable<Lesson> {
+  fetchLesson(lessonId: string): Observable<Lesson> {
     return this.httpClient.get<Lesson>(
-      `${SERVER_URL}/schedule/lesson/${id}`
+      `${SERVER_URL}/schedule/lesson/${lessonId}`
     )
   }
 
@@ -52,11 +52,11 @@ export class LessonService implements ILessonService {
     )
   }
 
-  modifyLesson(id: string, lessonCreateDto: LessonCreateDto): Observable<void> {
+  modifyLesson(lessonId: string, lessonCreateDto: LessonCreateDto): Observable<void> {
     return this.httpClient.put<void>(
       `${SERVER_URL}/schedule/lesson`,
       {
-        id: id,
+        id: lessonId,
         groupsIds: lessonCreateDto.groupsIds,
         studyRoomId: lessonCreateDto.studyRoomId,
         lessonTypeId: lessonCreateDto.lessonTypeId,
@@ -71,11 +71,11 @@ export class LessonService implements ILessonService {
     )
   }
 
-  modifyLessonGroup(id: string, lessonCreateDto: LessonCreateDto): Observable<void> {
+  modifyLessonGroup(lessonGroupId: string, lessonCreateDto: LessonCreateDto): Observable<void> {
     return this.httpClient.put<void>(
       `${SERVER_URL}/schedule/lesson-group`,
       {
-        id: id,
+        id: lessonGroupId,
         groupsIds: lessonCreateDto.groupsIds,
         studyRoomId: lessonCreateDto.studyRoomId,
         lessonTypeId: lessonCreateDto.lessonTypeId,

@@ -261,22 +261,44 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
   /**
    * Изменить только выбранную пару
    */
-  applyChangesForSelectedPair = function () {
-    // this.SelectedPair - изменяемая пара
+  applyChangesForSelectedPair() {
+    if (this.SelectedPair == null) {
+      throw Error("Lesson isn't selected")
+    }
+    if (!this.SelectedInputs.isValidSelected()) {
+      throw Error("All field must be filled") // TODO норм вывод ошибки в модальное окно
+    }
 
-    // @ts-ignore
-    this.cancelOperations()
-  }.bind(this)
+    this.lessonService.modifyLesson(this.SelectedPair.Id, {
+      groupsIds: this.SelectedInputs.SelectedGroups,
+      studyRoomId: this.SelectedInputs.SelectedAudience!,
+      lessonTypeId: this.SelectedInputs.SelectedPairType!,
+      teacherId: this.SelectedInputs.SelectedTeacher!,
+      subjectId: this.SelectedInputs.SelectedSubject!,
+      startDate: this.SelectedInputs.SelectedDateStart!,
+      endDate: this.SelectedInputs.SelectedDateEnd!,
+      dayOfWeek: this.SelectedInputs.SelectedWeekDay!,
+      lessonNumber: this.SelectedInputs.SelectedTime!,
+      frequency: 1 // TODO Тит доделай
+    }).subscribe({
+      next: () => this.refresh(),
+      error: err => this.handleHttpError(err) // TODO норм вывод ошибки в модальное окно
+    })
+  }
 
   /**
    * Удалить все пары в группе
    */
-  deleteAllPairsInGroup = function () {
-    // this.SelectedPair - изменяемая пара
+  deleteAllPairsInGroup() {
+    if (this.SelectedPair == null) {
+      throw Error("Lesson isn't selected")
+    }
 
-    // @ts-ignore
-    this.cancelOperations()
-  }.bind(this)
+    this.lessonService.deleteLesson(this.SelectedPair.Id).subscribe({
+      next: () => this.refresh(),
+      error: err => this.handleHttpError(err) // TODO норм вывод ошибки в модальное окно
+    })
+  }
 
   /**
    * Удалить только выбранную пару

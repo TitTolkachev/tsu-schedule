@@ -1,5 +1,6 @@
 export class Pair {
-  constructor(name: string, placement: string, groups: string, type?: string, teacher?: string, date?: string, time?: string, isActive?: boolean) {
+  constructor(id: string, name: string, placement: string, groups: string, type?: string, teacher?: string, date?: string, time?: string, isActive?: boolean) {
+    this.Id = id
     this.Name = name
     this.Placement = placement
     this.Groups = groups
@@ -9,6 +10,8 @@ export class Pair {
     this.Time = time
     this.IsActive = isActive
   }
+
+  readonly Id: string
 
   Name = ''
   Placement = ''
