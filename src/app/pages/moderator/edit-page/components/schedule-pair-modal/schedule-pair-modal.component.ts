@@ -15,6 +15,9 @@ export class SchedulePairModalComponent implements AfterContentInit {
   PageState: number | undefined
 
   @Input()
+  ShowChangeBtn: boolean | undefined
+
+  @Input()
   initSetOpenModalPairFunction: Function | undefined
 
   @Input()

@@ -59,7 +59,7 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
   teachers: Teacher[] | undefined
 
   SelectedPair: Pair | undefined
-  private SelectedInputs: SelectedInput = new SelectedInput(this)
+  SelectedInputs: SelectedInput = new SelectedInput(this)
 
   constructor(
     private editPageService: EditPageService,
@@ -99,6 +99,7 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
               BorderBottom: true,
               Pairs: [],
               PageState: this.State,
+              ShowPluses: this.ShowPluses,
               openModalPair: this.openModalPair,
               addPair: this.addPair,
               IsAdding: false
@@ -111,6 +112,33 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
       },
       error: err => this.handleHttpError(err)
     })
+  }
+
+  IsGroupSelected = false
+  setIsGroupSelected = function (v: boolean)
+  {
+    // @ts-ignore
+    this.IsGroupSelected = v
+  }.bind(this)
+  IsAudienceSelected = false
+  setIsAudienceSelected = function (v: boolean)
+  {
+    // @ts-ignore
+    this.IsAudienceSelected = v
+  }.bind(this)
+  IsTeacherSelected = false
+  setIsTeacherSelected = function (v: boolean)
+  {
+    // @ts-ignore
+    this.IsTeacherSelected = v
+  }.bind(this)
+
+
+  /**
+  * Заполнены ли нужные поля, что показывать плюсики
+  */
+  get ShowPluses(): boolean {
+    return this.IsGroupSelected && this.IsAudienceSelected && this.IsTeacherSelected
   }
 
   initInputs() {
@@ -138,17 +166,17 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
     let input5 = document.getElementById('input5')
     let datalist5 = document.getElementById('datalist5')
     let arrow5 = document.getElementById('arrow5')
-    new GroupInput(input5, datalist5, arrow5)
+    new GroupInput(input5, datalist5, arrow5, this.setIsGroupSelected)
 
     let input6 = document.getElementById('input6')
     let datalist6 = document.getElementById('datalist6')
     let arrow6 = document.getElementById('arrow6')
-    new DropDownInput(input6, datalist6, arrow6)
+    new DropDownInput(input6, datalist6, arrow6, this.setIsAudienceSelected)
 
     let input7 = document.getElementById('input7')
     let datalist7 = document.getElementById('datalist7')
     let arrow7 = document.getElementById('arrow7')
-    new DropDownInput(input7, datalist7, arrow7)
+    new DropDownInput(input7, datalist7, arrow7, this.setIsTeacherSelected)
 
     let input8 = document.getElementById('input8')
     let datalist8 = document.getElementById('datalist8')
