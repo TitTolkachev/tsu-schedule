@@ -298,8 +298,17 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
         })
       })
     })
+    let input1 = document.getElementById('input1') as HTMLInputElement
+    let input2 = document.getElementById('input2') as HTMLInputElement
     let input3 = document.getElementById('input3') as HTMLInputElement
     let input4 = document.getElementById('input4') as HTMLInputElement
+    let input8 = document.getElementById('input8') as HTMLInputElement
+    let input9 = document.getElementById('input9') as HTMLInputElement
+    let input10 = document.getElementById('input10') as HTMLInputElement
+    if (input1)
+      input1.value = ''
+    if (input2)
+      input2.value = ''
     if (input3) {
       // @ts-ignore
       input3.value = <string>this.weekDays[cell.DayOfWeek]?.name
@@ -307,6 +316,15 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
     if (input4) {
       // @ts-ignore
       input4.value = this.buildLessonTime(cell.CellTime)
+    }
+    if (input8) { // @ts-ignore
+      input8.value = this.repeats[0].name
+    }
+    if (input9) { // @ts-ignore
+      input9.valueAsDate = new Date()
+    }
+    if (input10) { // @ts-ignore
+      input10.valueAsDate = new Date()
     }
 
   }.bind(this)
@@ -352,10 +370,10 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
       }
       if (input3) {
         // @ts-ignore
-        input3.value = pair.DayOfWeek ? <string>this.weekDays[pair.DayOfWeek]?.name : ''
+        input3.value = pair.DayOfWeek != null ? this.weekDays[pair.DayOfWeek]?.name : ''
       }
       if (input4) {
-        input4.value = pair.Time ? pair.Time : ''
+        input4.value = pair.Time ? pair.Time.replace(/ /g, '') : ''
       }
       if (input5) {
         input5.value = pair.Groups ? pair.Groups : ''
@@ -368,13 +386,13 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
       }
       if (input8) {
         // @ts-ignore
-        input8.value = pair.Repeat ? this.repeats[pair.Repeat - 1].name : ''
+        input8.value = pair.Repeat ? this.repeats[pair.Repeat - 1]?.name : ''
       }
       if (input9) {
-        input9.value = pair.GroupDateStart ? format(pair.GroupDateStart, 'yyyy-MM-dd') : ''
+        input9.value = pair.GroupDateStart && !isNaN(Date.parse(pair.GroupDateStart.toString())) ? format(pair.GroupDateStart, 'yyyy-MM-dd') : ''
       }
       if (input10) {
-        input10.value = pair.GroupDateEnd ? format(pair.GroupDateEnd, 'yyyy-MM-dd') : ''
+        input10.value = pair.GroupDateEnd && !isNaN(Date.parse(pair.GroupDateEnd.toString())) ? format(pair.GroupDateEnd, 'yyyy-MM-dd') : ''
       }
     }
   }.bind(this)

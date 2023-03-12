@@ -135,7 +135,13 @@
             (change)="refresh()"
           >
           <datalist class="main-input-datalist" id="datalist6" role="listbox">
-            <option *ngFor="let s of audiences" value="{{s.number}} {{s.name}}">{{s.number}} {{s.name}}</option>
+            <option
+              *ngFor="let s of audiences"
+              value="{{s.number}} {{s.name}}"
+              (click)="onOptionClick('input6', 'datalist6', $event)"
+            >
+              {{s.number}} {{s.name}}
+            </option>
           </datalist>
 
         </fieldset>
@@ -160,7 +166,13 @@
             (change)="refresh()"
           >
           <datalist class="main-input-datalist" id="datalist7" role="listbox">
-            <option *ngFor="let s of teachers" value="{{s.lastName}} {{s.firstName}} {{s.patronymicName}}">{{s.lastName}} {{s.firstName}} {{s.patronymicName}}</option>
+            <option
+              *ngFor="let s of teachers"
+              value="{{s.lastName}} {{s.firstName}} {{s.patronymicName}}"
+              (click)="onOptionClick('input7', 'datalist7', $event)"
+            >
+              {{s.lastName}} {{s.firstName}} {{s.patronymicName}}
+            </option>
           </datalist>
 
         </fieldset>
@@ -193,8 +205,7 @@
           </label>
           <fieldset>
 
-            <input type="date" id="input9" value="2023-03-02"
-                   max="2024-01-01" min="2023-03-02">
+            <input type="date" id="input9" max="2024-01-01" min="2023-03-02">
 
           </fieldset>
         </div>
@@ -205,8 +216,7 @@
           </label>
           <fieldset>
 
-            <input type="date" id="input10" value="2023-03-02"
-                   max="2024-01-01" min="2023-03-02">
+            <input type="date" id="input10" max="2024-01-01" min="2023-03-02">
 
           </fieldset>
         </div>
