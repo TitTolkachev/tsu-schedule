@@ -433,6 +433,7 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
    * Переключиться на следующую неделю
    */
   nextWeek() {
+    this.cancelOperations()
     this.Weeks = []
     this.loadWeek(this.editPageService.getAndSetNextWeek())
   }
@@ -441,6 +442,7 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
    * Переключиться на предыдущую неделю
    */
   previousWeek() {
+    this.cancelOperations()
     this.Weeks = []
     this.loadWeek(this.editPageService.getAndSetPreviousWeek())
   }
