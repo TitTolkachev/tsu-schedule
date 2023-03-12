@@ -41,7 +41,7 @@ export class RequestComponent {
 
     let acc = this.request.account
 
-    return `${acc.lastName} ${acc.firstName} ${acc.patronymicName != 'null' ? acc.patronymicName : ''} `
+    return `${acc.lastName} ${acc.firstName} ${acc.patronymicName} `
   }
 
   acceptClick() {
