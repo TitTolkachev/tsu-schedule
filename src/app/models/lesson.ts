@@ -8,17 +8,17 @@ import {DayOfWeek} from "./day-of-week";
 
 export class Lesson {
 
-  id: string
-  groups: Group[]
-  studyRoom: Audience
-  lessonType: LessonType
-  teacher: Teacher
-  subject: Subject
-  startDate: string
-  endDate: string
-  frequency: number
-  dayOfWeek: DayOfWeek
-  lessonTime: LessonTime
+  readonly id: string
+  readonly groups: Group[]
+  readonly studyRoom: Audience
+  readonly lessonType: LessonType
+  readonly teacher: Teacher
+  readonly subject: Subject
+  readonly startDate: string
+  readonly endDate: string
+  readonly frequency: number
+  readonly dayOfWeek: DayOfWeek
+  readonly lessonTime: LessonTime
 
   constructor(id: string, groups: Group[], studyRoom: Audience, lessonType: LessonType, teacher: Teacher, subject: Subject, startDate: string, endDate: string, frequency: number, dayOfWeek: DayOfWeek, lessonTime: LessonTime) {
     this.id = id;

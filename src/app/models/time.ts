@@ -1,9 +1,9 @@
 export class Time {
 
-  hour: number
-  minute: number
-  second: number
-  nano: number
+  readonly hour: number
+  readonly minute: number
+  readonly second: number
+  readonly nano: number
 
   constructor(hour: number, minute: number, second: number, nano: number) {
     this.hour = hour;
