@@ -78,7 +78,6 @@ export class ScheduleMockService implements IScheduleService {
             "2023-01-01",
             "2023-02-01",
             1,
-            DayOfWeek.MONDAY,
             new LessonTime(1, new Time(8, 45, 0, 0), new Time(10, 20, 0, 0))
           ),
           new Lesson(
@@ -93,7 +92,6 @@ export class ScheduleMockService implements IScheduleService {
             "2023-01-01",
             "2023-02-01",
             1,
-            DayOfWeek.MONDAY,
             new LessonTime(2, new Time(10, 35, 0, 0), new Time(12, 10, 0, 0))
           ),
           new Lesson(
@@ -108,7 +106,6 @@ export class ScheduleMockService implements IScheduleService {
             "2023-01-01",
             "2023-02-01",
             1,
-            DayOfWeek.MONDAY,
             new LessonTime(2, new Time(10, 35, 0, 0), new Time(12, 10, 0, 0))
           ),
           new Lesson(
@@ -123,7 +120,6 @@ export class ScheduleMockService implements IScheduleService {
             "2023-01-01",
             "2023-02-01",
             1,
-            DayOfWeek.MONDAY,
             new LessonTime(3, new Time(12, 25, 0, 0), new Time(14, 0, 0, 0))
           )
         ]
@@ -144,7 +140,6 @@ export class ScheduleMockService implements IScheduleService {
             "2023-01-01",
             "2023-02-01",
             1,
-            DayOfWeek.MONDAY,
             new LessonTime(3, new Time(12, 25, 0, 0), new Time(14, 0, 0, 0))
           )
         ]
@@ -165,7 +160,6 @@ export class ScheduleMockService implements IScheduleService {
             "2023-01-01",
             "2023-02-01",
             1,
-            DayOfWeek.MONDAY,
             new LessonTime(6, new Time(18, 25, 0, 0), new Time(20, 0, 0, 0))
           )
         ]
