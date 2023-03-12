@@ -1,9 +1,11 @@
+import {tr} from "date-fns/locale";
+
 export class DropDownInput {
-  constructor(input: HTMLElement | null, datalist: HTMLElement | null, arrow: HTMLElement | null) {
-    this.init(input, datalist, arrow)
+  constructor(input: HTMLElement | null, datalist: HTMLElement | null, arrow: HTMLElement | null, setIsEmpty?: Function) {
+    this.init(input, datalist, arrow, setIsEmpty)
   }
 
-  init(input: HTMLElement | null, datalist: HTMLElement | null, arrow: HTMLElement | null) {
+  init(input: HTMLElement | null, datalist: HTMLElement | null, arrow: HTMLElement | null, setIsEmpty?: Function) {
 
     if (input != null && datalist != null) {
       input.onfocus = () => {
@@ -34,6 +36,8 @@ export class DropDownInput {
           if (input != null && datalist != null) {
             // @ts-ignore
             input.value = option.value
+            if (setIsEmpty != null)
+              setIsEmpty(true)
             datalist.style.display = 'none'
             input.style.borderRadius = "5px"
           }
@@ -87,6 +91,8 @@ export class DropDownInput {
             if (datalist.options) {
               // @ts-ignore
               datalist.options[currentFocus].click()
+              if (setIsEmpty != null)
+                setIsEmpty(true)
               // @ts-ignore
               input.blur()
             }
@@ -121,6 +127,9 @@ export class DropDownInput {
           datalist.style.display = 'none'
           input.style.borderRadius = "5px"
         }
+        if (setIsEmpty != null)
+          // @ts-ignore
+          setIsEmpty(input.value != '')
       }
     })
   }

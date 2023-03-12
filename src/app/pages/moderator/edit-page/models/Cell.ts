@@ -8,6 +8,8 @@ export class Cell {
 
   PageState: number | undefined
 
+  ShowPluses: boolean | undefined
+
   openModalPair: Function | undefined
 
   addPair: Function | undefined

@@ -5,7 +5,7 @@
 <div class="container-fluid body-container text-center">
 
   <div class="d-flex text-nowrap flex-nowrap m-0 justify-content-between" id="top-inputs-block">
-    <div class="p-0">
+    <div class="p-0" [ngClass]="State == 0 ? 'invisible' : ''">
       <div class="d-flex flex-wrap input-with-label">
         <label for="input1" class="form-label form-label-1">
           Название
@@ -243,7 +243,7 @@
   <!-- ---------------------------------------------------------------------- -->
   <!-- ---------------------------------------------------------------------- -->
   <!-- Промежуточный блок -->
-  <div class="d-flex text-nowrap" id="intermediate-block">
+  <div class="d-flex text-nowrap" id="intermediate-block" *ngIf="IsAudienceSelected || IsGroupSelected || IsTeacherSelected">
 
     <!-- Блок для изменения пары -->
     <div class="d-flex flex-wrap" id="change-items-container" [ngClass]="State != 2 ? 'd-none' : ''">
@@ -270,7 +270,7 @@
         </div>
       </div>
       <div class="d-flex control-buttons-container">
-        <button class="btn mt-3 control-button-apply" id="change-control-btn1" (click)="onApplyChangesClick()">
+        <button [disabled]="!SelectedInputs.isValidSelected()" class="btn mt-3 control-button-apply" id="change-control-btn1" (click)="onApplyChangesClick()">
           сохранить изменения
         </button>
         <div class="d-flex mt-3">
@@ -311,7 +311,7 @@
         </div>
       </div>
       <div class="d-flex control-buttons-container">
-        <button class="btn mt-3 control-button-apply" id="add-control-btn1" (click)="onApplyChangesClick()">
+        <button [disabled]="!SelectedInputs.isValidSelected()" class="btn mt-3 control-button-apply" id="add-control-btn1" (click)="onApplyChangesClick()">
           сохранить изменения
         </button>
         <div class="d-flex mt-3">
@@ -344,17 +344,26 @@
   <!-- ---------------------------------------------------------------------- -->
   <!-- ---------------------------------------------------------------------- -->
 
-  <div *ngFor="let w of Weeks">
-    <app-schedule-week [Week]="w"></app-schedule-week>
+  <div *ngIf="IsAudienceSelected || IsGroupSelected || IsTeacherSelected">
+    <div *ngFor="let w of Weeks">
+      <app-schedule-week [Week]="w"></app-schedule-week>
+    </div>
+
+    <app-schedule-pair-modal [ShowChangeBtn]="ShowPluses" [PageState]="State" [initSetOpenModalPairFunction]="setOpenModalPair" [editPair]="editPair"></app-schedule-pair-modal>
+    <button class="d-none" data-bs-toggle="modal" data-bs-target="#pairModal" id="pairModalOpenBtn"></button>
+
+    <app-schedule-confirm [ConfirmMode]="ConfirmMode" [ConfirmFunctions]="ConfirmFunctions"></app-schedule-confirm>
+    <button class="d-none" data-bs-toggle="modal" data-bs-target="#confirmModal" id="confirmModalOpenBtn"></button>
+
+    <button class="btn" id="show-more-btn" (click)="addWeek()">
+      Подгрузить еще одну неделю
+    </button>
   </div>
 
-  <app-schedule-pair-modal [PageState]="State" [initSetOpenModalPairFunction]="setOpenModalPair" [editPair]="editPair"></app-schedule-pair-modal>
-  <button class="d-none" data-bs-toggle="modal" data-bs-target="#pairModal" id="pairModalOpenBtn"></button>
+  <div class="helper-text" *ngIf="!ShowPluses">
+    <div>
+      Заполните необходимые поля, чтобы добавить пару в расписание
+    </div>
+  </div>
 
-  <app-schedule-confirm [ConfirmMode]="ConfirmMode" [ConfirmFunctions]="ConfirmFunctions"></app-schedule-confirm>
-  <button class="d-none" data-bs-toggle="modal" data-bs-target="#confirmModal" id="confirmModalOpenBtn"></button>
-
-  <button class="btn" id="show-more-btn" (click)="addWeek()">
-    Подгрузить еще одну неделю
-  </button>
 </div>
