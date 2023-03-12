@@ -1,15 +1,17 @@
 <div class="row row-cols-auto justify-content-between">
 
   <div class="col" *ngIf="account">
-    <div class="row align-items-center justify-content-start">
-      <div class="col-md-2">
+    <div class="d-flex">
+      <div>
         <div>
           <img class="role-image" *ngIf="account.role == 'Teacher'" src="../../../../../assets/img/teacher.svg" alt="teacher">
           <img class="role-image" *ngIf="account.role == 'Student'" src="../../../../../assets/img/student.svg" alt="student">
+          <img class="role-image" *ngIf="account.role == 'Admin'" src="../../../../../assets/img/admin.svg" alt="admin">
+          <img class="role-image" *ngIf="account.role == 'ScheduleWriter'" src="../../../../../assets/img/admin.svg" alt="scheduleWriter">
         </div>
       </div>
 
-      <div class = "col-md info-person">
+      <div class = "info-person">
         <div class="name">
           {{ account.lastName }} {{ account.firstName }} {{ account.patronymicName != null ? account.patronymicName : ""}}
         </div>
@@ -25,7 +27,7 @@
     </div>
   </div>
 
-  <div class="col">
+  <div class="col" *ngIf="account && (account.role == 'Student' || account.role == 'Teacher')">
     <div class="d-flex buttons">
       <!-- TODO Убрана по причине того, что бекенд не сделал редактирование аккаунтов -->
       <!--<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addUserModal" (click)="editClick()">
@@ -35,6 +37,7 @@
       <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#confirmationModal" (click)="deleteClick()">
         <img class="delete-image" src="../../../../../assets/img/delete.svg" alt="delete">
       </button>
+
     </div>
   </div>
 </div>
