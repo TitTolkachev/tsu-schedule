@@ -87,7 +87,12 @@ select {
   border: none !important;
 }
 
-input.transparent-input, .groups-list {
+option {
+  /* Whatever color  you want */
+  background-color: #371B1B;
+}
+
+input.transparent-input, .outlined {
   background-color: transparent !important;
   color: #FFFFFF !important;
 
@@ -103,7 +108,7 @@ input.transparent-input, .groups-list {
   border-radius: 5px;
 }
 
-input.transparent-input:focus, .groups-list {
+input.transparent-input:focus, select.transparent-select:focus {
   caret-color: #FFFFFF;
   background-color: rgba(236, 236, 236, 0.01) !important;
   color: #ffffff !important;
