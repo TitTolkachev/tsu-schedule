@@ -29,4 +29,5 @@ export class Pair {
   Repeat: number | undefined
   GroupDateStart: Date | undefined
   GroupDateEnd: Date | undefined
+  GroupId: string | undefined
 }
