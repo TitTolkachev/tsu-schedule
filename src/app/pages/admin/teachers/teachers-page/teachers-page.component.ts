@@ -118,10 +118,7 @@ export class TeachersPageComponent extends DisplayErrorComponent {
       this.modal.error = ErrorMessage.VALIDATION_TEACHER_LAST_NAME_EMPTY
       return false
     }
-    if (form.patronymicName.length === 0) {
-      this.modal.error = ErrorMessage.VALIDATION_TEACHER_PATRONYMIC_NAME_EMPTY
-      return false
-    }
+
     return true
   }
 
