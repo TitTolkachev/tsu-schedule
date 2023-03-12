@@ -24,6 +24,7 @@ import {SelectedInput} from "./selected-input";
 import {Event} from "@angular/router";
 import {ConfirmMode} from "./models/ConfirmMode";
 import {LessonEditService} from "../../../services/lesson-edit.service";
+import {format} from "date-fns";
 
 @Component({
   selector: 'app-edit-page',
@@ -366,10 +367,10 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
         input8.value = pair.Repeat ? this.repeats[pair.Repeat - 1].name : ''
       }
       if (input9) {
-        input9.value = pair.GroupDateStart ? pair.GroupDateStart?.toDateString() : ''
+        input9.value = pair.GroupDateStart ? format(pair.GroupDateStart, 'yyyy-MM-dd') : ''
       }
       if (input10) {
-        input10.value = pair.GroupDateEnd ? pair.GroupDateEnd?.toDateString() : ''
+        input10.value = pair.GroupDateEnd ? format(pair.GroupDateEnd, 'yyyy-MM-dd') : ''
       }
     }
   }.bind(this)
