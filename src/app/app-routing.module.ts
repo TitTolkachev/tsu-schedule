@@ -11,19 +11,20 @@ import {MainPageComponent} from "./pages/admin/main/main-page/main-page.componen
 import {RequestsPageComponent} from './pages/admin/requests/requests-page/requests-page.component';
 import {UsersPageComponent} from './pages/admin/users/users-page/users-page.component';
 import {EditPageComponent} from "./pages/moderator/edit-page/edit-page.component";
+import {MainComponent} from "./pages/main/main.component";
 
 const routes: Routes = [
-  { path: '', component: SigninComponent },
+  { path: '', component: MainComponent, canActivate: [RoutingGuard] },
   { path: 'signin', component: SigninComponent, canActivate: [RoutingGuard] },
   { path: 'signout', component: SignoutComponent, canActivate: [RoutingGuard] },
-  { path: 'admin/teachers', component: TeachersPageComponent },
-  { path: 'admin/audiences', component: AudiencesPageComponent },
-  { path: 'admin/subjects', component: SubjectsPageComponent },
-  { path: 'admin/groups', component: GroupsPageComponent },
-  { path: 'admin/main', component: MainPageComponent },
-  { path: 'admin/users', component: UsersPageComponent },
-  { path: 'admin/requests', component: RequestsPageComponent },
-  { path: 'moderator/edit', component: EditPageComponent }
+  { path: 'admin/teachers', component: TeachersPageComponent, canActivate: [RoutingGuard] },
+  { path: 'admin/audiences', component: AudiencesPageComponent, canActivate: [RoutingGuard] },
+  { path: 'admin/subjects', component: SubjectsPageComponent, canActivate: [RoutingGuard] },
+  { path: 'admin/groups', component: GroupsPageComponent, canActivate: [RoutingGuard] },
+  { path: 'admin/main', component: MainPageComponent, canActivate: [RoutingGuard] },
+  { path: 'admin/users', component: UsersPageComponent, canActivate: [RoutingGuard] },
+  { path: 'admin/requests', component: RequestsPageComponent, canActivate: [RoutingGuard] },
+  { path: 'moderator/edit', component: EditPageComponent, canActivate: [RoutingGuard] }
 ];
 
 @NgModule({
