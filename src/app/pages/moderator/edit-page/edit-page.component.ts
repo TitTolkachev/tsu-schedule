@@ -179,6 +179,44 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
     input?.dispatchEvent(event);
   }
 
+  SelectedGroupsList = []
+  onGroupOptionClick = function (ev: MouseEvent) {
+    let input = document.getElementById('input5') as HTMLInputElement
+    let datalist = document.getElementById('datalist5')
+    let option = ev.target
+
+    if (input != null && datalist != null) {
+      // @ts-ignore
+      if (this.SelectedGroupsList.includes(option.value)) {
+        // @ts-ignore
+        this.SelectedGroupsList.splice(this.SelectedGroupsList.indexOf(option.value), 1)
+        // @ts-ignore
+        option?.classList.remove('selected-group-option')
+      } else {
+        // @ts-ignore
+        this.SelectedGroupsList.push(option.value)
+        // @ts-ignore
+        option?.classList.add('selected-group-option')
+      }
+
+      // @ts-ignore
+      this.SelectedGroupsList.sort()
+
+      // @ts-ignore
+      if (this.SelectedGroupsList.length > 0) {
+        // @ts-ignore
+        input.value = this.SelectedGroupsList[0]
+        // @ts-ignore
+        for (let i = 1; i < this.SelectedGroupsList.length; i++) {
+          // @ts-ignore
+          input.value = input.value + ', ' + this.SelectedGroupsList[i]
+        }
+      } else
+        // @ts-ignore
+        input.value = ''
+    }
+  }.bind(this)
+
   buildLessonTime(t: LessonTime) {
     return (t.startTime.hour < 10 ? '0' : '') + t.startTime.hour + ':' + (t.startTime.minute < 10 ? '0' : '') + t.startTime.minute
       + '-' + (t.endTime.hour < 10 ? '0' : '') + t.endTime.hour + ':' + (t.endTime.minute < 10 ? '0' : '') + t.endTime.minute

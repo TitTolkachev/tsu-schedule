@@ -103,7 +103,12 @@
             (change)="refresh()"
           >
           <datalist class="group-input-datalist " id="datalist5" role="listbox">
-            <option class="group-option" *ngFor="let s of groups" value="{{s.number}}">{{s.number}}</option>
+            <option
+              class="group-option"
+              *ngFor="let s of groups"
+              value="{{s.number}}"
+              (click)="onGroupOptionClick($event)"
+            >{{s.number}}</option>
           </datalist>
 
         </fieldset>
