@@ -20,7 +20,6 @@ export class UserService implements IUserService {
     )
   }
 
-  // TODO Not implemented
   createAccount(account: {
     firstName: string,
     lastName: string,
@@ -31,7 +30,19 @@ export class UserService implements IUserService {
     email: string,
     password: string
   }): Observable<void> {
-    return throwError(() => Error("Not implemented"));
+    return this.httpClient.post<void>(
+      `${SERVER_URL}/profile`,
+      {
+        firstName: account.firstName,
+        lastName: account.lastName,
+        patronymicName: account.patronymicName,
+        role: account.role,
+        groupId: account.groupId,
+        teacherId: account.teacherId,
+        email: account.email,
+        password: account.password
+      }
+    )
   }
 
   // TODO Not implemented
