@@ -327,9 +327,51 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
           })
         })
       })
-
       // @ts-ignore
       this.SelectedPair = pair
+
+      let input1 = document.getElementById('input1') as HTMLInputElement
+      let input2 = document.getElementById('input2') as HTMLInputElement
+      let input3 = document.getElementById('input3') as HTMLInputElement
+      let input4 = document.getElementById('input4') as HTMLInputElement
+      let input5 = document.getElementById('input5') as HTMLInputElement
+      let input6 = document.getElementById('input6') as HTMLInputElement
+      let input7 = document.getElementById('input7') as HTMLInputElement
+      let input8 = document.getElementById('input8') as HTMLInputElement
+      let input9 = document.getElementById('input9') as HTMLInputElement
+      let input10 = document.getElementById('input10') as HTMLInputElement
+      if (input1) {
+        input1.value = pair.Name
+      }
+      if (input2) {
+        input2.value = pair.Type ? pair.Type : ''
+      }
+      if (input3) {
+        // @ts-ignore
+        input3.value = pair.DayOfWeek ? <string>this.weekDays[pair.DayOfWeek]?.name : ''
+      }
+      if (input4) {
+        input4.value = pair.Time ? pair.Time : ''
+      }
+      if (input5) {
+        input5.value = pair.Groups ? pair.Groups : ''
+      }
+      if (input6) {
+        input6.value = pair.Placement ? pair.Placement : ''
+      }
+      if (input7) {
+        input7.value = pair.Teacher ? pair.Teacher : ''
+      }
+      if (input8) {
+        // @ts-ignore
+        input8.value = pair.Repeat ? this.repeats[pair.Repeat - 1].name : ''
+      }
+      if (input9) {
+        input9.value = pair.GroupDateStart ? pair.GroupDateStart?.toDateString() : ''
+      }
+      if (input10) {
+        input10.value = pair.GroupDateEnd ? pair.GroupDateEnd?.toDateString() : ''
+      }
     }
   }.bind(this)
 
