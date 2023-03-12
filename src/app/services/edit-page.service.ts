@@ -158,8 +158,9 @@ export class EditPageService {
 
     days.forEach(day => {
       day.lessons.forEach(lesson => {
+        let dayOfWeek = DayOfWeeks.indexOf(day.dayOfWeek)
         let line = week.WeekTimeLines[lesson.lessonTime.lessonNumber - 1]
-        let cell = line.Cells[DayOfWeeks.indexOf(day.dayOfWeek)]
+        let cell = line.Cells[dayOfWeek]
 
         cell.Pairs.push(
           new Pair(
@@ -170,7 +171,13 @@ export class EditPageService {
             lesson.lessonType.name,
             `${lesson.teacher.lastName} ${lesson.teacher.firstName} ${lesson.teacher.patronymicName}`,
             day.date,
-            `${formatTime(lesson.lessonTime.startTime)} - ${formatTime(lesson.lessonTime.endTime)}`
+            `${formatTime(lesson.lessonTime.startTime)} - ${formatTime(lesson.lessonTime.endTime)}`,
+            undefined,
+            dayOfWeek,
+            lesson.frequency,
+            parse(lesson.startDate, 'yyyy-MM-dd', new Date()),
+            parse(lesson.endDate, 'yyyy-MM-dd', new Date()),
+            "Фиг тебе а не групп ID" // TODO попросить у бёка lessonGroupId
           ),
         )
       })

@@ -93,7 +93,6 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
     })
   }.bind(this)
 
-
   ngOnInit() {
     // Загрузка данных
     this.loadData().subscribe({
