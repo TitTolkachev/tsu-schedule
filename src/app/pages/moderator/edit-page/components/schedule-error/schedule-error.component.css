@@ -1,0 +1,110 @@
+/*--------------*/
+/* Modal Content */
+
+.modal-content {
+  background: #735F5F;
+  border-radius: 25px 25px 0 0;
+
+  text-wrap: normal;
+  word-wrap: break-word;
+
+  margin: 0;
+  border: 0;
+
+  font-family: 'Zekton', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 45px;
+  line-height: 54px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #FFFFFF;
+}
+
+.modal-body-text {
+  padding: 80px 110px;
+}
+
+/*--------------*/
+/* Modal Footer */
+
+.my-modal-footer {
+  height: 100%;
+  width: 100%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  text-align: center;
+}
+
+.my-modal-footer > .btn {
+  width: 250px;
+  height: 100px;
+
+  background: white;
+
+  font-family: 'Jura', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 35px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+
+  color: #735F5F;
+
+  border: none;
+
+  padding: 0;
+  margin: 0;
+}
+
+.left-btn {
+  border-radius: 0 25px 0 0;
+}
+
+.right-btn {
+  border-radius: 25px 0 0 0;
+}
+
+.my-modal-footer > .btn:hover {
+  background: #d0d0d0;
+}
+
+.my-modal-footer > .btn:active {
+  background: #9f9f9f;
+}
+
+@media (max-height: 900px) {
+
+  .modal-content {
+    border-radius: 20px 20px 0 0;
+    font-size: 35px;
+    line-height: 40px;
+  }
+
+  .modal-body-text {
+    padding: 50px 40px;
+  }
+
+  .my-modal-footer > .btn {
+    width: 180px;
+    height: 70px;
+    font-size: 22px;
+    line-height: 25px;
+  }
+
+  .left-btn {
+    border-radius: 0 20px 0 0;
+  }
+
+  .right-btn {
+    border-radius: 20px 0 0 0;
+  }
+}

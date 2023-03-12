@@ -15,21 +15,9 @@ export class ScheduleService implements IScheduleService {
     private httpClient: HttpClient
   ) { }
 
-  fetchGroupSchedule(groupId: string, startDate: string, endDate: string): Observable<DaySchedule[]> {
-    return this.httpClient.get<DaySchedule[]>(
-      `${SERVER_URL}/schedule/group/${groupId}?startDate=${startDate}&endDate=${endDate}`
-    )
-  }
-
   fetchLessonTimes(): Observable<LessonTime[]> {
     return this.httpClient.get<LessonTime[]>(
       `${SERVER_URL}/schedule/lesson-time`
-    )
-  }
-
-  fetchSchedule(startDate: string, endDate: string): Observable<DaySchedule[]> {
-    return this.httpClient.get<DaySchedule[]>(
-      `${SERVER_URL}/schedule?startDate=${startDate}&endDate=${endDate}`
     )
   }
 
@@ -44,12 +32,6 @@ export class ScheduleService implements IScheduleService {
     groupIds.forEach(id => queries = `${queries}&groupIds=${id}`)
     return this.httpClient.get<DaySchedule[]>(
       `${SERVER_URL}/schedule/staff?${queries}`
-    )
-  }
-
-  fetchTeacherSchedule(teacherId: string, startDate: string, endDate: string): Observable<DaySchedule[]> {
-    return this.httpClient.get<DaySchedule[]>(
-      `${SERVER_URL}/schedule/teacher/${teacherId}?startDate=${startDate}&endDate=${endDate}`
     )
   }
 }

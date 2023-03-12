@@ -1,32 +1,58 @@
 import {LessonType} from "../models/lesson-type";
-import {Lesson} from "../models/lesson";
 import {Observable} from "rxjs";
-import {LessonCreateDto} from "../models/lesson-create-dto";
 
 export abstract class ILessonService {
 
   abstract createLesson(
-    lessonCreateDto: LessonCreateDto
-  ): Observable<any>
+    lessonCreateDto: {
+      groupsIds: string[],
+      studyRoomId: string,
+      lessonTypeId: string,
+      teacherId: string,
+      subjectId: string,
+      startDate: string,
+      endDate: string,
+      lessonNumber: number,
+      frequency: number
+    }
+  ): Observable<void>
 
-  abstract deleteLesson(
-    id: string
-  ): Observable<any>
+  abstract deleteLessonInGroup(
+    lessonId: string
+  ): Observable<void>
 
-  abstract fetchLesson(
-    id: string
-  ): Observable<Lesson>
+  abstract deleteLessonGroup(
+    lessonId: string
+  ): Observable<void>
 
   abstract fetchLessonTypes(): Observable<LessonType[]>
 
-  abstract modifyLesson(
-    id: string,
-    lessonCreateDto: LessonCreateDto
-  ): Observable<any>
+  abstract modifyLessonInGroup(
+    lessonId: string,
+    lessonEditDto: {
+      groupsIds: string[], // TODO может не работать на бёке
+      studyRoomId: string,
+      teacherId: string,
+      lessonTypeId: string, // TODO может не работать на бёке
+      subjectId: string, // TODO может не работать на бёке
+      date: string,
+      lessonNumber: number
+    }
+  ): Observable<void>
 
   abstract modifyLessonGroup(
-    id: string,
-    lessonCreateDto: LessonCreateDto
-  ): Observable<any>
+    lessonId: string,
+    lessonEditDto: {
+      groupsIds: string[],
+      studyRoomId: string,
+      teacherId: string,
+      lessonTypeId: string,
+      subjectId: string,
+      startDate: string,
+      endDate: string,
+      lessonNumber: number,
+      frequency: number
+    }
+  ): Observable<void>
 
 }

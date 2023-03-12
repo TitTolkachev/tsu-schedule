@@ -55,7 +55,9 @@ import {IRequestService} from "./services/i-request.service";
 import {IScheduleService} from "./services/i-schedule.service";
 import {ILessonService} from "./services/i-lesson.service";
 import {LoaderComponent} from './components/loader/loader.component';
+import {ScheduleConfirmComponent} from './pages/moderator/edit-page/components/schedule-confirm/schedule-confirm.component';
 import {MainComponent} from './pages/main/main.component';
+import {ScheduleErrorComponent} from './pages/moderator/edit-page/components/schedule-error/schedule-error.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +107,9 @@ import {MainComponent} from './pages/main/main.component';
     SchedulePairComponent,
     SchedulePairModalComponent,
     LoaderComponent,
-    MainComponent
+    MainComponent,
+    ScheduleConfirmComponent,
+    ScheduleErrorComponent
   ],
   imports: [
     BrowserModule,

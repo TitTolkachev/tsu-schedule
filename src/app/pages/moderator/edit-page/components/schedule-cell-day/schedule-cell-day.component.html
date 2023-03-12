@@ -22,7 +22,7 @@
 
   <ng-template #emptyCell>
     <div class="plus-btn-container" [ngClass]="Cell!.PageState != 0 && !Cell!.IsAdding? 'd-none' : ''">
-      <div class="plus-btn btn" [ngClass]="Cell!.IsAdding? 'active-plus-btn' : ''" (click)="onPlusBtnClick()">
+      <div class="plus-btn btn" *ngIf="Cell!.ShowPluses" [ngClass]="Cell!.IsAdding? 'active-plus-btn' : ''" (click)="onPlusBtnClick()">
         <div class="plus-btn-text" *ngIf="!Cell!.IsAdding">
           +
         </div>

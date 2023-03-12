@@ -1,0 +1,19 @@
+<div class="modal fade" id="errorModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div *ngIf="error" class="modal-body-text">
+          {{ error }}
+        </div>
+      </div>
+
+      <div class="my-modal-footer">
+        <!-- Костыль, который мне посоветовал ТИТ -->
+        <div class="btn apply-for-all-btn right-btn" data-bs-dismiss="modal">Окей</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<button id="openErrorModal" data-bs-toggle="modal" data-bs-target="#errorModal" class="d-none"></button>

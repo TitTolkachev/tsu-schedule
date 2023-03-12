@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {addDays, addWeeks, endOfWeek, format, getDate, getWeek, parse, startOfWeek} from "date-fns";
 import {DaySchedule} from "../models/day-schedule";
 import {Week} from "../pages/moderator/edit-page/models/Week";
-import {indexOf} from "../models/day-of-week";
 import {Pair} from "../pages/moderator/edit-page/models/Pair";
 import {formatTime} from "../models/time";
 import {LessonTime} from "../models/lesson-time";
@@ -11,6 +10,7 @@ import {WeekTimeLine} from "../pages/moderator/edit-page/models/WeekTimeLine";
 import {Cell} from "../pages/moderator/edit-page/models/Cell";
 import {map, Observable} from "rxjs";
 import {IScheduleService} from "./i-schedule.service";
+import {DayOfWeeks} from "../models/day-of-week";
 
 @Injectable({
   providedIn: 'root'
@@ -125,7 +125,7 @@ export class EditPageService {
 
     days.forEach(day => {
       let date = parse(day.date, 'yyyy-MM-dd', new Date())
-      let weekNumber = getWeek(date)
+      let weekNumber = getWeek(date, {weekStartsOn: 1})
 
       if (map.has(weekNumber)) {
         map.get(weekNumber)?.push(day)
@@ -158,18 +158,31 @@ export class EditPageService {
 
     days.forEach(day => {
       day.lessons.forEach(lesson => {
+        let dayOfWeek = DayOfWeeks.indexOf(day.dayOfWeek)
         let line = week.WeekTimeLines[lesson.lessonTime.lessonNumber - 1]
-        let cell = line.Cells[indexOf(day.dayOfWeek)]
+        let cell = line.Cells[dayOfWeek]
+
+        // Защита от людей, которые любят учиться в воскресение
+        if (cell == undefined) {
+          return
+        }
 
         cell.Pairs.push(
           new Pair(
+            lesson.id,
             lesson.subject.name,
-            `${lesson.studyRoom.number} ${lesson.studyRoom.name}`,
+            `${lesson.studyRoom.number} ${lesson.studyRoom.name ? lesson.studyRoom.name : ""}`,
             lesson.groups.map(e => e.number).join(','),
             lesson.lessonType.name,
             `${lesson.teacher.lastName} ${lesson.teacher.firstName} ${lesson.teacher.patronymicName}`,
             day.date,
-            `${formatTime(lesson.lessonTime.startTime)} - ${formatTime(lesson.lessonTime.endTime)}`
+            `${formatTime(lesson.lessonTime.startTime)} - ${formatTime(lesson.lessonTime.endTime)}`,
+            undefined,
+            dayOfWeek,
+            lesson.frequency,
+            parse(lesson.startDate, 'yyyy-MM-dd', new Date()),
+            parse(lesson.endDate, 'yyyy-MM-dd', new Date()),
+            "Фиг тебе а не групп ID" // TODO попросить у бёка lessonGroupId
           ),
         )
       })
@@ -201,7 +214,7 @@ export class EditPageService {
       'd MMMM yyyy',
       {locale: ruLocale}
     )
-    let weekNumber = getWeek(weekDate)
+    let weekNumber = getWeek(weekDate, {weekStartsOn: 1})
 
     return {
       WeekDate: `${startDateFormatted} - ${endDateFormatted} • ${weekNumber} неделя`,
@@ -212,8 +225,14 @@ export class EditPageService {
         let line: WeekTimeLine = {
           TimeStart: formatTime(time.startTime),
           TimeEnd: formatTime(time.endTime),
-          Cells: Array.from({length: 6}, () => {
-            return this.cellConstructor!()
+          Cells: Array.from({length: 6}, (_, i) => {
+            let cell = this.cellConstructor!()
+
+            cell.DayOfWeek = i
+            cell.CellTime = time
+            cell.CellDate = addDays(startDate, i)
+
+            return cell
           })
         }
         return line

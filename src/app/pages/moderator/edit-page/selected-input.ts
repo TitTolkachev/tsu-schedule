@@ -1,4 +1,6 @@
 import {EditPageComponent} from "./edit-page.component";
+import {DayOfWeek, DayOfWeeks} from "../../../models/day-of-week";
+import {format} from "date-fns";
 
 export class SelectedInput {
 
@@ -38,7 +40,7 @@ export class SelectedInput {
     return returnVal
   }
 
-  get SelectedWeekDay(): string | null {
+  get SelectedWeekDay(): DayOfWeek | null {
     let returnVal = null
     let input = document.getElementById('input3') as HTMLInputElement
     if (input != null) {
@@ -46,14 +48,14 @@ export class SelectedInput {
       if (inputValue != '') {
         this.EditPage?.weekDays?.forEach((e) => {
           if (e.name.trim().toUpperCase() == inputValue.toUpperCase())
-            returnVal = e.id
+            returnVal = DayOfWeeks.values[e.id]
         })
       }
     }
     return returnVal
   }
 
-  get SelectedTime(): string | null {
+  get SelectedTime(): number | null {
     let returnVal = null
     let input = document.getElementById('input4') as HTMLInputElement
     if (input != null) {
@@ -92,7 +94,7 @@ export class SelectedInput {
       let inputValue = input.value.trim()
       if (inputValue != '') {
         this.EditPage?.audiences?.forEach((e) => {
-          if (`${e.number} (${e.name})`.trim().toUpperCase() == inputValue.toUpperCase())
+          if (`${e.number ? e.number : ''} ${e.name ? e.name : ''}`.trim().toUpperCase() == inputValue.toUpperCase())
             returnVal = e.id
         })
       }
@@ -115,24 +117,46 @@ export class SelectedInput {
     return returnVal
   }
 
-  get SelectedRepeat(): string | null {
+  get SelectedRepeat(): number | null {
 
+    let returnVal = null
     let input = document.getElementById('input8') as HTMLInputElement
-
-    return input?.value
+    if (input != null) {
+      let inputValue = input.value.trim()
+      if (inputValue != '') {
+        this.EditPage?.repeats?.forEach((e) => {
+          if (`${e.name}`.trim().toUpperCase() == inputValue.toUpperCase())
+            returnVal = e.id
+        })
+      }
+    }
+    return returnVal
   }
 
   get SelectedDateStart(): string | null {
 
     let input = document.getElementById('input9') as HTMLInputElement
-
-    return input?.value
+    let d = input?.valueAsDate
+    return d && !isNaN(Date.parse(d.toString()))? format(d, 'yyyy-MM-dd') : null
   }
 
   get SelectedDateEnd(): string | null {
 
     let input = document.getElementById('input10') as HTMLInputElement
+    let d = input?.valueAsDate
+    return d && !isNaN(Date.parse(d.toString())) ? format(d, 'yyyy-MM-dd') : null
+  }
 
-    return input?.value
+  isValidSelected(): boolean {
+    return this.SelectedGroups.length > 0 &&
+      this.SelectedAudience != null &&
+      this.SelectedPairType != null &&
+      this.SelectedTeacher != null &&
+      this.SelectedSubject != null &&
+      this.SelectedDateStart != null &&
+      this.SelectedDateEnd != null &&
+      this.SelectedWeekDay != null &&
+      this.SelectedTime != null &&
+      this.SelectedRepeat != null
   }
 }

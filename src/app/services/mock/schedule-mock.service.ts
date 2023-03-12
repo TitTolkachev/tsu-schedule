@@ -18,100 +18,7 @@ import {addDays, format, parse} from "date-fns";
 })
 export class ScheduleMockService implements IScheduleService {
 
-  private days: DaySchedule[] = [
-    new DaySchedule(
-      "2023-03-06",
-      DayOfWeek.MONDAY,
-      [
-        new Lesson(
-          "1",
-          [
-            new Group("1", "972101"),
-            new Group("2", "972102"),
-            new Group("3", "972103")
-          ],
-          new Audience("1", "Учебная аудитория", 3, 2, "301"),
-          new LessonType("1", "Лекция"),
-          new Teacher("1", "Иван", "Иванов", "Иванович"),
-          new Subject("1", "Машинное обучение"),
-          new LessonTime(1, new Time(8, 45, 0, 0), new Time(10, 20, 0, 0))
-        ),
-        new Lesson(
-          "2",
-          [
-            new Group("1", "972101")
-          ],
-          new Audience("2", "Компьютерный класс", 2, 2, "233"),
-          new LessonType("2", "Практика"),
-          new Teacher("1", "Иван", "Иванов", "Иванович"),
-          new Subject("2", "Программирование"),
-          new LessonTime(2, new Time(10, 35, 0, 0), new Time(12, 10, 0, 0))
-        ),
-        new Lesson(
-          "3",
-          [
-            new Group("2", "972102")
-          ],
-          new Audience("3", "Учебная аудитория", 2, 2, "214"),
-          new LessonType("3", "Семинар"),
-          new Teacher("2", "Иван", "Иванов", "Романович"),
-          new Subject("3", "Иностранный язык"),
-          new LessonTime(2, new Time(10, 35, 0, 0), new Time(12, 10, 0, 0))
-        ),
-        new Lesson(
-          "4",
-          [
-            new Group("3", "972103")
-          ],
-          new Audience("3", "Учебная аудитория", 2, 2, "214"),
-          new LessonType("3", "Семинар"),
-          new Teacher("2", "Иван", "Иванов", "Романович"),
-          new Subject("3", "Иностранный язык"),
-          new LessonTime(3, new Time(12, 25, 0, 0), new Time(14, 0, 0, 0))
-        )
-      ]
-    ),
-    new DaySchedule(
-      "2023-03-10",
-      DayOfWeek.FRIDAY,
-      [
-        new Lesson(
-          "5",
-          [
-            new Group("1", "972101")
-          ],
-          new Audience("3", "Учебная аудитория", 2, 2, "214"),
-          new LessonType("3", "Семинар"),
-          new Teacher("2", "Иван", "Иванов", "Романович"),
-          new Subject("3", "Иностранный язык"),
-          new LessonTime(3, new Time(12, 25, 0, 0), new Time(14, 0, 0, 0))
-        )
-      ]
-    ),
-    new DaySchedule(
-      "2023-03-11",
-      DayOfWeek.SATURDAY,
-      [
-        new Lesson(
-          "6",
-          [
-            new Group("1", "972101")
-          ],
-          new Audience("2", "Компьютерный класс", 2, 2, "233"),
-          new LessonType("2", "Практика"),
-          new Teacher("1", "Иван", "Иванов", "Иванович"),
-          new Subject("2", "Программирование"),
-          new LessonTime(6, new Time(18, 25, 0, 0), new Time(20, 0, 0, 0))
-        )
-      ]
-    )
-  ]
-
   constructor() { }
-
-  fetchGroupSchedule(groupId: string, startDate: string, endDate: string): Observable<DaySchedule[]> {
-    return of(this.days);
-  }
 
   fetchLessonTimes(): Observable<LessonTime[]> {
     return of([
@@ -148,97 +55,6 @@ export class ScheduleMockService implements IScheduleService {
     ]).pipe(delay(1000));
   }
 
-  fetchSchedule(startDate: string, endDate: string): Observable<DaySchedule[]> {
-    return of([
-      new DaySchedule(
-        startDate,
-        DayOfWeek.MONDAY,
-        [
-          new Lesson(
-            "1",
-            [
-              new Group("1", "972101"),
-              new Group("2", "972102"),
-              new Group("3", "972103")
-            ],
-            new Audience("1", "Учебная аудитория", 3, 2, "301"),
-            new LessonType("1", "Лекция"),
-            new Teacher("1", "Иван", "Иванов", "Иванович"),
-            new Subject("1", "Машинное обучение"),
-            new LessonTime(1, new Time(8, 45, 0, 0), new Time(10, 20, 0, 0))
-          ),
-          new Lesson(
-            "2",
-            [
-              new Group("1", "972101")
-            ],
-            new Audience("2", "Компьютерный класс", 2, 2, "233"),
-            new LessonType("2", "Практика"),
-            new Teacher("1", "Иван", "Иванов", "Иванович"),
-            new Subject("2", "Программирование"),
-            new LessonTime(2, new Time(10, 35, 0, 0), new Time(12, 10, 0, 0))
-          ),
-          new Lesson(
-            "3",
-            [
-              new Group("2", "972102")
-            ],
-            new Audience("3", "Учебная аудитория", 2, 2, "214"),
-            new LessonType("3", "Семинар"),
-            new Teacher("2", "Иван", "Иванов", "Романович"),
-            new Subject("3", "Иностранный язык"),
-            new LessonTime(2, new Time(10, 35, 0, 0), new Time(12, 10, 0, 0))
-          ),
-          new Lesson(
-            "4",
-            [
-              new Group("3", "972103")
-            ],
-            new Audience("3", "Учебная аудитория", 2, 2, "214"),
-            new LessonType("3", "Семинар"),
-            new Teacher("2", "Иван", "Иванов", "Романович"),
-            new Subject("3", "Иностранный язык"),
-            new LessonTime(3, new Time(12, 25, 0, 0), new Time(14, 0, 0, 0))
-          )
-        ]
-      ),
-      new DaySchedule(
-        format(addDays(parse(startDate, 'yyyy-MM-dd', new Date()), 4), 'yyyy-MM-dd'),
-        DayOfWeek.FRIDAY,
-        [
-          new Lesson(
-            "5",
-            [
-              new Group("1", "972101")
-            ],
-            new Audience("3", "Учебная аудитория", 2, 2, "214"),
-            new LessonType("3", "Семинар"),
-            new Teacher("2", "Иван", "Иванов", "Романович"),
-            new Subject("3", "Иностранный язык"),
-            new LessonTime(3, new Time(12, 25, 0, 0), new Time(14, 0, 0, 0))
-          )
-        ]
-      ),
-      new DaySchedule(
-        format(addDays(parse(startDate, 'yyyy-MM-dd', new Date()), 5), 'yyyy-MM-dd'),
-        DayOfWeek.SATURDAY,
-        [
-          new Lesson(
-            "6",
-            [
-              new Group("1", "972101")
-            ],
-            new Audience("2", "Компьютерный класс", 2, 2, "233"),
-            new LessonType("2", "Практика"),
-            new Teacher("1", "Иван", "Иванов", "Иванович"),
-            new Subject("2", "Программирование"),
-            new LessonTime(6, new Time(18, 25, 0, 0), new Time(20, 0, 0, 0))
-          )
-        ]
-      )
-    ]).pipe(delay(1000));
-  }
-
   fetchStaffSchedule(groupIds: string[], teacherId: string | null, audienceId: string | null, startDate: string, endDate: string): Observable<DaySchedule[]> {
     if (groupIds.length == 0 && teacherId == null && audienceId == null) {
       return of([]).pipe(delay(1000))
@@ -259,6 +75,9 @@ export class ScheduleMockService implements IScheduleService {
             new LessonType("1", "Лекция"),
             new Teacher("1", "Иван", "Иванов", "Иванович"),
             new Subject("1", "Машинное обучение"),
+            "2023-01-01",
+            "2023-02-01",
+            1,
             new LessonTime(1, new Time(8, 45, 0, 0), new Time(10, 20, 0, 0))
           ),
           new Lesson(
@@ -270,6 +89,9 @@ export class ScheduleMockService implements IScheduleService {
             new LessonType("2", "Практика"),
             new Teacher("1", "Иван", "Иванов", "Иванович"),
             new Subject("2", "Программирование"),
+            "2023-01-01",
+            "2023-02-01",
+            1,
             new LessonTime(2, new Time(10, 35, 0, 0), new Time(12, 10, 0, 0))
           ),
           new Lesson(
@@ -281,6 +103,9 @@ export class ScheduleMockService implements IScheduleService {
             new LessonType("3", "Семинар"),
             new Teacher("2", "Иван", "Иванов", "Романович"),
             new Subject("3", "Иностранный язык"),
+            "2023-01-01",
+            "2023-02-01",
+            1,
             new LessonTime(2, new Time(10, 35, 0, 0), new Time(12, 10, 0, 0))
           ),
           new Lesson(
@@ -292,6 +117,9 @@ export class ScheduleMockService implements IScheduleService {
             new LessonType("3", "Семинар"),
             new Teacher("2", "Иван", "Иванов", "Романович"),
             new Subject("3", "Иностранный язык"),
+            "2023-01-01",
+            "2023-02-01",
+            1,
             new LessonTime(3, new Time(12, 25, 0, 0), new Time(14, 0, 0, 0))
           )
         ]
@@ -309,6 +137,9 @@ export class ScheduleMockService implements IScheduleService {
             new LessonType("3", "Семинар"),
             new Teacher("2", "Иван", "Иванов", "Романович"),
             new Subject("3", "Иностранный язык"),
+            "2023-01-01",
+            "2023-02-01",
+            1,
             new LessonTime(3, new Time(12, 25, 0, 0), new Time(14, 0, 0, 0))
           )
         ]
@@ -326,14 +157,13 @@ export class ScheduleMockService implements IScheduleService {
             new LessonType("2", "Практика"),
             new Teacher("1", "Иван", "Иванов", "Иванович"),
             new Subject("2", "Программирование"),
+            "2023-01-01",
+            "2023-02-01",
+            1,
             new LessonTime(6, new Time(18, 25, 0, 0), new Time(20, 0, 0, 0))
           )
         ]
       )
     ]).pipe(delay(1000));
-  }
-
-  fetchTeacherSchedule(teacherId: string, startDate: string, endDate: string): Observable<DaySchedule[]> {
-    return of(this.days);
   }
 }

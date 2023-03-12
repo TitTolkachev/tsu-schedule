@@ -29,7 +29,7 @@
 
       <div class="modal-footer">
         <div class="footer-pair-time">{{Pair!.Time}}</div>
-        <button *ngIf="PageState==0" type="button" class="btn btn-primary text-center" (click)="editPair!(Pair)">
+        <button *ngIf="PageState==0 && ShowChangeBtn" type="button" class="btn btn-primary text-center" (click)="editPair!(Pair)">
           Изменить
         </button>
       </div>

@@ -9,10 +9,13 @@ import {Pair} from "../../models/Pair";
 export class SchedulePairModalComponent implements AfterContentInit {
 
   @Input()
-  Pair: Pair | undefined = new Pair('', '', '', '', '', '', '')
+  Pair: Pair | undefined = Pair.empty()
 
   @Input()
   PageState: number | undefined
+
+  @Input()
+  ShowChangeBtn: boolean | undefined
 
   @Input()
   initSetOpenModalPairFunction: Function | undefined
