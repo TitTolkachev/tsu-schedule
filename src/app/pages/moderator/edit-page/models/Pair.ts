@@ -21,4 +21,13 @@ export class Pair {
   Date: string | undefined = ''
   Time: string | undefined = ''
   IsActive: boolean | undefined = false
+
+  /**
+   * От 0 до 5
+   */
+  DayOfWeek: number | undefined
+  Repeat: number | undefined
+  GroupDateStart: Date | undefined
+  GroupDateEnd: Date | undefined
+  GroupId: string | undefined
 }
