@@ -43,7 +43,7 @@ export class RequestComponent {
 
     let acc = this.request.account
 
-    if (acc.patronymicName == null) {
+    if (acc.patronymicName != null) {
       return `${acc.lastName} ${acc.firstName} ${acc.patronymicName}`
     }
 
