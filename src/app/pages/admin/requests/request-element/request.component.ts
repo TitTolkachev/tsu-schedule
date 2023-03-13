@@ -19,11 +19,13 @@ export class RequestComponent {
   onDecline: EventEmitter<RegistrationRequest | GroupRequest> = new EventEmitter<RegistrationRequest | GroupRequest>()
 
   get isRegistrationRequest(): boolean {
-    return this.request instanceof RegistrationRequest
+    // @ts-ignore
+    return !('group' in this.request)
   }
 
   get isGroupRequest(): boolean {
-    return this.request instanceof GroupRequest
+    // @ts-ignore
+    return 'group' in this.request
   }
 
   get registrationRequest(): RegistrationRequest {
