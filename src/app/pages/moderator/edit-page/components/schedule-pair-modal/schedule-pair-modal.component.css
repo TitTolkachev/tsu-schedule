@@ -85,6 +85,8 @@
 }
 
 .modal-body-block-value {
+  text-wrap: normal;
+  word-wrap: anywhere;
   display: flex;
   padding: 5px 30px;
   font-weight: 500;
