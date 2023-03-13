@@ -527,7 +527,7 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
   onChangeStartDay() {
     let weekDay = parseInt(format(parse(this.SelectedInputs.SelectedDateStart!, 'yyyy-MM-dd', new Date), 'i')) - 1
     let input3 = document.getElementById('input3') as HTMLInputElement
-    input3.value = weekDay != null ? this.weekDays[weekDay > 5 ? 5 : weekDay]?.name : ''
+    input3.value = weekDay != null && weekDay <= 5 ? this.weekDays[weekDay]?.name : ''
   }
 
   /**
