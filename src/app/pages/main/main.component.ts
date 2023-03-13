@@ -23,7 +23,7 @@ export class MainComponent {
         this.router.navigateByUrl("/admin/main").then()
         break
       case "ScheduleWriter":
-        this.router.navigateByUrl("/moderation/edit").then()
+        this.router.navigateByUrl("/moderator/edit").then()
         break
       default:
         throw Error("User has invalid role")
