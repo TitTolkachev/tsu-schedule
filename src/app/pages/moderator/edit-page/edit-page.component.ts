@@ -25,8 +25,9 @@ import {Event} from "@angular/router";
 import {ConfirmMode} from "./models/ConfirmMode";
 import {LessonEditService} from "../../../services/lesson-edit.service";
 import {ScheduleErrorComponent} from "./components/schedule-error/schedule-error.component";
-import {format} from "date-fns";
+import {addDays, format, parse, startOfWeek} from "date-fns";
 import {HttpErrorResponse} from "@angular/common/http";
+import {DayOfWeeks} from "../../../models/day-of-week";
 
 @Component({
   selector: 'app-edit-page',
@@ -492,6 +493,19 @@ export class EditPageComponent extends DisplayErrorComponent implements OnInit {
   onChange() {
     if(this.State != 2)
       this.refresh()
+  }
+
+  onChangeWeekDay() {
+    let weekDay = DayOfWeeks.indexOf(this.SelectedInputs.SelectedWeekDay!)
+    let startWeek = startOfWeek(parse(this.SelectedInputs.SelectedDateStart!, 'yyyy-MM-dd', new Date), {weekStartsOn: 1})
+    let input9 = document.getElementById('input9') as HTMLInputElement
+    input9.value = format(addDays(startWeek, weekDay), 'yyyy-MM-dd')
+  }
+
+  onChangeStartDay() {
+    let weekDay = parseInt(format(parse(this.SelectedInputs.SelectedDateStart!, 'yyyy-MM-dd', new Date), 'i')) - 1
+    let input3 = document.getElementById('input3') as HTMLInputElement
+    input3.value = weekDay != null ? this.weekDays[weekDay > 5 ? 5 : weekDay]?.name : ''
   }
 
   /**
